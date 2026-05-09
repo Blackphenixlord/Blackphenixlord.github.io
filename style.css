@@ -373,6 +373,8 @@ a {
   transition:
     box-shadow 0.2s,
     transform 0.1s;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .hero-btn-primary:hover {
   box-shadow: 0 0 24px #00ff4166;
@@ -392,6 +394,8 @@ a {
     background 0.2s,
     box-shadow 0.2s,
     transform 0.1s;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .hero-btn-outline:hover {
   background: rgba(0, 255, 65, 0.08);

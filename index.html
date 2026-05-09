@@ -734,6 +734,12 @@
           heroContent.style.setProperty('--tilt-y', tiltY + 'deg');
         }
       });
+
+      // Reset tilt when mouse leaves
+      hero.addEventListener('mouseleave', () => {
+        heroContent.style.setProperty('--tilt-x', '0deg');
+        heroContent.style.setProperty('--tilt-y', '0deg');
+      });
     }
   </script>
 </body>
