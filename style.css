@@ -538,7 +538,7 @@ a {
     border-color 0.3s,
     box-shadow 0.3s;
   cursor: text;
-  touch-action: manipulation;
+  touch-action: auto;
 }
 .intro-card:hover {
   border-color: rgba(0, 255, 65, 0.4);
@@ -653,7 +653,7 @@ a {
   cursor: text;
   z-index: 100;
   pointer-events: auto;
-  touch-action: manipulation;
+  touch-action: auto;
   -webkit-user-select: text;
   user-select: text;
   /* iOS specific */
@@ -799,6 +799,7 @@ a {
   overflow-y: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  touch-action: auto;
 }
 /* Custom scrollbar – webkit */
 .intro-body::-webkit-scrollbar {
