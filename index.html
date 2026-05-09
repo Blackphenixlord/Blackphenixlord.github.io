@@ -17,6 +17,15 @@
 </head>
 
 <body>
+  <!-- SVG Filter for grid distortion -->
+  <svg style="display:none;" width="0" height="0">
+    <defs>
+      <filter id="gridWarp">
+        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3" result="noise" seed="1" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-logo">
@@ -718,27 +727,26 @@
 
     // ── Cursor-tracking light effect ────────────────────────────────────────────────
     const hero = document.querySelector('.hero');
-    const distortionOverlay = document.querySelector('.hero-distortion-overlay');
-    if (hero && distortionOverlay) {
+    const gridWarpFilter = document.querySelector('#gridWarp');
+    const displacementMap = gridWarpFilter ? gridWarpFilter.querySelector('feDisplacementMap') : null;
+
+    if (hero && displacementMap) {
       document.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
         if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-          // Grid distortion around mouse
-          distortionOverlay.style.setProperty('--distort-x', x + '%');
-          distortionOverlay.style.setProperty('--distort-y', y + '%');
-
-          // Distortion intensity (grid scales up near mouse)
+          // Calculate distance from mouse to hero center
           const centerX = rect.left + rect.width / 2;
           const centerY = rect.top + rect.height / 2;
           const dx = e.clientX - centerX;
           const dy = e.clientY - centerY;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 250;
-          const distortion = 1 + Math.max(0, (1 - distance / maxDist)) * 0.4;
-          distortionOverlay.style.setProperty('--distort-scale', distortion);
+          const maxDist = 300;
+
+          // Distortion intensity increases near mouse
+          const intensity = Math.max(0, (1 - distance / maxDist)) * 35;
+          displacementMap.setAttribute('scale', intensity);
+        } else {
+          displacementMap.setAttribute('scale', 0);
         }
       });
     }
