@@ -128,8 +128,10 @@ a {
     linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
+  background-position: var(--bg-shift-x, 0px) var(--bg-shift-y, 0px);
   animation: gridPulse 8s ease-in-out infinite;
   filter: url(#gridWarp);
+  transition: background-position 0.05s ease-out;
 }
 
 /* Removed distortion overlay - now just warping the main grid */

@@ -20,9 +20,10 @@
   <!-- SVG Filter for grid distortion -->
   <svg style="display:none;" width="0" height="0">
     <defs>
-      <filter id="gridWarp">
+      <filter id="gridWarp" x="-50%" y="-50%" width="200%" height="200%">
         <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="1" />
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
+        <feGaussianBlur in="noise" stdDeviation="3" result="blurred" />
+        <feDisplacementMap in="SourceGraphic" in2="blurred" scale="0" xChannelSelector="R" yChannelSelector="G" />
       </filter>
     </defs>
   </svg>
@@ -727,24 +728,35 @@
 
     // ── Cursor-tracking light effect ────────────────────────────────────────────────
     const hero = document.querySelector('.hero');
+    const heroBgGrid = document.querySelector('.hero-bg-grid');
     const gridWarpFilter = document.querySelector('#gridWarp');
     const displacementMap = gridWarpFilter ? gridWarpFilter.querySelector('feDisplacementMap') : null;
 
-    if (hero && displacementMap) {
+    if (hero && heroBgGrid && displacementMap) {
       document.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
         if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+          // Mouse position relative to hero
+          const relX = e.clientX - rect.left;
+          const relY = e.clientY - rect.top;
+          
           // Calculate distance from mouse to hero center
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          const dx = e.clientX - centerX;
-          const dy = e.clientY - centerY;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const dx = relX - centerX;
+          const dy = relY - centerY;
           const distance = Math.sqrt(dx * dx + dy * dy);
           const maxDist = 250;
 
-          // Distortion intensity increases near mouse (increased to 80 for stronger effect)
+          // Distortion intensity increases near mouse
           const intensity = Math.max(0, (1 - distance / maxDist)) * 80;
           displacementMap.setAttribute('scale', intensity);
+          
+          // Shift grid background toward mouse to create following effect
+          const shiftX = (relX / rect.width - 0.5) * 12;
+          const shiftY = (relY / rect.height - 0.5) * 12;
+          heroBgGrid.style.setProperty('--bg-shift-x', shiftX + 'px');
+          heroBgGrid.style.setProperty('--bg-shift-y', shiftY + 'px');
         } else {
           displacementMap.setAttribute('scale', 0);
         }
