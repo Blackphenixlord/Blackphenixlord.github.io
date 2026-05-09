@@ -714,6 +714,27 @@
     // ── Footer year ────────────────────────────────────────────────────────────────
     const y = document.getElementById('footer-year');
     if (y) y.textContent = new Date().getFullYear();
+
+    // ── Cursor-tracking light effect ────────────────────────────────────────────────
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    if (hero && heroContent) {
+      document.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty('--mouse-x', x + '%');
+          hero.style.setProperty('--mouse-y', y + '%');
+
+          // Tilt effect
+          const tiltX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 3;
+          const tiltY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 3;
+          heroContent.style.setProperty('--tilt-x', tiltX + 'deg');
+          heroContent.style.setProperty('--tilt-y', tiltY + 'deg');
+        }
+      });
+    }
   </script>
 </body>
 
