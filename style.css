@@ -111,6 +111,67 @@ a {
   border: none;
 }
 
+/* ===== CUSTOM RIGHT-CLICK MENU ===== */
+.custom-context-menu {
+  position: fixed;
+  z-index: 9999;
+  min-width: 190px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #1a3a1a;
+  background: rgba(10, 14, 26, 0.97);
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(0, 255, 65, 0.08) inset;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease;
+}
+
+.custom-context-menu.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.context-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.context-menu-list li + li {
+  margin-top: 4px;
+}
+
+.context-menu-link {
+  display: block;
+  width: 100%;
+  border-radius: 7px;
+  padding: 10px 12px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.84rem;
+  color: #c9d1d9;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.context-menu-link:hover,
+.context-menu-link:focus-visible {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.07);
+  border-color: rgba(0, 255, 65, 0.28);
+  outline: none;
+}
+
 /* ===== HERO ===== */
 .hero {
   position: relative;
@@ -1727,6 +1788,10 @@ a {
 
 /* ===== MOBILE (≤ 700px) ===== */
 @media (max-width: 700px) {
+  .custom-context-menu {
+    min-width: 170px;
+  }
+
   .navbar {
     padding: 14px 20px;
   }

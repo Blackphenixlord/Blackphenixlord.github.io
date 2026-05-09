@@ -41,6 +41,14 @@
       aria-controls="nav-links-list">&#9776;</button>
   </nav>
 
+  <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
+    <ul class="context-menu-list">
+      <li><a class="context-menu-link" href="index.html">Home</a></li>
+      <li><a class="context-menu-link" href="resume.html">Resume</a></li>
+      <li><a class="context-menu-link" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
   <section class="hero" id="main-content">
     <div class="hero-bg-grid"></div>
     <div class="hero-distortion-overlay"></div>
@@ -364,6 +372,40 @@
       const open = links.classList.toggle('open');
       btn.setAttribute('aria-expanded', open);
     }
+
+    function setupCustomContextMenu() {
+      const menu = document.getElementById('custom-context-menu');
+      if (!menu) return;
+
+      const closeMenu = () => {
+        menu.classList.remove('open');
+      };
+
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+
+        e.preventDefault();
+        const menuWidth = menu.offsetWidth || 190;
+        const menuHeight = menu.offsetHeight || 140;
+        const x = Math.min(e.clientX, window.innerWidth - menuWidth - 8);
+        const y = Math.min(e.clientY, window.innerHeight - menuHeight - 8);
+
+        menu.style.left = `${Math.max(8, x)}px`;
+        menu.style.top = `${Math.max(8, y)}px`;
+        menu.classList.add('open');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#custom-context-menu')) closeMenu();
+      });
+      document.addEventListener('scroll', closeMenu, true);
+      window.addEventListener('resize', closeMenu);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    }
+
+    setupCustomContextMenu();
 
     // ── Blinking cursor ────────────────────────────────────────────────────────
     // cursor blink now handled by CSS animation (.cursor class)
