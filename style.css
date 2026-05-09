@@ -1493,17 +1493,19 @@ a {
     font-size: 0.82rem;
     height: 280px;
     max-height: 280px;
+    overflow: scroll;
   }
-  /* Mobile scrollbar: wider and easier to grab */
+  /* Mobile scrollbar: very wide and always visible */
   .intro-body::-webkit-scrollbar {
-    width: 12px;
+    width: 18px;
   }
   .intro-body::-webkit-scrollbar-thumb {
     background: #00ff41;
-    border-radius: 6px;
+    border-radius: 9px;
+    min-height: 40px;
   }
   .intro-body::-webkit-scrollbar-track {
-    background: rgba(0, 255, 65, 0.1);
+    background: #1a3a1a;
   }
 
   /* ── Terminal mobile fixes ── */
