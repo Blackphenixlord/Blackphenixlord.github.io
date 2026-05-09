@@ -69,7 +69,8 @@
           class="terminal-input-display" id="contact-terminal-after"></span><span class="terminal-ghost"
           id="contact-terminal-ghost"></span>
         <input class="terminal-hidden-input" id="contact-terminal-input" type="text" autocomplete="off"
-          spellcheck="false" aria-label="Terminal input" maxlength="60" />
+          autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send"
+          aria-label="Terminal input" maxlength="200" />
       </div>
     </div>
     <p class="terminal-hint" id="contact-terminal-hint" style="opacity:0;max-width:860px;margin:14px auto 0;">
@@ -211,6 +212,7 @@
       }
 
       card.addEventListener('click', () => inputEl.focus());
+      card.addEventListener('touchstart', () => inputEl.focus(), { passive: true });
 
       const ghostEl = document.getElementById('contact-terminal-ghost');
       const afterEl = document.getElementById('contact-terminal-after');

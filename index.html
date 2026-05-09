@@ -153,8 +153,9 @@
           <span class="terminal-prompt-prefix">joshua@collado:~$&nbsp;</span>
           <span class="terminal-input-display" id="terminal-typed"></span><span class="terminal-ghost"
             id="terminal-ghost"></span><span class="cursor">█</span>
-          <input class="terminal-hidden-input" id="terminal-input" type="text" autocomplete="off" spellcheck="false"
-            aria-label="Terminal input" maxlength="40" />
+          <input class="terminal-hidden-input" id="terminal-input" type="text" autocomplete="off" autocapitalize="none"
+            autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send" aria-label="Terminal input"
+            maxlength="100" />
         </div>
 
       </div>
@@ -556,8 +557,9 @@
         output.scrollTop = output.scrollHeight;
       });
 
-      // Click anywhere on the card to focus input
+      // Click or tap anywhere on the card to focus input
       document.getElementById('terminal-card')?.addEventListener('click', focusInput);
+      document.getElementById('terminal-card')?.addEventListener('touchstart', focusInput, { passive: true });
     })();
 
     // ── Hero-tag typewriter ────────────────────────────────────────────────────

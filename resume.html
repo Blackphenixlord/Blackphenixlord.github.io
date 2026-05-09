@@ -68,7 +68,8 @@
         <span class="terminal-input-display" id="resume-terminal-typed"></span><span class="terminal-ghost"
           id="resume-terminal-ghost"></span><span class="cursor">█</span>
         <input class="terminal-hidden-input" id="resume-terminal-input" type="text" autocomplete="off"
-          spellcheck="false" aria-label="Terminal input" maxlength="40" />
+          autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send"
+          aria-label="Terminal input" maxlength="100" />
       </div>
     </div>
     <p class="terminal-hint" id="resume-terminal-hint" style="opacity:0">
@@ -397,6 +398,7 @@
       }
 
       card.addEventListener('click', () => inputEl.focus());
+      card.addEventListener('touchstart', () => inputEl.focus(), { passive: true });
 
       const ghostEl = document.getElementById('resume-terminal-ghost');
       const cmdKeys = Object.keys(RESUME_CMDS);
