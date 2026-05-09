@@ -120,7 +120,6 @@ a {
   justify-content: center;
   overflow: hidden;
   padding: 40px 40px;
-  perspective: 1000px;
 }
 .hero-bg-grid {
   position: absolute;
@@ -129,7 +128,9 @@ a {
     linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
+  background-position: var(--bg-x, 0px) var(--bg-y, 0px);
   animation: gridPulse 8s ease-in-out infinite;
+  transition: background-position 0.08s ease-out;
 }
 /* Cursor-tracking light effect */
 .hero-bg-grid::before {
@@ -161,9 +162,6 @@ a {
   text-align: center;
   gap: 28px;
   max-width: 900px;
-  transition: transform 0.08s ease-out;
-  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-  transform-style: preserve-3d;
 }
 /* ===== LOGO — ANIMATIONS & INTERACTIVITY ===== */
 
@@ -373,7 +371,6 @@ a {
   transition:
     box-shadow 0.2s,
     transform 0.1s;
-  pointer-events: auto;
   cursor: pointer;
 }
 .hero-btn-primary:hover {
@@ -394,7 +391,6 @@ a {
     background 0.2s,
     box-shadow 0.2s,
     transform 0.1s;
-  pointer-events: auto;
   cursor: pointer;
 }
 .hero-btn-outline:hover {

@@ -718,7 +718,8 @@
     // ── Cursor-tracking light effect ────────────────────────────────────────────────
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero-content');
-    if (hero && heroContent) {
+    const heroBgGrid = document.querySelector('.hero-bg-grid');
+    if (hero && heroBgGrid) {
       document.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
         if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
@@ -727,18 +728,12 @@
           hero.style.setProperty('--mouse-x', x + '%');
           hero.style.setProperty('--mouse-y', y + '%');
 
-          // Tilt effect
-          const tiltX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 3;
-          const tiltY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 3;
-          heroContent.style.setProperty('--tilt-x', tiltX + 'deg');
-          heroContent.style.setProperty('--tilt-y', tiltY + 'deg');
+          // Move background grid based on mouse
+          const bgShiftX = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 12;
+          const bgShiftY = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 12;
+          heroBgGrid.style.setProperty('--bg-x', bgShiftX + 'px');
+          heroBgGrid.style.setProperty('--bg-y', bgShiftY + 'px');
         }
-      });
-
-      // Reset tilt when mouse leaves
-      hero.addEventListener('mouseleave', () => {
-        heroContent.style.setProperty('--tilt-x', '0deg');
-        heroContent.style.setProperty('--tilt-y', '0deg');
       });
     }
   </script>
