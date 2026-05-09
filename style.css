@@ -122,18 +122,35 @@ a {
   padding: 40px 40px;
   /* Atmospheric depth: radial glow centered on content + dark base */
   background:
-    radial-gradient(ellipse 90% 80% at 62% 45%, rgba(0, 255, 65, 0.07) 0%, rgba(0, 255, 65, 0.02) 45%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 12% 75%, rgba(0, 60, 180, 0.05) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 35% at 90% 20%, rgba(0, 200, 80, 0.04) 0%, transparent 55%),
+    radial-gradient(
+      ellipse 90% 80% at 62% 45%,
+      rgba(0, 255, 65, 0.07) 0%,
+      rgba(0, 255, 65, 0.02) 45%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 50% at 12% 75%,
+      rgba(0, 60, 180, 0.05) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 30% 35% at 90% 20%,
+      rgba(0, 200, 80, 0.04) 0%,
+      transparent 55%
+    ),
     #0a0e1a;
 }
 
 /* Vignette — dark edges focus the eye on center */
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 85% 85% at 50% 48%, transparent 35%, rgba(0, 0, 0, 0.72) 100%);
+  background: radial-gradient(
+    ellipse 85% 85% at 50% 48%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -147,7 +164,11 @@ a {
     linear-gradient(90deg, rgba(0, 255, 65, 0.055) 1px, transparent 1px),
     linear-gradient(rgba(0, 255, 65, 0.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 65, 0.018) 1px, transparent 1px);
-  background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
+  background-size:
+    48px 48px,
+    48px 48px,
+    12px 12px,
+    12px 12px;
   animation: gridPulse 8s ease-in-out infinite;
 }
 
@@ -159,16 +180,38 @@ a {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(circle 320px at 58% 42%, rgba(0, 255, 65, 0.10) 0%, rgba(0, 255, 65, 0.03) 50%, transparent 75%),
-    radial-gradient(circle 180px at 62% 45%, rgba(0, 255, 65, 0.18) 0%, transparent 55%),
-    radial-gradient(circle 240px at 14% 68%, rgba(0, 80, 220, 0.05) 0%, transparent 70%),
-    radial-gradient(circle 160px at 88% 18%, rgba(0, 200, 80, 0.06) 0%, transparent 65%);
+    radial-gradient(
+      circle 320px at 58% 42%,
+      rgba(0, 255, 65, 0.1) 0%,
+      rgba(0, 255, 65, 0.03) 50%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle 180px at 62% 45%,
+      rgba(0, 255, 65, 0.18) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle 240px at 14% 68%,
+      rgba(0, 80, 220, 0.05) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      circle 160px at 88% 18%,
+      rgba(0, 200, 80, 0.06) 0%,
+      transparent 65%
+    );
   animation: auraBreath 9s ease-in-out infinite;
 }
 
 @keyframes auraBreath {
-  0%, 100% { opacity: 0.75; }
-  50%       { opacity: 1;    }
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes gridPulse {
@@ -193,7 +236,12 @@ a {
 .hero-blob-1 {
   width: 520px;
   height: 380px;
-  background: radial-gradient(circle, rgba(0, 255, 65, 0.13) 0%, rgba(0, 255, 65, 0.04) 55%, transparent 80%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 65, 0.13) 0%,
+    rgba(0, 255, 65, 0.04) 55%,
+    transparent 80%
+  );
   top: 15%;
   left: 38%;
   animation: blobDrift1 18s ease-in-out infinite;
@@ -202,7 +250,11 @@ a {
 .hero-blob-2 {
   width: 340px;
   height: 300px;
-  background: radial-gradient(circle, rgba(0, 80, 255, 0.07) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 80, 255, 0.07) 0%,
+    transparent 70%
+  );
   bottom: 5%;
   left: 2%;
   animation: blobDrift2 22s ease-in-out infinite;
@@ -211,28 +263,54 @@ a {
 .hero-blob-3 {
   width: 260px;
   height: 220px;
-  background: radial-gradient(circle, rgba(0, 200, 70, 0.08) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 200, 70, 0.08) 0%,
+    transparent 70%
+  );
   top: 4%;
   right: 6%;
   animation: blobDrift3 16s ease-in-out infinite;
 }
 
 @keyframes blobDrift1 {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  33%  { transform: translate(28px, -18px) scale(1.06); }
-  66%  { transform: translate(-16px, 22px) scale(0.96); }
-  100% { transform: translate(0px, 0px) scale(1); }
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(28px, -18px) scale(1.06);
+  }
+  66% {
+    transform: translate(-16px, 22px) scale(0.96);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
 }
 @keyframes blobDrift2 {
-  0%   { transform: translate(0px, 0px); }
-  40%  { transform: translate(-20px, -28px); }
-  80%  { transform: translate(14px, 18px); }
-  100% { transform: translate(0px, 0px); }
+  0% {
+    transform: translate(0px, 0px);
+  }
+  40% {
+    transform: translate(-20px, -28px);
+  }
+  80% {
+    transform: translate(14px, 18px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
 }
 @keyframes blobDrift3 {
-  0%   { transform: translate(0px, 0px) rotate(0deg); }
-  50%  { transform: translate(18px, 22px) rotate(12deg); }
-  100% { transform: translate(0px, 0px) rotate(0deg); }
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(18px, 22px) rotate(12deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
 }
 .hero-content {
   position: relative;
@@ -244,7 +322,11 @@ a {
   gap: 28px;
   max-width: 900px;
   /* Glass plate lifts the content off the flat background */
-  background: radial-gradient(ellipse 110% 120% at 50% 50%, rgba(13, 17, 23, 0.55) 0%, rgba(10, 14, 26, 0.25) 100%);
+  background: radial-gradient(
+    ellipse 110% 120% at 50% 50%,
+    rgba(13, 17, 23, 0.55) 0%,
+    rgba(10, 14, 26, 0.25) 100%
+  );
   border-radius: 24px;
   padding: 48px 52px 52px;
   border: 1px solid rgba(0, 255, 65, 0.08);
@@ -276,15 +358,20 @@ a {
   overflow: hidden;
   line-height: 0;
   /* Depth: hard shadow below, soft glow above */
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 32px rgba(0, 255, 65, 0.18));
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 0 32px rgba(0, 255, 65, 0.18));
 }
 
 /* Glow plate — sits behind the SVG, creates a lit surface effect */
 .logo-inner::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -30px;
-  background: radial-gradient(circle, rgba(0, 255, 65, 0.12) 0%, transparent 65%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 65, 0.12) 0%,
+    transparent 65%
+  );
   pointer-events: none;
   z-index: -1;
   border-radius: 50%;
@@ -458,7 +545,7 @@ a {
   text-shadow:
     0 0 20px rgba(0, 255, 65, 0.55),
     0 0 60px rgba(0, 255, 65, 0.25),
-    0 0 120px rgba(0, 255, 65, 0.10),
+    0 0 120px rgba(0, 255, 65, 0.1),
     0 2px 4px rgba(0, 0, 0, 0.8);
 }
 .hero-sub {
@@ -1817,7 +1904,10 @@ a {
   letter-spacing: 0.05em;
   pointer-events: none;
   backdrop-filter: blur(8px);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 12px rgba(0,255,65,0.06), inset 0 1px 0 rgba(0,255,65,0.10);
+  box-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.5),
+    0 0 12px rgba(0, 255, 65, 0.06),
+    inset 0 1px 0 rgba(0, 255, 65, 0.1);
   animation: badgeDrift 14s ease-in-out infinite var(--d, 0s);
   white-space: nowrap;
   user-select: none;
@@ -1831,9 +1921,16 @@ a {
   opacity: 1;
 }
 @keyframes badgeDrift {
-  0%,100% { transform: rotate(var(--r, 0deg)) translateY(0px); }
-  33%      { transform: rotate(var(--r, 0deg)) translateY(-7px); }
-  66%      { transform: rotate(var(--r, 0deg)) translateY(4px); }
+  0%,
+  100% {
+    transform: rotate(var(--r, 0deg)) translateY(0px);
+  }
+  33% {
+    transform: rotate(var(--r, 0deg)) translateY(-7px);
+  }
+  66% {
+    transform: rotate(var(--r, 0deg)) translateY(4px);
+  }
 }
 
 /* ===== SOUND TOGGLE ===== */
@@ -1851,7 +1948,10 @@ a {
   border-radius: 6px;
   padding: 6px 10px;
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
   backdrop-filter: blur(6px);
 }
 .sound-toggle:hover {
@@ -1862,7 +1962,11 @@ a {
 
 /* Navbar: gradient backing + multi-shadow lift */
 .navbar {
-  background: linear-gradient(180deg, rgba(15, 21, 32, 0.97) 0%, rgba(10, 14, 26, 0.94) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 21, 32, 0.97) 0%,
+    rgba(10, 14, 26, 0.94) 100%
+  );
   box-shadow:
     0 1px 0 rgba(0, 255, 65, 0.1),
     0 4px 36px rgba(0, 0, 0, 0.65),
@@ -2047,6 +2151,180 @@ a {
 /* Intro section background: slight tonal variation */
 .intro-section {
   background: linear-gradient(180deg, #0a0e1a 0%, #0d1117 100%);
+}
+
+/* ===== FINAL PHONE TUNING (wins over earlier rules) ===== */
+@media (max-width: 700px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .nav-brand {
+    max-width: calc(100vw - 120px);
+    font-size: 0.88rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 48px 16px 34px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    gap: 18px;
+    border-radius: 14px;
+    padding: 24px 16px 28px;
+  }
+
+  .hero-logo {
+    width: min(42vw, 150px);
+    height: auto;
+  }
+
+  .hero-tag {
+    font-size: 0.92rem;
+  }
+
+  .hero-name {
+    font-size: clamp(2.2rem, 11vw, 2.9rem);
+    line-height: 1.06;
+  }
+
+  .hero-sub {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .hero-ctas {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-outline {
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+
+  .words-section,
+  .intro-section,
+  .projects-section,
+  .video-section,
+  .skills-section,
+  .page-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .project-card {
+    padding: 20px 16px 18px;
+  }
+
+  .project-card-top {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stats-strip {
+    padding: 14px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-item {
+    flex: 1 1 42%;
+    min-width: 120px;
+    text-align: center;
+    padding: 10px 12px;
+  }
+
+  .page-hero {
+    padding: 34px 16px 24px;
+  }
+
+  .page-hero-tags {
+    gap: 8px;
+  }
+
+  .page-hero-tags span {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+
+  .contact-layout .contact-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .contact-layout .contact-links a {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .intro-body {
+    height: 250px;
+    max-height: 250px;
+    font-size: 0.8rem;
+    line-height: 1.8;
+  }
+
+  .terminal-prompt-row,
+  .terminal-echo,
+  .terminal-response {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .tech-badge {
+    display: none;
+  }
+
+  .sound-toggle {
+    right: 10px;
+    bottom: 72px;
+    font-size: 0.68rem;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .nav-brand {
+    font-size: 0.82rem;
+  }
+
+  .hero-name {
+    font-size: 2.05rem;
+  }
+
+  .hero-sub {
+    font-size: 0.82rem;
+  }
+
+  .stat-item {
+    flex-basis: 100%;
+  }
 }
 
 /* ===== REDUCED MOTION ===== */
