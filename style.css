@@ -660,9 +660,7 @@ a {
   color: transparent;
   caret-color: transparent;
   cursor: text;
-  z-index: 100;
   pointer-events: auto;
-  touch-action: auto;
   -webkit-user-select: text;
   user-select: text;
   /* iOS specific */
