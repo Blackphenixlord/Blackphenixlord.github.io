@@ -237,9 +237,7 @@ a {
 .hero-logo {
   display: block;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation:
-    logoFloat 5s ease-in-out infinite,
-    logoPulse 3.5s ease-in-out infinite;
+  animation: logoPulse 3.5s ease-in-out infinite;
 }
 
 /* Hover: pause float, scale up, brighter glow */
