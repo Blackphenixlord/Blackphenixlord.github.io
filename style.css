@@ -538,6 +538,7 @@ a {
     border-color 0.3s,
     box-shadow 0.3s;
   cursor: text;
+  touch-action: manipulation;
 }
 .intro-card:hover {
   border-color: rgba(0, 255, 65, 0.4);
