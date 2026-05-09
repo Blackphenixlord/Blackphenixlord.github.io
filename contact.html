@@ -19,12 +19,12 @@
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-logo">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="36" height="36" rx="4" fill="#0a0e1a"/>
-        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#00ff41" stroke-width="1.5"/>
-        <rect x="0" y="0" width="36" height="9" rx="4" fill="#00ff41" fill-opacity="0.1"/>
-        <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57"/>
-        <circle cx="10" cy="4.5" r="1.3" fill="#febc2e"/>
-        <circle cx="15" cy="4.5" r="1.3" fill="#28c840"/>
+        <rect width="36" height="36" rx="4" fill="#0a0e1a" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#00ff41" stroke-width="1.5" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#00ff41" fill-opacity="0.1" />
+        <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
+        <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
+        <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
         <text x="6" y="23" font-family="monospace" font-size="10" fill="#00ff41">JC</text>
         <text x="6" y="31" font-family="monospace" font-size="7" fill="#00ff41" opacity="0.55">&#x258C;</text>
       </svg>
@@ -41,9 +41,22 @@
 
   <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
     <ul class="context-menu-list">
-      <li><a class="context-menu-link" href="index.html">Home</a></li>
-      <li><a class="context-menu-link" href="resume.html">Resume</a></li>
-      <li><a class="context-menu-link" href="contact.html">Contact</a></li>
+      <li><a class="context-menu-link" href="index.html"><svg class="context-menu-icon" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path d="M3 10.5 12 3l9 7.5" />
+            <path d="M5.5 9.5V21h13V9.5" />
+          </svg><span class="context-menu-label">Home</span></a></li>
+      <li><a class="context-menu-link" href="resume.html"><svg class="context-menu-icon" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path d="M7 3h8l4 4v14H7z" />
+            <path d="M15 3v5h4" />
+            <path d="M9.5 12h5M9.5 16h5" />
+          </svg><span class="context-menu-label">Resume</span></a></li>
+      <li><a class="context-menu-link" href="contact.html"><svg class="context-menu-icon" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="2" />
+            <path d="m4 8 8 6 8-6" />
+          </svg><span class="context-menu-label">Contact</span></a></li>
     </ul>
   </nav>
 
@@ -108,15 +121,24 @@
     function setupCustomContextMenu() {
       const menu = document.getElementById('custom-context-menu');
       if (!menu) return;
+      let closeTimer = null;
 
       const closeMenu = () => {
-        menu.classList.remove('open');
+        if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
+        menu.classList.remove('opening');
+        menu.classList.add('closing');
+        window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(() => {
+          menu.classList.remove('open', 'closing');
+        }, 140);
       };
 
       document.addEventListener('contextmenu', (e) => {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
 
         e.preventDefault();
+        window.clearTimeout(closeTimer);
+        menu.classList.remove('closing');
         const menuWidth = menu.offsetWidth || 190;
         const menuHeight = menu.offsetHeight || 140;
         const x = Math.min(e.clientX, window.innerWidth - menuWidth - 8);
@@ -124,7 +146,10 @@
 
         menu.style.left = `${Math.max(8, x)}px`;
         menu.style.top = `${Math.max(8, y)}px`;
-        menu.classList.add('open');
+        menu.classList.add('opening', 'open');
+        window.setTimeout(() => {
+          menu.classList.remove('opening');
+        }, 170);
       });
 
       document.addEventListener('click', (e) => {

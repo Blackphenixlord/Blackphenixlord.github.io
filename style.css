@@ -125,17 +125,53 @@ a {
     0 0 0 1px rgba(0, 255, 65, 0.08) inset;
   backdrop-filter: blur(8px);
   opacity: 0;
-  transform: translateY(6px) scale(0.98);
+  transform: translateY(8px) scale(0.96);
+  transform-origin: top left;
+  visibility: hidden;
   pointer-events: none;
-  transition:
-    opacity 0.12s ease,
-    transform 0.12s ease;
 }
 
+.custom-context-menu.open,
+.custom-context-menu.opening,
+.custom-context-menu.closing {
+  visibility: visible;
+}
+
+.custom-context-menu.opening,
 .custom-context-menu.open {
   opacity: 1;
   transform: translateY(0) scale(1);
+  animation: contextMenuIn 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
   pointer-events: auto;
+}
+
+.custom-context-menu.closing {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  animation: contextMenuOut 0.13s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes contextMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contextMenuOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
 }
 
 .context-menu-list {
@@ -144,12 +180,40 @@ a {
   padding: 0;
 }
 
+.context-menu-list li {
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.custom-context-menu.open .context-menu-list li,
+.custom-context-menu.opening .context-menu-list li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.context-menu-list li:nth-child(1) {
+  transition-delay: 0.02s;
+}
+
+.context-menu-list li:nth-child(2) {
+  transition-delay: 0.05s;
+}
+
+.context-menu-list li:nth-child(3) {
+  transition-delay: 0.08s;
+}
+
 .context-menu-list li + li {
   margin-top: 4px;
 }
 
 .context-menu-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
   border-radius: 7px;
   padding: 10px 12px;
@@ -162,6 +226,21 @@ a {
     background 0.15s,
     color 0.15s,
     border-color 0.15s;
+}
+
+.context-menu-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.context-menu-label {
+  line-height: 1;
 }
 
 .context-menu-link:hover,
