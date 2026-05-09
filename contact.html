@@ -36,7 +36,7 @@
     <div class="page-hero-bg"></div>
     <p class="section-label">// contact</p>
     <h1 class="section-title">Get In Touch</h1>
-    <p>joshuacollado636@gmail.com · South Texas</p>
+    <p>joshuacollado656@gmail.com · South Texas</p>
     <div class="page-hero-tags">
       <span>Open to Opportunities</span>
       <span>South Texas</span>
@@ -65,15 +65,15 @@
       <div class="intro-body" id="contact-terminal-output" aria-live="polite"></div>
       <div class="terminal-prompt-row" id="contact-terminal-prompt" style="display:none;">
         <span class="terminal-prompt-prefix">joshua@collado:~$&nbsp;</span>
-        <span class="terminal-input-display" id="contact-terminal-typed"></span><span class="terminal-ghost"
-          id="contact-terminal-ghost"></span><span class="cursor">█</span>
+        <span class="terminal-input-display" id="contact-terminal-typed"></span><span class="cursor">█</span><span
+          class="terminal-input-display" id="contact-terminal-after"></span><span class="terminal-ghost"
+          id="contact-terminal-ghost"></span>
         <input class="terminal-hidden-input" id="contact-terminal-input" type="text" autocomplete="off"
           spellcheck="false" aria-label="Terminal input" maxlength="60" />
       </div>
     </div>
     <p class="terminal-hint" id="contact-terminal-hint" style="opacity:0;max-width:860px;margin:14px auto 0;">
-      &gt; try: <code>email</code> &nbsp;·&nbsp; <code>gmail</code> &nbsp;·&nbsp; <code>outlook</code> &nbsp;·&nbsp;
-      <code>github</code> &nbsp;·&nbsp; <code>linkedin</code> &nbsp;·&nbsp; <code>help</code>
+      &gt; try: <code>send</code> &nbsp;·&nbsp; <code>github</code> &nbsp;·&nbsp; <code>linkedin</code>
     </p>
   </div>
 
@@ -148,27 +148,14 @@
     // ── Contact terminal ─────────────────────────────────────────────────────
     (function () {
       const CONTACT_CMDS = {
-        email: 'joshuacollado636@gmail.com',
-        gmail: '<a href="https://mail.google.com/mail/?view=cm&to=joshuacollado636@gmail.com" target="_blank" style="color:#00ff41;text-decoration:underline">mail.google.com → compose</a>',
-        outlook: '<a href="https://outlook.live.com/mail/0/deeplink/compose?to=joshuacollado636@gmail.com" target="_blank" style="color:#00ff41;text-decoration:underline">outlook.live.com → compose</a>',
-        github: '<a href="https://github.com/" target="_blank" style="color:#00ff41;text-decoration:underline">github.com/joshuacollado</a>',
-        linkedin: '<a href="https://linkedin.com/" target="_blank" style="color:#00ff41;text-decoration:underline">linkedin.com/in/joshuacollado</a>',
-        availability: 'Open to internships, collaboration, and interesting projects.<br>Based in South Texas · Responds within 24h.',
-        help: '<span style="color:#a0aab4">Commands:</span><br>' +
-          '<span style="color:#00ff41">email</span> — email address<br>' +
-          '<span style="color:#00ff41">gmail</span> — Gmail compose link<br>' +
-          '<span style="color:#00ff41">outlook</span> — Outlook compose link<br>' +
-          '<span style="color:#00ff41">github</span> — GitHub profile<br>' +
-          '<span style="color:#00ff41">linkedin</span> — LinkedIn profile<br>' +
-          '<span style="color:#00ff41">availability</span> — current status<br>' +
-          '<span style="color:#00ff41">clear</span> / <span style="color:#00ff41">reset</span> — clear or restart',
-        clear: '__CLEAR__',
-        reset: '__RESET__',
+        github: '__GITHUB__',
+        linkedin: 'LinkedIn: Joshua Collado',
+        send: '__SEND__',
       };
       const CONTACT_LINES = [
         '// joshua@collado · contact',
         'South Texas · Open to opportunities · Responds within 24h.',
-        'Type a command to get my info — try email or help to start.',
+        'Type a command to get my info — try send, github, or linkedin.',
       ];
 
       const card = document.getElementById('contact-terminal-card');
@@ -177,6 +164,7 @@
       const inputEl = document.getElementById('contact-terminal-input');
       const typedEl = document.getElementById('contact-terminal-typed');
       const hintEl = document.getElementById('contact-terminal-hint');
+      const GITHUB_URL = 'https://github.com/Blackphenixlord';
       if (!card) return;
 
       let pIdx = 0, cIdx = 0, started = false;
@@ -225,28 +213,179 @@
       card.addEventListener('click', () => inputEl.focus());
 
       const ghostEl = document.getElementById('contact-terminal-ghost');
+      const afterEl = document.getElementById('contact-terminal-after');
       const cmdKeys = Object.keys(CONTACT_CMDS);
       const history = [];
       let histIdx = -1;
+      let sendState = null;
 
-      function updateGhost(val) {
+      function escapeHtml(str) {
+        return str.replace(/[&<>"']/g, ch => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;',
+        }[ch]));
+      }
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function startSendFlow() {
+        sendState = {
+          step: 'name',
+          data: { name: '', email: '', subject: '', message: '' },
+        };
+        appendResponse('Starting secure message flow.<br>Enter your name:');
+      }
+
+      function runGithubOpenFlow() {
+        appendResponse('Launching GitHub profile...');
+        setTimeout(() => {
+          appendResponse('$ xdg-open github.com/Blackphenixlord');
+        }, 450);
+        setTimeout(() => {
+          appendResponse('[....] Resolving github.com');
+        }, 950);
+        setTimeout(() => {
+          appendResponse('[ ok ] DNS resolved');
+        }, 1450);
+        setTimeout(() => {
+          appendResponse('[....] Starting browser process');
+        }, 1950);
+        setTimeout(() => {
+          appendResponse('[ ok ] Browser session ready');
+        }, 2400);
+        setTimeout(() => {
+          const win = window.open(GITHUB_URL, '_blank', 'noopener,noreferrer');
+          if (win) {
+            appendResponse('<span style="color:#7CFF7C">Opened:</span> ' + GITHUB_URL);
+          } else {
+            appendResponse('<span style="color:#ffb86b">Popup blocked.</span> Allow popups and run <span style="color:#00ff41">github</span> again.');
+          }
+        }, 2900);
+      }
+
+      async function submitTerminalEmail(data) {
+        appendResponse('Sending message...');
+        try {
+          const res = await fetch('https://formsubmit.co/ajax/joshuacollado656@gmail.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
+              name: data.name,
+              email: data.email,
+              subject: data.subject,
+              message: data.message,
+              _captcha: 'false',
+              _template: 'table',
+            }),
+          });
+
+          if (!res.ok) throw new Error('Request failed');
+          appendResponse('<span style="color:#7CFF7C">Message sent successfully.</span> I will get back to you soon.');
+        } catch (err) {
+          appendResponse(
+            '<span style="color:#ffb86b">Could not send right now.</span><br>' +
+            'Please try the <span style="color:#00ff41">send</span> command again in a moment.'
+          );
+        }
+      }
+
+      function handleSendInput(rawInput) {
+        const value = rawInput.trim();
+
+        if (sendState.step === 'name') {
+          if (!value) {
+            appendResponse('Name cannot be empty. Enter your name:');
+            return;
+          }
+          sendState.data.name = value;
+          sendState.step = 'email';
+          appendResponse('Enter your email address:');
+          return;
+        }
+
+        if (sendState.step === 'email') {
+          if (!isValidEmail(value)) {
+            appendResponse('Please enter a valid email address:');
+            return;
+          }
+          sendState.data.email = value;
+          sendState.step = 'subject';
+          appendResponse('Enter email subject:');
+          return;
+        }
+
+        if (sendState.step === 'subject') {
+          if (!value) {
+            appendResponse('Subject cannot be empty. Enter email subject:');
+            return;
+          }
+          sendState.data.subject = value;
+          sendState.step = 'message';
+          appendResponse('Enter your message:');
+          return;
+        }
+
+        if (sendState.step === 'message') {
+          if (!value) {
+            appendResponse('Message cannot be empty. Enter your message:');
+            return;
+          }
+          sendState.data.message = value;
+          sendState.step = 'confirm';
+          appendResponse(
+            '<span style="color:#a0aab4">Review:</span><br>' +
+            'Name: ' + escapeHtml(sendState.data.name) + '<br>' +
+            'Email: ' + escapeHtml(sendState.data.email) + '<br>' +
+            'Subject: ' + escapeHtml(sendState.data.subject) + '<br>' +
+            'Message: ' + escapeHtml(sendState.data.message) + '<br><br>' +
+            'Type <span style="color:#00ff41">yes</span> to send or <span style="color:#00ff41">no</span> to cancel.'
+          );
+          return;
+        }
+
+        if (sendState.step === 'confirm') {
+          if (value.toLowerCase() === 'yes') {
+            const payload = { ...sendState.data };
+            sendState = null;
+            submitTerminalEmail(payload);
+            return;
+          }
+          appendResponse('Send cancelled.');
+          sendState = null;
+        }
+      }
+
+      function renderInput() {
+        const val = inputEl.value;
+        const pos = inputEl.selectionStart ?? val.length;
+        const atEnd = pos === val.length;
+        typedEl.textContent = val.slice(0, pos);
+        afterEl.textContent = val.slice(pos);
         const lower = val.toLowerCase();
-        const match = lower ? cmdKeys.find(k => k.startsWith(lower) && k !== lower) : null;
+        const match = atEnd && lower ? cmdKeys.find(k => k.startsWith(lower) && k !== lower) : null;
         ghostEl.textContent = match ? match.slice(lower.length) : '';
       }
 
-      inputEl.addEventListener('input', () => {
-        typedEl.textContent = inputEl.value;
-        updateGhost(inputEl.value);
-      });
+      inputEl.addEventListener('input', renderInput);
+      inputEl.addEventListener('keyup', renderInput);
+      inputEl.addEventListener('click', renderInput);
+      inputEl.addEventListener('selectionchange', renderInput);
 
       inputEl.addEventListener('keydown', e => {
         if (e.key === 'Tab') {
           e.preventDefault();
           if (ghostEl.textContent) {
             inputEl.value += ghostEl.textContent;
-            typedEl.textContent = inputEl.value;
-            ghostEl.textContent = '';
+            inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+            renderInput();
           }
           return;
         }
@@ -255,42 +394,46 @@
           if (!history.length) return;
           histIdx = Math.min(histIdx + 1, history.length - 1);
           inputEl.value = history[history.length - 1 - histIdx];
-          typedEl.textContent = inputEl.value;
-          ghostEl.textContent = '';
+          inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+          renderInput();
           return;
         }
         if (e.key === 'ArrowDown') {
           e.preventDefault();
-          if (histIdx <= 0) { histIdx = -1; inputEl.value = ''; typedEl.textContent = ''; ghostEl.textContent = ''; return; }
+          if (histIdx <= 0) { histIdx = -1; inputEl.value = ''; afterEl.textContent = ''; typedEl.textContent = ''; ghostEl.textContent = ''; return; }
           histIdx--;
           inputEl.value = history[history.length - 1 - histIdx];
-          typedEl.textContent = inputEl.value;
-          ghostEl.textContent = '';
+          inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+          renderInput();
           return;
         }
         if (e.key !== 'Enter') return;
-        const cmd = inputEl.value.trim().toLowerCase();
-        inputEl.value = ''; typedEl.textContent = ''; ghostEl.textContent = '';
-        if (!cmd) return;
+        const raw = inputEl.value;
+        const cmd = raw.trim().toLowerCase();
+        inputEl.value = ''; typedEl.textContent = ''; afterEl.textContent = ''; ghostEl.textContent = '';
+        if (!cmd && !sendState) return;
         history.push(cmd);
         histIdx = -1;
         const echo = document.createElement('p');
         echo.style.cssText = 'margin:10px 0 2px;font-family:\'Share Tech Mono\',monospace;font-size:0.88rem;color:#a0aab4';
-        echo.innerHTML = '<span style="color:#a0aab4">joshua@collado:~$</span> ' + cmd;
+        echo.innerHTML = '<span style="color:#a0aab4">joshua@collado:~$</span> ' + escapeHtml(raw);
         output.appendChild(echo);
+
+        if (sendState) {
+          handleSendInput(raw);
+          output.scrollTop = output.scrollHeight;
+          return;
+        }
+
         const resp = CONTACT_CMDS[cmd];
-        if (resp === '__CLEAR__') {
-          output.innerHTML = '';
-        } else if (resp === '__RESET__') {
-          output.innerHTML = '';
-          promptRow.style.display = 'none';
-          hintEl.style.opacity = '0';
-          started = false;
-          startTyping();
+        if (resp === '__SEND__') {
+          startSendFlow();
+        } else if (resp === '__GITHUB__') {
+          runGithubOpenFlow();
         } else if (resp) {
           appendResponse(resp);
         } else {
-          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + ' — type <span style="color:#00ff41">help</span> for commands');
+          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + '<br>Try <span style="color:#00ff41">send</span>, <span style="color:#00ff41">github</span>, or <span style="color:#00ff41">linkedin</span>.');
         }
         output.scrollTop = output.scrollHeight;
       });

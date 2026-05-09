@@ -1217,9 +1217,6 @@ a {
   .word-card {
     padding: 36px 24px;
   }
-  .intro-card {
-    /* full width inside container */
-  }
   .contact-form {
     max-width: 100%;
   }
