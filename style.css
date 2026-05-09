@@ -798,6 +798,7 @@ a {
   max-height: 320px;
   overflow-y: auto;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 /* Custom scrollbar – webkit */
 .intro-body::-webkit-scrollbar {
@@ -1492,6 +1493,17 @@ a {
     font-size: 0.82rem;
     height: 280px;
     max-height: 280px;
+  }
+  /* Mobile scrollbar: wider and easier to grab */
+  .intro-body::-webkit-scrollbar {
+    width: 12px;
+  }
+  .intro-body::-webkit-scrollbar-thumb {
+    background: #00ff41;
+    border-radius: 6px;
+  }
+  .intro-body::-webkit-scrollbar-track {
+    background: rgba(0, 255, 65, 0.1);
   }
 
   /* ── Terminal mobile fixes ── */
