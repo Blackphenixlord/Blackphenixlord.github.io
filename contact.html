@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Joshua Collado</title>
+  <meta name="description" content="Get in touch with Joshua Collado — South Texas engineer and developer." />
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="6" fill="#0d1117" />
+        <text x="5" y="26" font-family="monospace" font-size="20" font-weight="bold" fill="#00ff41">JC</text>
+        <rect x="0" y="0" width="36" height="36" rx="6" stroke="#00ff41" stroke-width="1.5" />
+      </svg>
+      <span class="nav-brand">Joshua Collado</span>
+    </div>
+    <ul class="nav-links" id="nav-links-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false"
+      aria-controls="nav-links-list">&#9776;</button>
+  </nav>
+
+  <div class="page-hero" id="main-content">
+    <div class="page-hero-bg"></div>
+    <p class="section-label">// contact</p>
+    <h1 class="section-title">Get In Touch</h1>
+    <p>joshuacollado636@gmail.com · South Texas</p>
+    <div class="page-hero-tags">
+      <span>Open to Opportunities</span>
+      <span>South Texas</span>
+      <span>Responds within 24h</span>
+    </div>
+  </div>
+
+  <div class="page-content container" style="position:relative;">
+
+    <!-- Dragon decoration – left side (Font Awesome Free 6.7.2, CC BY 4.0, Fonticons Inc.) -->
+    <div class="contact-dragon" aria-hidden="true">
+      <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg" width="220" height="176"
+        style="filter:drop-shadow(0 0 18px rgba(0,255,65,0.6))">
+        <path fill="#00ff41"
+          d="M352 124.5l-51.9-13c-6.5-1.6-11.3-7.1-12-13.8s2.8-13.1 8.7-16.1l40.8-20.4L294.4 28.8c-5.5-4.1-7.8-11.3-5.6-17.9S297.1 0 304 0L416 0l32 0 16 0c30.2 0 58.7 14.2 76.8 38.4l57.6 76.8c6.2 8.3 9.6 18.4 9.6 28.8c0 26.5-21.5 48-48 48l-21.5 0c-17 0-33.3-6.7-45.3-18.7L480 160l-32 0 0 21.5c0 24.8 12.8 47.9 33.8 61.1l106.6 66.6c32.1 20.1 51.6 55.2 51.6 93.1C640 462.9 590.9 512 530.2 512L496 512l-64 0L32.3 512c-3.3 0-6.6-.4-9.6-1.4C13.5 507.8 6 501 2.4 492.1C1 488.7 .2 485.2 0 481.4c-.2-3.7 .3-7.3 1.3-10.7c2.8-9.2 9.6-16.7 18.6-20.4c3-1.2 6.2-2 9.5-2.2L433.3 412c8.3-.7 14.7-7.7 14.7-16.1c0-4.3-1.7-8.4-4.7-11.4l-44.4-44.4c-30-30-46.9-70.7-46.9-113.1l0-45.5 0-57zM512 72.3c0-.1 0-.2 0-.3s0-.2 0-.3l0 .6zm-1.3 7.4L464.3 68.1c-.2 1.3-.3 2.6-.3 3.9c0 13.3 10.7 24 24 24c10.6 0 19.5-6.8 22.7-16.3zM130.9 116.5c16.3-14.5 40.4-16.2 58.5-4.1l130.6 87 0 27.5c0 32.8 8.4 64.8 24 93l-232 0c-6.7 0-12.7-4.2-15-10.4s-.5-13.3 4.6-17.7L171 232.3 18.4 255.8c-7 1.1-13.9-2.6-16.9-9s-1.5-14.1 3.8-18.8L130.9 116.5z" />
+      </svg>
+    </div>
+
+    <div class="intro-card" id="contact-terminal-card" style="max-width:860px;margin:0 auto;">
+      <div class="terminal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="terminal-title">joshua@collado:~$ cat contact.txt</span>
+        <span class="terminal-status" aria-hidden="true"><span class="terminal-status-dot"></span>live</span>
+      </div>
+      <div class="terminal-scanline" aria-hidden="true"></div>
+      <div class="intro-body" id="contact-terminal-output" aria-live="polite"></div>
+      <div class="terminal-prompt-row" id="contact-terminal-prompt" style="display:none;">
+        <span class="terminal-prompt-prefix">joshua@collado:~$&nbsp;</span>
+        <span class="terminal-input-display" id="contact-terminal-typed"></span><span class="terminal-ghost"
+          id="contact-terminal-ghost"></span><span class="cursor">█</span>
+        <input class="terminal-hidden-input" id="contact-terminal-input" type="text" autocomplete="off"
+          spellcheck="false" aria-label="Terminal input" maxlength="60" />
+      </div>
+    </div>
+    <p class="terminal-hint" id="contact-terminal-hint" style="opacity:0;max-width:860px;margin:14px auto 0;">
+      &gt; try: <code>email</code> &nbsp;·&nbsp; <code>gmail</code> &nbsp;·&nbsp; <code>outlook</code> &nbsp;·&nbsp;
+      <code>github</code> &nbsp;·&nbsp; <code>linkedin</code> &nbsp;·&nbsp; <code>help</code>
+    </p>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
+        style="color:#00ff41">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const btn = document.querySelector('.hamburger');
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-msg').style.display = 'block';
+      e.target.reset();
+    }
+
+    // ── Scroll reveal ─────────────────────────────────────────────────────────
+    const revealEls = document.querySelectorAll('.contact-form, .contact-layout > div:last-child, .page-hero > *');
+    const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    revealEls.forEach((el, i) => {
+      if (noMotion) { el.style.opacity = '1'; return; }
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.willChange = 'opacity, transform';
+      el.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
+    });
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.willChange = 'auto';
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ── Mouse cursor trail ────────────────────────────────────────────────────
+    let lastT = 0;
+    document.addEventListener('mousemove', e => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const now = Date.now();
+      if (now - lastT < 30) return;
+      lastT = now;
+      const size = Math.random() * 5 + 3;
+      const dot = document.createElement('div');
+      Object.assign(dot.style, {
+        position: 'fixed', width: size + 'px', height: size + 'px',
+        borderRadius: '50%',
+        background: `rgba(0,255,65,${(Math.random() * 0.5 + 0.25).toFixed(2)})`,
+        left: e.clientX + 'px', top: e.clientY + 'px',
+        transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '9999',
+        transition: 'opacity 0.55s ease, transform 0.55s ease',
+      });
+      document.body.appendChild(dot);
+      requestAnimationFrame(() => {
+        dot.style.opacity = '0';
+        dot.style.transform = 'translate(-50%,-50%) scale(0)';
+      });
+      setTimeout(() => dot.remove(), 600);
+    });
+    // ── Footer year ────────────────────────────────────────────────────────────────
+    const y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // ── Contact terminal ─────────────────────────────────────────────────────
+    (function () {
+      const CONTACT_CMDS = {
+        email: 'joshuacollado636@gmail.com',
+        gmail: '<a href="https://mail.google.com/mail/?view=cm&to=joshuacollado636@gmail.com" target="_blank" style="color:#00ff41;text-decoration:underline">mail.google.com → compose</a>',
+        outlook: '<a href="https://outlook.live.com/mail/0/deeplink/compose?to=joshuacollado636@gmail.com" target="_blank" style="color:#00ff41;text-decoration:underline">outlook.live.com → compose</a>',
+        github: '<a href="https://github.com/" target="_blank" style="color:#00ff41;text-decoration:underline">github.com/joshuacollado</a>',
+        linkedin: '<a href="https://linkedin.com/" target="_blank" style="color:#00ff41;text-decoration:underline">linkedin.com/in/joshuacollado</a>',
+        availability: 'Open to internships, collaboration, and interesting projects.<br>Based in South Texas · Responds within 24h.',
+        help: '<span style="color:#a0aab4">Commands:</span><br>' +
+          '<span style="color:#00ff41">email</span> — email address<br>' +
+          '<span style="color:#00ff41">gmail</span> — Gmail compose link<br>' +
+          '<span style="color:#00ff41">outlook</span> — Outlook compose link<br>' +
+          '<span style="color:#00ff41">github</span> — GitHub profile<br>' +
+          '<span style="color:#00ff41">linkedin</span> — LinkedIn profile<br>' +
+          '<span style="color:#00ff41">availability</span> — current status<br>' +
+          '<span style="color:#00ff41">clear</span> / <span style="color:#00ff41">reset</span> — clear or restart',
+        clear: '__CLEAR__',
+        reset: '__RESET__',
+      };
+      const CONTACT_LINES = [
+        '// joshua@collado · contact',
+        'South Texas · Open to opportunities · Responds within 24h.',
+        'Type a command to get my info — try email or help to start.',
+      ];
+
+      const card = document.getElementById('contact-terminal-card');
+      const output = document.getElementById('contact-terminal-output');
+      const promptRow = document.getElementById('contact-terminal-prompt');
+      const inputEl = document.getElementById('contact-terminal-input');
+      const typedEl = document.getElementById('contact-terminal-typed');
+      const hintEl = document.getElementById('contact-terminal-hint');
+      if (!card) return;
+
+      let pIdx = 0, cIdx = 0, started = false;
+
+      function typeLines() {
+        if (pIdx >= CONTACT_LINES.length) {
+          promptRow.style.display = 'flex';
+          hintEl.style.opacity = '1';
+          return;
+        }
+        const text = CONTACT_LINES[pIdx];
+        const p = document.createElement('p');
+        p.style.cssText = 'margin:0 0 8px;color:#b0ffb8;font-family:\'Share Tech Mono\',monospace;font-size:0.92rem;line-height:1.55';
+        output.appendChild(p);
+        p.innerHTML = '';
+        function typeNext() {
+          if (cIdx < text.length) {
+            if (text[cIdx] === '<') {
+              const end = text.indexOf('>', cIdx);
+              p.innerHTML += text.slice(cIdx, end + 1);
+              cIdx = end + 1;
+            } else {
+              const ch = text[cIdx++];
+              p.innerHTML += ch === ' ' ? '&nbsp;' : ch;
+            }
+            const d = text[cIdx - 1] === ' ' ? 4 : /[.,!—?]/.test(text[cIdx - 1]) ? 18 : 6 + Math.random() * 4;
+            setTimeout(typeNext, d);
+          } else {
+            cIdx = 0; pIdx++;
+            setTimeout(typeLines, 200);
+          }
+        }
+        typeNext();
+      }
+
+      function startTyping() { pIdx = 0; cIdx = 0; started = true; typeLines(); }
+
+      function appendResponse(html) {
+        const p = document.createElement('p');
+        p.style.cssText = 'margin:4px 0 14px;color:#00ff41;font-family:\'Share Tech Mono\',monospace;font-size:0.9rem;line-height:1.7';
+        p.innerHTML = html;
+        output.appendChild(p);
+        output.scrollTop = output.scrollHeight;
+      }
+
+      card.addEventListener('click', () => inputEl.focus());
+
+      const ghostEl = document.getElementById('contact-terminal-ghost');
+      const cmdKeys = Object.keys(CONTACT_CMDS);
+      const history = [];
+      let histIdx = -1;
+
+      function updateGhost(val) {
+        const lower = val.toLowerCase();
+        const match = lower ? cmdKeys.find(k => k.startsWith(lower) && k !== lower) : null;
+        ghostEl.textContent = match ? match.slice(lower.length) : '';
+      }
+
+      inputEl.addEventListener('input', () => {
+        typedEl.textContent = inputEl.value;
+        updateGhost(inputEl.value);
+      });
+
+      inputEl.addEventListener('keydown', e => {
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          if (ghostEl.textContent) {
+            inputEl.value += ghostEl.textContent;
+            typedEl.textContent = inputEl.value;
+            ghostEl.textContent = '';
+          }
+          return;
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!history.length) return;
+          histIdx = Math.min(histIdx + 1, history.length - 1);
+          inputEl.value = history[history.length - 1 - histIdx];
+          typedEl.textContent = inputEl.value;
+          ghostEl.textContent = '';
+          return;
+        }
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (histIdx <= 0) { histIdx = -1; inputEl.value = ''; typedEl.textContent = ''; ghostEl.textContent = ''; return; }
+          histIdx--;
+          inputEl.value = history[history.length - 1 - histIdx];
+          typedEl.textContent = inputEl.value;
+          ghostEl.textContent = '';
+          return;
+        }
+        if (e.key !== 'Enter') return;
+        const cmd = inputEl.value.trim().toLowerCase();
+        inputEl.value = ''; typedEl.textContent = ''; ghostEl.textContent = '';
+        if (!cmd) return;
+        history.push(cmd);
+        histIdx = -1;
+        const echo = document.createElement('p');
+        echo.style.cssText = 'margin:10px 0 2px;font-family:\'Share Tech Mono\',monospace;font-size:0.88rem;color:#a0aab4';
+        echo.innerHTML = '<span style="color:#a0aab4">joshua@collado:~$</span> ' + cmd;
+        output.appendChild(echo);
+        const resp = CONTACT_CMDS[cmd];
+        if (resp === '__CLEAR__') {
+          output.innerHTML = '';
+        } else if (resp === '__RESET__') {
+          output.innerHTML = '';
+          promptRow.style.display = 'none';
+          hintEl.style.opacity = '0';
+          started = false;
+          startTyping();
+        } else if (resp) {
+          appendResponse(resp);
+        } else {
+          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + ' — type <span style="color:#00ff41">help</span> for commands');
+        }
+        output.scrollTop = output.scrollHeight;
+      });
+
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting && !started) { startTyping(); obs.unobserve(card); } });
+      }, { threshold: 0.3 });
+      obs.observe(card);
+    })();
+  </script>
+</body>
+
+</html>
