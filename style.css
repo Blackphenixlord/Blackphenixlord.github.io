@@ -128,30 +128,21 @@ a {
     linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
-  background-position: var(--bg-x, 0px) var(--bg-y, 0px);
   animation: gridPulse 8s ease-in-out infinite;
-  transition: background-position 0.08s ease-out;
 }
-/* Grid distortion effect around mouse */
-.hero-bg-grid::before {
-  content: "";
+
+/* Visible grid distortion overlay */
+.hero-distortion-overlay {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
-  background-size: calc(48px * var(--distort-scale, 1));
-  background-position: calc(var(--distort-x, 50%) * -1 + 50%)
-    calc(var(--distort-y, 50%) * -1 + 50%);
-  mask-image: radial-gradient(
-    circle 140px,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-position: var(--distort-x, 50%) var(--distort-y, 50%);
-  mask-size: 100%;
-  mask-repeat: no-repeat;
+    linear-gradient(rgba(0, 255, 65, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform-origin: var(--distort-x, 50%) var(--distort-y, 50%);
+  transform: scale(var(--distort-scale, 1));
   pointer-events: none;
+  mix-blend-mode: multiply;
 }
 @keyframes gridPulse {
   0%,
@@ -457,6 +448,17 @@ a {
   text-align: center;
   background: #0d1117;
   border-bottom: 1px solid #1a3a1a;
+  animation: pageHeroFadeIn 0.6s ease-out;
+}
+@keyframes pageHeroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .page-hero-bg {
   position: absolute;
@@ -482,7 +484,21 @@ a {
   background: rgba(0, 255, 65, 0.04);
   padding: 5px 14px;
   border-radius: 100px;
+  animation: tagSlideIn 0.5s ease-out backwards;
 }
+@keyframes tagSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.page-hero-tags span:nth-child(1) { animation-delay: 0.2s; }
+.page-hero-tags span:nth-child(2) { animation-delay: 0.3s; }
+.page-hero-tags span:nth-child(3) { animation-delay: 0.4s; }
 .page-hero-stats {
   display: flex;
   gap: 0;
@@ -1197,6 +1213,29 @@ a {
     transform 0.2s,
     box-shadow 0.2s;
   cursor: default;
+  animation: projectSlideIn 0.6s ease-out both;
+}
+@keyframes projectSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.project-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.project-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.project-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.project-card:nth-child(4) {
+  animation-delay: 0.4s;
 }
 .project-card:hover {
   border-color: #00ff41;
