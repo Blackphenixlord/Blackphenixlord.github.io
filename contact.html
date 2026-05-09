@@ -68,10 +68,10 @@
         <span class="terminal-input-display" id="contact-terminal-typed"></span><span class="cursor">█</span><span
           class="terminal-input-display" id="contact-terminal-after"></span><span class="terminal-ghost"
           id="contact-terminal-ghost"></span>
-        <input class="terminal-hidden-input" id="contact-terminal-input" type="text" autocomplete="off"
-          autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send"
-          aria-label="Terminal input" maxlength="200" />
       </div>
+      <input class="terminal-hidden-input" id="contact-terminal-input" type="text" autocomplete="off"
+        autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send"
+        aria-label="Terminal input" maxlength="200" />
     </div>
     <p class="terminal-hint" id="contact-terminal-hint" style="opacity:0;max-width:860px;margin:14px auto 0;">
       &gt; try: <code>send</code> &nbsp;·&nbsp; <code>github</code> &nbsp;·&nbsp; <code>linkedin</code>
@@ -211,8 +211,8 @@
         output.scrollTop = output.scrollHeight;
       }
 
-      card.addEventListener('click', () => inputEl.focus());
-      card.addEventListener('touchstart', () => inputEl.focus(), { passive: true });
+      card.addEventListener('click', () => inputEl.focus({ preventScroll: true }));
+      card.addEventListener('touchend', (e) => { e.preventDefault(); inputEl.focus({ preventScroll: true }); }, { passive: false });
 
       const ghostEl = document.getElementById('contact-terminal-ghost');
       const afterEl = document.getElementById('contact-terminal-after');
