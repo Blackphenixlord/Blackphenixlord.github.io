@@ -8,7 +8,7 @@
   <meta name="description"
     content="Joshua Collado — Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, and RECON Technologies." />
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230d1117' stroke='%2300ff41' stroke-width='2'/%3E%3Ctext x='10' y='68' font-family='monospace' font-size='54' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3Cline x1='10' y1='78' x2='90' y2='78' stroke='%2300ff41' stroke-width='1.5'/%3E%3C/svg%3E" />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="icons.css" />
   <link
@@ -21,9 +21,14 @@
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-logo">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="36" height="36" rx="6" fill="#0d1117" />
-        <text x="5" y="26" font-family="monospace" font-size="20" font-weight="bold" fill="#00ff41">JC</text>
-        <rect x="0" y="0" width="36" height="36" rx="6" stroke="#00ff41" stroke-width="1.5" />
+        <rect width="36" height="36" rx="4" fill="#0a0e1a"/>
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#00ff41" stroke-width="1.5"/>
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#00ff41" fill-opacity="0.1"/>
+        <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57"/>
+        <circle cx="10" cy="4.5" r="1.3" fill="#febc2e"/>
+        <circle cx="15" cy="4.5" r="1.3" fill="#28c840"/>
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#00ff41">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#00ff41" opacity="0.55">&#x258C;</text>
       </svg>
       <span class="nav-brand">Joshua Collado</span>
     </div>
@@ -39,14 +44,40 @@
   <section class="hero" id="main-content">
     <div class="hero-bg-grid"></div>
     <div class="hero-distortion-overlay"></div>
+    <!-- Depth blobs: floating glows that create spatial layering -->
+    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
+    <!-- Floating tech badges -->
+    <div class="tech-badge" style="--x:8%;--y:18%;--d:0s;--r:-8deg"  aria-hidden="true"><span class="tb-dot" style="background:#f7df1e"></span>JavaScript</div>
+    <div class="tech-badge" style="--x:82%;--y:12%;--d:1.2s;--r:5deg" aria-hidden="true"><span class="tb-dot" style="background:#3572A5"></span>Python</div>
+    <div class="tech-badge" style="--x:5%;--y:72%;--d:2.1s;--r:4deg"  aria-hidden="true"><span class="tb-dot" style="background:#00ADD8"></span>Go</div>
+    <div class="tech-badge" style="--x:88%;--y:65%;--d:0.7s;--r:-6deg" aria-hidden="true"><span class="tb-dot" style="background:#b07219"></span>Java</div>
+    <div class="tech-badge" style="--x:74%;--y:82%;--d:1.8s;--r:7deg"  aria-hidden="true"><span class="tb-dot" style="background:#61dafb"></span>React</div>
+    <div class="tech-badge" style="--x:18%;--y:88%;--d:3.0s;--r:-4deg" aria-hidden="true"><span class="tb-dot" style="background:#3178c6"></span>TypeScript</div>
+    <div class="tech-badge" style="--x:55%;--y:6%;--d:2.5s;--r:3deg"  aria-hidden="true"><span class="tb-dot" style="background:#FF6C37"></span>Rust</div>
+    <div class="tech-badge" style="--x:92%;--y:38%;--d:0.4s;--r:-5deg" aria-hidden="true"><span class="tb-dot" style="background:#4479a1"></span>SQL</div>
     <div class="hero-content">
       <div class="logo-block" title="Joshua Collado">
         <div class="logo-inner">
           <svg class="hero-logo" width="160" height="160" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="100" rx="16" fill="#0d1117" stroke="#00ff41" stroke-width="2" />
-            <text x="10" y="68" font-family="monospace" font-size="54" font-weight="bold" fill="#00ff41">JC</text>
-            <line x1="10" y1="78" x2="90" y2="78" stroke="#00ff41" stroke-width="1.5" />
-            <text x="10" y="93" font-family="monospace" font-size="11" fill="#00cc33">./engineer</text>
+            <!-- Body -->
+            <rect width="100" height="100" rx="12" fill="#0d1117"/>
+            <rect x="1" y="1" width="98" height="98" rx="11" fill="none" stroke="#00ff41" stroke-width="2"/>
+            <!-- Title bar -->
+            <rect x="0" y="0" width="100" height="23" rx="12" fill="#00ff41" fill-opacity="0.10"/>
+            <rect x="0" y="11" width="100" height="12" fill="#00ff41" fill-opacity="0.10"/>
+            <line x1="0" y1="23" x2="100" y2="23" stroke="#00ff41" stroke-width="0.6" stroke-opacity="0.25"/>
+            <!-- Traffic lights -->
+            <circle cx="13" cy="11.5" r="3.6" fill="#ff5f57"/>
+            <circle cx="25"  cy="11.5" r="3.6" fill="#febc2e"/>
+            <circle cx="37"  cy="11.5" r="3.6" fill="#28c840"/>
+            <!-- JC -->
+            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#00ff41">JC</text>
+            <!-- Separator -->
+            <line x1="11" y1="78" x2="89" y2="78" stroke="#00ff41" stroke-width="1.4" stroke-opacity="0.55"/>
+            <!-- ./engineer -->
+            <text x="11" y="92" font-family="monospace" font-size="10" fill="#00cc33">./engineer</text>
           </svg>
           <div class="logo-scanline"></div>
         </div>
@@ -319,6 +350,8 @@
     <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
         style="color:#00ff41">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
   </footer>
+
+
 
   <script>
     // ── Hamburger ──────────────────────────────────────────────────────────────

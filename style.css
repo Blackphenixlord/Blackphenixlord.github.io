@@ -120,29 +120,119 @@ a {
   justify-content: center;
   overflow: hidden;
   padding: 40px 40px;
+  /* Atmospheric depth: radial glow centered on content + dark base */
+  background:
+    radial-gradient(ellipse 90% 80% at 62% 45%, rgba(0, 255, 65, 0.07) 0%, rgba(0, 255, 65, 0.02) 45%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 12% 75%, rgba(0, 60, 180, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 35% at 90% 20%, rgba(0, 200, 80, 0.04) 0%, transparent 55%),
+    #0a0e1a;
 }
+
+/* Vignette — dark edges focus the eye on center */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 85% 85% at 50% 48%, transparent 35%, rgba(0, 0, 0, 0.72) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dual-scale grid — fine sub-grid + coarse main grid = perspective depth */
 .hero-bg-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(0, 255, 65, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 65, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.018) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
   animation: gridPulse 8s ease-in-out infinite;
 }
 
-/* Removed distortion overlay - now just warping the main grid */
+/* Atmospheric glow orbs — soft layered halos create spatial depth */
 .hero-distortion-overlay {
-  display: none;
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle 320px at 58% 42%, rgba(0, 255, 65, 0.10) 0%, rgba(0, 255, 65, 0.03) 50%, transparent 75%),
+    radial-gradient(circle 180px at 62% 45%, rgba(0, 255, 65, 0.18) 0%, transparent 55%),
+    radial-gradient(circle 240px at 14% 68%, rgba(0, 80, 220, 0.05) 0%, transparent 70%),
+    radial-gradient(circle 160px at 88% 18%, rgba(0, 200, 80, 0.06) 0%, transparent 65%);
+  animation: auraBreath 9s ease-in-out infinite;
 }
+
+@keyframes auraBreath {
+  0%, 100% { opacity: 0.75; }
+  50%       { opacity: 1;    }
+}
+
 @keyframes gridPulse {
   0%,
   100% {
-    opacity: 0.5;
+    opacity: 0.55;
   }
   50% {
     opacity: 1;
   }
+}
+
+/* ── Hero depth blobs ── */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  z-index: 0;
+}
+/* Primary green halo — drifts slowly, sits "in front" */
+.hero-blob-1 {
+  width: 520px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(0, 255, 65, 0.13) 0%, rgba(0, 255, 65, 0.04) 55%, transparent 80%);
+  top: 15%;
+  left: 38%;
+  animation: blobDrift1 18s ease-in-out infinite;
+}
+/* Blue-tinted halo — bottom-left corner depth */
+.hero-blob-2 {
+  width: 340px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 80, 255, 0.07) 0%, transparent 70%);
+  bottom: 5%;
+  left: 2%;
+  animation: blobDrift2 22s ease-in-out infinite;
+}
+/* Faint green accent — top-right */
+.hero-blob-3 {
+  width: 260px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(0, 200, 70, 0.08) 0%, transparent 70%);
+  top: 4%;
+  right: 6%;
+  animation: blobDrift3 16s ease-in-out infinite;
+}
+
+@keyframes blobDrift1 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(28px, -18px) scale(1.06); }
+  66%  { transform: translate(-16px, 22px) scale(0.96); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes blobDrift2 {
+  0%   { transform: translate(0px, 0px); }
+  40%  { transform: translate(-20px, -28px); }
+  80%  { transform: translate(14px, 18px); }
+  100% { transform: translate(0px, 0px); }
+}
+@keyframes blobDrift3 {
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  50%  { transform: translate(18px, 22px) rotate(12deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 .hero-content {
   position: relative;
@@ -153,6 +243,16 @@ a {
   text-align: center;
   gap: 28px;
   max-width: 900px;
+  /* Glass plate lifts the content off the flat background */
+  background: radial-gradient(ellipse 110% 120% at 50% 50%, rgba(13, 17, 23, 0.55) 0%, rgba(10, 14, 26, 0.25) 100%);
+  border-radius: 24px;
+  padding: 48px 52px 52px;
+  border: 1px solid rgba(0, 255, 65, 0.08);
+  backdrop-filter: blur(2px);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 65, 0.04),
+    0 8px 60px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(0, 255, 65, 0.04) inset;
 }
 /* ===== LOGO — ANIMATIONS & INTERACTIVITY ===== */
 
@@ -175,6 +275,19 @@ a {
   border-radius: 16px;
   overflow: hidden;
   line-height: 0;
+  /* Depth: hard shadow below, soft glow above */
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 32px rgba(0, 255, 65, 0.18));
+}
+
+/* Glow plate — sits behind the SVG, creates a lit surface effect */
+.logo-inner::after {
+  content: '';
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(circle, rgba(0, 255, 65, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 50%;
 }
 
 /* Corner bracket — top-left */
@@ -334,7 +447,19 @@ a {
   font-weight: 900;
   line-height: 1.05;
   color: #e6edf3;
-  text-shadow: 0 0 40px rgba(0, 255, 65, 0.15);
+  text-shadow:
+    0 0 30px rgba(0, 255, 65, 0.28),
+    0 0 80px rgba(0, 255, 65, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 4px 20px rgba(0, 0, 0, 0.6);
+}
+/* Accent (Collado) — extra glow depth */
+.hero-name .accent {
+  text-shadow:
+    0 0 20px rgba(0, 255, 65, 0.55),
+    0 0 60px rgba(0, 255, 65, 0.25),
+    0 0 120px rgba(0, 255, 65, 0.10),
+    0 2px 4px rgba(0, 0, 0, 0.8);
 }
 .hero-sub {
   font-family: "Share Tech Mono", monospace;
@@ -1344,6 +1469,7 @@ a {
     justify-content: center;
     align-items: flex-start;
     max-width: 1100px;
+    padding: 52px 64px 60px;
   }
   .hero-logo {
     width: 180px;
@@ -1539,6 +1665,10 @@ a {
     padding: 60px 20px;
     min-height: 85vh;
   }
+  .hero-content {
+    padding: 32px 20px 36px;
+    border-radius: 16px;
+  }
   .hero-name {
     font-size: 3rem;
   }
@@ -1667,6 +1797,258 @@ a {
   }
 }
 
+/* ===== FLOATING TECH BADGES ===== */
+.tech-badge {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: rotate(var(--r, 0deg));
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px 7px 10px;
+  background: rgba(10, 14, 26, 0.82);
+  border: 1px solid rgba(0, 255, 65, 0.32);
+  border-radius: 7px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.82rem;
+  color: rgba(0, 255, 65, 0.92);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 12px rgba(0,255,65,0.06), inset 0 1px 0 rgba(0,255,65,0.10);
+  animation: badgeDrift 14s ease-in-out infinite var(--d, 0s);
+  white-space: nowrap;
+  user-select: none;
+}
+.tb-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 1;
+}
+@keyframes badgeDrift {
+  0%,100% { transform: rotate(var(--r, 0deg)) translateY(0px); }
+  33%      { transform: rotate(var(--r, 0deg)) translateY(-7px); }
+  66%      { transform: rotate(var(--r, 0deg)) translateY(4px); }
+}
+
+/* ===== SOUND TOGGLE ===== */
+.sound-toggle {
+  position: fixed;
+  bottom: 58px;
+  right: 18px;
+  z-index: 300;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #3a5a3a;
+  background: rgba(10, 14, 26, 0.88);
+  border: 1px solid #1a3a1a;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  backdrop-filter: blur(6px);
+}
+.sound-toggle:hover {
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+}
+
+/* ===== DEPTH ENHANCEMENTS — removes flat surfaces site-wide ===== */
+
+/* Navbar: gradient backing + multi-shadow lift */
+.navbar {
+  background: linear-gradient(180deg, rgba(15, 21, 32, 0.97) 0%, rgba(10, 14, 26, 0.94) 100%);
+  box-shadow:
+    0 1px 0 rgba(0, 255, 65, 0.1),
+    0 4px 36px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Stats strip: dark gradient trough */
+.stats-strip {
+  background: linear-gradient(180deg, #111827 0%, #0d1117 50%, #0a0e1a 100%);
+  box-shadow:
+    inset 0 4px 28px rgba(0, 0, 0, 0.45),
+    inset 0 -4px 16px rgba(0, 0, 0, 0.25),
+    0 1px 0 rgba(0, 255, 65, 0.06);
+}
+.stat-num {
+  text-shadow:
+    0 0 20px rgba(0, 255, 65, 0.5),
+    0 0 48px rgba(0, 255, 65, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Word cards: angled surface + elevation */
+.word-card {
+  background: linear-gradient(150deg, #111827 0%, #0c1020 55%, #080c18 100%);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+}
+.word-card:hover {
+  box-shadow:
+    0 14px 52px rgba(0, 255, 65, 0.14),
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(0, 255, 65, 0.09);
+}
+
+/* Terminal intro card: lifted panel */
+.intro-card {
+  background: linear-gradient(180deg, #111827 0%, #0d1117 100%);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(0, 255, 65, 0.05);
+}
+.terminal-bar {
+  background: linear-gradient(180deg, #1a2234 0%, #161b22 100%);
+  box-shadow: inset 0 -1px 0 rgba(0, 255, 65, 0.12);
+}
+
+/* Project cards: angled gradient + elevation */
+.project-card {
+  background: linear-gradient(155deg, #111827 0%, #0c1020 50%, #080c18 100%);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+.project-card:hover {
+  box-shadow:
+    0 14px 52px rgba(0, 255, 65, 0.13),
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(0, 255, 65, 0.09);
+}
+
+/* Skill tags: pill elevation */
+.skill-tag {
+  background: linear-gradient(145deg, #111827 0%, #0d1117 60%, #0a0e1a 100%);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(0, 255, 65, 0.09),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.skill-tag:hover {
+  box-shadow:
+    0 4px 20px rgba(0, 255, 65, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(0, 255, 65, 0.12);
+}
+
+/* Resume blocks: lifted card */
+.resume-block {
+  background: linear-gradient(180deg, #111827 0%, #0d1117 100%);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.resume-block-header {
+  background: linear-gradient(90deg, #1a2234 0%, #161b22 100%);
+  box-shadow: inset 0 -1px 0 rgba(0, 255, 65, 0.1);
+}
+
+/* Contact form inputs: recessed/inset effect */
+.contact-form input,
+.contact-form textarea {
+  background: linear-gradient(180deg, #080c18 0%, #0d1117 100%);
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.45),
+    inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 255, 65, 0.25),
+    0 0 18px rgba(0, 255, 65, 0.07);
+}
+
+/* Contact link buttons: elevated */
+.contact-layout .contact-links a {
+  background: linear-gradient(145deg, #111827 0%, #0d1117 100%);
+  box-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.contact-layout .contact-links a:hover {
+  box-shadow:
+    0 8px 32px rgba(0, 255, 65, 0.13),
+    0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+/* Video placeholder: inset depth */
+.video-placeholder {
+  background: linear-gradient(180deg, #0d1117 0%, #080c18 100%);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.5),
+    inset 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Page hero (résumé / contact): gradient depth */
+.page-hero {
+  background: linear-gradient(180deg, #111827 0%, #0d1117 100%);
+  box-shadow: inset 0 -6px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* Section backgrounds: subtle gradient variation so they don't blend */
+.words-section {
+  background: linear-gradient(180deg, #0d1117 0%, #0b0f1c 100%);
+}
+.projects-section {
+  background: linear-gradient(180deg, #0c1018 0%, #0d1117 100%);
+}
+.video-section {
+  background: linear-gradient(180deg, #0d1117 0%, #0b0f1c 100%);
+}
+
+/* CTA primary button: dimensional green pill */
+.hero-btn-primary {
+  background: linear-gradient(180deg, #00ff55 0%, #00d936 100%);
+  box-shadow:
+    0 4px 20px rgba(0, 255, 65, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.hero-btn-primary:hover {
+  background: linear-gradient(180deg, #33ff77 0%, #00ff41 100%);
+  box-shadow:
+    0 8px 32px rgba(0, 255, 65, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+/* Submit / send button */
+.btn-green {
+  background: linear-gradient(180deg, #00ff55 0%, #00d936 100%);
+  box-shadow:
+    0 4px 20px rgba(0, 255, 65, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.btn-green:hover {
+  background: linear-gradient(180deg, #33ff77 0%, #00ff41 100%);
+  box-shadow:
+    0 8px 32px rgba(0, 255, 65, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Page-hero stats (résumé / contact): subtle card lift */
+.ph-stat {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+/* Intro section background: slight tonal variation */
+.intro-section {
+  background: linear-gradient(180deg, #0a0e1a 0%, #0d1117 100%);
+}
+
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1685,5 +2067,14 @@ a {
   .logo-scanline {
     animation: none;
     display: none;
+  }
+  .hero-blob {
+    animation: none;
+  }
+  .hero-distortion-overlay {
+    animation: none;
+  }
+  .tech-badge {
+    animation: none;
   }
 }
