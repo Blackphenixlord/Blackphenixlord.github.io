@@ -559,7 +559,10 @@
 
       // Click or tap anywhere on the card to focus input
       document.getElementById('terminal-card')?.addEventListener('click', focusInput);
-      document.getElementById('terminal-card')?.addEventListener('touchend', (e) => { e.preventDefault(); focusInput(); }, { passive: false });
+      document.getElementById('terminal-card')?.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        setTimeout(() => focusInput(), 10);
+      }, { passive: false });
     })();
 
     // ── Hero-tag typewriter ────────────────────────────────────────────────────

@@ -152,6 +152,8 @@
         github: '__GITHUB__',
         linkedin: 'LinkedIn: Joshua Collado',
         send: '__SEND__',
+        clear: '__CLEAR__',
+        reset: '__RESET__',
       };
       const CONTACT_LINES = [
         '// joshua@collado · contact',
@@ -212,7 +214,10 @@
       }
 
       card.addEventListener('click', () => inputEl.focus({ preventScroll: true }));
-      card.addEventListener('touchend', (e) => { e.preventDefault(); inputEl.focus({ preventScroll: true }); }, { passive: false });
+      card.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        setTimeout(() => inputEl.focus({ preventScroll: true }), 10);
+      }, { passive: false });
 
       const ghostEl = document.getElementById('contact-terminal-ghost');
       const afterEl = document.getElementById('contact-terminal-after');
@@ -432,10 +437,18 @@
           startSendFlow();
         } else if (resp === '__GITHUB__') {
           runGithubOpenFlow();
+        } else if (resp === '__CLEAR__') {
+          output.innerHTML = '';
+        } else if (resp === '__RESET__') {
+          output.innerHTML = '';
+          promptRow.style.display = 'none';
+          hintEl.style.opacity = '0';
+          started = false;
+          startTyping();
         } else if (resp) {
           appendResponse(resp);
         } else {
-          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + '<br>Try <span style="color:#00ff41">send</span>, <span style="color:#00ff41">github</span>, or <span style="color:#00ff41">linkedin</span>.');
+          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + '<br>Try <span style="color:#00ff41">send</span>, <span style="color:#00ff41">github</span>, <span style="color:#00ff41">linkedin</span>, <span style="color:#00ff41">clear</span>, or <span style="color:#00ff41">reset</span>.');
         }
         output.scrollTop = output.scrollHeight;
       });
