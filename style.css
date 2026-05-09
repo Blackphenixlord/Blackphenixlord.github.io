@@ -805,29 +805,27 @@ a {
   color: #c9d1d9;
   height: 320px;
   max-height: 320px;
-  overflow-y: auto;
+  overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  touch-action: auto;
 }
 /* Custom scrollbar – webkit */
 .intro-body::-webkit-scrollbar {
-  width: 5px;
+  width: 14px;
 }
 .intro-body::-webkit-scrollbar-track {
-  background: #0a0e1a;
+  background: #1a3a1a;
 }
 .intro-body::-webkit-scrollbar-thumb {
-  background: #1c3a1c;
-  border-radius: 3px;
+  background: #00ff41;
+  border-radius: 7px;
+  min-height: 40px;
 }
 .intro-body::-webkit-scrollbar-thumb:hover {
   background: #00ff41;
 }
-/* Firefox */
-.intro-body {
-  scrollbar-width: thin;
-  scrollbar-color: #1c3a1c #0a0e1a;
+.intro-body::-webkit-scrollbar-thumb:active {
+  background: #00ff41;
 }
 .intro-body p {
   margin-bottom: 18px;
@@ -1503,19 +1501,15 @@ a {
     font-size: 0.82rem;
     height: 280px;
     max-height: 280px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
-  /* Mobile scrollbar: very wide and always visible */
   .intro-body::-webkit-scrollbar {
-    width: 18px;
+    width: 16px;
   }
   .intro-body::-webkit-scrollbar-thumb {
     background: #00ff41;
-    border-radius: 9px;
-    min-height: 40px;
-  }
-  .intro-body::-webkit-scrollbar-track {
-    background: #1a3a1a;
+    border-radius: 8px;
+    min-height: 50px;
   }
 
   /* ── Terminal mobile fixes ── */
