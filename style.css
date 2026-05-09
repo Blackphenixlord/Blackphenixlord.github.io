@@ -132,16 +132,25 @@ a {
   animation: gridPulse 8s ease-in-out infinite;
   transition: background-position 0.08s ease-out;
 }
-/* Cursor-tracking light effect */
+/* Grid distortion effect around mouse */
 .hero-bg-grid::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(0, 255, 65, 0.08) 0%,
-    transparent 70%
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+  background-size: calc(48px * var(--distort-scale, 1));
+  background-position: calc(var(--distort-x, 50%) * -1 + 50%)
+    calc(var(--distort-y, 50%) * -1 + 50%);
+  mask-image: radial-gradient(
+    circle 140px,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
   );
+  mask-position: var(--distort-x, 50%) var(--distort-y, 50%);
+  mask-size: 100%;
+  mask-repeat: no-repeat;
   pointer-events: none;
 }
 @keyframes gridPulse {
