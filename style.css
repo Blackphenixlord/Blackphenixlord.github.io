@@ -2103,7 +2103,8 @@ a {
 }
 
 /* ===== SOUND TOGGLE ===== */
-.sound-toggle {
+.sound-toggle,
+.music-toggle {
   position: fixed;
   bottom: 58px;
   right: 18px;
@@ -2138,7 +2139,9 @@ a {
   );
   box-shadow:
     0 1px 0 rgba(0, 255, 65, 0.1),
-    0 4px 36px rgba(0, 0, 0, 0.65),
+
+.sound-toggle:hover,
+.music-toggle:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
@@ -2470,7 +2473,8 @@ a {
     display: none;
   }
 
-  .sound-toggle {
+  .sound-toggle,
+  .music-toggle {
     right: 10px;
     bottom: 72px;
     font-size: 0.68rem;
