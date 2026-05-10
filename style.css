@@ -2106,8 +2106,7 @@ a {
 }
 
 /* ===== SOUND TOGGLE ===== */
-.sound-toggle,
-.music-toggle {
+.sound-toggle {
   position: fixed;
   bottom: 58px;
   right: 18px;
@@ -2128,8 +2127,7 @@ a {
   backdrop-filter: blur(6px);
 }
 
-.sound-toggle:hover,
-.music-toggle:hover {
+.sound-toggle:hover {
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
 }
 
@@ -2476,8 +2474,7 @@ a {
     display: none;
   }
 
-  .sound-toggle,
-  .music-toggle {
+  .sound-toggle {
     right: 10px;
     bottom: 72px;
     font-size: 0.68rem;
