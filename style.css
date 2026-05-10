@@ -122,7 +122,10 @@ a {
   border-radius: 5px;
   padding: 4px 10px;
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -2124,7 +2127,9 @@ a {
     box-shadow 0.2s;
   backdrop-filter: blur(6px);
 }
-.sound-toggle:hover {
+
+.sound-toggle:hover,
+.music-toggle:hover {
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
 }
 
@@ -2139,9 +2144,7 @@ a {
   );
   box-shadow:
     0 1px 0 rgba(0, 255, 65, 0.1),
-
-.sound-toggle:hover,
-.music-toggle:hover {
+    0 4px 36px rgba(0, 0, 0, 0.65),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
