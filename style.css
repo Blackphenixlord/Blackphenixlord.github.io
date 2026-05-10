@@ -1219,9 +1219,9 @@ a {
   font-size: 0.93rem;
   line-height: 2;
   color: #c9d1d9;
-  height: 320px;
-  max-height: 320px;
-  overflow-y: scroll;
+  height: 460px;
+  max-height: 460px;
+  overflow-y: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
