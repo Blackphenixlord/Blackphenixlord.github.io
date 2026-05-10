@@ -111,6 +111,31 @@ a {
   border: none;
 }
 
+/* ===== MUSIC TOGGLE ===== */
+.music-toggle {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #3a5a3a;
+  background: none;
+  border: 1px solid #1a3a1a;
+  border-radius: 5px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.music-toggle:hover {
+  color: rgba(0, 255, 65, 0.8);
+  border-color: rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.12);
+}
+.music-toggle:focus-visible {
+  outline: 2px solid #00ff41;
+  outline-offset: 2px;
+}
+
 /* ===== CUSTOM RIGHT-CLICK MENU ===== */
 .custom-context-menu {
   position: fixed;
