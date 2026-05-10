@@ -37,15 +37,16 @@
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <button class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false"
-      aria-controls="nav-links-list">&#9776;</button>
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi:
+      off</button>
+    <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
+      aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
 
   <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
     <ul class="context-menu-list">
-      <li><a class="context-menu-link" href="index.html"><svg class="context-menu-icon" viewBox="0 0 24 24"
-            aria-hidden="true">
+      <li><a class="context-menu-link" href="index.html" aria-current="page"><svg class="context-menu-icon"
+            viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3 10.5 12 3l9 7.5" />
             <path d="M5.5 9.5V21h13V9.5" />
           </svg><span class="context-menu-label">Home</span></a></li>
@@ -65,28 +66,8 @@
 
   <section class="hero" id="main-content">
     <div class="hero-bg-grid"></div>
-    <div class="hero-distortion-overlay"></div>
-    <!-- Depth blobs: floating glows that create spatial layering -->
+    <div class="hero-distortion-overlay" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
-    <!-- Floating tech badges -->
-    <div class="tech-badge" style="--x:8%;--y:18%;--d:0s;--r:-8deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#f7df1e"></span>JavaScript</div>
-    <div class="tech-badge" style="--x:82%;--y:12%;--d:1.2s;--r:5deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#3572A5"></span>Python</div>
-    <div class="tech-badge" style="--x:5%;--y:72%;--d:2.1s;--r:4deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#00ADD8"></span>Go</div>
-    <div class="tech-badge" style="--x:88%;--y:65%;--d:0.7s;--r:-6deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#b07219"></span>Java</div>
-    <div class="tech-badge" style="--x:74%;--y:82%;--d:1.8s;--r:7deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#61dafb"></span>React</div>
-    <div class="tech-badge" style="--x:18%;--y:88%;--d:3.0s;--r:-4deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#3178c6"></span>TypeScript</div>
-    <div class="tech-badge" style="--x:55%;--y:6%;--d:2.5s;--r:3deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#FF6C37"></span>Rust</div>
-    <div class="tech-badge" style="--x:92%;--y:38%;--d:0.4s;--r:-5deg" aria-hidden="true"><span class="tb-dot"
-        style="background:#4479a1"></span>SQL</div>
     <div class="hero-content">
       <div class="logo-block" title="Joshua Collado">
         <div class="logo-inner">
@@ -115,7 +96,8 @@
       <div class="hero-text">
         <p class="hero-tag">&lt; Hello, World! /&gt;</p>
         <h1 class="hero-name">Joshua<br /><span class="accent">Collado</span></h1>
-        <p class="hero-sub">Engineer · Developer · Builder &nbsp;|&nbsp; UTRGV &amp; Science Academy</p>
+        <p class="hero-sub">Building practical software, AI tools, and immersive systems from South Texas.</p>
+        <p class="hero-meta">UTRGV Dual Enrollment · Science Academy · Engineering + Computer Science</p>
         <div class="hero-ctas">
           <a href="#projects" class="hero-btn-primary">View Projects</a>
           <a href="contact.html" class="hero-btn-outline">Get In Touch</a>
@@ -242,11 +224,16 @@
             <span class="project-year">2025–2026</span>
             <span class="project-org">NASA HUNCH</span>
           </div>
+          <p class="project-role">Role: Full-stack builder and systems teammate</p>
           <h3 class="project-title">Inventory Chain System</h3>
-          <p class="project-desc">A full-stack inventory tracking system built with two teammates. Selected to present
-            to NASA representatives in Houston for finals.</p>
-          <div class="project-tags">
-            <span>Full-Stack</span><span>Hardware</span><span>NASA</span>
+          <p class="project-built">Built: An inventory tracking workflow with UI, data flow, and team collaboration.</p>
+          <p class="project-impact">Impact: Advanced to Houston finals and presented directly to NASA representatives.
+          </p>
+          <div class="project-stack" aria-label="Project stack">
+            <span class="project-stack-label">Stack</span>
+            <div class="project-tags">
+              <span>Full-Stack</span><span>Hardware</span><span>NASA</span>
+            </div>
           </div>
         </div>
 
@@ -255,11 +242,16 @@
             <span class="project-year">2025–2026</span>
             <span class="project-org">Los Alamos Lab</span>
           </div>
+          <p class="project-role">Role: XR developer and simulation collaborator</p>
           <h3 class="project-title">VR Training Experience</h3>
-          <p class="project-desc">A Virtual Reality training simulation built with a partner. Only student chosen to
-            visit Los Alamos National Laboratory in New Mexico.</p>
-          <div class="project-tags">
-            <span>VR</span><span>Hardware</span><span>Research</span>
+          <p class="project-built">Built: A virtual reality training simulation focused on immersive instruction.</p>
+          <p class="project-impact">Impact: Earned a visit to Los Alamos National Laboratory as the only selected
+            student.</p>
+          <div class="project-stack" aria-label="Project stack">
+            <span class="project-stack-label">Stack</span>
+            <div class="project-tags">
+              <span>VR</span><span>Hardware</span><span>Research</span>
+            </div>
           </div>
         </div>
 
@@ -268,11 +260,17 @@
             <span class="project-year">2026–2027</span>
             <span class="project-org">Capstone</span>
           </div>
+          <p class="project-role">Role: Product designer and AI systems developer</p>
           <h3 class="project-title">Project Evie</h3>
-          <p class="project-desc">A personal AI assistant that connects Android and Windows into a unified home
-            automation network. Currently in development.</p>
-          <div class="project-tags">
-            <span>AI</span><span>Android</span><span>Automation</span>
+          <p class="project-built">Built: A personal assistant that links Android and Windows into one automation layer.
+          </p>
+          <p class="project-impact">Impact: Establishing the foundation for a unified AI-powered home control system.
+          </p>
+          <div class="project-stack" aria-label="Project stack">
+            <span class="project-stack-label">Stack</span>
+            <div class="project-tags">
+              <span>AI</span><span>Android</span><span>Automation</span>
+            </div>
           </div>
         </div>
 
@@ -712,51 +710,6 @@
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => revealObs.observe(el));
-
-    // ── Word-card 3-D tilt ────────────────────────────────────────────────────
-    document.querySelectorAll('.word-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateY(-6px) scale(1.02)`;
-        card.style.transition = 'box-shadow 0.08s, border-color 0.08s';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transition = 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, border-color 0.2s';
-        card.style.transform = '';
-      });
-    });
-
-    // ── Mouse cursor trail ────────────────────────────────────────────────────
-    let lastTrail = 0;
-    document.addEventListener('mousemove', e => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const now = Date.now();
-      if (now - lastTrail < 30) return;
-      lastTrail = now;
-      const size = Math.random() * 5 + 3;
-      const dot = document.createElement('div');
-      Object.assign(dot.style, {
-        position: 'fixed',
-        width: size + 'px',
-        height: size + 'px',
-        borderRadius: '50%',
-        background: `rgba(0,255,65,${(Math.random() * 0.5 + 0.25).toFixed(2)})`,
-        left: e.clientX + 'px',
-        top: e.clientY + 'px',
-        transform: 'translate(-50%,-50%)',
-        pointerEvents: 'none',
-        zIndex: '9999',
-        transition: 'opacity 0.55s ease, transform 0.55s ease',
-      });
-      document.body.appendChild(dot);
-      requestAnimationFrame(() => {
-        dot.style.opacity = '0';
-        dot.style.transform = 'translate(-50%,-50%) scale(0)';
-      });
-      setTimeout(() => dot.remove(), 600);
-    });
 
     // ── Skill-tag click ripple ────────────────────────────────────────────────
     document.querySelectorAll('.skill-tag').forEach(tag => {

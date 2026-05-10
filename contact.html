@@ -35,9 +35,10 @@
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
-    <button class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false"
-      aria-controls="nav-links-list">&#9776;</button>
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi:
+      off</button>
+    <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
+      aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
 
   <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
@@ -53,8 +54,8 @@
             <path d="M15 3v5h4" />
             <path d="M9.5 12h5M9.5 16h5" />
           </svg><span class="context-menu-label">Resume</span></a></li>
-      <li><a class="context-menu-link" href="contact.html"><svg class="context-menu-icon" viewBox="0 0 24 24"
-            aria-hidden="true">
+      <li><a class="context-menu-link" href="contact.html" aria-current="page"><svg class="context-menu-icon"
+            viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="6" width="18" height="12" rx="2" />
             <path d="m4 8 8 6 8-6" />
           </svg><span class="context-menu-label">Contact</span></a></li>
@@ -65,9 +66,9 @@
     <div class="page-hero-bg"></div>
     <p class="section-label">// contact</p>
     <h1 class="section-title">Get In Touch</h1>
-    <p>joshuacollado656@gmail.com · South Texas</p>
+    <p>Open to internships, research, and software engineering opportunities.</p>
     <div class="page-hero-tags">
-      <span>Open to Opportunities</span>
+      <span>joshuacollado656@gmail.com</span>
       <span>South Texas</span>
       <span>Responds within 24h</span>
     </div>
@@ -193,30 +194,6 @@
     }, { threshold: 0.1 });
     revealEls.forEach(el => revealObs.observe(el));
 
-    // ── Mouse cursor trail ────────────────────────────────────────────────────
-    let lastT = 0;
-    document.addEventListener('mousemove', e => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const now = Date.now();
-      if (now - lastT < 30) return;
-      lastT = now;
-      const size = Math.random() * 5 + 3;
-      const dot = document.createElement('div');
-      Object.assign(dot.style, {
-        position: 'fixed', width: size + 'px', height: size + 'px',
-        borderRadius: '50%',
-        background: `rgba(0,255,65,${(Math.random() * 0.5 + 0.25).toFixed(2)})`,
-        left: e.clientX + 'px', top: e.clientY + 'px',
-        transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '9999',
-        transition: 'opacity 0.55s ease, transform 0.55s ease',
-      });
-      document.body.appendChild(dot);
-      requestAnimationFrame(() => {
-        dot.style.opacity = '0';
-        dot.style.transform = 'translate(-50%,-50%) scale(0)';
-      });
-      setTimeout(() => dot.remove(), 600);
-    });
     // ── Footer year ────────────────────────────────────────────────────────────────
     const y = document.getElementById('footer-year');
     if (y) y.textContent = new Date().getFullYear();
