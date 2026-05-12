@@ -9,9 +9,265 @@
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="style.css?v=20260512-1" />
+  <link rel="stylesheet" href="icons.css?v=20260509-1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
     rel="stylesheet" />
+
+  <style>
+    /* ── Terminal intro banner ──────────────────────────────────────────── */
+    .contact-terminal {
+      max-width: 1060px;
+      margin: 6rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .contact-terminal-box {
+      background: #050810;
+      border: 1px solid rgba(40,200,64,0.18);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .contact-terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      background: #161b22;
+      border-bottom: 1px solid #1a2a1a;
+    }
+    .ct-dot-red  { width:11px;height:11px;border-radius:50%;background:#ff5f57;flex-shrink:0; }
+    .ct-dot-yel  { width:11px;height:11px;border-radius:50%;background:#febc2e;flex-shrink:0; }
+    .ct-dot-grn  { width:11px;height:11px;border-radius:50%;background:#28c840;flex-shrink:0; }
+    .ct-bar-title {
+      font-family:'Share Tech Mono',monospace;
+      font-size:0.72rem;
+      color:rgba(40,200,64,0.35);
+      margin-left:6px;
+      letter-spacing:0.04em;
+    }
+    .contact-terminal-body {
+      padding: 16px 20px 18px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
+    .ct-prompt {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .ct-user  { color: #28c840; }
+    .ct-sep   { color: #4a5568; }
+    .ct-path  { color: #28c840; }
+    .ct-cmd   { color: #e6edf3; }
+    .ct-output { color: #a0aab4; display:none; }
+    .ct-cursor {
+      display:inline-block;
+      color:#28c840;
+      animation: ct-blink 1s step-end infinite;
+    }
+    @keyframes ct-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── Page layout ────────────────────────────────────────────────────── */
+    .contact-layout {
+      max-width: 1060px;
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 2.5rem;
+      align-items: start;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .contact-layout.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 760px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── Left col: heading + cards + status ─────────────────────────────── */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .contact-info-heading {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: #e6edf3;
+      margin: 0 0 0.25rem;
+      line-height: 1.2;
+    }
+    .contact-info-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #7b8a92;
+      margin: 0 0 1rem;
+      line-height: 1.6;
+    }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #0d1117;
+      border: 1px solid rgba(40,200,64,0.12);
+      border-radius: 10px;
+      padding: 0.95rem 1.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+    .contact-card:hover, .contact-card:focus-visible {
+      border-color: #28c840;
+      box-shadow: 0 0 18px rgba(40,200,64,0.12);
+      transform: translateX(4px);
+      outline: none;
+    }
+    .contact-card-icon {
+      flex-shrink:0; width:38px; height:38px;
+      background: rgba(40,200,64,0.08);
+      border: 1px solid rgba(40,200,64,0.2);
+      border-radius: 8px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .contact-card-icon svg {
+      width:18px; height:18px; stroke:#28c840; fill:none;
+      stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;
+    }
+    .contact-card-text { display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .contact-card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #4a5568;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .contact-card-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: #c9d1d9;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+
+    /* ── Terminal status block ───────────────────────────────────────────── */
+    .contact-status-box {
+      margin-top: 0.4rem;
+      background: #050810;
+      border: 1px solid rgba(40,200,64,0.16);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .contact-status-bar {
+      display:flex; align-items:center; gap:6px;
+      padding: 8px 12px;
+      background: #161b22;
+      border-bottom: 1px solid #1a2a1a;
+    }
+    .contact-status-dot-red { width:10px;height:10px;border-radius:50%;background:#ff5f57; }
+    .contact-status-dot-yel { width:10px;height:10px;border-radius:50%;background:#febc2e; }
+    .contact-status-dot-grn { width:10px;height:10px;border-radius:50%;background:#28c840; }
+    .contact-status-title {
+      font-family:'Share Tech Mono',monospace;
+      font-size:0.7rem; color:#4a5568; margin-left:4px;
+    }
+    .contact-status-body {
+      padding:14px 16px;
+      font-family:'Share Tech Mono',monospace;
+      font-size:0.82rem; line-height:1.8;
+    }
+    .contact-status-cmd { color:#4a5568; }
+    .contact-status-cmd span { color:#a0aab4; }
+    .contact-status-result { color:#28c840; display:flex; align-items:center; gap:8px; }
+    .status-indicator {
+      display:inline-block; width:8px; height:8px; border-radius:50%;
+      background:#28c840; box-shadow:0 0 6px #28c840;
+      animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0;
+    }
+    @keyframes pulse-dot {
+      0%,100%{opacity:1;box-shadow:0 0 6px #28c840}
+      50%{opacity:0.6;box-shadow:0 0 12px #28c840}
+    }
+
+    /* ── Form ────────────────────────────────────────────────────────────── */
+    .contact-form-col { display:flex; flex-direction:column; }
+    .contact-form {
+      background: #0d1117;
+      border: 1px solid rgba(40,200,64,0.12);
+      border-radius: 12px;
+      padding: 2.2rem 2rem 2rem;
+    }
+    .form-row {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.2rem;
+    }
+    @media (max-width:560px) { .form-row { grid-template-columns:1fr; } }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-label {
+      display:block;
+      font-family:'Inter',sans-serif;
+      font-size:0.78rem;
+      font-weight:600;
+      color:#7b8a92;
+      margin-bottom:7px;
+      letter-spacing:0.03em;
+      text-transform:uppercase;
+    }
+    .form-input, .form-textarea {
+      display:block; width:100%; box-sizing:border-box;
+      background: #080c14;
+      border: 1px solid rgba(40,200,64,0.18);
+      border-radius: 8px;
+      color: #e6edf3;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.78rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      caret-color: #28c840;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color:#2a3a2a; }
+    .form-input:focus, .form-textarea:focus {
+      border-color: #28c840;
+      box-shadow: 0 0 0 3px rgba(40,200,64,0.1);
+    }
+    .form-textarea { resize:vertical; min-height:130px; }
+    .form-submit {
+      width:100%; margin-top:0.4rem;
+      padding:0.9rem 1.5rem;
+      background: #28c840;
+      border: none;
+      border-radius: 8px;
+      color: #0a0e1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.15s, background 0.2s;
+    }
+    .form-submit:hover, .form-submit:focus-visible {
+      background: #32d44a;
+      box-shadow: 0 0 22px rgba(40,200,64,0.35);
+      transform: translateY(-2px);
+      outline:none;
+    }
+    .form-submit:active { transform:translateY(0); }
+    .form-success {
+      display:none; margin-top:1rem; padding:0.8rem 1rem;
+      background:rgba(40,200,64,0.07);
+      border:1px solid rgba(40,200,64,0.25);
+      border-radius:8px;
+      font-family:'Inter',sans-serif;
+      font-size:0.88rem; color:#28c840; text-align:center;
+    }
+  </style>
 </head>
 
 <body>
@@ -64,57 +320,145 @@
     </ul>
   </nav>
 
-  <section class="page-hero" id="main-content" aria-label="Contact">
-    <div class="page-hero-bg" aria-hidden="true"></div>
-    <p class="section-label" aria-hidden="true">// contact</p>
-    <h1 class="section-title">Get In Touch</h1>
-    <p>Open to internships, research, and software engineering opportunities.</p>
-    <div class="page-hero-tags">
-      <span>joshuacollado636@gmail.com</span>
-      <span>South Texas</span>
-      <span>Responds within 24h</span>
-    </div>
-  </section>
-
-  <main class="page-content container" style="position:relative;" aria-label="Contact terminal">
-
-    <!-- Dragon decoration – left side (Font Awesome Free 6.7.2, CC BY 4.0, Fonticons Inc.) -->
-    <div class="contact-dragon" aria-hidden="true">
-      <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg" width="220" height="176"
-        style="filter:drop-shadow(0 0 18px rgba(0,255,65,0.6))">
-        <path fill="#28c840"
-          d="M352 124.5l-51.9-13c-6.5-1.6-11.3-7.1-12-13.8s2.8-13.1 8.7-16.1l40.8-20.4L294.4 28.8c-5.5-4.1-7.8-11.3-5.6-17.9S297.1 0 304 0L416 0l32 0 16 0c30.2 0 58.7 14.2 76.8 38.4l57.6 76.8c6.2 8.3 9.6 18.4 9.6 28.8c0 26.5-21.5 48-48 48l-21.5 0c-17 0-33.3-6.7-45.3-18.7L480 160l-32 0 0 21.5c0 24.8 12.8 47.9 33.8 61.1l106.6 66.6c32.1 20.1 51.6 55.2 51.6 93.1C640 462.9 590.9 512 530.2 512L496 512l-64 0L32.3 512c-3.3 0-6.6-.4-9.6-1.4C13.5 507.8 6 501 2.4 492.1C1 488.7 .2 485.2 0 481.4c-.2-3.7 .3-7.3 1.3-10.7c2.8-9.2 9.6-16.7 18.6-20.4c3-1.2 6.2-2 9.5-2.2L433.3 412c8.3-.7 14.7-7.7 14.7-16.1c0-4.3-1.7-8.4-4.7-11.4l-44.4-44.4c-30-30-46.9-70.7-46.9-113.1l0-45.5 0-57zM512 72.3c0-.1 0-.2 0-.3s0-.2 0-.3l0 .6zm-1.3 7.4L464.3 68.1c-.2 1.3-.3 2.6-.3 3.9c0 13.3 10.7 24 24 24c10.6 0 19.5-6.8 22.7-16.3zM130.9 116.5c16.3-14.5 40.4-16.2 58.5-4.1l130.6 87 0 27.5c0 32.8 8.4 64.8 24 93l-232 0c-6.7 0-12.7-4.2-15-10.4s-.5-13.3 4.6-17.7L171 232.3 18.4 255.8c-7 1.1-13.9-2.6-16.9-9s-1.5-14.1 3.8-18.8L130.9 116.5z" />
-      </svg>
-    </div>
-
-    <div class="intro-card" id="contact-terminal-card" style="max-width:860px;margin:0 auto;">
-      <div class="terminal-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="terminal-title">joshua@collado:~$ cat contact.txt</span>
-        <span class="terminal-status" aria-hidden="true"><span class="terminal-status-dot"></span>live</span>
+  <!-- TERMINAL INTRO -->
+  <div class="contact-terminal" id="main-content" aria-hidden="true">
+    <div class="contact-terminal-box">
+      <div class="contact-terminal-bar">
+        <span class="ct-dot-red"></span>
+        <span class="ct-dot-yel"></span>
+        <span class="ct-dot-grn"></span>
+        <span class="ct-bar-title">joshua@collado — bash — 80×24</span>
       </div>
-      <div class="terminal-scanline" aria-hidden="true"></div>
-      <div class="intro-body" id="contact-terminal-output" aria-live="polite"></div>
-      <div class="terminal-prompt-row" id="contact-terminal-prompt" style="display:none;">
-        <span class="terminal-prompt-prefix">joshua@collado:~$&nbsp;</span>
-        <span class="terminal-input-display" id="contact-terminal-typed"></span><span class="cursor">█</span><span
-          class="terminal-input-display" id="contact-terminal-after"></span><span class="terminal-ghost"
-          id="contact-terminal-ghost"></span>
-        <input class="terminal-hidden-input" id="contact-terminal-input" type="text" autocomplete="off"
-          autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send"
-          aria-label="Terminal input" maxlength="200" />
+      <div class="contact-terminal-body">
+        <div class="ct-prompt">
+          <span class="ct-user">joshua</span><span class="ct-sep">@</span><span class="ct-path">collado</span><span class="ct-sep">:~$</span>
+          <span class="ct-cmd" id="ct-cmd-text"></span><span class="ct-cursor" id="ct-cursor">|</span>
+        </div>
+        <div class="ct-output" id="ct-output">Launching contact interface... <span style="color:#28c840">[ OK ]</span></div>
       </div>
     </div>
-    <p class="terminal-hint" id="contact-terminal-hint" style="opacity:0;max-width:860px;margin:14px auto 0;">
-      &gt; try: <code>send</code> &nbsp;·&nbsp; <code>github</code> &nbsp;·&nbsp; <code>linkedin</code>
-    </p>
+  </div>
+
+  <!-- TWO-COLUMN LAYOUT -->
+  <main class="contact-layout" id="contact-layout" aria-label="Contact information and form">
+
+    <!-- LEFT: heading + cards + status -->
+    <div class="contact-info-col">
+      <h1 class="contact-info-heading">Get in touch.</h1>
+      <p class="contact-info-sub">Have a project, question, or just want to connect? I usually respond within a day.</p>
+
+      <!-- Email card -->
+      <a href="mailto:joshuacollado636@gmail.com" class="contact-card" aria-label="Email Joshua Collado">
+        <div class="contact-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="2" />
+            <path d="m4 8 8 6 8-6" />
+          </svg>
+        </div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">Email</span>
+          <span class="contact-card-value">joshuacollado636@gmail.com</span>
+        </div>
+      </a>
+
+      <!-- GitHub card -->
+      <a href="https://github.com/Blackphenixlord" target="_blank" rel="noopener noreferrer" class="contact-card"
+        aria-label="GitHub profile">
+        <div class="contact-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+          </svg>
+        </div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">GitHub</span>
+          <span class="contact-card-value">github.com/Blackphenixlord</span>
+        </div>
+      </a>
+
+      <!-- LinkedIn card -->
+      <a href="https://linkedin.com/in/joshuacollado" target="_blank" rel="noopener noreferrer" class="contact-card"
+        aria-label="LinkedIn profile">
+        <div class="contact-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">LinkedIn</span>
+          <span class="contact-card-value">linkedin.com/in/joshuacollado</span>
+        </div>
+      </a>
+
+      <!-- Terminal status block -->
+      <div class="contact-status-box" aria-label="Availability status">
+        <div class="contact-status-bar" aria-hidden="true">
+          <span class="contact-status-dot-red"></span>
+          <span class="contact-status-dot-yel"></span>
+          <span class="contact-status-dot-grn"></span>
+          <span class="contact-status-title">joshua@collado:~</span>
+        </div>
+        <div class="contact-status-body">
+          <div class="contact-status-cmd"><span style="color:#2a6a3a">joshua@collado</span><span style="color:#4a5568">:~$</span> <span style="color:#a0aab4">status</span></div>
+          <div class="contact-status-result">
+            <span class="status-indicator" aria-hidden="true"></span>
+            Available for opportunities &middot; 2026
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /contact-info-col -->
+
+    <!-- RIGHT: Contact form -->
+    <div class="contact-form-col">
+      <form class="contact-form" action="https://formspree.io/f/xdkgpelr" method="POST" id="contact-form"
+        aria-label="Send Joshua a message">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">Name</label>
+            <input class="form-input" type="text" id="contact-name" name="name" required
+              autocomplete="name" placeholder="Joshua Collado" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">Email</label>
+            <input class="form-input" type="email" id="contact-email" name="email" required
+              autocomplete="email" placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-subject">Subject</label>
+          <input class="form-input" type="text" id="contact-subject" name="subject" required
+            placeholder="Let's work together" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea class="form-textarea" id="contact-message" name="message" rows="6" required
+            placeholder="Hey Joshua, I wanted to reach out about..."></textarea>
+        </div>
+
+        <button class="form-submit" type="submit">Send Message</button>
+
+        <div class="form-success" id="form-success" role="alert" aria-live="polite">
+          <span style="color:#00ff41">✓</span>&nbsp; Message sent! I'll get back to you soon.
+        </div>
+
+      </form>
+    </div><!-- /contact-form-col -->
+
   </main>
 
   <footer class="footer">
     <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
         style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
   </footer>
+
   <script>
+    // ── Nav helpers ────────────────────────────────────────────────────────
     function toggleMenu() {
       const links = document.querySelector('.nav-links');
       const btn = document.querySelector('.hamburger');
@@ -122,396 +466,110 @@
       btn.setAttribute('aria-expanded', open);
     }
 
-    function setupCustomContextMenu() {
+    // ── Context menu ───────────────────────────────────────────────────────
+    (function setupCustomContextMenu() {
       const menu = document.getElementById('custom-context-menu');
       if (!menu) return;
       let closeTimer = null;
-
       const closeMenu = () => {
         if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
         menu.classList.remove('opening');
         menu.classList.add('closing');
         window.clearTimeout(closeTimer);
-        closeTimer = window.setTimeout(() => {
-          menu.classList.remove('open', 'closing');
-        }, 140);
+        closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140);
       };
-
       document.addEventListener('contextmenu', (e) => {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
-
         e.preventDefault();
         window.clearTimeout(closeTimer);
         menu.classList.remove('closing');
-        const menuWidth = menu.offsetWidth || 190;
-        const menuHeight = menu.offsetHeight || 140;
-        const x = Math.min(e.clientX, window.innerWidth - menuWidth - 8);
-        const y = Math.min(e.clientY, window.innerHeight - menuHeight - 8);
-
-        menu.style.left = `${Math.max(8, x)}px`;
-        menu.style.top = `${Math.max(8, y)}px`;
+        const mw = menu.offsetWidth || 190;
+        const mh = menu.offsetHeight || 140;
+        menu.style.left = `${Math.max(8, Math.min(e.clientX, window.innerWidth - mw - 8))}px`;
+        menu.style.top  = `${Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8))}px`;
         menu.classList.add('opening', 'open');
-        window.setTimeout(() => {
-          menu.classList.remove('opening');
-        }, 170);
+        window.setTimeout(() => menu.classList.remove('opening'), 170);
       });
-
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('#custom-context-menu')) closeMenu();
-      });
+      document.addEventListener('click', (e) => { if (!e.target.closest('#custom-context-menu')) closeMenu(); });
       document.addEventListener('scroll', closeMenu, true);
       window.addEventListener('resize', closeMenu);
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-    }
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    })();
 
-    setupCustomContextMenu();
+    // ── Footer year ────────────────────────────────────────────────────────
+    const yEl = document.getElementById('footer-year');
+    if (yEl) yEl.textContent = new Date().getFullYear();
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      document.getElementById('form-msg').style.display = 'block';
-      e.target.reset();
-    }
-
-    // ── Scroll reveal ─────────────────────────────────────────────────────────
-    const revealEls = document.querySelectorAll('.contact-form, .contact-layout > div:last-child, .page-hero > *');
-    const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    revealEls.forEach((el, i) => {
-      if (noMotion) { el.style.opacity = '1'; return; }
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(22px)';
-      el.style.willChange = 'opacity, transform';
-      el.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
-    });
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-          e.target.style.willChange = 'auto';
-          revealObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => revealObs.observe(el));
-
-    // ── Footer year ────────────────────────────────────────────────────────────────
-    const y = document.getElementById('footer-year');
-    if (y) y.textContent = new Date().getFullYear();
-
-    // ── Contact terminal ─────────────────────────────────────────────────────
-    (function () {
-      const CONTACT_CMDS = {
-        github: '__GITHUB__',
-        linkedin: 'LinkedIn: Joshua Collado',
-        send: '__SEND__',
-        clear: '__CLEAR__',
-        reset: '__RESET__',
-      };
-      const CONTACT_LINES = [
-        '// joshua@collado · contact',
-        'South Texas · Open to opportunities · Responds within 24h.',
-        'Type a command to get my info — try send, github, or linkedin.',
-      ];
-
-      const card = document.getElementById('contact-terminal-card');
-      const output = document.getElementById('contact-terminal-output');
-      const promptRow = document.getElementById('contact-terminal-prompt');
-      const inputEl = document.getElementById('contact-terminal-input');
-      const typedEl = document.getElementById('contact-terminal-typed');
-      const hintEl = document.getElementById('contact-terminal-hint');
-      const GITHUB_URL = 'https://github.com/Blackphenixlord';
-      if (!card) return;
-
-      let pIdx = 0, cIdx = 0, started = false;
-
-      function typeLines() {
-        if (pIdx >= CONTACT_LINES.length) {
-          promptRow.style.display = 'flex';
-          hintEl.style.opacity = '1';
-          return;
-        }
-        const text = CONTACT_LINES[pIdx];
-        const p = document.createElement('p');
-        p.style.cssText = 'margin:0 0 8px;color:#b0ffb8;font-family:\'Share Tech Mono\',monospace;font-size:0.92rem;line-height:1.55';
-        output.appendChild(p);
-        p.innerHTML = '';
-        function typeNext() {
-          if (cIdx < text.length) {
-            if (text[cIdx] === '<') {
-              const end = text.indexOf('>', cIdx);
-              p.innerHTML += text.slice(cIdx, end + 1);
-              cIdx = end + 1;
-            } else {
-              const ch = text[cIdx++];
-              p.innerHTML += ch === ' ' ? '&nbsp;' : ch;
-            }
-            const d = text[cIdx - 1] === ' ' ? 4 : /[.,!—?]/.test(text[cIdx - 1]) ? 18 : 6 + Math.random() * 4;
-            setTimeout(typeNext, d);
-          } else {
-            cIdx = 0; pIdx++;
-            setTimeout(typeLines, 200);
-          }
-        }
-        typeNext();
+    // ── Terminal intro typewriter ─────────────────────────────────────────
+    (function terminalIntro() {
+      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const cmdEl    = document.getElementById('ct-cmd-text');
+      const cursorEl = document.getElementById('ct-cursor');
+      const outputEl = document.getElementById('ct-output');
+      const layout   = document.getElementById('contact-layout');
+      if (!cmdEl || noMotion) {
+        if (layout) layout.classList.add('visible');
+        return;
       }
 
-      function startTyping() { pIdx = 0; cIdx = 0; started = true; typeLines(); }
+      const command = 'open contact.html';
+      let i = 0;
 
-      function appendResponse(html) {
-        const p = document.createElement('p');
-        p.style.cssText = 'margin:4px 0 14px;color:#28c840;font-family:\'Share Tech Mono\',monospace;font-size:0.9rem;line-height:1.7';
-        p.innerHTML = html;
-        output.appendChild(p);
-        output.scrollTop = output.scrollHeight;
+      function typeCmd() {
+        if (i < command.length) {
+          cmdEl.textContent += command[i++];
+          setTimeout(typeCmd, 55 + Math.random() * 35);
+        } else {
+          // Hide cursor, show output, then reveal layout
+          setTimeout(function() {
+            if (cursorEl) cursorEl.style.display = 'none';
+            if (outputEl) outputEl.style.display = 'block';
+            setTimeout(function() {
+              if (layout) layout.classList.add('visible');
+            }, 500);
+          }, 220);
+        }
       }
 
-      card.addEventListener('click', () => inputEl.focus({ preventScroll: true }));
-      card.addEventListener('touchend', (e) => {
+      setTimeout(typeCmd, 380);
+    })();
+
+    // ── Form submission (AJAX for smooth UX) ──────────────────────────────
+    (function setupForm() {
+      const form = document.getElementById('contact-form');
+      const successEl = document.getElementById('form-success');
+      const submitBtn = form.querySelector('.form-submit');
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        setTimeout(() => inputEl.focus({ preventScroll: true }), 10);
-      }, { passive: false });
+        submitBtn.textContent = 'sending...';
+        submitBtn.disabled = true;
 
-      const ghostEl = document.getElementById('contact-terminal-ghost');
-      const afterEl = document.getElementById('contact-terminal-after');
-      const cmdKeys = Object.keys(CONTACT_CMDS);
-      const history = [];
-      let histIdx = -1;
-      let sendState = null;
-
-      function escapeHtml(str) {
-        return str.replace(/[&<>"']/g, ch => ({
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;',
-        }[ch]));
-      }
-
-      function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-
-      function startSendFlow() {
-        sendState = {
-          step: 'name',
-          data: { name: '', email: '', subject: '', message: '' },
-        };
-        appendResponse('Starting secure message flow.<br>Enter your name:');
-      }
-
-      function runGithubOpenFlow() {
-        appendResponse('Launching GitHub profile...');
-        setTimeout(() => {
-          appendResponse('$ xdg-open github.com/Blackphenixlord');
-        }, 450);
-        setTimeout(() => {
-          appendResponse('[....] Resolving github.com');
-        }, 950);
-        setTimeout(() => {
-          appendResponse('[ ok ] DNS resolved');
-        }, 1450);
-        setTimeout(() => {
-          appendResponse('[....] Starting browser process');
-        }, 1950);
-        setTimeout(() => {
-          appendResponse('[ ok ] Browser session ready');
-        }, 2400);
-        setTimeout(() => {
-          const win = window.open(GITHUB_URL, '_blank', 'noopener,noreferrer');
-          if (win) {
-            appendResponse('<span style="color:#7CFF7C">Opened:</span> ' + GITHUB_URL);
-          } else {
-            appendResponse('<span style="color:#ffb86b">Popup blocked.</span> Allow popups and run <span style="color:#28c840">github</span> again.');
-          }
-        }, 2900);
-      }
-
-      async function submitTerminalEmail(data) {
-        appendResponse('Sending message...');
         try {
-          const res = await fetch('https://formsubmit.co/ajax/joshuacollado636@gmail.com', {
+          const res = await fetch(form.action, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-            body: JSON.stringify({
-              name: data.name,
-              email: data.email,
-              subject: data.subject,
-              message: data.message,
-              _captcha: 'false',
-              _template: 'table',
-            }),
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
           });
 
-          if (!res.ok) throw new Error('Request failed');
-          appendResponse('<span style="color:#7CFF7C">Message sent successfully.</span> I will get back to you soon.');
-        } catch (err) {
-          appendResponse(
-            '<span style="color:#ffb86b">Could not send right now.</span><br>' +
-            'Please try the <span style="color:#28c840">send</span> command again in a moment.'
-          );
-        }
-      }
-
-      function handleSendInput(rawInput) {
-        const value = rawInput.trim();
-
-        if (sendState.step === 'name') {
-          if (!value) {
-            appendResponse('Name cannot be empty. Enter your name:');
-            return;
+          if (res.ok) {
+            form.reset();
+            successEl.style.display = 'block';
+            submitBtn.textContent = '✓ sent!';
+          } else {
+            throw new Error('non-ok response');
           }
-          sendState.data.name = value;
-          sendState.step = 'email';
-          appendResponse('Enter your email address:');
-          return;
+        } catch {
+          // Fallback: let normal submit happen
+          submitBtn.textContent = 'send_message →';
+          submitBtn.disabled = false;
+          form.submit();
         }
-
-        if (sendState.step === 'email') {
-          if (!isValidEmail(value)) {
-            appendResponse('Please enter a valid email address:');
-            return;
-          }
-          sendState.data.email = value;
-          sendState.step = 'subject';
-          appendResponse('Enter email subject:');
-          return;
-        }
-
-        if (sendState.step === 'subject') {
-          if (!value) {
-            appendResponse('Subject cannot be empty. Enter email subject:');
-            return;
-          }
-          sendState.data.subject = value;
-          sendState.step = 'message';
-          appendResponse('Enter your message:');
-          return;
-        }
-
-        if (sendState.step === 'message') {
-          if (!value) {
-            appendResponse('Message cannot be empty. Enter your message:');
-            return;
-          }
-          sendState.data.message = value;
-          sendState.step = 'confirm';
-          appendResponse(
-            '<span style="color:#a0aab4">Review:</span><br>' +
-            'Name: ' + escapeHtml(sendState.data.name) + '<br>' +
-            'Email: ' + escapeHtml(sendState.data.email) + '<br>' +
-            'Subject: ' + escapeHtml(sendState.data.subject) + '<br>' +
-            'Message: ' + escapeHtml(sendState.data.message) + '<br><br>' +
-            'Type <span style="color:#28c840">yes</span> to send or <span style="color:#28c840">no</span> to cancel.'
-          );
-          return;
-        }
-
-        if (sendState.step === 'confirm') {
-          if (value.toLowerCase() === 'yes') {
-            const payload = { ...sendState.data };
-            sendState = null;
-            submitTerminalEmail(payload);
-            return;
-          }
-          appendResponse('Send cancelled.');
-          sendState = null;
-        }
-      }
-
-      function renderInput() {
-        const val = inputEl.value;
-        const pos = inputEl.selectionStart ?? val.length;
-        const atEnd = pos === val.length;
-        typedEl.textContent = val.slice(0, pos);
-        afterEl.textContent = val.slice(pos);
-        const lower = val.toLowerCase();
-        const match = atEnd && lower ? cmdKeys.find(k => k.startsWith(lower) && k !== lower) : null;
-        ghostEl.textContent = match ? match.slice(lower.length) : '';
-      }
-
-      inputEl.addEventListener('input', renderInput);
-      inputEl.addEventListener('keyup', renderInput);
-      inputEl.addEventListener('click', renderInput);
-      inputEl.addEventListener('selectionchange', renderInput);
-
-      inputEl.addEventListener('keydown', e => {
-        if (e.key === 'Tab') {
-          e.preventDefault();
-          if (ghostEl.textContent) {
-            inputEl.value += ghostEl.textContent;
-            inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
-            renderInput();
-          }
-          return;
-        }
-        if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (!history.length) return;
-          histIdx = Math.min(histIdx + 1, history.length - 1);
-          inputEl.value = history[history.length - 1 - histIdx];
-          inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
-          renderInput();
-          return;
-        }
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (histIdx <= 0) { histIdx = -1; inputEl.value = ''; afterEl.textContent = ''; typedEl.textContent = ''; ghostEl.textContent = ''; return; }
-          histIdx--;
-          inputEl.value = history[history.length - 1 - histIdx];
-          inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
-          renderInput();
-          return;
-        }
-        if (e.key !== 'Enter') return;
-        const raw = inputEl.value;
-        const cmd = raw.trim().toLowerCase();
-        inputEl.value = ''; typedEl.textContent = ''; afterEl.textContent = ''; ghostEl.textContent = '';
-        if (!cmd && !sendState) return;
-        history.push(cmd);
-        histIdx = -1;
-        const echo = document.createElement('p');
-        echo.style.cssText = 'margin:10px 0 2px;font-family:\'Share Tech Mono\',monospace;font-size:0.88rem;color:#a0aab4';
-        echo.innerHTML = '<span style="color:#a0aab4">joshua@collado:~$</span> ' + escapeHtml(raw);
-        output.appendChild(echo);
-
-        if (sendState) {
-          handleSendInput(raw);
-          output.scrollTop = output.scrollHeight;
-          return;
-        }
-
-        const resp = CONTACT_CMDS[cmd];
-        if (resp === '__SEND__') {
-          startSendFlow();
-        } else if (resp === '__GITHUB__') {
-          runGithubOpenFlow();
-        } else if (resp === '__CLEAR__') {
-          output.innerHTML = '';
-        } else if (resp === '__RESET__') {
-          output.innerHTML = '';
-          promptRow.style.display = 'none';
-          hintEl.style.opacity = '0';
-          started = false;
-          startTyping();
-        } else if (resp) {
-          appendResponse(resp);
-        } else {
-          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + '<br>Try <span style="color:#28c840">send</span>, <span style="color:#28c840">github</span>, <span style="color:#28c840">linkedin</span>, <span style="color:#28c840">clear</span>, or <span style="color:#28c840">reset</span>.');
-        }
-        output.scrollTop = output.scrollHeight;
       });
-
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting && !started) { startTyping(); obs.unobserve(card); } });
-      }, { threshold: 0.3 });
-      obs.observe(card);
     })();
+
+
   </script>
 </body>
 </html>
