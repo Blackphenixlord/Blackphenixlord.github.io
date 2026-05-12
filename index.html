@@ -859,3 +859,8 @@
     window.addEventListener('load', () => { syncLogo(); setTimeout(syncLogo, 300); });
     window.addEventListener('resize', () => requestAnimationFrame(syncLogo));
     // ── Footer year ───────────────
+    const y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

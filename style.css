@@ -991,6 +991,25 @@ a {
   background-size: 40px 40px;
   pointer-events: none;
 }
+.page-hero-title {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #e8f5e9;
+  letter-spacing: 0.04em;
+  margin: 0 0 10px;
+  position: relative;
+  z-index: 1;
+}
+.page-hero-sub {
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: #28c840;
+  letter-spacing: 0.06em;
+  margin: 0 0 6px;
+  position: relative;
+  z-index: 1;
+}
 .page-hero-tags {
   display: flex;
   flex-wrap: wrap;
@@ -3467,38 +3486,4 @@ a {
 }
 
 /* ── CTA strip ── */
-.about-cta-section {
-  padding: 3rem 2rem 5rem;
-  text-align: center;
-  border-top: 1px solid rgba(40, 200, 64, 0.08);
-}
-.about-cta-section h2 {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  color: #e8f5e9;
-  margin: 0 0 0.8rem;
-}
-.about-cta-section p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  color: #5a7a5a;
-  margin: 0 0 2rem;
-}
-.cta-row {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 700px) {
-  .three-words-grid {
-    grid-template-columns: 1fr;
-  }
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-  .intro-paragraph {
-    padding: 1.5rem;
-  }
-}
+.about-cta-secti
