@@ -2508,279 +2508,6 @@ a {
   }
 }
 
-/* ===== KEY UPGRADES ===== */
-
-/* ── Hero currently line ── */
-.hero-currently {
-  font-family: "Share Tech Mono", monospace;
-  font-size: 0.78rem;
-  color: #a0aab4;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-}
-
-/* ── Hero manifesto ── */
-.hero-manifesto {
-  font-family: "Inter", sans-serif;
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-  font-weight: 300;
-  color: #c8d6e5;
-  line-height: 1.7;
-  margin: 12px 0 20px;
-  max-width: 440px;
-}
-
-/* ── Split-letter name animation ── */
-.hero-name-split {
-  display: inline-flex;
-  gap: 0.02em;
-}
-.hero-name-split span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(32px);
-  animation: letterDrop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-.hero-name-split.accent span {
-  color: #00ff41;
-}
-@keyframes letterDrop {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── Marquee strip ── */
-.marquee-strip {
-  overflow: hidden;
-  width: 100%;
-  border-top: 1px solid rgba(0, 255, 65, 0.12);
-  border-bottom: 1px solid rgba(0, 255, 65, 0.12);
-  background: rgba(0, 255, 65, 0.03);
-  padding: 10px 0;
-  user-select: none;
-}
-.marquee-track {
-  display: flex;
-  gap: 0;
-  width: max-content;
-  animation: marqueeScroll 28s linear infinite;
-}
-.marquee-track span {
-  font-family: "Share Tech Mono", monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  color: #a0aab4;
-  padding: 0 18px;
-  white-space: nowrap;
-}
-.marquee-track .marquee-dot {
-  color: #00ff41;
-  padding: 0 2px;
-  font-size: 0.5rem;
-}
-@keyframes marqueeScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
-}
-
-/* ── Project hook line ── */
-.project-hook {
-  font-family: "Share Tech Mono", monospace;
-  font-size: 0.82rem;
-  color: #00ff41;
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
-
-/* ── Project card hover arrow ── */
-.project-card {
-  position: relative;
-}
-.project-card::after {
-  content: "→ view project";
-  position: absolute;
-  bottom: 18px;
-  right: 20px;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 0.72rem;
-  color: #00ff41;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-  pointer-events: none;
-}
-.project-card:hover::after,
-.project-card:focus-within::after {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ── Let's talk section ── */
-.lets-talk-section {
-  padding: 120px 0 100px;
-  text-align: center;
-  border-top: 1px solid rgba(0, 255, 65, 0.1);
-}
-.lets-talk-headline {
-  font-family: "Orbitron", monospace;
-  font-size: clamp(2.8rem, 8vw, 7rem);
-  font-weight: 900;
-  line-height: 1.05;
-  color: #e8eaf0;
-  margin: 12px 0 20px;
-  letter-spacing: -0.02em;
-}
-.lets-talk-headline .accent {
-  color: #00ff41;
-}
-.lets-talk-sub {
-  font-size: 1rem;
-  color: #a0aab4;
-  margin-bottom: 36px;
-}
-.lets-talk-cta {
-  display: inline-block;
-  font-family: "Share Tech Mono", monospace;
-  font-size: clamp(0.9rem, 2vw, 1.15rem);
-  color: #00ff41;
-  border: 1px solid #00ff41;
-  padding: 14px 32px;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
-.lets-talk-cta:hover {
-  background: #00ff41;
-  color: #0a0e1a;
-}
-
-/* ── Contact page social links ── */
-.contact-socials {
-  display: flex;
-  gap: 28px;
-  justify-content: center;
-  margin-top: 36px;
-}
-.contact-socials a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.82rem;
-  color: #a0aab4;
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  transition: color 0.2s;
-}
-.contact-socials a:hover { color: #00ff41; }
-
-/* ── Footer socials ── */
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.footer-socials {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-.footer-socials a {
-  color: #a0aab4;
-  transition: color 0.2s;
-  display: flex;
-}
-.footer-socials a:hover {
-  color: #00ff41;
-}
-
-/* ── Custom cursor ── */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-}
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: #00ff41;
-  transition:
-    transform 0.1s ease,
-    opacity 0.2s;
-}
-.cursor-ring {
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid rgba(0, 255, 65, 0.55);
-  transition:
-    transform 0.18s ease,
-    width 0.2s,
-    height 0.2s,
-    opacity 0.2s;
-}
-body:not(.cursor-active) .cursor-dot,
-body:not(.cursor-active) .cursor-ring {
-  opacity: 0;
-}
-a:hover ~ .cursor-ring,
-button:hover ~ .cursor-ring {
-  width: 48px;
-  height: 48px;
-}
-@media (hover: none) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none;
-  }
-}
-
-/* ── Page transition overlay ── */
-.page-transition {
-  position: fixed;
-  inset: 0;
-  background: #0a0e1a;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.32s ease;
-}
-.page-transition.fade-out {
-  opacity: 1;
-}
-
-@media (max-width: 700px) {
-  .lets-talk-headline {
-    font-size: clamp(2rem, 12vw, 3.5rem);
-  }
-  .footer {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
 /* ===== AWWWARDS UPGRADES ===== */
 
 /* Internship hub cards */
@@ -2799,10 +2526,7 @@ button:hover ~ .cursor-ring {
   padding: 32px 28px;
   text-decoration: none;
   color: inherit;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    transform 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 .internship-hub-card:hover {
   border-color: rgba(0, 255, 65, 0.4);
@@ -2830,9 +2554,7 @@ button:hover ~ .cursor-ring {
   stroke-linejoin: round;
   opacity: 0;
   transform: translateX(-4px);
-  transition:
-    opacity 0.2s,
-    transform 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 .internship-hub-card:hover .internship-hub-arrow {
   opacity: 1;
@@ -2868,8 +2590,8 @@ button:hover ~ .cursor-ring {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.72rem;
   color: #00ff41;
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  background: rgba(0, 255, 65, 0.04);
+  border: 1px solid rgba(0,255,65,0.2);
+  background: rgba(0,255,65,0.04);
   padding: 3px 10px;
   border-radius: 100px;
 }
@@ -2923,9 +2645,7 @@ button:hover ~ .cursor-ring {
   padding: 12px;
   transition: border-color 0.2s;
 }
-.photo-placeholder:hover {
-  border-color: rgba(0, 255, 65, 0.3);
-}
+.photo-placeholder:hover { border-color: rgba(0,255,65,0.3); }
 .photo-placeholder svg {
   width: 28px;
   height: 28px;
@@ -2951,25 +2671,15 @@ button:hover ~ .cursor-ring {
   transition: opacity 0.2s;
 }
 .internship-back:hover,
-.internship-next:hover {
-  opacity: 0.7;
-}
+.internship-next:hover { opacity: 0.7; }
 
 @media (max-width: 900px) {
-  .internship-grid {
-    grid-template-columns: 1fr;
-  }
-  .internship-detail-grid {
-    grid-template-columns: 1fr;
-  }
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .internship-grid { grid-template-columns: 1fr; }
+  .internship-detail-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 700px) {
-  .photo-grid {
-    grid-template-columns: 1fr;
-  }
+  .photo-grid { grid-template-columns: 1fr; }
 }
 
 /* Availability badge */
