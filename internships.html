@@ -143,16 +143,29 @@
         function setupCustomContextMenu() {
             const menu = document.getElementById('custom-context-menu');
             if (!menu) return;
+            let closeTimer = null;
+            const closeMenu = () => {
+                if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
+                menu.classList.remove('opening');
+                menu.classList.add('closing');
+                window.clearTimeout(closeTimer);
+                closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140);
+            };
             document.addEventListener('contextmenu', e => {
                 e.preventDefault();
-                menu.style.setProperty('--cm-x', Math.min(e.clientX, window.innerWidth - 180) + 'px');
-                menu.style.setProperty('--cm-y', Math.min(e.clientY, window.innerHeight - 160) + 'px');
-                menu.classList.add('open');
+                window.clearTimeout(closeTimer);
+                menu.classList.remove('closing');
+                const mw = menu.offsetWidth || 190;
+                const mh = menu.offsetHeight || 140;
+                menu.style.left = `${Math.max(8, Math.min(e.clientX, window.innerWidth - mw - 8))}px`;
+                menu.style.top  = `${Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8))}px`;
+                menu.classList.add('opening', 'open');
+                window.setTimeout(() => menu.classList.remove('opening'), 170);
             });
-            document.addEventListener('click', () => menu.classList.remove('open'));
-            document.addEventListener('scroll', () => menu.classList.remove('open'), { passive: true });
-            window.addEventListener('resize', () => menu.classList.remove('open'));
-            document.addEventListener('keydown', e => { if (e.key === 'Escape') menu.classList.remove('open'); });
+            document.addEventListener('click', e => { if (!e.target.closest('#custom-context-menu')) closeMenu(); });
+            document.addEventListener('scroll', closeMenu, true);
+            window.addEventListener('resize', closeMenu);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
         }
         setupCustomContextMenu();
 
