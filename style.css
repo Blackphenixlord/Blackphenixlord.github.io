@@ -3486,4 +3486,38 @@ a {
 }
 
 /* ── CTA strip ── */
-.about-cta-secti
+.about-cta-section {
+  padding: 3rem 2rem 5rem;
+  text-align: center;
+  border-top: 1px solid rgba(40, 200, 64, 0.08);
+}
+.about-cta-section h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: #e8f5e9;
+  margin: 0 0 0.8rem;
+}
+.about-cta-section p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #5a7a5a;
+  margin: 0 0 2rem;
+}
+.cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+  .three-words-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .intro-paragraph {
+    padding: 1.5rem;
+  }
+}
