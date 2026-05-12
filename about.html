@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5" />
+  <title>About Me | Joshua Collado</title>
+  <meta name="description"
+    content="About Joshua Collado — Dual Enrollment student, engineer, and builder from South Texas with internships at NASA, Los Alamos, RECON, and Nerdvana." />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css?v=20260512-1" />
+  <link rel="stylesheet" href="icons.css?v=20260509-1" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="4" fill="#0a0e1a" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" />
+        <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
+        <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
+        <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55">&#x258C;</text>
+      </svg>
+      <span class="nav-brand">Joshua Collado</span>
+    </div>
+    <ul class="nav-links" id="nav-links-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="internships.html">Internships</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
+    <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
+      aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
+  </nav>
+
+  <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
+    <ul class="context-menu-list">
+      <li><a class="context-menu-link" href="index.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" />
+          </svg><span class="context-menu-label">Home</span></a></li>
+      <li><a class="context-menu-link" href="about.html" aria-current="page"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg><span class="context-menu-label">About</span></a></li>
+      <li><a class="context-menu-link" href="resume.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 3h8l4 4v14H7z" /><path d="M15 3v5h4" /><path d="M9.5 12h5M9.5 16h5" />
+          </svg><span class="context-menu-label">Resume</span></a></li>
+      <li><a class="context-menu-link" href="contact.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="2" /><path d="m4 8 8 6 8-6" />
+          </svg><span class="context-menu-label">Contact</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="about-hero" id="main-content">
+    <p class="section-label" aria-hidden="true">// about me</p>
+    <h1>Joshua <span class="accent">Collado</span></h1>
+    <p class="about-hero-sub">Engineer · Developer · Builder · South Texas</p>
+    <div class="about-tags">
+      <span>UTRGV Dual Enrollment</span>
+      <span>Science Academy</span>
+      <span>NASA HUNCH Alumni</span>
+      <span>Los Alamos Lab</span>
+      <span>Class of 2027</span>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION PARAGRAPH -->
+  <section class="intro-paragraph-section">
+    <div class="container">
+      <p class="section-label" aria-hidden="true">01 &middot; introduction</p>
+      <div class="intro-paragraph">
+        My name is <strong>Joshua Collado</strong>, and I'm a high school student enrolled at <strong>UTRGV</strong>
+        through the Science Academy Dual Enrollment program in South Texas. I study <strong>engineering and computer
+        science</strong> with a single goal: use technology to make life better, smarter, and more connected for the
+        people around me. I've had the privilege of working alongside researchers at <strong>NASA</strong> and
+        <strong>Los Alamos National Laboratory</strong>, building real systems that solve real problems — from
+        inventory management workflows to virtual reality training simulations. I don't just write code; I think in
+        systems, build with purpose, and iterate until something actually works. Right now I'm designing
+        <strong>Evie</strong>, a personal AI assistant that bridges Android and Windows into a unified home
+        automation network — because the future I want to live in doesn't exist yet, so I'm building it myself.
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT GRID -->
+  <section class="about-grid-section">
+    <div class="container">
+      <p class="section-label" aria-hidden="true">02 &middot; background</p>
+      <div class="about-grid">
+
+        <!-- Interests -->
+        <div class="about-card">
+          <svg class="about-card-icon" viewBox="0 0 24 24">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          <h3>Interests</h3>
+          <ul>
+            <li>Artificial intelligence &amp; machine learning</li>
+            <li>Virtual reality and immersive systems</li>
+            <li>Home automation and IoT</li>
+            <li>Cybersecurity and national security tech</li>
+            <li>Competitive robotics &amp; engineering design</li>
+            <li>Music production and creative coding</li>
+          </ul>
+        </div>
+
+        <!-- Education -->
+        <div class="about-card">
+          <svg class="about-card-icon" viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+          <h3>Education</h3>
+          <ul>
+            <li><strong style="color:#e8f5e9">Science Academy</strong> — STISD High School</li>
+            <li>STEM-focused engineering and CS track</li>
+            <li><strong style="color:#e8f5e9">UTRGV Dual Enrollment</strong> — 2025–2027</li>
+            <li>College-level coursework while in high school</li>
+            <li>Expected graduation: 2027</li>
+          </ul>
+        </div>
+
+        <!-- Skills & Languages -->
+        <div class="about-card">
+          <svg class="about-card-icon" viewBox="0 0 24 24">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <h3>Languages &amp; Tools</h3>
+          <ul>
+            <li>Python · Java · JavaScript · C</li>
+            <li>HTML · CSS · SQL</li>
+            <li>Git · Android Studio · Unity/VR</li>
+            <li>Full-stack web development</li>
+            <li>AI integration &amp; automation</li>
+          </ul>
+        </div>
+
+        <!-- Extracurriculars -->
+        <div class="about-card">
+          <svg class="about-card-icon" viewBox="0 0 24 24">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          </svg>
+          <h3>Extracurriculars</h3>
+          <ul>
+            <li><strong style="color:#e8f5e9">TSA Club</strong> — Technology Student Association</li>
+            <li>Design challenges &amp; collaborative engineering</li>
+            <li><strong style="color:#e8f5e9">BPA Club</strong> — Business Professionals of America</li>
+            <li>Competitive tech events and leadership</li>
+            <li>Community volunteer: graphic design support</li>
+          </ul>
+        </div>
+
+        <!-- Leadership -->
+        <div class="about-card">
+          <svg class="about-card-icon" viewBox="0 0 24 24">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <h3>Leadership</h3>
+          <ul>
+            <li>Team lead on multi-phase school engineering project</li>
+            <li>Organized a student coding workshop on web design basics</li>
+            <li>Coordinated cross-disciplinary NASA HUNCH team</li>
+            <li>Mentored younger students in STEM projects</li>
+          </ul>
+        </div>
+
+        <!-- Fun Facts -->
+        <div class="about-card">
+          <svg class="about-card-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+          <h3>A Bit More About Me</h3>
+          <ul>
+            <li>From South Texas — proud of where I'm from</li>
+            <li>I'm bilingual: English &amp; Spanish</li>
+            <li>I learn best by building, not watching</li>
+            <li>My desk is half workstation, half lab</li>
+            <li>Lofi hip-hop always playing while I code</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE WORDS -->
+  <section class="three-words-section">
+    <div class="container">
+      <p class="section-label" aria-hidden="true">03 &middot; three words that define me</p>
+      <div class="three-words-grid">
+        <div class="three-word-item">
+          <p class="three-word-number">01</p>
+          <h2 class="three-word-title">Innovative</h2>
+          <p class="three-word-desc">From NASA HUNCH to Los Alamos Lab — I build things that haven't existed before and solve problems no one has handed me a template for.</p>
+        </div>
+        <div class="three-word-item">
+          <p class="three-word-number">02</p>
+          <h2 class="three-word-title">Driven</h2>
+          <p class="three-word-desc">I've presented to NASA engineers, led teams across multiple internships, and I'm just a junior in high school. I'm only getting started.</p>
+        </div>
+        <div class="three-word-item">
+          <p class="three-word-number">03</p>
+          <h2 class="three-word-title">Purposeful</h2>
+          <p class="three-word-desc">Every project I touch has a mission behind it — national security, education, or community impact. I don't build for the sake of building.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOALS TIMELINE -->
+  <section class="goals-section">
+    <div class="container">
+      <p class="section-label" aria-hidden="true">04 &middot; where I'm headed</p>
+      <h2 class="section-title" style="margin-bottom:0">Goals &amp; Vision</h2>
+      <div class="goals-timeline">
+
+        <div class="goal-item">
+          <div class="goal-dot"></div>
+          <p class="goal-year">NOW — 2027</p>
+          <h3 class="goal-title">Finish Strong at Science Academy</h3>
+          <p class="goal-desc">Complete the dual enrollment program at UTRGV, graduate with a strong foundation in engineering and CS, and ship at least one public project that has real users.</p>
+        </div>
+
+        <div class="goal-item">
+          <div class="goal-dot"></div>
+          <p class="goal-year">2027 — 2031</p>
+          <h3 class="goal-title">Computer Science Degree</h3>
+          <p class="goal-desc">Pursue a B.S. in Computer Science or Software Engineering, with a focus on AI systems and human-computer interaction. I want to study somewhere that values builders, not just test-takers.</p>
+        </div>
+
+        <div class="goal-item">
+          <div class="goal-dot"></div>
+          <p class="goal-year">2031+</p>
+          <h3 class="goal-title">Software Engineer &amp; AI Developer</h3>
+          <p class="goal-desc">Work on systems that matter — AI, automation, security, or space tech. Ultimately, I want to build products used by millions of people, or infrastructure that protects them. Either way, I'm building something real.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta-section">
+    <div class="container">
+      <h2>Want to know more?</h2>
+      <p>Check out my work, internship experience, or just say hello.</p>
+      <div class="cta-row">
+        <a href="internships.html" class="hero-btn-primary">View Internships</a>
+        <a href="resume.html" class="hero-btn-outline">My Résumé</a>
+        <a href="contact.html" class="hero-btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
+        style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const btn = document.querySelector('.hamburger');
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+
+    // Context menu
+    (function () {
+      const menu = document.getElementById('custom-context-menu');
+      if (!menu) return;
+      let closeTimer = null;
+      const closeMenu = () => {
+        if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
+        menu.classList.remove('opening');
+        menu.classList.add('closing');
+        window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140);
+      };
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        e.preventDefault();
+        window.clearTimeout(closeTimer);
+        menu.classList.remove('closing');
+        const x = Math.min(e.clientX, window.innerWidth - (menu.offsetWidth || 190) - 8);
+        const y = Math.min(e.clientY, window.innerHeight - (menu.offsetHeight || 160) - 8);
+        menu.style.left = `${Math.max(8, x)}px`;
+        menu.style.top = `${Math.max(8, y)}px`;
+        menu.classList.add('opening', 'open');
+        window.setTimeout(() => menu.classList.remove('opening'), 170);
+      });
+      document.addEventListener('click', (e) => { if (!e.target.closest('#custom-context-menu')) closeMenu(); });
+      document.addEventListener('scroll', closeMenu, true);
+      window.addEventListener('resize', closeMenu);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    })();
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.about-card, .three-word-item, .goal-item, .intro-paragraph, .about-hero > *');
+    const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    revealEls.forEach((el, i) => {
+      if (noMotion) { el.style.opacity = '1'; return; }
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = `opacity 0.6s ease ${(i % 5) * 0.07}s, transform 0.6s ease ${(i % 5) * 0.07}s`;
+    });
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+
+    // Footer year
+    const y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+  <script src="music.js?v=20260509-1"></script>
+</body>
+
+</html>

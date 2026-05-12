@@ -9,31 +9,54 @@
     content="Joshua Collado — Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, and RECON Technologies." />
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="style.css?v=20260509-1" />
+  <link rel="stylesheet" href="style.css?v=20260512-1" />
   <link rel="stylesheet" href="icons.css?v=20260509-1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
     rel="stylesheet" />
 </head>
 
-<body>
+<body class="booting">
+  <!-- BOOT SCREEN -->
+  <div id="boot-screen" aria-hidden="true">
+    <div class="boot-titlebar">
+      <span class="boot-dot red"></span>
+      <span class="boot-dot yellow"></span>
+      <span class="boot-dot green"></span>
+      <span class="boot-titlebar-text">joshua@collado — bash — 80×24</span>
+    </div>
+    <div id="boot-output"></div>
+    <div id="boot-skip">click or press any key to skip</div>
+  </div>
+  <script>
+    /* Remove .booting once boot screen is dismissed */
+    (function () {
+      if (sessionStorage.getItem('booted') === '1') {
+        document.body.classList.remove('booting');
+        var s = document.getElementById('boot-screen');
+        if (s) s.style.display = 'none';
+      }
+    })();
+  </script>
+
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-logo">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="4" fill="#0a0e1a" />
-        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#00ff41" stroke-width="1.5" />
-        <rect x="0" y="0" width="36" height="9" rx="4" fill="#00ff41" fill-opacity="0.1" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" />
         <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
         <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
         <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
-        <text x="6" y="23" font-family="monospace" font-size="10" fill="#00ff41">JC</text>
-        <text x="6" y="31" font-family="monospace" font-size="7" fill="#00ff41" opacity="0.55">&#x258C;</text>
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55">&#x258C;</text>
       </svg>
       <span class="nav-brand">Joshua Collado</span>
     </div>
     <ul class="nav-links" id="nav-links-list">
       <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="internships.html">Internships</a></li>
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -75,21 +98,21 @@
           <svg class="hero-logo" width="160" height="160" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <!-- Body -->
             <rect width="100" height="100" rx="12" fill="#0d1117" />
-            <rect x="1" y="1" width="98" height="98" rx="11" fill="none" stroke="#00ff41" stroke-width="2" />
+            <rect x="1" y="1" width="98" height="98" rx="11" fill="none" stroke="#28c840" stroke-width="2" />
             <!-- Title bar -->
-            <rect x="0" y="0" width="100" height="23" rx="12" fill="#00ff41" fill-opacity="0.10" />
-            <rect x="0" y="11" width="100" height="12" fill="#00ff41" fill-opacity="0.10" />
-            <line x1="0" y1="23" x2="100" y2="23" stroke="#00ff41" stroke-width="0.6" stroke-opacity="0.25" />
+            <rect x="0" y="0" width="100" height="23" rx="12" fill="#28c840" fill-opacity="0.10" />
+            <rect x="0" y="11" width="100" height="12" fill="#28c840" fill-opacity="0.10" />
+            <line x1="0" y1="23" x2="100" y2="23" stroke="#28c840" stroke-width="0.6" stroke-opacity="0.25" />
             <!-- Traffic lights -->
             <circle cx="13" cy="11.5" r="3.6" fill="#ff5f57" />
             <circle cx="25" cy="11.5" r="3.6" fill="#febc2e" />
             <circle cx="37" cy="11.5" r="3.6" fill="#28c840" />
             <!-- JC -->
-            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#00ff41">JC</text>
+            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#28c840">JC</text>
             <!-- Separator -->
-            <line x1="11" y1="78" x2="89" y2="78" stroke="#00ff41" stroke-width="1.4" stroke-opacity="0.55" />
+            <line x1="11" y1="78" x2="89" y2="78" stroke="#28c840" stroke-width="1.4" stroke-opacity="0.55" />
             <!-- ./engineer -->
-            <text x="11" y="92" font-family="monospace" font-size="10" fill="#00cc33">./engineer</text>
+            <text x="11" y="92" font-family="monospace" font-size="10" fill="#1fa830">./engineer</text>
           </svg>
           <div class="logo-scanline"></div>
         </div>
@@ -136,9 +159,10 @@
   </div>
 
   <!-- THREE WORDS -->
-  <section class="words-section">
+  <section class="words-section" aria-label="Who I am">
     <div class="container">
-      <p class="section-label">01 &middot; who I am</p>
+      <p class="section-label" aria-hidden="true">01 &middot; who I am</p>
+      <h2 class="sr-only">Who I Am</h2>
       <div class="words-grid">
 
         <div class="word-card">
@@ -182,9 +206,10 @@
   </section>
 
   <!-- INTRO -->
-  <section class="intro-section">
+  <section class="intro-section" aria-label="Interactive terminal — About me">
     <div class="container">
-      <p class="section-label">02 &middot; about me</p>
+      <p class="section-label" aria-hidden="true">02 &middot; about me</p>
+      <h2 class="sr-only">About Me</h2>
       <div class="intro-card" id="terminal-card">
 
         <!-- title bar -->
@@ -221,7 +246,7 @@
   <!-- PROJECTS -->
   <section class="projects-section" id="projects">
     <div class="container">
-      <p class="section-label">03 &middot; selected work</p>
+      <p class="section-label" aria-hidden="true">03 &middot; selected work</p>
       <h2 class="section-title">Projects</h2>
       <div class="projects-grid">
 
@@ -285,18 +310,18 @@
   </section>
 
   <!-- VIDEO -->
-  <section class="video-section">
+  <section class="video-section" aria-label="Where I'm headed">
     <div class="container">
-      <p class="section-label">04 &middot; where I'm headed</p>
+      <p class="section-label" aria-hidden="true">04 &middot; where I'm headed</p>
       <h2 class="section-title">Where I'm Headed</h2>
       <p class="section-desc">My goals, career path, and what excites me about the future of engineering and technology.
       </p>
       <div class="video-placeholder">
         <div class="video-placeholder-inner">
-          <svg viewBox="0 0 24 24" width="48" height="48" stroke="#00ff41" fill="none" stroke-width="1.5"
+          <svg viewBox="0 0 24 24" width="48" height="48" stroke="#28c840" fill="none" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10" />
-            <polygon points="10 8 16 12 10 16 10 8" fill="#00ff41" stroke="none" />
+            <polygon points="10 8 16 12 10 16 10 8" fill="#28c840" stroke="none" />
           </svg>
           <p>Video coming soon</p>
           <span>// personal intro reel</span>
@@ -306,9 +331,10 @@
   </section>
 
   <!-- HIGHLIGHTS -->
-  <section class="skills-section">
+  <section class="skills-section" aria-label="Highlights and skills">
     <div class="container">
-      <p class="section-label">05 &middot; highlights</p>
+      <p class="section-label" aria-hidden="true">05 &middot; highlights</p>
+      <h2 class="sr-only">Highlights</h2>
       <div class="skills-grid">
 
         <span class="skill-tag">
@@ -378,7 +404,7 @@
   <!-- TESTIMONIALS -->
   <section class="testimonials-section" id="testimonials">
     <div class="container">
-      <p class="section-label">06 &middot; testimonials</p>
+      <p class="section-label" aria-hidden="true">06 &middot; testimonials</p>
       <h2 class="section-title">What People Say</h2>
       <div class="testimonials-grid">
 
@@ -434,7 +460,7 @@
 
   <footer class="footer">
     <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
-        style="color:#00ff41">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+        style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
   </footer>
 
 
@@ -625,15 +651,15 @@
 
       // ── Interactive prompt commands ─────────────────────────────────────────
       const COMMANDS = {
-        whoami: '<span style="color:#00ff41">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.',
+        whoami: '<span style="color:#28c840">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.',
         skills: '<span style="color:#a0aab4">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span style="color:#a0aab4">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span style="color:#a0aab4">Focus:</span> AI · Automation · Security',
-        contact: 'Email: <a href="mailto:joshuacollado656@gmail.com" style="color:#00ff41;text-decoration:underline">joshuacollado656@gmail.com</a><br>Or head to the <a href="contact.html" style="color:#00ff41;text-decoration:underline">Contact</a> page.',
+        contact: 'Email: <a href="mailto:joshuacollado636@gmail.com" style="color:#28c840;text-decoration:underline">joshuacollado636@gmail.com</a><br>Or head to the <a href="contact.html" style="color:#28c840;text-decoration:underline">Contact</a> page.',
         projects: 'NASA HUNCH · Inventory Chain System (Houston finals)<br>Los Alamos Lab · VR Training Experience<br>Project Evie · AI Home Automation (in progress)',
-        help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:#00ff41">whoami</span> · <span style="color:#00ff41">skills</span> · <span style="color:#00ff41">contact</span> · <span style="color:#00ff41">projects</span> · <span style="color:#00ff41">clear</span> · <span style="color:#00ff41">reset</span> · <span style="color:#00ff41">help</span>',
+        help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:#28c840">whoami</span> · <span style="color:#28c840">skills</span> · <span style="color:#28c840">contact</span> · <span style="color:#28c840">projects</span> · <span style="color:#28c840">clear</span> · <span style="color:#28c840">reset</span> · <span style="color:#28c840">help</span>',
         clear: '__CLEAR__',
         reset: '__RESET__',
-        hello: '<span style="color:#00ff41">Hey! 👋</span> Thanks for stopping by.',
-        hi: '<span style="color:#00ff41">Hey! 👋</span> Thanks for stopping by.',
+        hello: '<span style="color:#28c840">Hey! 👋</span> Thanks for stopping by.',
+        hi: '<span style="color:#28c840">Hey! 👋</span> Thanks for stopping by.',
       };
 
       function focusInput() {
@@ -720,7 +746,7 @@
         } else if (resp) {
           appendResponse(resp);
         } else {
-          appendResponse('<span style="color:#ff5f57">command not found:</span> ' + cmd + ' &nbsp;— try <span style="color:#00ff41">help</span>');
+          appendResponse('<span style="color:#ff5f57">command not found:</span> ' + cmd + ' &nbsp;— try <span style="color:#28c840">help</span>');
         }
         output.scrollTop = output.scrollHeight;
       });
@@ -832,11 +858,4 @@
     document.fonts.ready.then(() => { syncLogo(); setTimeout(syncLogo, 150); });
     window.addEventListener('load', () => { syncLogo(); setTimeout(syncLogo, 300); });
     window.addEventListener('resize', () => requestAnimationFrame(syncLogo));
-    // ── Footer year ────────────────────────────────────────────────────────────────
-    const y = document.getElementById('footer-year');
-    if (y) y.textContent = new Date().getFullYear();
-  </script>
-  <script src="music.js?v=20260509-1"></script>
-</body>
-
-</html>
+    // ── Footer year ───────────────

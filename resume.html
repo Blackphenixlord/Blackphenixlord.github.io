@@ -9,7 +9,7 @@
     content="Résumé of Joshua Collado — Engineering internships, computer science courses, and presentations at NASA and UTRGV." />
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="style.css?v=20260509-1" />
+  <link rel="stylesheet" href="style.css?v=20260512-1" />
   <link rel="stylesheet" href="icons.css?v=20260509-1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
@@ -22,23 +22,24 @@
     <div class="nav-logo">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="4" fill="#0a0e1a" />
-        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#00ff41" stroke-width="1.5" />
-        <rect x="0" y="0" width="36" height="9" rx="4" fill="#00ff41" fill-opacity="0.1" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" />
         <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
         <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
         <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
-        <text x="6" y="23" font-family="monospace" font-size="10" fill="#00ff41">JC</text>
-        <text x="6" y="31" font-family="monospace" font-size="7" fill="#00ff41" opacity="0.55">&#x258C;</text>
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55">&#x258C;</text>
       </svg>
       <span class="nav-brand">Joshua Collado</span>
     </div>
     <ul class="nav-links" id="nav-links-list">
       <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="internships.html">Internships</a></li>
       <li><a href="resume.html" class="active">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <button class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
     <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
       aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
@@ -64,11 +65,11 @@
     </ul>
   </nav>
 
-  <div class="page-hero" id="main-content">
-    <div class="page-hero-bg"></div>
-    <p class="section-label">// résumé</p>
+  <section class="page-hero" id="main-content" aria-label="Résumé">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <p class="section-label" aria-hidden="true">// résumé</p>
     <h1 class="section-title">Joshua Collado</h1>
-    <p>joshuacollado656@gmail.com &nbsp;·&nbsp; South Texas</p>
+    <p>joshuacollado636@gmail.com &nbsp;·&nbsp; South Texas</p>
     <div class="page-hero-tags">
       <span>Dual Enrollment</span>
       <span>UTRGV · 2025–2027</span>
@@ -81,7 +82,7 @@
       <div class="ph-stat"><span class="ph-num">5+</span><span class="ph-lbl">CS Courses</span></div>
       <div class="ph-stat"><span class="ph-num">3+</span><span class="ph-lbl">Years Building</span></div>
     </div>
-  </div>
+  </section>
 
   <!-- TERMINAL PANEL -->
   <div class="container" style="padding-bottom: 12px; padding-top: 48px;">
@@ -108,10 +109,10 @@
     </p>
   </div>
 
-  <div class="page-content container">
+  <main class="page-content container" aria-label="Résumé sections">
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
           <path d="M6 12v5c3 3 9 3 12 0v-5" />
@@ -120,22 +121,22 @@
       </div>
       <div class="resume-block-body">
         <div class="resume-item">
-          <h4>University of Texas Rio Grande Valley (UTRGV)</h4>
+          <h3>University of Texas Rio Grande Valley (UTRGV)</h3>
           <div class="meta">Dual Enrollment · 2025–2027</div>
         </div>
         <div class="resume-item">
-          <h4>Science Academy</h4>
+          <h3>Science Academy</h3>
           <div class="meta">2023–2027</div>
         </div>
         <div class="resume-item">
-          <h4>Rising Scholars Academy</h4>
+          <h3>Rising Scholars Academy</h3>
           <div class="meta">2021–2023</div>
         </div>
       </div>
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2C12 2 17 4 17 10c0 3-1.5 5.5-4 7l-2 5-2-5c-2.5-1.5-4-4-4-7 0-6 5-8 5-8" />
           <circle cx="12" cy="10" r="2" />
@@ -144,27 +145,27 @@
       </div>
       <div class="resume-block-body">
         <div class="resume-item">
-          <h4>NASA HUNCH — SCI-TECH</h4>
+          <h3>NASA HUNCH — SCI-TECH</h3>
           <div class="meta">Hardware Manager · Stack Developer · Design Assistant</div>
           <p>Developed an Inventory Chain System with two peers. Selected to present to NASA Representatives in
             Houston
             for finals.</p>
         </div>
         <div class="resume-item">
-          <h4>Los Alamos National Laboratory — UTRGV</h4>
+          <h3>Los Alamos National Laboratory — UTRGV</h3>
           <div class="meta">Project Leader · Stack Developer · Hardware Manager</div>
           <p>Built a Virtual Reality training experience with a partner. Only student selected to visit the lab in New
             Mexico.</p>
         </div>
         <div class="resume-item">
-          <h4>RECON Technologies</h4>
+          <h3>RECON Technologies</h3>
           <div class="meta">Code Lead · Security Developer · Design Assistant</div>
           <p>Designed a secure digital platform for the City of Progresso — public access to information, services,
             and
             records.</p>
         </div>
         <div class="resume-item">
-          <h4>Nerdvana Educational Center</h4>
+          <h3>Nerdvana Educational Center</h3>
           <div class="meta">Co-Builder · Hardware Manager · Stack Developer</div>
           <p>Co-developed a Level Sandbox Environment with the CEO to promote STEM interest in elementary schools.</p>
         </div>
@@ -172,7 +173,7 @@
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="3" />
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
@@ -182,7 +183,7 @@
       </div>
       <div class="resume-block-body">
         <div class="resume-item">
-          <h4>Project Evie — Home Automation AI Assistant</h4>
+          <h3>Project Evie — Home Automation AI Assistant</h3>
           <p>Developing a home network that communicates with Android and Windows to automate life tasks through a
             personal AI assistant named Evie.</p>
         </div>
@@ -190,7 +191,7 @@
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
           <circle cx="9" cy="7" r="4" />
@@ -211,7 +212,7 @@
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
@@ -220,22 +221,22 @@
       </div>
       <div class="resume-block-body">
         <div class="resume-item">
-          <h4>TSTC</h4>
+          <h3>TSTC</h3>
           <p>Java · JavaScript · Advanced Java · HTML/CSS · SQL · C · Texas Advanced Java Certification</p>
         </div>
         <div class="resume-item">
-          <h4>STISD</h4>
+          <h3>STISD</h3>
           <p>AP Computer Science · Industry-Based Certification · P.I.E²</p>
         </div>
         <div class="resume-item">
-          <h4>UTRGV</h4>
+          <h3>UTRGV</h3>
           <p>Python</p>
         </div>
       </div>
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
@@ -251,7 +252,7 @@
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-header">
+      <div class="resume-block-header" role="heading" aria-level="2">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="8" r="6" />
           <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
@@ -260,30 +261,30 @@
       </div>
       <div class="resume-block-body">
         <div class="resume-item">
-          <h4>ECC Driver · Running for Secretary 2026–2027</h4>
+          <h3>ECC Driver · Running for Secretary 2026–2027</h3>
           <div class="meta">Clubs 2026–Present</div>
         </div>
         <div class="resume-item">
-          <h4>Esports Streaming Manager</h4>
+          <h3>Esports Streaming Manager</h3>
           <div class="meta">Clubs 2025–Present</div>
         </div>
         <div class="resume-item">
-          <h4>Minecraft Esports</h4>
+          <h3>Minecraft Esports</h3>
           <div class="meta">Clubs 2023–2024</div>
         </div>
         <div class="resume-item">
-          <h4>Big Red Ranch Ministries</h4>
+          <h3>Big Red Ranch Ministries</h3>
           <div class="meta">Volunteerism 2022–2025</div>
           <p>Ranch and camp site dedicated to fighting for the fatherless.</p>
         </div>
       </div>
     </div><!-- end clubs block -->
 
-  </div><!-- end page-content -->
+  </main><!-- end page-content -->
 
   <footer class="footer">
     <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
-        style="color:#00ff41">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV
+        style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV
     </p>
   </footer>
   <script>
@@ -372,8 +373,8 @@
         education: 'UTRGV – Dual Enrollment · 2025–2027<br>Science Academy · 2023–2027<br>Rising Scholars Academy · 2021–2023',
         internships: 'NASA HUNCH – Inventory Chain System (Houston finals)<br>Los Alamos Lab – VR Training Experience<br>RECON Technologies – City Website<br>Nerdvana – STEM Sandbox for Elementary Schools',
         skills: '<span style="color:#a0aab4">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span style="color:#a0aab4">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span style="color:#a0aab4">Focus:</span> AI · Automation · Security',
-        contact: 'Email: <a href="mailto:joshuacollado656@gmail.com" style="color:#00ff41;text-decoration:underline">joshuacollado656@gmail.com</a>',
-        help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:#00ff41">education</span> · <span style="color:#00ff41">internships</span> · <span style="color:#00ff41">skills</span> · <span style="color:#00ff41">contact</span> · <span style="color:#00ff41">clear</span> · <span style="color:#00ff41">reset</span>',
+        contact: 'Email: <a href="mailto:joshuacollado636@gmail.com" style="color:#28c840;text-decoration:underline">joshuacollado636@gmail.com</a>',
+        help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:#28c840">education</span> · <span style="color:#28c840">internships</span> · <span style="color:#28c840">skills</span> · <span style="color:#28c840">contact</span> · <span style="color:#28c840">clear</span> · <span style="color:#28c840">reset</span>',
         clear: '__CLEAR__',
         reset: '__RESET__',
       };
@@ -381,7 +382,7 @@
         '// joshua@collado · résumé snapshot',
         'UTRGV Dual Enrollment · Science Academy · South Texas',
         'Internships: NASA · Los Alamos · RECON · Nerdvana',
-        'Type <span style="color:#00ff41">education</span>, <span style="color:#00ff41">internships</span>, or <span style="color:#00ff41">help</span> to explore.',
+        'Type <span style="color:#28c840">education</span>, <span style="color:#28c840">internships</span>, or <span style="color:#28c840">help</span> to explore.',
       ];
 
       const card = document.getElementById('resume-terminal-card');
@@ -442,7 +443,7 @@
 
       function appendResponse(html) {
         const p = document.createElement('p');
-        p.style.cssText = 'margin:4px 0 12px;color:#00ff41;font-family:\'Share Tech Mono\',monospace;font-size:0.88rem;line-height:1.6';
+        p.style.cssText = 'margin:4px 0 12px;color:#28c840;font-family:\'Share Tech Mono\',monospace;font-size:0.88rem;line-height:1.6';
         p.innerHTML = html;
         output.appendChild(p);
         output.scrollTop = output.scrollHeight;
@@ -520,7 +521,7 @@
         } else if (resp) {
           appendResponse(resp);
         } else {
-          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + ' — try <span style="color:#00ff41">help</span>');
+          appendResponse('<span style="color:#ff6b6b">command not found:</span> ' + cmd + ' — try <span style="color:#28c840">help</span>');
         }
         output.scrollTop = output.scrollHeight;
       });
@@ -529,9 +530,4 @@
         entries.forEach(e => { if (e.isIntersecting && !started) { startTyping(); obs.unobserve(card); } });
       }, { threshold: 0.3 });
       obs.observe(card);
-    })();
-  </script>
-  <script src="music.js?v=20260509-1"></script>
-</body>
-
-</html>
+    
