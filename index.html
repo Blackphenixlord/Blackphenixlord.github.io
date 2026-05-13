@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
     content="Joshua Collado — Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, and RECON Technologies." />
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="style.css?v=20260512-2" />
+  <link rel="stylesheet" href="style.css?v=20260512-5" />
   <link rel="stylesheet" href="icons.css?v=20260509-1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
@@ -69,7 +69,7 @@
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi:
+    <kbd class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+S)" onclick="(function(){var o=document.getElementById('cp-overlay');if(o&&!o.classList.contains('cp-visible')){o.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){o.classList.add('cp-visible');var i=document.getElementById('cp-input');if(i){i.value='';i.focus();}document.body.style.overflow='hidden';})});}})()">Ctrl+S</kbd><button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi:
       off</button>
     <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
       aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
@@ -105,7 +105,7 @@
             <circle cx="25" cy="11.5" r="3.6" fill="#febc2e" />
             <circle cx="37" cy="11.5" r="3.6" fill="#28c840" />
             <!-- JC -->
-            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#28c840">JC</text>
+            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold"><tspan fill="#ff5f57">J</tspan><tspan fill="#febc2e">C</tspan></text>
             <!-- Separator -->
             <line x1="11" y1="78" x2="89" y2="78" stroke="#28c840" stroke-width="1.4" stroke-opacity="0.55" />
             <!-- ./engineer -->
@@ -124,39 +124,9 @@
           <a href="#projects" class="hero-btn-primary">View Projects</a>
           <a href="contact.html" class="hero-btn-outline">Get In Touch</a>
         </div>
-        <button class="summon-btn" id="summon-btn" type="button" aria-haspopup="dialog">
-          <span class="summon-icon" aria-hidden="true">⬡</span>
-          <span class="summon-text">PRESS TO SUMMON</span>
-          <span class="summon-ping" aria-hidden="true"></span>
-        </button>
       </div>
     </div>
   </section>
-
-  <!-- SUMMON MODAL -->
-  <div class="summon-overlay" id="summon-overlay" role="dialog" aria-modal="true" aria-label="Summoned" hidden>
-    <div class="summon-modal" id="summon-modal">
-      <div class="summon-modal-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="summon-modal-title">joshua@collado:~$ ./summon.sh</span>
-        <button class="summon-close" id="summon-close" aria-label="Dismiss">&times;</button>
-      </div>
-      <div class="summon-modal-body">
-        <p class="summon-line" style="--d:0"><span class="summon-prompt">$</span> Summoning <span class="summon-accent">Joshua Collado</span>...</p>
-        <p class="summon-line" style="--d:1"><span class="summon-prompt">→</span> Status: <span class="summon-green">ONLINE</span> · Open to Work · 2026</p>
-        <p class="summon-line" style="--d:2"><span class="summon-prompt">→</span> Role: Full-Stack Dev · Security · Hardware · AI</p>
-        <p class="summon-line" style="--d:3"><span class="summon-prompt">→</span> Based: South Texas · UTRGV Dual Enrollment</p>
-        <p class="summon-line" style="--d:4"><span class="summon-prompt">→</span> NASA Visits: <span class="summon-accent">2×</span> · Los Alamos: <span class="summon-accent">Selected</span></p>
-        <div class="summon-divider" style="--d:5"></div>
-        <p class="summon-line" style="--d:6"><span class="summon-prompt">✉</span> <a href="mailto:joshuacollado656@gmail.com" class="summon-link">joshuacollado656@gmail.com</a></p>
-        <p class="summon-line" style="--d:7"><span class="summon-prompt">⌁</span> <a href="https://github.com/Blackphenixlord" target="_blank" rel="noopener" class="summon-link">github.com/Blackphenixlord</a></p>
-        <div class="summon-cta-row" style="--d:8">
-          <a href="contact.html" class="summon-cta">Send a Message</a>
-          <a href="resume.html" class="summon-cta summon-cta-ghost">View Résumé</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- STATS STRIP -->
   <div class="stats-strip">
@@ -168,14 +138,14 @@
     <div class="stat-divider"></div>
     <div class="stat-item">
       <span class="stat-num">2</span>
-      <span class="stat-label">NASA Rounds</span>
-      <span class="stat-caption">Made it to Houston finals</span>
+      <span class="stat-label">NASA Trips</span>
+      <span class="stat-caption">2 visits to Houston</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
       <span class="stat-num">5+</span>
       <span class="stat-label">Languages</span>
-      <span class="stat-caption">And still counting</span>
+      <span class="stat-caption">Coding languages</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
@@ -276,6 +246,23 @@
       <p class="section-label" aria-hidden="true">03 &middot; selected work</p>
       <h2 class="section-title">Projects</h2>
       <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-card-top">
+            <span class="project-year">Web Development</span>
+            <span class="project-org">RECON Technologies</span>
+          </div>
+          <p class="project-role">Role: Code Lead, Security Developer &amp; Design Assistant</p>
+          <h3 class="project-title">City of Progresso — Civic Platform</h3>
+          <p class="project-built">Built: A secure digital platform giving Progresso residents centralized access to city information, public services, and official records.</p>
+          <p class="project-impact">Impact: Brought a small South Texas city into the digital era — modern, secure, and publicly accessible.</p>
+          <div class="project-stack" aria-label="Project stack">
+            <span class="project-stack-label">Stack</span>
+            <div class="project-tags">
+              <span>Web Dev</span><span>Security</span><span>Civic Tech</span>
+            </div>
+          </div>
+        </div>
+
 
         <div class="project-card">
           <div class="project-card-top">
@@ -508,7 +495,7 @@
       const paragraphs = [
         '\x01// who am i\x02',
         'My name is \x01Joshua Collado\x02, and I\'m a Dual Enrollment student at \x01UTRGV\x02 through the Science Academy — studying engineering, computer science, and the future. I\'m from South Texas and I\'m on a mission to use technology to make life better, smarter, and more connected.',
-        'I\'ve had the privilege of working with \x01NASA\x02 on an Inventory Chain System that made it to Houston finals, building a \x01Virtual Reality training experience\x02 with \x01Los Alamos National Laboratory\x02, developing a city website with \x01RECON Technologies\x02, and co-creating a STEM sandbox for elementary schools with \x01Nerdvana\x02.',
+        'I\'ve had the privilege of working with \x01NASA\x02 on an Inventory Chain System that 2 visits to Houston, building a \x01Virtual Reality training experience\x02 with \x01Los Alamos National Laboratory\x02, developing a city website with \x01RECON Technologies\x02, and co-creating a STEM sandbox for elementary schools with \x01Nerdvana\x02.',
         'Right now I\'m designing \x01Evie\x02 — a personal AI assistant that connects Android and Windows into a unified home automation network. My goal is to become a \x01software engineer and AI developer\x02 who builds systems that actually change how people live and work.',
       ];
 
@@ -626,7 +613,7 @@
         whoami: '<span style="color:#28c840">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.',
         skills: '<span style="color:#a0aab4">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span style="color:#a0aab4">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span style="color:#a0aab4">Focus:</span> AI · Automation · Security',
         contact: 'Email: <a href="mailto:joshuacollado656@gmail.com" style="color:#28c840;text-decoration:underline">joshuacollado656@gmail.com</a><br>Or head to the <a href="contact.html" style="color:#28c840;text-decoration:underline">Contact</a> page.',
-        projects: 'NASA HUNCH · Inventory Chain System (Houston finals)<br>Los Alamos Lab · VR Training Experience<br>Project Evie · AI Home Automation (in progress)',
+        projects: 'RECON Technologies · City of Progresso Civic Platform<br>NASA HUNCH · Inventory Chain System (Houston finals)<br>Los Alamos Lab · VR Training Experience<br>Project Evie · AI Home Automation (in progress)',
         help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:#28c840">whoami</span> · <span style="color:#28c840">skills</span> · <span style="color:#28c840">contact</span> · <span style="color:#28c840">projects</span> · <span style="color:#28c840">clear</span> · <span style="color:#28c840">reset</span> · <span style="color:#28c840">help</span>',
         clear: '__CLEAR__',
         reset: '__RESET__',
@@ -868,46 +855,253 @@
     })();
   </script>
 
+  <!-- COMMAND PALETTE -->
+  <div class="cp-overlay" id="cp-overlay" role="dialog" aria-modal="true" aria-label="Command Palette" hidden>
+    <div class="cp-panel" id="cp-panel">
+      <div class="cp-header">
+        <span class="cp-prompt">$&gt;</span>
+        <input class="cp-input" id="cp-input" type="text" placeholder="type a command or search..." autocomplete="off" spellcheck="false" />
+        <kbd class="cp-esc-hint">ESC</kbd>
+      </div>
+      <ul class="cp-list" id="cp-list" role="listbox" aria-label="Commands">
+        <li class="cp-section">&#x2500;&#x2500; navigate &#x2500;&#x2500;</li>
+        <li class="cp-item" role="option" data-action="nav" data-href="index.html" data-key="H" tabindex="-1">
+          <span class="cp-icon">&#x2302;</span><span class="cp-label">Go to Home</span><kbd class="cp-key">H</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="about.html" data-key="A" tabindex="-1">
+          <span class="cp-icon">&#x25CE;</span><span class="cp-label">Go to About</span><kbd class="cp-key">A</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="internships.html" data-key="J" tabindex="-1">
+          <span class="cp-icon">&#x25C8;</span><span class="cp-label">Go to Internships</span><kbd class="cp-key">J</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="resume.html" data-key="R" tabindex="-1">
+          <span class="cp-icon">&#x25A7;</span><span class="cp-label">Go to R&#233;sum&#233;</span><kbd class="cp-key">R</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="contact.html" data-key="C" tabindex="-1">
+          <span class="cp-icon">&#x25CE;</span><span class="cp-label">Go to Contact</span><kbd class="cp-key">C</kbd>
+        </li>
+        <li class="cp-section">&#x2500;&#x2500; actions &#x2500;&#x2500;</li>
+        <li class="cp-item" role="option" data-action="download-resume" data-key="D" tabindex="-1">
+          <span class="cp-icon">&#x2193;</span><span class="cp-label">Download r&#233;sum&#233;.pdf</span><kbd class="cp-key">D</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="toggle-scan" data-key="T" tabindex="-1">
+          <span class="cp-icon">&#x229F;</span><span class="cp-label">Toggle scan lines</span><kbd class="cp-key">T</kbd>
+        </li>
+      </ul>
+      <div class="cp-footer">
+        <span><kbd>&#x2191;&#x2193;</kbd> navigate</span>
+        <span><kbd>&#x21B5;</kbd> run</span>
+        <span><kbd>ESC</kbd> close</span>
+        <span style="margin-left:auto;opacity:.4">Ctrl+S</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWEAKS PANEL -->
+  <button class="tweaks-fab" id="tweaks-fab" aria-label="Open tweaks panel" aria-expanded="false">
+    <span class="tweaks-fab-icon">&#x2699;</span> TWEAKS
+  </button>
+  <div class="tweaks-panel" id="tweaks-panel" aria-label="Visual tweaks">
+    <div class="tweaks-panel-header">// visual settings</div>
+
+    <div class="tweaks-row">
+      <div class="tweaks-label">Custom cursor<small>Green dot crosshair</small></div>
+      <label class="tweaks-toggle">
+        <input type="checkbox" id="tweak-cursor" checked />
+        <span class="tweaks-slider"></span>
+      </label>
+    </div>
+    <div class="tweaks-row">
+      <div class="tweaks-label">Scroll bar<small>Progress indicator</small></div>
+      <label class="tweaks-toggle">
+        <input type="checkbox" id="tweak-scrollbar" checked />
+        <span class="tweaks-slider"></span>
+      </label>
+    </div>
+    <div class="tweaks-row">
+      <div class="tweaks-label">Accent color</div>
+      <div class="tweaks-swatches">
+        <div class="tweaks-swatch active" data-color="green"  title="Green"></div>
+        <div class="tweaks-swatch"        data-color="cyan"   title="Cyan"></div>
+        <div class="tweaks-swatch"        data-color="purple" title="Purple"></div>
+        <div class="tweaks-swatch"        data-color="orange" title="Orange"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ── SUMMON BUTTON ─────────────────────────────────────────────────────────
+    // TWEAKS PANEL
     (function () {
-      var btn     = document.getElementById('summon-btn');
-      var overlay = document.getElementById('summon-overlay');
-      var closeBtn= document.getElementById('summon-close');
-      if (!btn || !overlay) return;
-
-      function openSummon() {
-        // Flash layer
-        var flash = document.createElement('div');
-        flash.className = 'summon-flash-layer';
-        document.body.appendChild(flash);
-        setTimeout(function(){ if(flash.parentNode) flash.parentNode.removeChild(flash); }, 400);
-        // Show overlay
-        overlay.removeAttribute('hidden');
-        requestAnimationFrame(function(){
-          requestAnimationFrame(function(){
-            overlay.classList.add('summon-visible');
-          });
+      var fab   = document.getElementById('tweaks-fab');
+      var panel = document.getElementById('tweaks-panel');
+      if (!fab || !panel) return;
+      var COLORS = {
+        green:  { h: '#28c840', r: '40,200,64'  },
+        cyan:   { h: '#00d4ff', r: '0,212,255'  },
+        purple: { h: '#a855f7', r: '168,85,247' },
+        orange: { h: '#f97316', r: '249,115,22' }
+      };
+      function applyColor(name) {
+        var c = COLORS[name];
+        if (!c) return;
+        document.documentElement.style.setProperty('--accent', c.h);
+        document.documentElement.style.setProperty('--accent-rgb', c.r);
+        document.querySelectorAll('.cursor-dot, .scroll-progress, .avail-badge, .hero-tag, .accent, .nav-brand').forEach(function(el){ el.style.color = c.h; });
+        document.querySelectorAll('.cursor-dot').forEach(function(el){ el.style.background = c.h; el.style.boxShadow = '0 0 8px 2px ' + c.h + '88'; });
+        document.querySelectorAll('.scroll-progress').forEach(function(el){ el.style.background = c.h; });
+        localStorage.setItem('tweak-color', name);
+      }
+      panel.querySelectorAll('.tweaks-swatch').forEach(function(sw) {
+        sw.addEventListener('click', function() {
+          panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); });
+          sw.classList.add('active');
+          applyColor(sw.getAttribute('data-color'));
         });
+      });
+
+      var cursorCb = document.getElementById('tweak-cursor');
+      if (cursorCb) {
+        cursorCb.addEventListener('change', function() {
+          var dot  = document.getElementById('cursor-dot');
+          var ring = document.getElementById('cursor-ring');
+          if (dot)  dot.style.display  = this.checked ? '' : 'none';
+          if (ring) ring.style.display = 'none';
+          if (this.checked) document.body.classList.add('has-custom-cursor');
+          else               document.body.classList.remove('has-custom-cursor');
+          localStorage.setItem('tweak-cursor', this.checked ? '1' : '0');
+        });
+      }
+      var scrollCb = document.getElementById('tweak-scrollbar');
+      if (scrollCb) {
+        scrollCb.addEventListener('change', function() {
+          var bar = document.getElementById('scroll-progress');
+          if (bar) bar.style.display = this.checked ? '' : 'none';
+          localStorage.setItem('tweak-scrollbar', this.checked ? '1' : '0');
+        });
+      }
+      (function restore() {
+        var color = localStorage.getItem('tweak-color') || 'green';
+        var savedColor = panel.querySelector('[data-color="' + color + '"]');
+        if (savedColor) {
+          panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); });
+          savedColor.classList.add('active');
+          if (color !== 'green') applyColor(color);
+        }
+
+        if (localStorage.getItem('tweak-cursor') === '0' && cursorCb) { cursorCb.checked = false; document.body.classList.remove('has-custom-cursor'); }
+        if (localStorage.getItem('tweak-scrollbar') === '0' && scrollCb) {
+          scrollCb.checked = false;
+          var bar = document.getElementById('scroll-progress');
+          if (bar) bar.style.display = 'none';
+        }
+      })();
+      fab.addEventListener('click', function() {
+        var open = panel.classList.toggle('tweaks-open');
+        fab.setAttribute('aria-expanded', open);
+      });
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('#tweaks-panel') && !e.target.closest('#tweaks-fab')) {
+          panel.classList.remove('tweaks-open');
+          fab.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && panel.classList.contains('tweaks-open')) {
+          panel.classList.remove('tweaks-open');
+          fab.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    // COMMAND PALETTE
+    (function () {
+      var overlay = document.getElementById('cp-overlay');
+      var input   = document.getElementById('cp-input');
+      var list    = document.getElementById('cp-list');
+      if (!overlay || !input || !list) return;
+
+      var allItems = [], filtered = [], idx = 0;
+
+      function buildItems() { allItems = Array.from(list.querySelectorAll('.cp-item[data-action]')); }
+
+      function open() {
+        overlay.removeAttribute('hidden');
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          overlay.classList.add('cp-visible');
+          input.value = ''; filter(''); input.focus();
+        }); });
         document.body.style.overflow = 'hidden';
-        if (closeBtn) closeBtn.focus();
+        var f = document.getElementById('tweaks-fab'); if (f) f.style.opacity = '0';
       }
 
-      function closeSummon() {
-        overlay.classList.remove('summon-visible');
-        setTimeout(function(){ overlay.setAttribute('hidden',''); }, 260);
+      function close() {
+        overlay.classList.remove('cp-visible');
+        setTimeout(function(){ overlay.setAttribute('hidden', ''); }, 220);
         document.body.style.overflow = '';
-        btn.focus();
+        var f = document.getElementById('tweaks-fab'); if (f) f.style.opacity = '';
       }
 
-      btn.addEventListener('click', openSummon);
-      if (closeBtn) closeBtn.addEventListener('click', closeSummon);
-      overlay.addEventListener('click', function(e){
-        if (e.target === overlay) closeSummon();
+      function select(i) {
+        allItems.forEach(function(el){ el.classList.remove('cp-selected'); });
+        idx = Math.max(0, Math.min(i, filtered.length - 1));
+        if (filtered[idx]) { filtered[idx].classList.add('cp-selected'); filtered[idx].scrollIntoView({ block: 'nearest' }); }
+      }
+
+      function filter(q) {
+        q = q.trim().toLowerCase();
+        allItems.forEach(function(el) {
+          var lbl = el.querySelector('.cp-label');
+          el.style.display = (!q || (lbl && lbl.textContent.toLowerCase().includes(q))) ? '' : 'none';
+        });
+        filtered = allItems.filter(function(el){ return el.style.display !== 'none'; });
+        if (filtered.length) select(0);
+      }
+
+      function run(el) {
+        if (!el) return;
+        var a = el.getAttribute('data-action');
+        close();
+        if      (a === 'nav')             setTimeout(function(){ window.location.href = el.getAttribute('data-href'); }, 180);
+        else if (a === 'download-resume') setTimeout(function(){ window.open('resume.html', '_blank'); }, 180);
+        else if (a === 'toggle-scan')     setTimeout(function(){ document.body.classList.toggle('no-scanlines'); }, 180);
+        else if (a === 'rick')            setTimeout(function(){ window.location.href = 'rick.html'; }, 180);
+      }
+
+      input.addEventListener('input', function(){ filter(this.value); });
+
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          var v = input.value.trim().toLowerCase();
+          if (v === 'rick' || v === 'rick roll' || v === 'rickroll') {
+            e.preventDefault(); close();
+            setTimeout(function(){ window.location.href = 'rick.html'; }, 180);
+            return;
+          }
+        }
       });
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && overlay.classList.contains('summon-visible')) closeSummon();
+
+      list.addEventListener('click', function(e) {
+        var it = e.target.closest('.cp-item[data-action]');
+        if (it) run(it);
       });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          overlay.classList.contains('cp-visible') ? close() : open();
+          return;
+        }
+        if (!overlay.classList.contains('cp-visible')) return;
+        if (e.key === 'Escape')    { e.preventDefault(); close(); }
+        if (e.key === 'ArrowDown') { e.preventDefault(); select(idx + 1); }
+        if (e.key === 'ArrowUp')   { e.preventDefault(); select(idx - 1); }
+        if (e.key === 'Enter')     { e.preventDefault(); run(filtered[idx]); }
+      });
+
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
+      buildItems();
     })();
   </script>
 </body>
