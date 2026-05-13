@@ -4124,3 +4124,144 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab {
   transform: scale(0.85);
   transition: opacity 0.15s, transform 0.15s;
 }
+/* ===== NAV SHORTCUT HINT ===== */
+.nav-shortcut-hint {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  background: rgba(40,200,64,0.08);
+  border: 1px solid rgba(40,200,64,0.3);
+  border-radius: 5px;
+  color: #28c840;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.nav-shortcut-hint:hover {
+  background: rgba(40,200,64,0.16);
+  box-shadow: 0 0 10px rgba(40,200,64,0.2);
+}
+@media (max-width: 600px) { .nav-shortcut-hint { display: none; } }
+
+/* ===== TWEAKS FAB ===== */
+.tweaks-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: #0d1117;
+  border: 1px solid rgba(40,200,64,0.35);
+  border-radius: 8px;
+  color: rgba(40,200,64,0.75);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 12px rgba(40,200,64,0.08);
+  transition: background 0.18s, box-shadow 0.18s, opacity 0.18s, color 0.18s;
+}
+.tweaks-fab:hover {
+  background: rgba(40,200,64,0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6), 0 0 20px rgba(40,200,64,0.15);
+  color: #28c840;
+}
+.tweaks-fab-icon { font-size: 0.9rem; }
+body:has(.cp-overlay.cp-visible) .tweaks-fab { opacity: 0; pointer-events: none; }
+
+/* ===== TWEAKS PANEL ===== */
+.tweaks-panel {
+  position: fixed;
+  bottom: 68px;
+  right: 24px;
+  z-index: 99999;
+  width: 260px;
+  background: #0d1117;
+  border: 1px solid rgba(40,200,64,0.25);
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 20px rgba(40,200,64,0.05);
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+  transform: scale(0.92) translateY(8px);
+  transform-origin: bottom right;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s ease;
+}
+.tweaks-panel.tweaks-open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.tweaks-panel-header {
+  padding: 10px 16px 8px;
+  font-size: 0.68rem;
+  color: rgba(40,200,64,0.5);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(40,200,64,0.1);
+}
+.tweaks-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.tweaks-row:last-child { border-bottom: none; }
+.tweaks-label {
+  font-size: 0.82rem;
+  color: #c9d1d9;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tweaks-label small {
+  font-size: 0.68rem;
+  color: rgba(230,237,243,0.3);
+  font-family: inherit;
+}
+
+/* Toggle switch */
+.tweaks-toggle { position: relative; display: inline-block; width: 36px; height: 20px; flex-shrink: 0; }
+.tweaks-toggle input { opacity: 0; width: 0; height: 0; }
+.tweaks-slider {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.tweaks-slider::before {
+  content: '';
+  position: absolute;
+  height: 14px; width: 14px;
+  left: 3px; top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.tweaks-toggle input:checked + .tweaks-slider { background: rgba(40,200,64,0.5); }
+.tweaks-toggle input:checked + .tweaks-slider::before { transform: translateX(16px); }
+
+/* Color swatches */
+.tweaks-swatches { display: flex; gap: 8px; }
+.tweaks-swatch {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.tweaks-swatch:hover { transform: scale(1.15); }
+.tweaks-swatch.active { border-color: #fff; transform: scale(1.1); }
+.tweaks-swatch[data-color="green"]  { background: #28c840; }
+.tweaks-swatch[data-color="red"]    { background: #ff5f57; }
+.tweaks-swatch[data-color="yellow"] { background: #febc2e; }
+.tweaks-swatch[data-color="cyan"]   { background: #00d4ff; }

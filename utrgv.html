@@ -262,9 +262,9 @@
       <div class="tweaks-label">Accent color</div>
       <div class="tweaks-swatches">
         <div class="tweaks-swatch active" data-color="green"  title="Green"></div>
+        <div class="tweaks-swatch"        data-color="red"    title="Red"></div>
+        <div class="tweaks-swatch"        data-color="yellow" title="Yellow"></div>
         <div class="tweaks-swatch"        data-color="cyan"   title="Cyan"></div>
-        <div class="tweaks-swatch"        data-color="purple" title="Purple"></div>
-        <div class="tweaks-swatch"        data-color="orange" title="Orange"></div>
       </div>
     </div>
   </div>
@@ -277,18 +277,40 @@
       if (!fab || !panel) return;
       var COLORS = {
         green:  { h: '#28c840', r: '40,200,64'  },
-        cyan:   { h: '#00d4ff', r: '0,212,255'  },
-        purple: { h: '#a855f7', r: '168,85,247' },
-        orange: { h: '#f97316', r: '249,115,22' }
+        red:    { h: '#ff5f57', r: '255,95,87'  },
+        yellow: { h: '#febc2e', r: '254,188,46' },
+        cyan:   { h: '#00d4ff', r: '0,212,255'  }
       };
       function applyColor(name) {
         var c = COLORS[name];
         if (!c) return;
-        document.documentElement.style.setProperty('--accent', c.h);
-        document.documentElement.style.setProperty('--accent-rgb', c.r);
-        document.querySelectorAll('.cursor-dot,.scroll-progress,.avail-badge,.hero-tag,.accent,.nav-brand').forEach(function(el){ el.style.color = c.h; });
-        document.querySelectorAll('.cursor-dot').forEach(function(el){ el.style.background = c.h; el.style.boxShadow = '0 0 8px 2px '+c.h+'88'; });
-        document.querySelectorAll('.scroll-progress').forEach(function(el){ el.style.background = c.h; });
+        var h = c.h, r = c.r;
+        document.documentElement.style.setProperty('--accent', h);
+        document.documentElement.style.setProperty('--accent-rgb', r);
+        // Inject/update a global override style tag
+        var el = document.getElementById('accent-override');
+        if (!el) { el = document.createElement('style'); el.id = 'accent-override'; document.head.appendChild(el); }
+        el.textContent = [
+          ':root { --accent: '+h+'; --accent-rgb: '+r+'; }',
+          '.nav-brand, .hero-tag, .accent, .avail-badge, .cp-prompt, .nav-shortcut-hint,',
+          '.cp-section, .cp-icon, .tweaks-panel-header, .section-tag, .stat-num,',
+          '.project-tag, .tech-item, .skill-tag, .timeline-dot, .cp-key,',
+          '.terminal-prompt, .context-menu-icon, .tweaks-fab { color: '+h+' !important; }',
+          '.scroll-progress { background: '+h+' !important; }',
+          '.cursor-dot { background: '+h+' !important; box-shadow: 0 0 8px 2px '+h+'88 !important; }',
+          '.cp-panel { border-color: '+h+'55 !important; box-shadow: 0 0 0 1px '+h+'18, 0 32px 80px rgba(0,0,0,.8), 0 0 40px '+h+'10 !important; }',
+          '.cp-item.cp-selected { border-left-color: '+h+' !important; }',
+          '.cp-item:hover, .cp-item.cp-selected { background: '+h+'18 !important; }',
+          '.cp-header { background: '+h+'08 !important; border-bottom-color: '+h+'22 !important; }',
+          '.cp-esc-hint, .cp-key { background: '+h+'12 !important; border-color: '+h+'30 !important; color: '+h+'99 !important; }',
+          '.tweaks-toggle input:checked + .tweaks-slider { background: '+h+'80 !important; }',
+          '.tweaks-fab { border-color: '+h+'55 !important; color: '+h+' !important; }',
+          '.hero-btn-primary { background: '+h+' !important; border-color: '+h+' !important; }',
+          '.hero-btn-outline { border-color: '+h+' !important; color: '+h+' !important; }',
+          '.nav-shortcut-hint { background: '+h+'12 !important; border-color: '+h+'44 !important; color: '+h+' !important; }',
+          '.cp-input { caret-color: '+h+' !important; }',
+          'a:hover { color: '+h+' !important; }'
+        ].join('\n');
         localStorage.setItem('tweak-color', name);
       }
       panel.querySelectorAll('.tweaks-swatch').forEach(function(sw) {
