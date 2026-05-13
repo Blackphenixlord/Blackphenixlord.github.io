@@ -65,7 +65,6 @@
     <ul class="nav-links" id="nav-links-list">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
       <li><a href="internships.html">Internships</a></li>
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -80,7 +79,6 @@
     <ul class="context-menu-list">
       <li><a class="context-menu-link" href="index.html" aria-current="page"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" /></svg><span class="context-menu-label">Home</span></a></li>
       <li><a class="context-menu-link" href="about.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" /></svg><span class="context-menu-label">About</span></a></li>
-      <li><a class="context-menu-link" href="projects.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="context-menu-label">Projects</span></a></li>
       <li><a class="context-menu-link" href="internships.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /></svg><span class="context-menu-label">Internships</span></a></li>
       <li><a class="context-menu-link" href="resume.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H7z" /><path d="M15 3v5h4" /><path d="M9.5 12h5M9.5 16h5" /></svg><span class="context-menu-label">Resume</span></a></li>
       <li><a class="context-menu-link" href="contact.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" /><path d="m4 8 8 6 8-6" /></svg><span class="context-menu-label">Contact</span></a></li>
@@ -126,9 +124,39 @@
           <a href="#projects" class="hero-btn-primary">View Projects</a>
           <a href="contact.html" class="hero-btn-outline">Get In Touch</a>
         </div>
+        <button class="summon-btn" id="summon-btn" type="button" aria-haspopup="dialog">
+          <span class="summon-icon" aria-hidden="true">⬡</span>
+          <span class="summon-text">PRESS TO SUMMON</span>
+          <span class="summon-ping" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </section>
+
+  <!-- SUMMON MODAL -->
+  <div class="summon-overlay" id="summon-overlay" role="dialog" aria-modal="true" aria-label="Summoned" hidden>
+    <div class="summon-modal" id="summon-modal">
+      <div class="summon-modal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="summon-modal-title">joshua@collado:~$ ./summon.sh</span>
+        <button class="summon-close" id="summon-close" aria-label="Dismiss">&times;</button>
+      </div>
+      <div class="summon-modal-body">
+        <p class="summon-line" style="--d:0"><span class="summon-prompt">$</span> Summoning <span class="summon-accent">Joshua Collado</span>...</p>
+        <p class="summon-line" style="--d:1"><span class="summon-prompt">→</span> Status: <span class="summon-green">ONLINE</span> · Open to Work · 2026</p>
+        <p class="summon-line" style="--d:2"><span class="summon-prompt">→</span> Role: Full-Stack Dev · Security · Hardware · AI</p>
+        <p class="summon-line" style="--d:3"><span class="summon-prompt">→</span> Based: South Texas · UTRGV Dual Enrollment</p>
+        <p class="summon-line" style="--d:4"><span class="summon-prompt">→</span> NASA Visits: <span class="summon-accent">2×</span> · Los Alamos: <span class="summon-accent">Selected</span></p>
+        <div class="summon-divider" style="--d:5"></div>
+        <p class="summon-line" style="--d:6"><span class="summon-prompt">✉</span> <a href="mailto:joshuacollado636@gmail.com" class="summon-link">joshuacollado636@gmail.com</a></p>
+        <p class="summon-line" style="--d:7"><span class="summon-prompt">⌁</span> <a href="https://github.com/Blackphenixlord" target="_blank" rel="noopener" class="summon-link">github.com/Blackphenixlord</a></p>
+        <div class="summon-cta-row" style="--d:8">
+          <a href="contact.html" class="summon-cta">Send a Message</a>
+          <a href="resume.html" class="summon-cta summon-cta-ghost">View Résumé</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- STATS STRIP -->
   <div class="stats-strip">
@@ -839,6 +867,48 @@
       });
     })();
   </script>
+
+  <script>
+    // ── SUMMON BUTTON ─────────────────────────────────────────────────────────
+    (function () {
+      var btn     = document.getElementById('summon-btn');
+      var overlay = document.getElementById('summon-overlay');
+      var closeBtn= document.getElementById('summon-close');
+      if (!btn || !overlay) return;
+
+      function openSummon() {
+        // Flash layer
+        var flash = document.createElement('div');
+        flash.className = 'summon-flash-layer';
+        document.body.appendChild(flash);
+        setTimeout(function(){ if(flash.parentNode) flash.parentNode.removeChild(flash); }, 400);
+        // Show overlay
+        overlay.removeAttribute('hidden');
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){
+            overlay.classList.add('summon-visible');
+          });
+        });
+        document.body.style.overflow = 'hidden';
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeSummon() {
+        overlay.classList.remove('summon-visible');
+        setTimeout(function(){ overlay.setAttribute('hidden',''); }, 260);
+        document.body.style.overflow = '';
+        btn.focus();
+      }
+
+      btn.addEventListener('click', openSummon);
+      if (closeBtn) closeBtn.addEventListener('click', closeSummon);
+      overlay.addEventListener('click', function(e){
+        if (e.target === overlay) closeSummon();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && overlay.classList.contains('summon-visible')) closeSummon();
+      });
+    })();
+  </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

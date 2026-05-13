@@ -19,11 +19,9 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- SCROLL PROGRESS -->
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-
   <!-- CUSTOM CURSOR -->
   <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-
 
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-logo">
@@ -42,7 +40,7 @@
     <ul class="nav-links" id="nav-links-list">
       <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-      <li><a href="internships.html" class="active">Internships</a></li>
+            <li><a href="internships.html" class="active">Internships</a></li>
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -151,43 +149,49 @@
         style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
   </footer>
 
-  <script src="music.js?v=20260509-1">
-    // Scroll progress bar
-    (function () {
-      const bar = document.getElementById('scroll-progress');
-      if (!bar) return;
-      window.addEventListener('scroll', () => {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-      }, { passive: true });
-    })();
-
-    // Custom cursor
-    (function () {
-      const dot = document.getElementById('cursor-dot');
-      const ring = document.getElementById('cursor-ring');
-      if (!dot || !ring || window.matchMedia('(pointer: coarse)').matches) return;
-      document.body.classList.add('has-custom-cursor');
-      let rx = 0, ry = 0;
-      document.addEventListener('mousemove', e => {
-        dot.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
-        rx += (e.clientX - rx) * 0.12;
-        ry += (e.clientY - ry) * 0.12;
-      });
-      function animRing() {
-        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
-        requestAnimationFrame(animRing);
-      }
-      animRing();
-      document.querySelectorAll('a,button').forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('cursor-hover'));
-      });
-    })();
-  </script>
+  <script src="music.js?v=20260509-1"></script>
   <script>
     function toggleMenu() { const links = document.querySelector('.nav-links'); const btn = document.querySelector('.hamburger'); const open = links.classList.toggle('open'); btn.setAttribute('aria-expanded', open); btn.setAttribute('aria-expanded', open); }
     function setupCustomContextMenu() { const menu = document.getElementById('custom-context-menu'); if (!menu) return; let closeTimer = null; const closeMenu = () => { if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return; menu.classList.remove('opening'); menu.classList.add('closing'); window.clearTimeout(closeTimer); closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140); }; document.addEventListener('contextmenu', e => { e.preventDefault(); window.clearTimeout(closeTimer); menu.classList.remove('closing'); const mw = menu.offsetWidth || 190; const mh = menu.offsetHeight || 140; menu.style.left = `${Math.max(8, Math.min(e.clientX, window.innerWidth - mw - 8))}px`; menu.style.top = `${Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8))}px`; menu.classList.add('opening', 'open'); window.setTimeout(() => menu.classList.remove('opening'), 170); }); document.addEventListener('click', e => { if (!e.target.closest('#custom-context-menu')) closeMenu(); }); document.addEventListener('scroll', closeMenu, true); window.addEventListener('resize', closeMenu); document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); }); }
     setupCustomContextMenu();
     const revealEls = document.querySelectorAll('.reveal');
-    revealEls.forEach((el, i) => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; e
+    revealEls.forEach((el, i) => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = `opacity 0.65s ease ${(i % 6) * 0.1}s, transform 0.65s ease ${(i % 6) * 0.1}s`; });
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+    const y = document.getElementById('footer-year'); if (y) y.textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Scroll progress
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+      }, { passive: true });
+    })();
+    // Custom cursor (desktop only)
+    (function () {
+      var dot = document.getElementById('cursor-dot');
+      var ring = document.getElementById('cursor-ring');
+      if (!dot || !ring || window.matchMedia('(pointer: coarse)').matches) return;
+      document.body.classList.add('has-custom-cursor');
+      var rx = 0, ry = 0;
+      document.addEventListener('mousemove', function (e) {
+        dot.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+        rx += (e.clientX - rx) * 0.12;
+        ry += (e.clientY - ry) * 0.12;
+      });
+      (function animRing() {
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+        requestAnimationFrame(animRing);
+      })();
+      document.querySelectorAll('a,button').forEach(function (el) {
+        el.addEventListener('mouseenter', function () { ring.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function () { ring.classList.remove('cursor-hover'); });
+      });
+    })();
+  </script>
+</body>
+
+</html>
