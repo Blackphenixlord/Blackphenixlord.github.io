@@ -8,7 +8,7 @@
     <meta name="description" content="Joshua Collado's internship experience — NASA HUNCH, Nerdvana, and UTRGV." />
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="style.css?v=20260512-5" />
+    <link rel="stylesheet" href="style.css?v=20260512-6" />
     <link rel="stylesheet" href="icons.css?v=20260509-1" />
     <link
         href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
@@ -386,7 +386,9 @@
         localStorage.setItem('tweak-scrollbar', this.checked ? '1' : '0');
       });
       (function restore() {
+        var validColors = ['green','red','yellow','cyan'];
         var color = localStorage.getItem('tweak-color') || 'green';
+        if (validColors.indexOf(color) === -1) color = 'green';
         var sc = panel.querySelector('[data-color="'+color+'"]');
         if (sc) { panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); }); sc.classList.add('active'); if (color !== 'green') applyColor(color); }
 
