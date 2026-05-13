@@ -3521,3 +3521,245 @@ a {
     padding: 1.5rem;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   AWWWARDS-INSPIRED UPGRADES
+   Custom cursor · Scroll progress · Projects page · CTA strip
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll Progress Bar ────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #28c840, #4aff6e);
+  z-index: 9999;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ── Custom Cursor ──────────────────────────────────────────────── */
+.cursor-dot,
+.cursor-ring {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.has-custom-cursor * { cursor: none !important; }
+.has-custom-cursor .cursor-dot,
+.has-custom-cursor .cursor-ring { display: block; }
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #28c840;
+  transition: opacity 0.2s;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(40, 200, 64, 0.6);
+  transition: width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s;
+}
+.cursor-ring.cursor-hover {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(40, 200, 64, 0.9);
+  background: rgba(40, 200, 64, 0.06);
+}
+
+/* ── Noise Texture on Heroes ────────────────────────────────────── */
+.projects-hero-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── Projects Filter Bar ────────────────────────────────────────── */
+.projects-filter-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 28px 24px 8px;
+  border-bottom: 1px solid #1a3a1a;
+}
+.filter-btn {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.78rem;
+  color: #a0aab4;
+  background: transparent;
+  border: 1px solid #1e2a1e;
+  border-radius: 100px;
+  padding: 7px 20px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  letter-spacing: 0.08em;
+}
+.filter-btn:hover {
+  color: #28c840;
+  border-color: rgba(40, 200, 64, 0.4);
+}
+.filter-btn.active {
+  color: #0d1117;
+  background: #28c840;
+  border-color: #28c840;
+  font-weight: 700;
+}
+
+/* ── Projects Main List ─────────────────────────────────────────── */
+.projects-main {
+  padding: 0 40px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Project Row ────────────────────────────────────────────────── */
+.proj-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px;
+  gap: 32px;
+  align-items: start;
+  padding: 52px 0;
+  transition: opacity 0.4s, transform 0.4s;
+  position: relative;
+}
+.proj-row:hover .proj-title { color: #28c840; }
+
+/* reveal animation */
+.proj-row.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.proj-row.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.proj-number {
+  font-family: "Orbitron", monospace;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: rgba(40, 200, 64, 0.12);
+  line-height: 1;
+  user-select: none;
+  transition: color 0.3s;
+  padding-top: 6px;
+}
+.proj-row:hover .proj-number { color: rgba(40, 200, 64, 0.3); }
+
+.proj-body { min-width: 0; }
+
+.proj-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.proj-org {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.75rem;
+  color: #28c840;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.proj-year {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.72rem;
+  color: #4a5568;
+  letter-spacing: 0.06em;
+}
+
+.proj-title {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #e8f5e9;
+  margin: 0 0 14px;
+  letter-spacing: 0.02em;
+  transition: color 0.25s;
+  line-height: 1.2;
+}
+
+.proj-desc {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.84rem;
+  color: #7a8a7a;
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 600px;
+}
+
+.proj-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.proj-tag {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.72rem;
+  color: #28c840;
+  border: 1px solid rgba(40, 200, 64, 0.25);
+  background: rgba(40, 200, 64, 0.05);
+  padding: 4px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+}
+
+.proj-outcome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.76rem;
+  color: #a0aab4;
+}
+
+.proj-accent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity 0.3s, transform 0.5s;
+}
+.proj-row:hover .proj-accent {
+  opacity: 1;
+  transform: scale(1.08) rotate(8deg);
+}
+.proj-accent svg { width: 80px; height: 80px; }
+
+.proj-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #1a3a1a 20%, #1a3a1a 80%, transparent);
+}
+
+/* ── Projects CTA Strip ─────────────────────────────────────────── */
+.projects-cta-strip {
+  background: #070b12;
+  border-top: 1px solid #1a3a1a;
+  padding: 80px 40px;
+  text-align: center;
+}
+.projects-cta-label {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.78rem;
+  color: #28c840;
+  letter-spacing: 0.14em;
+  margin: 0 0 12px;
+}
+.projects-cta-title {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(1.6rem, 4v

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Joshua Collado</title>
+  <meta name="description" content="Work samples and projects by Joshua Collado — NASA HUNCH, VR Training, Project Evie, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=20260512-2" />
+  <link rel="stylesheet" href="icons.css?v=20260509-1" />
+</head>
+<body>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="4" fill="#0a0e1a" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" />
+        <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
+        <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
+        <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55">&#x258C;</text>
+      </svg>
+      <span class="nav-brand">Joshua Collado</span>
+    </div>
+    <ul class="nav-links" id="nav-links-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="internships.html">Internships</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
+    <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
+      aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
+  </nav>
+
+  <!-- CONTEXT MENU -->
+  <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
+    <ul class="context-menu-list">
+      <li><a class="context-menu-link" href="index.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" /></svg><span class="context-menu-label">Home</span></a></li>
+      <li><a class="context-menu-link" href="about.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" /></svg><span class="context-menu-label">About</span></a></li>
+      <li><a class="context-menu-link" href="projects.html" aria-current="page"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="context-menu-label">Projects</span></a></li>
+      <li><a class="context-menu-link" href="internships.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /></svg><span class="context-menu-label">Internships</span></a></li>
+      <li><a class="context-menu-link" href="resume.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H7z" /><path d="M15 3v5h4" /><path d="M9.5 12h5M9.5 16h5" /></svg><span class="context-menu-label">Resume</span></a></li>
+      <li><a class="context-menu-link" href="contact.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" /><path d="m4 8 8 6 8-6" /></svg><span class="context-menu-label">Contact</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero" id="main-content" aria-label="Work Samples">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="projects-hero-noise" aria-hidden="true"></div>
+    <p class="section-label" aria-hidden="true">03 &middot; selected work</p>
+    <h1 class="page-hero-title">Work Samples</h1>
+    <p class="page-hero-sub">Projects that pushed limits — national finals, lab visits, and real impact.</p>
+    <div class="page-hero-tags">
+      <span>3 Featured Projects</span>
+      <span>2025 – 2027</span>
+      <span>AI · VR · Full-Stack</span>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="projects-filter-bar" role="group" aria-label="Filter projects by category">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="ai">AI</button>
+    <button class="filter-btn" data-filter="vr">VR</button>
+    <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+    <button class="filter-btn" data-filter="nasa">NASA</button>
+  </div>
+
+  <!-- PROJECTS LIST -->
+  <main class="projects-main container" id="projects-list" aria-label="Project list">
+
+    <!-- PROJECT 01 -->
+    <article class="proj-row reveal" data-categories="fullstack nasa" aria-label="Project: Inventory Chain System">
+      <div class="proj-number" aria-hidden="true">01</div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-org">NASA HUNCH</span>
+          <span class="proj-year">2025 – 2026</span>
+        </div>
+        <h2 class="proj-title">Inventory Chain System</h2>
+        <p class="proj-desc">
+          A full-stack inventory tracking workflow built for NASA's Human Exploration & Operations division.
+          Covers UI, real-time data flow, and multi-team collaboration — advanced to the Houston finals and
+          presented directly to NASA representatives.
+        </p>
+        <div class="proj-tags-row" aria-label="Technologies used">
+          <span class="proj-tag">Full-Stack</span>
+          <span class="proj-tag">Hardware</span>
+          <span class="proj-tag">NASA</span>
+          <span class="proj-tag">Systems Design</span>
+        </div>
+        <div class="proj-outcome">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="#28c840" fill="none" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Advanced to Houston finals · Presented to NASA reps
+        </div>
+      </div>
+      <div class="proj-accent" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="40" cy="40" r="38" stroke="#28c840" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+          <path d="M12 40 C12 24 24 12 40 12" stroke="#28c840" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="40" cy="12" r="3" fill="#28c840" opacity="0.8"/>
+          <path d="M28 40 L52 40 M40 28 L40 52" stroke="#28c840" stroke-width="1" opacity="0.4"/>
+          <rect x="34" y="34" width="12" height="12" rx="2" stroke="#28c840" stroke-width="1.2" opacity="0.7"/>
+        </svg>
+      </div>
+    </article>
+
+    <div class="proj-divider" aria-hidden="true"></div>
+
+    <!-- PROJECT 02 -->
+    <article class="proj-row reveal" data-categories="vr" aria-label="Project: VR Training Experience">
+      <div class="proj-number" aria-hidden="true">02</div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-org">Los Alamos Lab</span>
+          <span class="proj-year">2025 – 2026</span>
+        </div>
+        <h2 class="proj-title">VR Training Experience</h2>
+        <p class="proj-desc">
+          A virtual reality training simulation designed for immersive, hands-on instruction in a research
+          environment. Built in collaboration with scientists at one of the US government's top national labs —
+          the only student selected for an in-person visit to Los Alamos National Laboratory.
+        </p>
+        <div class="proj-tags-row" aria-label="Technologies used">
+          <span class="proj-tag">VR / XR</span>
+          <span class="proj-tag">Hardware</span>
+          <span class="proj-tag">Research</span>
+          <span class="proj-tag">Simulation</span>
+        </div>
+        <div class="proj-outcome">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="#28c840" fill="none" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Only student invited · Visit to Los Alamos National Laboratory
+        </div>
+      </div>
+      <div class="proj-accent" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="40" cy="40" rx="36" ry="22" stroke="#28c840" stroke-width="1" opacity="0.3"/>
+          <ellipse cx="40" cy="40" rx="20" ry="12" stroke="#28c840" stroke-width="1" opacity="0.5"/>
+          <circle cx="40" cy="40" r="5" stroke="#28c840" stroke-width="1.5" fill="none" opacity="0.8"/>
+          <line x1="4" y1="40" x2="76" y2="40" stroke="#28c840" stroke-width="0.8" opacity="0.25"/>
+        </svg>
+      </div>
+    </article>
+
+    <div class="proj-divider" aria-hidden="true"></div>
+
+    <!-- PROJECT 03 -->
+    <article class="proj-row reveal" data-categories="ai" aria-label="Project: Project Evie">
+      <div class="proj-number" aria-hidden="true">03</div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-org">Capstone / Personal</span>
+          <span class="proj-year">2026 – 2027</span>
+        </div>
+        <h2 class="proj-title">Project Evie</h2>
+        <p class="proj-desc">
+          A personal AI assistant that bridges Android and Windows into a single automation layer — controlling
+          apps, routines, and devices from one unified interface. Establishing the foundation for a fully
+          AI-powered home control and productivity system.
+        </p>
+        <div class="proj-tags-row" aria-label="Technologies used">
+          <span class="proj-tag">AI</span>
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Automation</span>
+          <span class="proj-tag">Cross-Platform</span>
+        </div>
+        <div class="proj-outcome">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="#28c840" fill="none" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+          In progress · Capstone project 2026–2027
+        </div>
+      </div>
+      <div class="proj-accent" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="15" y="15" width="50" height="50" rx="4" stroke="#28c840" stroke-width="1" opacity="0.2"/>
+          <rect x="24" y="24" width="32" height="32" rx="3" stroke="#28c840" stroke-width="1" opacity="0.4"/>
+          <circle cx="40" cy="40" r="8" stroke="#28c840" stroke-width="1.5" opacity="0.8"/>
+          <line x1="40" y1="15" x2="40" y2="25" stroke="#28c840" stroke-width="1" opacity="0.5"/>
+          <line x1="40" y1="55" x2="40" y2="65" stroke="#28c840" stroke-width="1" opacity="0.5"/>
+          <line x1="15" y1="40" x2="25" y2="40" stroke="#28c840" stroke-width="1" opacity="0.5"/>
+          <line x1="55" y1="40" x2="65" y2="40" stroke="#28c840" stroke-width="1" opacity="0.5"/>
+        </svg>
+      </div>
+    </article>
+
+    <div class="proj-divider" aria-hidden="true"></div>
+
+  </main>
+
+  <!-- CTA STRIP -->
+  <section class="projects-cta-strip" aria-label="See more work">
+    <div class="container">
+      <p class="projects-cta-label" aria-hidden="true">// more in depth</p>
+      <h2 class="projects-cta-title">See the Internships</h2>
+      <p class="projects-cta-sub">NASA HUNCH, Nerdvana, and UTRGV — with photos, roles, and context.</p>
+      <a href="internships.html" class="hero-btn-primary">View Internships &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
+        style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+  </footer>
+
+  <script>
+    // Hamburger
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const btn = document.querySelector('.hamburger');
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+
+    // Context menu
+    (function () {
+      const menu = document.getElementById('custom-context-menu');
+      if (!menu) return;
+      let closeTimer = null;
+      const closeMenu = () => {
+        if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
+        menu.classList.remove('opening');
+        menu.classList.add('closing');
+        setTimeout(() => { menu.classList.remove('open', 'closing'); }, 250);
+      };
+      document.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        clearTimeout(closeTimer);
+        const vw = window.innerWidth, vh = window.innerHeight;
+        let x = e.clientX, y = e.clientY;
+        menu.classList.add('open', 'opening');
+        const mw = menu.offsetWidth, mh = menu.offsetHeight;
+        if (x + mw > vw - 12) x = vw - mw - 12;
+        if (y + mh > vh - 12) y = vh - mh - 12;
+        menu.style.left = x + 'px'; menu.style.top = y + 'px';
+        setTimeout(() => menu.classList.remove('opening'), 300);
+      });
+      document.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    })();
+
+    // Scroll progress bar
+    (function () {
+      const bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+      }, { passive: true });
+    })();
+
+    // Custom cursor
+    (function () {
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if (!dot || !ring || window.matchMedia('(pointer: coarse)').matches) return;
+      document.body.classList.add('has-custom-cursor');
+      let rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => {
+        dot.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+        rx += (e.clientX - rx) * 0.12;
+        ry += (e.clientY - ry) * 0.12;
+      });
+      function animRing() {
+        ring.style.transform = `translate(${rx}px,${ry}px)`;
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+      document.querySelectorAll('a,button,.filter-btn,.proj-row').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('cursor-hover'));
+      });
+    })();
+
+    // Filter
+    (function () {
+      const btns = document.querySelectorAll('.filter-btn');
+      const rows = document.querySelectorAll('.proj-row');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const f = btn.dataset.filter;
+          rows.forEach(row => {
+            const cats = (row.dataset.categories || '').split(' ');
+            const show = f === 'all' || cats.includes(f);
+            row.style.opacity = show ? '' : '0.25';
+            row.style.pointerEvents = show ? '' : 'none';
+          });
+        });
+      });
+    })();
+
+    // Reveal on scroll
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      els.forEach(el => obs.observe(el));
+    })();
+
+    // Footer year
+    const y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
