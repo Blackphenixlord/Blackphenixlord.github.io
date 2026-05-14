@@ -52,13 +52,13 @@
     <div class="nav-logo">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="4" fill="#0a0e1a" />
-        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" />
-        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" class="la-stroke" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" class="la-fill-tint" />
         <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
         <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
         <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
-        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840">JC</text>
-        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55">&#x258C;</text>
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840" class="la-fill">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55" class="la-fill">&#x258C;</text>
       </svg>
       <span class="nav-brand">Joshua Collado</span>
     </div>
@@ -95,21 +95,21 @@
           <svg class="hero-logo" width="160" height="160" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <!-- Body -->
             <rect width="100" height="100" rx="12" fill="#0d1117" />
-            <rect x="1" y="1" width="98" height="98" rx="11" fill="none" stroke="#28c840" stroke-width="2" />
+            <rect x="1" y="1" width="98" height="98" rx="11" fill="none" stroke="#28c840" stroke-width="2" class="la-stroke" />
             <!-- Title bar -->
-            <rect x="0" y="0" width="100" height="23" rx="12" fill="#28c840" fill-opacity="0.10" />
-            <rect x="0" y="11" width="100" height="12" fill="#28c840" fill-opacity="0.10" />
-            <line x1="0" y1="23" x2="100" y2="23" stroke="#28c840" stroke-width="0.6" stroke-opacity="0.25" />
+            <rect x="0" y="0" width="100" height="23" rx="12" fill="#28c840" fill-opacity="0.10" class="la-fill-tint" />
+            <rect x="0" y="11" width="100" height="12" fill="#28c840" fill-opacity="0.10" class="la-fill-tint" />
+            <line x1="0" y1="23" x2="100" y2="23" stroke="#28c840" stroke-width="0.6" stroke-opacity="0.25" class="la-stroke" />
             <!-- Traffic lights -->
             <circle cx="13" cy="11.5" r="3.6" fill="#ff5f57" />
             <circle cx="25" cy="11.5" r="3.6" fill="#febc2e" />
             <circle cx="37" cy="11.5" r="3.6" fill="#28c840" />
             <!-- JC -->
-            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#28c840">JC</text>
+            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#28c840" class="la-fill">JC</text>
             <!-- Separator -->
-            <line x1="11" y1="78" x2="89" y2="78" stroke="#28c840" stroke-width="1.4" stroke-opacity="0.55" />
+            <line x1="11" y1="78" x2="89" y2="78" stroke="#28c840" stroke-width="1.4" stroke-opacity="0.55" class="la-stroke" />
             <!-- ./engineer -->
-            <text x="11" y="92" font-family="monospace" font-size="10" fill="#1fa830">./engineer</text>
+            <text x="11" y="92" font-family="monospace" font-size="10" fill="#1fa830" class="la-fill-dim">./engineer</text>
           </svg>
           <div class="logo-scanline"></div>
         </div>
@@ -968,6 +968,11 @@
           'a:hover { color: '+h+' !important; }'
                 ].join('\n');
         localStorage.setItem('tweak-color', name);
+        // Update logo SVG accent elements
+        document.querySelectorAll('.la-stroke').forEach(function(el){ el.setAttribute('stroke', h); });
+        document.querySelectorAll('.la-fill').forEach(function(el){ el.setAttribute('fill', h); });
+        document.querySelectorAll('.la-fill-tint').forEach(function(el){ el.setAttribute('fill', h); });
+        document.querySelectorAll('.la-fill-dim').forEach(function(el){ el.setAttribute('fill', h); });
       }
       panel.querySelectorAll('.tweaks-swatch').forEach(function(sw) {
         sw.addEventListener('click', function() {
