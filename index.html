@@ -216,9 +216,6 @@
           <span class="terminal-status" aria-hidden="true"><span class="terminal-status-dot"></span>live</span>
         </div>
 
-        <!-- scanline overlay -->
-        <div class="terminal-scanline" aria-hidden="true"></div>
-
         <!-- typed output -->
         <div class="intro-body" id="terminal-output" aria-live="polite"></div>
 
@@ -969,8 +966,7 @@
           '.nav-shortcut-hint { background: '+h+'12 !important; border-color: '+h+'44 !important; color: '+h+' !important; }',
           '.cp-input { caret-color: '+h+' !important; }',
           'a:hover { color: '+h+' !important; }'
-        ].join('
-');
+                ].join('\n');
         localStorage.setItem('tweak-color', name);
       }
       panel.querySelectorAll('.tweaks-swatch').forEach(function(sw) {
