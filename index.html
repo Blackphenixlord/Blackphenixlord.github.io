@@ -9,7 +9,7 @@
     content="Joshua Collado — Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, and RECON Technologies." />
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="style.css?v=20260512-6" />
+  <link rel="stylesheet" href="style.css?v=20260513-1" />
   <link rel="stylesheet" href="icons.css?v=20260509-1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
@@ -329,10 +329,10 @@
       </p>
       <div class="video-placeholder">
         <div class="video-placeholder-inner">
-          <svg viewBox="0 0 24 24" width="48" height="48" stroke="#28c840" fill="none" stroke-width="1.5"
+          <svg viewBox="0 0 24 24" width="48" height="48" stroke="var(--accent)" fill="none" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10" />
-            <polygon points="10 8 16 12 10 16 10 8" fill="#28c840" stroke="none" />
+            <polygon points="10 8 16 12 10 16 10 8" fill="var(--accent)" stroke="none" />
           </svg>
           <p>Video coming soon</p>
           <span>// personal intro reel</span>
@@ -416,7 +416,7 @@
 
   <footer class="footer">
     <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
-        style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+        style="color:var(--accent)">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
   </footer>
 
 
@@ -607,15 +607,15 @@
 
       // ── Interactive prompt commands ─────────────────────────────────────────
       const COMMANDS = {
-        whoami: '<span style="color:#28c840">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.',
+        whoami: '<span style="color:var(--accent)">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.',
         skills: '<span style="color:#a0aab4">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span style="color:#a0aab4">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span style="color:#a0aab4">Focus:</span> AI · Automation · Security',
         contact: 'Email: <a href="mailto:joshuacollado656@gmail.com" style="color:#28c840;text-decoration:underline">joshuacollado656@gmail.com</a><br>Or head to the <a href="contact.html" style="color:#28c840;text-decoration:underline">Contact</a> page.',
         projects: 'RECON Technologies · City of Progresso Civic Platform<br>NASA HUNCH · Inventory Chain System (Houston finals)<br>Los Alamos Lab · VR Training Experience<br>Project Evie · AI Home Automation (in progress)',
-        help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:#28c840">whoami</span> · <span style="color:#28c840">skills</span> · <span style="color:#28c840">contact</span> · <span style="color:#28c840">projects</span> · <span style="color:#28c840">clear</span> · <span style="color:#28c840">reset</span> · <span style="color:#28c840">help</span>',
+        help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:var(--accent)">whoami</span> · <span style="color:var(--accent)">skills</span> · <span style="color:var(--accent)">contact</span> · <span style="color:var(--accent)">projects</span> · <span style="color:var(--accent)">clear</span> · <span style="color:var(--accent)">reset</span> · <span style="color:var(--accent)">help</span>',
         clear: '__CLEAR__',
         reset: '__RESET__',
-        hello: '<span style="color:#28c840">Hey! 👋</span> Thanks for stopping by.',
-        hi: '<span style="color:#28c840">Hey! 👋</span> Thanks for stopping by.',
+        hello: '<span style="color:var(--accent)">Hey! 👋</span> Thanks for stopping by.',
+        hi: '<span style="color:var(--accent)">Hey! 👋</span> Thanks for stopping by.',
       };
 
       function focusInput() {
@@ -702,7 +702,7 @@
         } else if (resp) {
           appendResponse(resp);
         } else {
-          appendResponse('<span style="color:#ff5f57">command not found:</span> ' + cmd + ' &nbsp;— try <span style="color:#28c840">help</span>');
+          appendResponse('<span style="color:#ff5f57">command not found:</span> ' + cmd + ' &nbsp;— try <span style="color:var(--accent)">help</span>');
         }
         output.scrollTop = output.scrollHeight;
       });
