@@ -1,17 +1,17 @@
 .icon-svg {
   display: block;
   margin: 0 auto 14px;
-  stroke: #28c840;
+  stroke: var(--accent);
   fill: none;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
   width: 48px;
   height: 48px;
-  filter: drop-shadow(0 0 6px #28c84055);
+  filter: drop-shadow(0 0 6px rgba(var(--accent-rgb),0.33));
 }
 .resume-block-header svg {
-  stroke: #28c840;
+  stroke: var(--accent);
   fill: none;
   stroke-width: 1.8;
   stroke-linecap: round;
@@ -22,7 +22,7 @@
   position: relative; top: -1px;
 }
 .skill-tag svg {
-  stroke: #28c840;
+  stroke: var(--accent);
   fill: none;
   stroke-width: 1.8;
   stroke-linecap: round;
