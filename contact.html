@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,15 +15,71 @@
     rel="stylesheet" />
 
   <style>
+    /* ── Matrix canvas ─────────────────────────────────────────────────────── */
+    #matrix-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 1;
+    }
+
+    /* ── Ensure all content sits above canvas ────────────────────────────── */
+    .navbar, .custom-context-menu, .contact-page-header,
+    .contact-terminal, main, footer,
+    .cp-overlay, .tweaks-fab, .tweaks-panel,
+    .scroll-progress, .cursor-dot, .cursor-ring,
+    .skip-link { position: relative; z-index: 1; }
+
+    /* ── Page header ────────────────────────────────────────────────────────── */
+    .contact-page-header {
+      max-width: 1060px;
+      margin: 6rem auto 0;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .contact-page-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent, #00ff41);
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+      display: block;
+    }
+    .contact-page-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.6rem, 7vw, 4.5rem);
+      font-weight: 900;
+      color: #e6edf3;
+      margin: 0 0 0.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .contact-page-title .blink-cursor {
+      color: var(--accent, #00ff41);
+      animation: blink-cursor 1s step-end infinite;
+    }
+    @keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }
+    .contact-page-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      color: #7b8a92;
+      margin: 0;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
     /* ── Terminal intro banner ──────────────────────────────────────────── */
     .contact-terminal {
       max-width: 1060px;
-      margin: 6rem auto 0;
+      margin: 2rem auto 0;
       padding: 0 1.5rem;
     }
     .contact-terminal-box {
       background: #050810;
-      border: 1px solid rgba(40,200,64,0.18);
+      border: 1px solid rgba(var(--accent-rgb, 0,255,65),0.18);
       border-radius: 10px;
       overflow: hidden;
     }
@@ -37,11 +93,11 @@
     }
     .ct-dot-red  { width:11px;height:11px;border-radius:50%;background:#ff5f57;flex-shrink:0; }
     .ct-dot-yel  { width:11px;height:11px;border-radius:50%;background:#febc2e;flex-shrink:0; }
-    .ct-dot-grn  { width:11px;height:11px;border-radius:50%;background:#28c840;flex-shrink:0; }
+    .ct-dot-grn  { width:11px;height:11px;border-radius:50%;background:var(--accent,#00ff41);flex-shrink:0; }
     .ct-bar-title {
       font-family:'Share Tech Mono',monospace;
       font-size:0.72rem;
-      color:rgba(40,200,64,0.35);
+      color:rgba(0,255,65,0.35);
       margin-left:6px;
       letter-spacing:0.04em;
     }
@@ -57,14 +113,14 @@
       gap: 6px;
       flex-wrap: wrap;
     }
-    .ct-user  { color: #28c840; }
+    .ct-user  { color: var(--accent,#00ff41); }
     .ct-sep   { color: #4a5568; }
-    .ct-path  { color: #28c840; }
+    .ct-path  { color: var(--accent,#00ff41); }
     .ct-cmd   { color: #e6edf3; }
     .ct-output { color: #a0aab4; display:none; }
     .ct-cursor {
       display:inline-block;
-      color:#28c840;
+      color:var(--accent,#00ff41);
       animation: ct-blink 1s step-end infinite;
     }
     @keyframes ct-blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -90,53 +146,38 @@
       .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
     }
 
-    /* ── Left col: heading + cards + status ─────────────────────────────── */
+    /* ── Left col: cards + status ───────────────────────────────────────── */
     .contact-info-col {
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
-    }
-    .contact-info-heading {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.65rem;
-      font-weight: 900;
-      color: #e6edf3;
-      margin: 0 0 0.25rem;
-      line-height: 1.2;
-    }
-    .contact-info-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      color: #7b8a92;
-      margin: 0 0 1rem;
-      line-height: 1.6;
     }
     .contact-card {
       display: flex;
       align-items: center;
       gap: 1rem;
       background: #0d1117;
-      border: 1px solid rgba(40,200,64,0.12);
+      border: 1px solid rgba(var(--accent-rgb,0,255,65),0.12);
       border-radius: 10px;
       padding: 0.95rem 1.2rem;
       text-decoration: none;
       transition: border-color 0.2s, box-shadow 0.2s, transform 0.18s;
     }
     .contact-card:hover, .contact-card:focus-visible {
-      border-color: #28c840;
-      box-shadow: 0 0 18px rgba(40,200,64,0.12);
+      border-color: var(--accent,#00ff41);
+      box-shadow: 0 0 18px rgba(var(--accent-rgb,0,255,65),0.12);
       transform: translateX(4px);
       outline: none;
     }
     .contact-card-icon {
       flex-shrink:0; width:38px; height:38px;
-      background: rgba(40,200,64,0.08);
-      border: 1px solid rgba(40,200,64,0.2);
+      background: rgba(var(--accent-rgb,0,255,65),0.08);
+      border: 1px solid rgba(var(--accent-rgb,0,255,65),0.2);
       border-radius: 8px;
       display:flex; align-items:center; justify-content:center;
     }
     .contact-card-icon svg {
-      width:18px; height:18px; stroke:#28c840; fill:none;
+      width:18px; height:18px; stroke:var(--accent,#00ff41); fill:none;
       stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;
     }
     .contact-card-text { display:flex; flex-direction:column; gap:2px; min-width:0; }
@@ -159,7 +200,7 @@
     .contact-status-box {
       margin-top: 0.4rem;
       background: #050810;
-      border: 1px solid rgba(40,200,64,0.16);
+      border: 1px solid rgba(var(--accent-rgb,0,255,65),0.16);
       border-radius: 10px;
       overflow: hidden;
     }
@@ -171,7 +212,7 @@
     }
     .contact-status-dot-red { width:10px;height:10px;border-radius:50%;background:#ff5f57; }
     .contact-status-dot-yel { width:10px;height:10px;border-radius:50%;background:#febc2e; }
-    .contact-status-dot-grn { width:10px;height:10px;border-radius:50%;background:#28c840; }
+    .contact-status-dot-grn { width:10px;height:10px;border-radius:50%;background:var(--accent,#00ff41); }
     .contact-status-title {
       font-family:'Share Tech Mono',monospace;
       font-size:0.7rem; color:#4a5568; margin-left:4px;
@@ -179,26 +220,31 @@
     .contact-status-body {
       padding:14px 16px;
       font-family:'Share Tech Mono',monospace;
-      font-size:0.82rem; line-height:1.8;
+      font-size:0.82rem; line-height:2;
     }
-    .contact-status-cmd { color:#4a5568; }
+    .contact-status-cmd { color:#4a5568; margin-bottom: 4px; }
     .contact-status-cmd span { color:#a0aab4; }
-    .contact-status-result { color:#28c840; display:flex; align-items:center; gap:8px; }
+    .contact-status-result {
+      color:var(--accent,#00ff41);
+      display:flex; align-items:center; gap:8px;
+    }
+    .contact-status-result.dimmed { color: rgba(0,255,65,0.7); }
     .status-indicator {
       display:inline-block; width:8px; height:8px; border-radius:50%;
-      background:#28c840; box-shadow:0 0 6px #28c840;
+      background:var(--accent,#00ff41); box-shadow:0 0 6px var(--accent,#00ff41);
       animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0;
     }
     @keyframes pulse-dot {
-      0%,100%{opacity:1;box-shadow:0 0 6px #28c840}
-      50%{opacity:0.6;box-shadow:0 0 12px #28c840}
+      0%,100%{opacity:1;box-shadow:0 0 6px var(--accent,#00ff41)}
+      50%{opacity:0.6;box-shadow:0 0 12px var(--accent,#00ff41)}
     }
+    .status-gt { color: #4a5568; margin-right: 4px; }
 
     /* ── Form ────────────────────────────────────────────────────────────── */
     .contact-form-col { display:flex; flex-direction:column; }
     .contact-form {
       background: #0d1117;
-      border: 1px solid rgba(40,200,64,0.12);
+      border: 1px solid rgba(var(--accent-rgb,0,255,65),0.12);
       border-radius: 12px;
       padding: 2.2rem 2rem 2rem;
     }
@@ -211,18 +257,18 @@
     .form-group { margin-bottom: 1.4rem; }
     .form-label {
       display:block;
-      font-family:'Inter',sans-serif;
-      font-size:0.78rem;
-      font-weight:600;
-      color:#7b8a92;
-      margin-bottom:7px;
-      letter-spacing:0.03em;
-      text-transform:uppercase;
+      font-family:'Share Tech Mono',monospace;
+      font-size:0.82rem;
+      font-weight:400;
+      color:var(--accent,#00ff41);
+      margin-bottom:8px;
+      letter-spacing:0.04em;
+      opacity: 0.85;
     }
     .form-input, .form-textarea {
       display:block; width:100%; box-sizing:border-box;
       background: #080c14;
-      border: 1px solid rgba(40,200,64,0.18);
+      border: 1px solid rgba(var(--accent-rgb,0,255,65),0.18);
       border-radius: 8px;
       color: #e6edf3;
       font-family: 'Inter', sans-serif;
@@ -230,53 +276,59 @@
       padding: 0.78rem 1rem;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
-      caret-color: #28c840;
+      caret-color: var(--accent,#00ff41);
     }
-    .form-input::placeholder, .form-textarea::placeholder { color:#2a3a2a; }
+    .form-input::placeholder, .form-textarea::placeholder { color:#1e2e1e; }
     .form-input:focus, .form-textarea:focus {
-      border-color: #28c840;
-      box-shadow: 0 0 0 3px rgba(40,200,64,0.1);
+      border-color: var(--accent,#00ff41);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb,0,255,65),0.1),
+                  0 0 16px rgba(var(--accent-rgb,0,255,65),0.06);
     }
-    .form-textarea { resize:vertical; min-height:130px; }
+    .form-textarea { resize:vertical; min-height:140px; }
     .form-submit {
       width:100%; margin-top:0.4rem;
       padding:0.9rem 1.5rem;
-      background: #28c840;
+      background: var(--accent,#00ff41);
       border: none;
       border-radius: 8px;
       color: #0a0e1a;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.98rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.05em;
       cursor: pointer;
       transition: box-shadow 0.2s, transform 0.15s, background 0.2s;
     }
     .form-submit:hover, .form-submit:focus-visible {
       background: #32d44a;
-      box-shadow: 0 0 22px rgba(40,200,64,0.35);
+      box-shadow: 0 0 28px rgba(var(--accent-rgb,0,255,65),0.4);
       transform: translateY(-2px);
       outline:none;
     }
     .form-submit:active { transform:translateY(0); }
     .form-success {
       display:none; margin-top:1rem; padding:0.8rem 1rem;
-      background:rgba(40,200,64,0.07);
-      border:1px solid rgba(40,200,64,0.25);
+      background:rgba(var(--accent-rgb,0,255,65),0.07);
+      border:1px solid rgba(var(--accent-rgb,0,255,65),0.25);
       border-radius:8px;
-      font-family:'Inter',sans-serif;
-      font-size:0.88rem; color:#28c840; text-align:center;
+      font-family:'Share Tech Mono',monospace;
+      font-size:0.88rem; color:var(--accent,#00ff41); text-align:center;
     }
   </style>
 </head>
 
 <body>
+  <!-- MATRIX RAIN CANVAS -->
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- SCROLL PROGRESS -->
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <!-- CUSTOM CURSOR -->
   <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-logo">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -304,6 +356,7 @@
       aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
 
+  <!-- CONTEXT MENU -->
   <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
     <ul class="context-menu-list">
       <li><a class="context-menu-link" href="index.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" /></svg><span class="context-menu-label">Home</span></a></li>
@@ -314,21 +367,28 @@
     </ul>
   </nav>
 
+  <!-- PAGE HEADER -->
+  <header class="contact-page-header" id="main-content">
+    <span class="contact-page-tag">// get in touch</span>
+    <h1 class="contact-page-title">Contact<span class="blink-cursor">_</span></h1>
+    <p class="contact-page-subtitle">let's build something together</p>
+  </header>
+
   <!-- TERMINAL INTRO -->
-  <div class="contact-terminal" id="main-content" aria-hidden="true">
+  <div class="contact-terminal" aria-hidden="true">
     <div class="contact-terminal-box">
       <div class="contact-terminal-bar">
         <span class="ct-dot-red"></span>
         <span class="ct-dot-yel"></span>
         <span class="ct-dot-grn"></span>
-        <span class="ct-bar-title">joshua@collado — bash — 80×24</span>
+        <span class="ct-bar-title">joshua@portfolio — bash — 80×24</span>
       </div>
       <div class="contact-terminal-body">
         <div class="ct-prompt">
-          <span class="ct-user">joshua</span><span class="ct-sep">@</span><span class="ct-path">collado</span><span class="ct-sep">:~$</span>
+          <span class="ct-user">joshua</span><span class="ct-sep">@</span><span class="ct-path">portfolio</span><span class="ct-sep">:~$</span>
           <span class="ct-cmd" id="ct-cmd-text"></span><span class="ct-cursor" id="ct-cursor">|</span>
         </div>
-        <div class="ct-output" id="ct-output">Launching contact interface... <span style="color:#28c840">[ OK ]</span></div>
+        <div class="ct-output" id="ct-output">Launching contact interface... <span style="color:var(--accent,#00ff41)">[ OK ]</span></div>
       </div>
     </div>
   </div>
@@ -336,13 +396,11 @@
   <!-- TWO-COLUMN LAYOUT -->
   <main class="contact-layout" id="contact-layout" aria-label="Contact information and form">
 
-    <!-- LEFT: heading + cards + status -->
+    <!-- LEFT: cards + status -->
     <div class="contact-info-col">
-      <h1 class="contact-info-heading">Get in touch.</h1>
-      <p class="contact-info-sub">Have a project, question, or just want to connect? I usually respond within a day.</p>
 
       <!-- Email card -->
-      <a href="mailto:joshuacollado656@gmail.com" class="contact-card" aria-label="Email Joshua Collado">
+      <a href="mailto:joshuacollado636@gmail.com" class="contact-card" aria-label="Email Joshua Collado">
         <div class="contact-card-icon">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="6" width="18" height="12" rx="2" />
@@ -351,7 +409,7 @@
         </div>
         <div class="contact-card-text">
           <span class="contact-card-label">Email</span>
-          <span class="contact-card-value">joshuacollado656@gmail.com</span>
+          <span class="contact-card-value">joshuacollado636@gmail.com</span>
         </div>
       </a>
 
@@ -371,7 +429,7 @@
       </a>
 
       <!-- LinkedIn card -->
-      <a href="https://linkedin.com/in/joshuacollado" target="_blank" rel="noopener noreferrer" class="contact-card"
+      <a href="https://linkedin.com/in/joshua-collado" target="_blank" rel="noopener noreferrer" class="contact-card"
         aria-label="LinkedIn profile">
         <div class="contact-card-icon">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -382,7 +440,7 @@
         </div>
         <div class="contact-card-text">
           <span class="contact-card-label">LinkedIn</span>
-          <span class="contact-card-value">linkedin.com/in/joshuacollado</span>
+          <span class="contact-card-value">linkedin.com/in/joshua-collado</span>
         </div>
       </a>
 
@@ -392,13 +450,24 @@
           <span class="contact-status-dot-red"></span>
           <span class="contact-status-dot-yel"></span>
           <span class="contact-status-dot-grn"></span>
-          <span class="contact-status-title">joshua@collado:~</span>
+          <span class="contact-status-title">joshua@portfolio:~</span>
         </div>
         <div class="contact-status-body">
-          <div class="contact-status-cmd"><span style="color:#2a6a3a">joshua@collado</span><span style="color:#4a5568">:~$</span> <span style="color:#a0aab4">status</span></div>
+          <div class="contact-status-cmd">
+            <span style="color:#2a6a3a">joshua@portfolio</span><span style="color:#4a5568">:~$</span>
+            <span style="color:#a0aab4"> status</span>
+          </div>
           <div class="contact-status-result">
             <span class="status-indicator" aria-hidden="true"></span>
-            Available for opportunities &middot; 2026
+            <span><span class="status-gt">&gt;</span> available for opportunities</span>
+          </div>
+          <div class="contact-status-result dimmed">
+            <span style="width:8px;flex-shrink:0"></span>
+            <span><span class="status-gt">&gt;</span> open to internships</span>
+          </div>
+          <div class="contact-status-result dimmed">
+            <span style="width:8px;flex-shrink:0"></span>
+            <span><span class="status-gt">&gt;</span> response time: 24-48hrs</span>
           </div>
         </div>
       </div>
@@ -412,30 +481,30 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="contact-name">Name</label>
+            <label class="form-label" for="contact-name">&gt; your_name</label>
             <input class="form-input" type="text" id="contact-name" name="name" required
-              autocomplete="name" placeholder="Joshua Collado" />
+              autocomplete="name" data-placeholder="Joshua Collado" placeholder="" />
           </div>
           <div class="form-group">
-            <label class="form-label" for="contact-email">Email</label>
+            <label class="form-label" for="contact-email">&gt; your_email</label>
             <input class="form-input" type="email" id="contact-email" name="email" required
-              autocomplete="email" placeholder="you@example.com" />
+              autocomplete="email" data-placeholder="you@example.com" placeholder="" />
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="contact-subject">Subject</label>
+          <label class="form-label" for="contact-subject">&gt; subject</label>
           <input class="form-input" type="text" id="contact-subject" name="subject" required
-            placeholder="Let's work together" />
+            data-placeholder="let's work together" placeholder="" />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="contact-message">Message</label>
+          <label class="form-label" for="contact-message">&gt; message</label>
           <textarea class="form-textarea" id="contact-message" name="message" rows="6" required
-            placeholder="Hey Joshua, I wanted to reach out about..."></textarea>
+            data-placeholder="hey Joshua, I wanted to reach out about..." placeholder=""></textarea>
         </div>
 
-        <button class="form-submit" type="submit">Send Message</button>
+        <button class="form-submit" type="submit">send_message &#x2192;</button>
 
         <div class="form-success" id="form-success" role="alert" aria-live="polite">
           <span style="color:#00ff41">✓</span>&nbsp; Message sent! I'll get back to you soon.
@@ -448,125 +517,175 @@
 
   <footer class="footer">
     <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
-        style="color:#28c840">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+        style="color:var(--accent,#00ff41)">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
   </footer>
 
   <script>
+    // ── Matrix rain canvas ────────────────────────────────────────────────
+    (function () {
+      var canvas = document.getElementById('matrix-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var W, H, cols, drops;
+      var fontSize = 13;
+      var chars = '01ABCDEF0110100101JC'.split('');
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        cols  = Math.floor(W / fontSize);
+        drops = [];
+        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -50;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function draw() {
+        ctx.fillStyle = 'rgba(10,14,26,0.06)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = 'rgba(0,255,65,0.035)';
+        ctx.font = fontSize + 'px Share Tech Mono, monospace';
+        for (var i = 0; i < drops.length; i++) {
+          var c = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(c, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > H && Math.random() > 0.975) drops[i] = 0;
+          drops[i] += 0.5;
+        }
+      }
+      setInterval(draw, 60);
+    })();
+
     // ── Nav helpers ────────────────────────────────────────────────────────
     function toggleMenu() {
-      const links = document.querySelector('.nav-links');
-      const btn = document.querySelector('.hamburger');
-      const open = links.classList.toggle('open');
+      var links = document.querySelector('.nav-links');
+      var btn   = document.querySelector('.hamburger');
+      var open  = links.classList.toggle('open');
       btn.setAttribute('aria-expanded', open);
     }
 
     // ── Context menu ───────────────────────────────────────────────────────
     (function setupCustomContextMenu() {
-      const menu = document.getElementById('custom-context-menu');
+      var menu = document.getElementById('custom-context-menu');
       if (!menu) return;
-      let closeTimer = null;
-      const closeMenu = () => {
+      var closeTimer = null;
+      function closeMenu() {
         if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
         menu.classList.remove('opening');
         menu.classList.add('closing');
         window.clearTimeout(closeTimer);
-        closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140);
-      };
-      document.addEventListener('contextmenu', (e) => {
+        closeTimer = window.setTimeout(function () { menu.classList.remove('open', 'closing'); }, 140);
+      }
+      document.addEventListener('contextmenu', function (e) {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
         e.preventDefault();
         window.clearTimeout(closeTimer);
         menu.classList.remove('closing');
-        const mw = menu.offsetWidth || 190;
-        const mh = menu.offsetHeight || 140;
-        menu.style.left = `${Math.max(8, Math.min(e.clientX, window.innerWidth - mw - 8))}px`;
-        menu.style.top  = `${Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8))}px`;
+        var mw = menu.offsetWidth || 190, mh = menu.offsetHeight || 140;
+        menu.style.left = Math.max(8, Math.min(e.clientX, window.innerWidth  - mw - 8)) + 'px';
+        menu.style.top  = Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8)) + 'px';
         menu.classList.add('opening', 'open');
-        window.setTimeout(() => menu.classList.remove('opening'), 170);
+        window.setTimeout(function () { menu.classList.remove('opening'); }, 170);
       });
-      document.addEventListener('click', (e) => { if (!e.target.closest('#custom-context-menu')) closeMenu(); });
+      document.addEventListener('click',  function (e) { if (!e.target.closest('#custom-context-menu')) closeMenu(); });
       document.addEventListener('scroll', closeMenu, true);
-      window.addEventListener('resize', closeMenu);
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize',   closeMenu);
+      document.addEventListener('keydown',function (e) { if (e.key === 'Escape') closeMenu(); });
     })();
 
     // ── Footer year ────────────────────────────────────────────────────────
-    const yEl = document.getElementById('footer-year');
+    var yEl = document.getElementById('footer-year');
     if (yEl) yEl.textContent = new Date().getFullYear();
 
     // ── Terminal intro typewriter ─────────────────────────────────────────
     (function terminalIntro() {
-      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const cmdEl    = document.getElementById('ct-cmd-text');
-      const cursorEl = document.getElementById('ct-cursor');
-      const outputEl = document.getElementById('ct-output');
-      const layout   = document.getElementById('contact-layout');
+      var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var cmdEl    = document.getElementById('ct-cmd-text');
+      var cursorEl = document.getElementById('ct-cursor');
+      var outputEl = document.getElementById('ct-output');
+      var layout   = document.getElementById('contact-layout');
       if (!cmdEl || noMotion) {
         if (layout) layout.classList.add('visible');
         return;
       }
-
-      const command = 'open contact.html';
-      let i = 0;
-
+      var command = 'open contact.html';
+      var i = 0;
       function typeCmd() {
         if (i < command.length) {
           cmdEl.textContent += command[i++];
           setTimeout(typeCmd, 55 + Math.random() * 35);
         } else {
-          // Hide cursor, show output, then reveal layout
-          setTimeout(function() {
+          setTimeout(function () {
             if (cursorEl) cursorEl.style.display = 'none';
             if (outputEl) outputEl.style.display = 'block';
-            setTimeout(function() {
+            setTimeout(function () {
               if (layout) layout.classList.add('visible');
             }, 500);
           }, 220);
         }
       }
-
       setTimeout(typeCmd, 380);
     })();
 
-    // ── Form submission (AJAX for smooth UX) ──────────────────────────────
-    (function setupForm() {
-      const form = document.getElementById('contact-form');
-      const successEl = document.getElementById('form-success');
-      const submitBtn = form.querySelector('.form-submit');
-      if (!form) return;
+    // ── Typewriter placeholders ───────────────────────────────────────────
+    (function typePlaceholders() {
+      var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (noMotion) {
+        document.querySelectorAll('[data-placeholder]').forEach(function (el) {
+          el.setAttribute('placeholder', el.getAttribute('data-placeholder'));
+        });
+        return;
+      }
+      var fields = Array.from(document.querySelectorAll('[data-placeholder]'));
+      var delay  = 900; // start after terminal intro begins
 
-      form.addEventListener('submit', async (e) => {
+      fields.forEach(function (field) {
+        var text = field.getAttribute('data-placeholder');
+        var idx  = 0;
+        field.setAttribute('placeholder', '');
+        setTimeout(function startType() {
+          if (idx <= text.length) {
+            field.setAttribute('placeholder', text.slice(0, idx));
+            idx++;
+            setTimeout(startType, 50);
+          }
+        }, delay);
+        delay += text.length * 52 + 200; // stagger each field
+      });
+    })();
+
+    // ── Form submission (AJAX) ────────────────────────────────────────────
+    (function setupForm() {
+      var form      = document.getElementById('contact-form');
+      var successEl = document.getElementById('form-success');
+      if (!form) return;
+      var submitBtn = form.querySelector('.form-submit');
+
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
         submitBtn.textContent = 'sending...';
         submitBtn.disabled = true;
 
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { Accept: 'application/json' },
-          });
-
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        }).then(function (res) {
           if (res.ok) {
             form.reset();
             successEl.style.display = 'block';
             submitBtn.textContent = '✓ sent!';
           } else {
-            throw new Error('non-ok response');
+            throw new Error('non-ok');
           }
-        } catch {
-          // Fallback: let normal submit happen
+        }).catch(function () {
           submitBtn.textContent = 'send_message →';
           submitBtn.disabled = false;
           form.submit();
-        }
+        });
       });
     })();
 
-
-  </script>
-  <script>
-    // Scroll progress
+    // ── Scroll progress ────────────────────────────────────────────────────
     (function () {
       var bar = document.getElementById('scroll-progress');
       if (!bar) return;
@@ -576,7 +695,7 @@
       }, { passive: true });
     })();
 
-    // Custom cursor (desktop only)
+    // ── Custom cursor ──────────────────────────────────────────────────────
     (function () {
       var dot  = document.getElementById('cursor-dot');
       var ring = document.getElementById('cursor-ring');
@@ -648,7 +767,6 @@
   </button>
   <div class="tweaks-panel" id="tweaks-panel" aria-label="Visual tweaks">
     <div class="tweaks-panel-header">// visual settings</div>
-
     <div class="tweaks-row">
       <div class="tweaks-label">Custom cursor<small>Green dot crosshair</small></div>
       <label class="tweaks-toggle">
@@ -687,12 +805,10 @@
         cyan:   { h: '#00d4ff', r: '0,212,255'  }
       };
       function applyColor(name) {
-        var c = COLORS[name];
-        if (!c) return;
+        var c = COLORS[name]; if (!c) return;
         var h = c.h, r = c.r;
         document.documentElement.style.setProperty('--accent', h);
         document.documentElement.style.setProperty('--accent-rgb', r);
-        // Inject/update a global override style tag
         var el = document.getElementById('accent-override');
         if (!el) { el = document.createElement('style'); el.id = 'accent-override'; document.head.appendChild(el); }
         el.textContent = [
@@ -703,17 +819,15 @@
           '.terminal-prompt, .context-menu-icon, .tweaks-fab { color: '+h+' !important; }',
           '.scroll-progress { background: '+h+' !important; }',
           '.cursor-dot { background: '+h+' !important; box-shadow: 0 0 8px 2px '+h+'88 !important; }',
-          '.cp-panel { border-color: '+h+'55 !important; box-shadow: 0 0 0 1px '+h+'18, 0 32px 80px rgba(0,0,0,.8), 0 0 40px '+h+'10 !important; }',
+          '.cp-panel { border-color: '+h+'55 !important; }',
           '.cp-item.cp-selected { border-left-color: '+h+' !important; }',
           '.cp-item:hover, .cp-item.cp-selected { background: '+h+'18 !important; }',
-          '.cp-header { background: '+h+'08 !important; border-bottom-color: '+h+'22 !important; }',
-          '.cp-esc-hint, .cp-key { background: '+h+'12 !important; border-color: '+h+'30 !important; color: '+h+'99 !important; }',
-          '.tweaks-toggle input:checked + .tweaks-slider { background: '+h+'80 !important; }',
           '.tweaks-fab { border-color: '+h+'55 !important; color: '+h+' !important; }',
-          '.hero-btn-primary { background: '+h+' !important; border-color: '+h+' !important; }',
-          '.hero-btn-outline { border-color: '+h+' !important; color: '+h+' !important; }',
           '.nav-shortcut-hint { background: '+h+'12 !important; border-color: '+h+'44 !important; color: '+h+' !important; }',
-          '.cp-input { caret-color: '+h+' !important; }',
+          '.form-label { color: '+h+' !important; }',
+          '.form-submit { background: '+h+' !important; }',
+          '.contact-page-tag { color: '+h+' !important; }',
+          '.contact-page-title .blink-cursor { color: '+h+' !important; }',
           'a:hover { color: '+h+' !important; }'
         ].join('\n');
         document.querySelectorAll('.la-stroke').forEach(function(el){ el.setAttribute('stroke', h); });
@@ -729,7 +843,6 @@
           applyColor(sw.getAttribute('data-color'));
         });
       });
-
       var cursorCb = document.getElementById('tweak-cursor');
       if (cursorCb) cursorCb.addEventListener('change', function() {
         var dot = document.getElementById('cursor-dot'); var ring = document.getElementById('cursor-ring');
@@ -749,7 +862,6 @@
         if (validColors.indexOf(color) === -1) color = 'green';
         var sc = panel.querySelector('[data-color="'+color+'"]');
         if (sc) { panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); }); sc.classList.add('active'); if (color !== 'green') applyColor(color); }
-
         if (localStorage.getItem('tweak-cursor') === '0' && cursorCb) { cursorCb.checked = false; document.body.classList.remove('has-custom-cursor'); }
         if (localStorage.getItem('tweak-scrollbar') === '0' && scrollCb) { scrollCb.checked = false; var bar = document.getElementById('scroll-progress'); if (bar) bar.style.display = 'none'; }
       })();
@@ -766,34 +878,27 @@
       var input   = document.getElementById('cp-input');
       var list    = document.getElementById('cp-list');
       if (!overlay || !input || !list) return;
-
       var allItems = [], filtered = [], idx = 0;
-
       function buildItems() { allItems = Array.from(list.querySelectorAll('.cp-item[data-action]')); }
-
       function open() {
         overlay.removeAttribute('hidden');
         requestAnimationFrame(function(){ requestAnimationFrame(function(){
-          overlay.classList.add('cp-visible');
-          input.value = ''; filter(''); input.focus();
+          overlay.classList.add('cp-visible'); input.value = ''; filter(''); input.focus();
         }); });
         document.body.style.overflow = 'hidden';
         var f = document.getElementById('tweaks-fab'); if (f) f.style.opacity = '0';
       }
-
       function close() {
         overlay.classList.remove('cp-visible');
         setTimeout(function(){ overlay.setAttribute('hidden', ''); }, 220);
         document.body.style.overflow = '';
         var f = document.getElementById('tweaks-fab'); if (f) f.style.opacity = '';
       }
-
       function select(i) {
         allItems.forEach(function(el){ el.classList.remove('cp-selected'); });
         idx = Math.max(0, Math.min(i, filtered.length - 1));
         if (filtered[idx]) { filtered[idx].classList.add('cp-selected'); filtered[idx].scrollIntoView({ block: 'nearest' }); }
       }
-
       function filter(q) {
         q = q.trim().toLowerCase();
         allItems.forEach(function(el) {
@@ -803,40 +908,24 @@
         filtered = allItems.filter(function(el){ return el.style.display !== 'none'; });
         if (filtered.length) select(0);
       }
-
       function run(el) {
         if (!el) return;
-        var a = el.getAttribute('data-action');
-        close();
+        var a = el.getAttribute('data-action'); close();
         if      (a === 'nav')             setTimeout(function(){ window.location.href = el.getAttribute('data-href'); }, 180);
         else if (a === 'download-resume') setTimeout(function(){ window.open('resume.html', '_blank'); }, 180);
         else if (a === 'toggle-scan')     setTimeout(function(){ document.body.classList.toggle('no-scanlines'); }, 180);
-        else if (a === 'rick')            setTimeout(function(){ window.location.href = 'rick.html'; }, 180);
       }
-
       input.addEventListener('input', function(){ filter(this.value); });
-
       input.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           var v = input.value.trim().toLowerCase();
-          if (v === 'rick' || v === 'rick roll' || v === 'rickroll') {
-            e.preventDefault(); close();
-            setTimeout(function(){ window.location.href = 'rick.html'; }, 180);
-            return;
-          }
+          if (v === 'rick' || v === 'rickroll') { e.preventDefault(); close(); setTimeout(function(){ window.location.href = 'rick.html'; }, 180); return; }
         }
       });
-
-      list.addEventListener('click', function(e) {
-        var it = e.target.closest('.cp-item[data-action]');
-        if (it) run(it);
-      });
-
+      list.addEventListener('click', function(e) { var it = e.target.closest('.cp-item[data-action]'); if (it) run(it); });
       document.addEventListener('keydown', function(e) {
         if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'k' || e.key === 'K')) {
-          e.preventDefault();
-          overlay.classList.contains('cp-visible') ? close() : open();
-          return;
+          e.preventDefault(); overlay.classList.contains('cp-visible') ? close() : open(); return;
         }
         if (!overlay.classList.contains('cp-visible')) return;
         if (e.key === 'Escape')    { e.preventDefault(); close(); }
@@ -844,7 +933,6 @@
         if (e.key === 'ArrowUp')   { e.preventDefault(); select(idx - 1); }
         if (e.key === 'Enter')     { e.preventDefault(); run(filtered[idx]); }
       });
-
       overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
       buildItems();
     })();
