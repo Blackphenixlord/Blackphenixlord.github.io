@@ -15,22 +15,6 @@
     rel="stylesheet" />
 
   <style>
-    /* ── Matrix canvas ─────────────────────────────────────────────────────── */
-    #matrix-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 1;
-    }
-
-    /* ── Ensure all content sits above canvas ────────────────────────────── */
-    .navbar, .custom-context-menu, .contact-page-header,
-    .contact-terminal, main, footer,
-    .cp-overlay, .tweaks-fab, .tweaks-panel,
-    .scroll-progress, .cursor-dot, .cursor-ring,
-    .skip-link { position: relative; z-index: 1; }
 
     /* ── Page header ────────────────────────────────────────────────────────── */
     .contact-page-header {
@@ -319,9 +303,6 @@
 </head>
 
 <body>
-  <!-- MATRIX RAIN CANVAS -->
-  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
-
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- SCROLL PROGRESS -->
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
@@ -522,40 +503,6 @@
   </footer>
 
   <script>
-    // ── Matrix rain canvas ────────────────────────────────────────────────
-    (function () {
-      var canvas = document.getElementById('matrix-canvas');
-      if (!canvas) return;
-      var ctx = canvas.getContext('2d');
-      var W, H, cols, drops;
-      var fontSize = 13;
-      var chars = '01ABCDEF0110100101JC'.split('');
-
-      function resize() {
-        W = canvas.width  = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-        cols  = Math.floor(W / fontSize);
-        drops = [];
-        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -50;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      function draw() {
-        ctx.fillStyle = 'rgba(10,14,26,0.06)';
-        ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = 'rgba(0,255,65,0.035)';
-        ctx.font = fontSize + 'px Share Tech Mono, monospace';
-        for (var i = 0; i < drops.length; i++) {
-          var c = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(c, i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > H && Math.random() > 0.975) drops[i] = 0;
-          drops[i] += 0.5;
-        }
-      }
-      setInterval(draw, 60);
-    })();
-
     // ── Nav helpers ────────────────────────────────────────────────────────
     function toggleMenu() {
       var links = document.querySelector('.nav-links');
