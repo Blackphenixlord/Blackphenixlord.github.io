@@ -13,6 +13,27 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
     rel="stylesheet" />
+  <style>
+    /* ── OpenDyslexic font ──────────────────────────────────────────────── */
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic-regular.woff2') format('woff2');
+      font-weight: normal; font-style: normal; font-display: swap;
+    }
+    /* ── Dyslexia mode overrides ────────────────────────────────────────── */
+    body.dyslexia-mode,
+    body.dyslexia-mode p,
+    body.dyslexia-mode h1, body.dyslexia-mode h2, body.dyslexia-mode h3,
+    body.dyslexia-mode a, body.dyslexia-mode span, body.dyslexia-mode div,
+    body.dyslexia-mode label, body.dyslexia-mode input,
+    body.dyslexia-mode textarea, body.dyslexia-mode button,
+    body.dyslexia-mode li, body.dyslexia-mode td, body.dyslexia-mode th {
+      font-family: 'OpenDyslexic', 'Comic Sans MS', 'Trebuchet MS', sans-serif !important;
+      letter-spacing: 0.06em !important;
+      word-spacing: 0.18em !important;
+      line-height: 2 !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -285,6 +306,13 @@
       </label>
     </div>
     <div class="tweaks-row">
+      <div class="tweaks-label">Dyslexia mode<small>OpenDyslexic + wider spacing</small></div>
+      <label class="tweaks-toggle">
+        <input type="checkbox" id="tweak-dyslexia" />
+        <span class="tweaks-slider"></span>
+      </label>
+    </div>
+    <div class="tweaks-row">
       <div class="tweaks-label">Accent color</div>
       <div class="tweaks-swatches">
         <div class="tweaks-swatch active" data-color="green"  title="Green"></div>
@@ -359,6 +387,11 @@
         if (this.checked) document.body.classList.add('has-custom-cursor'); else document.body.classList.remove('has-custom-cursor');
         localStorage.setItem('tweak-cursor', this.checked ? '1' : '0');
       });
+      var dyslexiaCb = document.getElementById('tweak-dyslexia');
+      if (dyslexiaCb) dyslexiaCb.addEventListener('change', function() {
+        document.body.classList.toggle('dyslexia-mode', this.checked);
+        localStorage.setItem('tweak-dyslexia', this.checked ? '1' : '0');
+      });
       var scrollCb = document.getElementById('tweak-scrollbar');
       if (scrollCb) scrollCb.addEventListener('change', function() {
         var bar = document.getElementById('scroll-progress'); if (bar) bar.style.display = this.checked ? '' : 'none';
@@ -372,6 +405,7 @@
         if (sc) { panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); }); sc.classList.add('active'); if (color !== 'green') applyColor(color); }
 
         if (localStorage.getItem('tweak-cursor') === '0' && cursorCb) { cursorCb.checked = false; document.body.classList.remove('has-custom-cursor'); }
+        if (localStorage.getItem('tweak-dyslexia') === '1' && dyslexiaCb) { dyslexiaCb.checked = true; document.body.classList.add('dyslexia-mode'); }
         if (localStorage.getItem('tweak-scrollbar') === '0' && scrollCb) { scrollCb.checked = false; var bar = document.getElementById('scroll-progress'); if (bar) bar.style.display = 'none'; }
       })();
       fab.addEventListener('click', function() { var open = panel.classList.toggle('tweaks-open'); fab.setAttribute('aria-expanded', open); });
