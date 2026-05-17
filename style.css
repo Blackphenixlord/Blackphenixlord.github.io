@@ -816,10 +816,10 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   animation: logoPulse 3.5s ease-in-out infinite;
 }
 
-/* Hover: pause float, scale up, brighter glow */
+/* Hover: subtle scale — not too buttonlike */
 .logo-block:hover .hero-logo {
-  animation: logoPulseHover 1s ease-in-out infinite;
-  transform: scale(1.07);
+  animation: logoPulseHover 2s ease-in-out infinite;
+  transform: scale(1.03);
 }
 
 /* Click/tap: quick shrink + flash */
@@ -855,16 +855,14 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   }
 }
 
-/* Hover glow breathe — more intense */
+/* Hover glow breathe — subtle, not button-like */
 @keyframes logoPulseHover {
   0%,
   100% {
-    filter: drop-shadow(0 0 22px var(--accent)bb) drop-shadow(0 0 48px var(--accent)77)
-      drop-shadow(0 0 80px var(--accent)33);
+    filter: drop-shadow(0 0 14px var(--accent)88) drop-shadow(0 0 30px var(--accent)44);
   }
   50% {
-    filter: drop-shadow(0 0 40px var(--accent)ee) drop-shadow(0 0 80px var(--accent)aa)
-      drop-shadow(0 0 130px var(--accent)66);
+    filter: drop-shadow(0 0 24px var(--accent)bb) drop-shadow(0 0 50px var(--accent)66);
   }
 }
 
@@ -2429,6 +2427,17 @@ body:has(.custom-context-menu.opening) #cursor-dot {
 }
 
 /* Project cards: angled gradient + elevation */
+a.project-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+a.project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 .project-card {
   background: linear-gradient(155deg, #111827 0%, #0c1020 50%, #080c18 100%);
   box-shadow:
@@ -3377,6 +3386,17 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   color: var(--accent);
   font-weight: 600;
 }
+.bio-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+.bio-link:hover {
+  border-color: var(--accent);
+  color: #fff;
+}
 
 /* ── Grid cards ── */
 .about-grid-section {
@@ -4221,21 +4241,29 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab {
 .nav-shortcut-hint {
   display: inline-flex;
   align-items: center;
-  padding: 3px 9px;
-  background: rgba(var(--accent-rgb), 0.08);
-  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  padding: 4px 10px;
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.5);
   border-radius: 5px;
   color: var(--accent);
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
   white-space: nowrap;
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.15), inset 0 0 6px rgba(var(--accent-rgb), 0.06);
+  animation: hintPulse 3s ease-in-out infinite;
 }
 .nav-shortcut-hint:hover {
-  background: rgba(var(--accent-rgb), 0.16);
-  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.2);
+  background: rgba(var(--accent-rgb), 0.22);
+  border-color: rgba(var(--accent-rgb), 0.8);
+  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.35);
+  animation: none;
+}
+@keyframes hintPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.1), inset 0 0 4px rgba(var(--accent-rgb), 0.05); border-color: rgba(var(--accent-rgb), 0.4); }
+  50%       { box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.3), inset 0 0 8px rgba(var(--accent-rgb), 0.1); border-color: rgba(var(--accent-rgb), 0.7); }
 }
 @media (max-width: 600px) { .nav-shortcut-hint { display: none; } }
 

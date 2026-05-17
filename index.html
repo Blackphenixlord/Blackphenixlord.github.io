@@ -90,8 +90,7 @@
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <kbd class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+S)" onclick="(function(){var o=document.getElementById('cp-overlay');if(o&&!o.classList.contains('cp-visible')){o.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){o.classList.add('cp-visible');var i=document.getElementById('cp-input');if(i){i.value='';i.focus();}document.body.style.overflow='hidden';})});}})()">Ctrl+S</kbd><button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi:
-      off</button>
+    <kbd class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+S)" onclick="(function(){var o=document.getElementById('cp-overlay');if(o&&!o.classList.contains('cp-visible')){o.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){o.classList.add('cp-visible');var i=document.getElementById('cp-input');if(i){i.value='';i.focus();}document.body.style.overflow='hidden';})});}})()">Ctrl+S</kbd><button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle Undertale background music">♫ ut: off</button>
     <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
       aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
@@ -264,7 +263,7 @@
       <p class="section-label" aria-hidden="true">03 &middot; selected work</p>
       <h2 class="section-title">Projects</h2>
       <div class="projects-grid">
-        <div class="project-card">
+        <a class="project-card" href="recon.html">
           <div class="project-card-top">
             <span class="project-year">Web Development</span>
             <span class="project-org">RECON Technologies</span>
@@ -279,10 +278,10 @@
               <span>Web Dev</span><span>Security</span><span>Civic Tech</span>
             </div>
           </div>
-        </div>
+        </a>
 
 
-        <div class="project-card">
+        <a class="project-card" href="nasa-hunch.html">
           <div class="project-card-top">
             <span class="project-year">2025–2026</span>
             <span class="project-org">NASA HUNCH</span>
@@ -298,7 +297,7 @@
               <span>Full-Stack</span><span>Hardware</span><span>NASA</span>
             </div>
           </div>
-        </div>
+        </a>
 
         <div class="project-card">
           <div class="project-card-top">
@@ -512,8 +511,8 @@
       // Paragraphs to type — use \x01 to start a highlighted span, \x02 to end
       const paragraphs = [
         '\x01// who am i\x02',
-        'My name is \x01Joshua Collado\x02, and I\'m a Dual Enrollment student at \x01UTRGV\x02 through the Science Academy — studying engineering, computer science, and the future. I\'m from South Texas and I\'m on a mission to use technology to make life better, smarter, and more connected.',
-        'I\'ve had the privilege of working with \x01NASA\x02 on an Inventory Chain System that 2 visits to Houston, building a \x01Virtual Reality training experience\x02 with \x01Los Alamos National Laboratory\x02, developing a city website with \x01RECON Technologies\x02, and co-creating a STEM sandbox for elementary schools with \x01Nerdvana\x02.',
+        'My name is \x01Joshua Collado\x02, and I\'m a dual enrollment student at \x01UTRGV\x02 through the Science Academy — studying engineering, computer science, and the future. I\'m from South Texas, and I\'m on a mission to use technology to make life better, smarter, and more collaborative.',
+        'I\'ve had the privilege of working with \x01NASA\x02 on an Inventory Chain System that granted me 2 visits to the Houston HQ, building a \x01Virtual Reality training experience\x02 with \x01Los Alamos National Laboratory\x02, developing a city website with \x01RECON Technologies\x02, and co-creating a STEM sandbox for elementary schools with \x01Nerdvana\x02.',
         'Right now I\'m designing \x01Evie\x02 — a personal AI assistant that connects Android and Windows into a unified home automation network. My goal is to become a \x01software engineer and AI developer\x02 who builds systems that actually change how people live and work.',
       ];
 

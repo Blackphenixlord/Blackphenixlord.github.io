@@ -19,7 +19,7 @@
   window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('yt-bg', {
       /* Lofi Girl 24/7 live stream */
-      videoId: 'jfKfPfyJRdk',
+      videoId: 's19c4Ysywyg',
       playerVars: {
         autoplay    : 0,
         loop        : 1,
@@ -46,7 +46,7 @@
   function render() {
     var btn = document.getElementById('music-toggle');
     if (!btn) return;
-    btn.textContent   = _on ? '♫ lofi: on' : '♫ lofi: off';
+    btn.textContent   = _on ? '♫ ut: on' : '♫ ut: off';
     btn.style.color   = _on ? '#00ff41'     : '#3a5a3a';
     btn.style.borderColor = _on ? 'rgba(0,255,65,0.45)' : '#1a3a1a';
   }
