@@ -299,17 +299,19 @@ a {
 .custom-context-menu {
   position: fixed;
   z-index: 99999;
-  min-width: 190px;
-  padding: 8px;
-  border-radius: 10px;
-  border: 1px solid #1a3a1a;
-  background: rgba(10, 14, 26, 0.97);
+  min-width: 210px;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(40, 200, 64, 0.18);
+  background: rgba(8, 12, 22, 0.98);
   box-shadow:
-    0 10px 36px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(var(--accent-rgb), 0.08) inset;
-  backdrop-filter: blur(8px);
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 6px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(var(--accent-rgb), 0.06) inset;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   opacity: 0;
-  transform: translateY(8px) scale(0.96);
+  transform: translateY(6px) scale(0.97);
   transform-origin: top left;
   visibility: hidden;
   pointer-events: none;
@@ -390,8 +392,16 @@ a {
   transition-delay: 0.08s;
 }
 
+.context-menu-list li:nth-child(4) {
+  transition-delay: 0.11s;
+}
+
+.context-menu-list li:nth-child(5) {
+  transition-delay: 0.14s;
+}
+
 .context-menu-list li + li {
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .context-menu-link {
@@ -399,28 +409,31 @@ a {
   align-items: center;
   gap: 10px;
   width: 100%;
-  border-radius: 7px;
-  padding: 10px 12px;
+  border-radius: 8px;
+  padding: 9px 12px;
   font-family: "Share Tech Mono", monospace;
-  font-size: 0.84rem;
-  color: #c9d1d9;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  color: rgba(200, 215, 210, 0.75);
   text-decoration: none;
   border: 1px solid transparent;
   transition:
-    background 0.15s,
-    color 0.15s,
-    border-color 0.15s;
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
 }
 
 .context-menu-icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
   stroke: currentColor;
   fill: none;
-  stroke-width: 1.8;
+  stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
+  opacity: 0.7;
+  transition: opacity 0.14s ease;
 }
 
 .context-menu-label {
@@ -430,9 +443,24 @@ a {
 .context-menu-link:hover,
 .context-menu-link:focus-visible {
   color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.07);
-  border-color: rgba(var(--accent-rgb), 0.28);
+  background: rgba(var(--accent-rgb), 0.08);
+  border-color: rgba(var(--accent-rgb), 0.22);
   outline: none;
+}
+
+.context-menu-link:hover .context-menu-icon,
+.context-menu-link:focus-visible .context-menu-icon {
+  opacity: 1;
+}
+
+.context-menu-link[aria-current="page"] {
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.06);
+  border-color: rgba(var(--accent-rgb), 0.16);
+}
+
+.context-menu-link[aria-current="page"] .context-menu-icon {
+  opacity: 1;
 }
 
 /* ===== HERO ===== */
