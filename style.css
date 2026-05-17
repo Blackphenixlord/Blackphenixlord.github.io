@@ -707,6 +707,9 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
 }
 
 /* Inner wrapper: clips matrix canvas & scanline to logo shape */
