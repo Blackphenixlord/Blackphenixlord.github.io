@@ -463,13 +463,6 @@ a {
   opacity: 1;
 }
 
-/* Hide cursor dot when context menu is open so it doesn't overlap items */
-body:has(.custom-context-menu.open) #cursor-dot,
-body:has(.custom-context-menu.opening) #cursor-dot {
-  opacity: 0 !important;
-  transition: none !important;
-}
-
 /* ===== HERO ===== */
 .hero {
   position: relative;
