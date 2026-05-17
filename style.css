@@ -2240,8 +2240,17 @@ a {
     border-bottom: none;
   }
   .nav-links a {
-    padding: 10px 0;
+    padding: 10px 12px;
     display: block;
+    border-bottom: none !important;
+    border-radius: 6px;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    border-bottom: none !important;
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+    background: rgba(var(--accent-rgb), 0.06);
   }
   .contact-links a {
     padding: 14px 24px;
