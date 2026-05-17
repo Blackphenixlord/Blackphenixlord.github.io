@@ -4386,3 +4386,117 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab { opacity: 0; pointer-events: none;
 .tweaks-swatch[data-color="red"]    { background: #ff5f57; }
 .tweaks-swatch[data-color="yellow"] { background: #febc2e; }
 .tweaks-swatch[data-color="cyan"]   { background: #00d4ff; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESUME DOCUMENT LAYOUT (.rdoc-*)
+   Clean, printable resume-document style for resume.html
+   ═══════════════════════════════════════════════════════════════════ */
+.resume-doc {
+  background: rgba(10,14,26,0.85);
+  border: 1px solid rgba(var(--accent-rgb),0.22);
+  border-radius: 10px;
+  padding: 44px 52px;
+  margin-bottom: 48px;
+  box-shadow: 0 0 30px rgba(var(--accent-rgb),0.04);
+}
+.rdoc-section {
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(var(--accent-rgb),0.1);
+}
+.rdoc-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.rdoc-heading {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(var(--accent-rgb),0.28);
+}
+.rdoc-item {
+  margin-bottom: 18px;
+}
+.rdoc-item:last-child { margin-bottom: 0; }
+.rdoc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.rdoc-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #e4ece4;
+}
+.rdoc-date {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(var(--accent-rgb),0.65);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.rdoc-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: #5a7a5a;
+  margin-top: 3px;
+  line-height: 1.5;
+}
+.rdoc-bullets {
+  margin: 8px 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+.rdoc-bullets li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.87rem;
+  color: #8aaa8a;
+  line-height: 1.65;
+  margin-bottom: 3px;
+  padding-left: 20px;
+  position: relative;
+}
+.rdoc-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-size: 0.68rem;
+  top: 3px;
+}
+.rdoc-skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rdoc-skill-row {
+  display: flex;
+  gap: 20px;
+  font-size: 0.87rem;
+  font-family: 'Inter', sans-serif;
+  color: #8aaa8a;
+  line-height: 1.5;
+}
+.rdoc-skill-label {
+  font-family: 'Share Tech Mono', monospace;
+  color: rgba(var(--accent-rgb),0.8);
+  min-width: 168px;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  padding-top: 2px;
+}
+@media (max-width: 640px) {
+  .resume-doc { padding: 24px 20px; }
+  .rdoc-row { flex-direction: column; gap: 1px; }
+  .rdoc-date { font-size: 0.73rem; }
+  .rdoc-skill-row { flex-direction: column; gap: 2px; }
+  .rdoc-skill-label { min-width: 0; }
+}

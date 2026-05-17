@@ -65,7 +65,7 @@
       <li><a href="resume.html" class="active">Résumé</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <kbd class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+S)" onclick="(function(){var o=document.getElementById('cp-overlay');if(o&&!o.classList.contains('cp-visible')){o.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){o.classList.add('cp-visible');var i=document.getElementById('cp-input');if(i){i.value='';i.focus();}document.body.style.overflow='hidden';})});}})()">Ctrl+S</kbd><button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi: off</button>
+    <kbd class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+S)" onclick="(function(){var o=document.getElementById('cp-overlay');if(o&&!o.classList.contains('cp-visible')){o.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){o.classList.add('cp-visible');var i=document.getElementById('cp-input');if(i){i.value='';i.focus();}document.body.style.overflow='hidden';})});}})()">Ctrl+S</kbd><button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle Undertale background music">♫ ut: off</button>
     <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
       aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
@@ -125,182 +125,189 @@
   </div>
 
   <main class="page-content container" aria-label="Résumé sections">
+    <div class="resume-doc">
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-          <path d="M6 12v5c3 3 9 3 12 0v-5" />
-        </svg>
-        EDUCATION
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <h3>University of Texas Rio Grande Valley (UTRGV)</h3>
-          <div class="meta">Dual Enrollment · 2025–2027</div>
+      <!-- EDUCATION -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Education</h2>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">University of Texas Rio Grande Valley (UTRGV)</span>
+            <span class="rdoc-date">2025–2027</span>
+          </div>
+          <div class="rdoc-sub">Dual Enrollment · Engineering &amp; Computer Science</div>
         </div>
-        <div class="resume-item">
-          <h3>Science Academy</h3>
-          <div class="meta">2023–2027</div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Science Academy — STISD</span>
+            <span class="rdoc-date">2023–2027</span>
+          </div>
+          <div class="rdoc-sub">P-TECH · Computer Science &amp; Engineering Track</div>
         </div>
-        <div class="resume-item">
-          <h3>Rising Scholars Academy</h3>
-          <div class="meta">2021–2023</div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Rising Scholars Academy</span>
+            <span class="rdoc-date">2021–2023</span>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2C12 2 17 4 17 10c0 3-1.5 5.5-4 7l-2 5-2-5c-2.5-1.5-4-4-4-7 0-6 5-8 5-8" />
-          <circle cx="12" cy="10" r="2" />
-        </svg>
-        ENGINEERING INTERNSHIPS — 2025–2026
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <h3>NASA HUNCH — SCI-TECH</h3>
-          <div class="meta">Hardware Manager · Stack Developer · Design Assistant</div>
-          <p>Developed an Inventory Chain System with two peers. Presented to NASA Representatives in Rounds 1 &amp; 2.
-            Our team was selected to visit NASA in Houston for the finals — visited NASA twice total.</p>
-        </div>
-        <div class="resume-item">
-          <h3>Los Alamos National Laboratory — UTRGV</h3>
-          <div class="meta">Project Leader · Stack Developer · Hardware Manager</div>
-          <p>Built a Virtual Reality training experience with a partner. Only student selected to visit the lab in New
-            Mexico.</p>
-        </div>
-        <div class="resume-item">
-          <h3>RECON Technologies</h3>
-          <div class="meta">Code Lead · Security Developer · Design Assistant · 2025–2026</div>
-          <p>Designed a secure digital platform for the City of Progresso — public access to information, services,
-            and
-            records.</p>
-        </div>
-        <div class="resume-item">
-          <h3>Nerdvana Educational Center</h3>
-          <div class="meta">Co-Builder · Hardware Manager · Stack Developer</div>
-          <p>Co-developed a Level Sandbox Environment with the CEO to promote STEM interest in elementary schools.</p>
-        </div>
-      </div>
-    </div>
+      <!-- EXPERIENCE -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Engineering Internships</h2>
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="3" />
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07" />
-        </svg>
-        CAPSTONE PROJECT — 2026–2027
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <h3>Project Evie — Home Automation AI Assistant</h3>
-          <p>Developing a home network that communicates with Android and Windows to automate life tasks through a
-            personal AI assistant named Evie.</p>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">NASA HUNCH — SCI-TECH</span>
+            <span class="rdoc-date">2025–2026</span>
+          </div>
+          <div class="rdoc-sub">Hardware Manager · Stack Developer · Design Assistant</div>
+          <ul class="rdoc-bullets">
+            <li>Developed an Inventory Chain System with a two-person team</li>
+            <li>Presented to NASA Representatives in Rounds 1 &amp; 2; team selected for finals</li>
+            <li>Visited NASA Houston HQ twice for competition finals</li>
+          </ul>
         </div>
-      </div>
-    </div>
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-        PRESENTATIONS — 2025–2026
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <p>· NASA HUNCH — Presented to NASA Representatives in Rounds 1 &amp; 2. Team selected to visit NASA in Houston for finals. Visited NASA twice.</p>
-          <p>· STISD Presentation to incoming students interested in STEM.</p>
-          <p>· UTRGV Research Progress Presentation for Los Alamos National Laboratory.</p>
-          <p>· Region 1 Students Teach Students — UTRGV Engineering Internships.</p>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Los Alamos National Laboratory — UTRGV</span>
+            <span class="rdoc-date">2025–2026</span>
+          </div>
+          <div class="rdoc-sub">Project Leader · Stack Developer · Hardware Manager</div>
+          <ul class="rdoc-bullets">
+            <li>Built a Virtual Reality training experience with a partner</li>
+            <li>Only student selected to visit the lab in New Mexico</li>
+          </ul>
         </div>
-      </div>
-    </div>
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <polyline points="16 18 22 12 16 6" />
-          <polyline points="8 6 2 12 8 18" />
-        </svg>
-        PTECH COMPUTER SCIENCE COURSES — 2023–2026
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <h3>TSTC</h3>
-          <p>Java · JavaScript · Advanced Java · HTML/CSS · SQL · C · Texas Advanced Java Certification</p>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">RECON Technologies</span>
+            <span class="rdoc-date">2025–2026</span>
+          </div>
+          <div class="rdoc-sub">Code Lead · Security Developer · Design Assistant</div>
+          <ul class="rdoc-bullets">
+            <li>Designed a secure digital platform for the City of Progresso</li>
+            <li>Public access system for city information, services, and records</li>
+          </ul>
         </div>
-        <div class="resume-item">
-          <h3>STISD</h3>
-          <p>AP Computer Science · Industry-Based Certification · P.I.E²</p>
-        </div>
-        <div class="resume-item">
-          <h3>UTRGV</h3>
-          <p>Python</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        </svg>
-        SKILLS
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <h3>Languages</h3>
-          <p>Python &nbsp;·&nbsp; Java &nbsp;·&nbsp; JavaScript &nbsp;·&nbsp; HTML/CSS &nbsp;·&nbsp; SQL &nbsp;·&nbsp; C</p>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Nerdvana Educational Center</span>
+            <span class="rdoc-date">2025–2026</span>
+          </div>
+          <div class="rdoc-sub">Co-Builder · Hardware Manager · Stack Developer</div>
+          <ul class="rdoc-bullets">
+            <li>Co-developed a Level Sandbox Environment with the CEO</li>
+            <li>Designed to promote STEM interest in elementary schools</li>
+          </ul>
         </div>
-        <div class="resume-item">
-          <h3>Tools &amp; Frameworks</h3>
-          <p>React &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Vite &nbsp;·&nbsp; Node.js &nbsp;·&nbsp; Git &nbsp;·&nbsp; Android &nbsp;·&nbsp; Unity / VR</p>
-        </div>
-        <div class="resume-item">
-          <h3>Focus Areas</h3>
-          <p>Full-Stack Dev &nbsp;·&nbsp; Project Lead &nbsp;·&nbsp; Web Security &nbsp;·&nbsp; Hardware &nbsp;·&nbsp; AI / Automation</p>
-        </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="resume-block">
-      <div class="resume-block-header" role="heading" aria-level="2">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="8" r="6" />
-          <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-        </svg>
-        CLUBS &amp; VOLUNTEERISM
-      </div>
-      <div class="resume-block-body">
-        <div class="resume-item">
-          <h3>ECC Driver</h3>
-          <div class="meta">Clubs 2026–Present</div>
+      <!-- CAPSTONE -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Capstone Project</h2>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Project Evie — Home Automation AI Assistant</span>
+            <span class="rdoc-date">2026–2027</span>
+          </div>
+          <ul class="rdoc-bullets">
+            <li>Developing a home network that bridges Android and Windows devices</li>
+            <li>Personal AI assistant (Evie) that automates life and work tasks</li>
+          </ul>
         </div>
-        <div class="resume-item">
-          <h3>Esports Streaming Manager</h3>
-          <div class="meta">Clubs 2025–Present</div>
-        </div>
-        <div class="resume-item">
-          <h3>Minecraft Esports</h3>
-          <div class="meta">Clubs 2023–2024</div>
-        </div>
-        <div class="resume-item">
-          <h3>Big Red Ranch Ministries</h3>
-          <div class="meta">Volunteerism 2022–2025</div>
-          <p>Ranch and camp site dedicated to fighting for the fatherless.</p>
-        </div>
-      </div>
-    </div><!-- end clubs block -->
+      </section>
 
+      <!-- SKILLS -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Skills</h2>
+        <div class="rdoc-skills-grid">
+          <div class="rdoc-skill-row">
+            <span class="rdoc-skill-label">Languages</span>
+            <span>Python · Java · JavaScript · HTML/CSS · SQL · C</span>
+          </div>
+          <div class="rdoc-skill-row">
+            <span class="rdoc-skill-label">Tools &amp; Frameworks</span>
+            <span>React · TypeScript · Vite · Node.js · Git · Android · Unity / VR</span>
+          </div>
+          <div class="rdoc-skill-row">
+            <span class="rdoc-skill-label">Focus Areas</span>
+            <span>Full-Stack Dev · Project Lead · Web Security · Hardware · AI / Automation</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COURSEWORK -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Coursework</h2>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">TSTC — Texas State Technical College</span>
+            <span class="rdoc-date">2023–2026</span>
+          </div>
+          <div class="rdoc-sub">Java · JavaScript · Advanced Java · HTML/CSS · SQL · C · Texas Advanced Java Certification</div>
+        </div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">STISD — Science &amp; Technology ISD</span>
+            <span class="rdoc-date">2023–2026</span>
+          </div>
+          <div class="rdoc-sub">AP Computer Science · Industry-Based Certification · P.I.E²</div>
+        </div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">UTRGV — University of Texas Rio Grande Valley</span>
+            <span class="rdoc-date">2025–2026</span>
+          </div>
+          <div class="rdoc-sub">Python</div>
+        </div>
+      </section>
+
+      <!-- PRESENTATIONS -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Presentations</h2>
+        <ul class="rdoc-bullets" style="margin-top:0">
+          <li>NASA HUNCH — Presented to NASA Representatives in Rounds 1 &amp; 2; team visited Houston HQ for finals</li>
+          <li>STISD Presentation to incoming students interested in STEM</li>
+          <li>UTRGV Research Progress Presentation for Los Alamos National Laboratory</li>
+          <li>Region 1 Students Teach Students — UTRGV Engineering Internships</li>
+        </ul>
+      </section>
+
+      <!-- ACTIVITIES -->
+      <section class="rdoc-section">
+        <h2 class="rdoc-heading">Activities &amp; Volunteerism</h2>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">ECC Driver</span>
+            <span class="rdoc-date">2026–Present</span>
+          </div>
+        </div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Esports Streaming Manager</span>
+            <span class="rdoc-date">2025–Present</span>
+          </div>
+        </div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Minecraft Esports</span>
+            <span class="rdoc-date">2023–2024</span>
+          </div>
+        </div>
+        <div class="rdoc-item">
+          <div class="rdoc-row">
+            <span class="rdoc-title">Big Red Ranch Ministries — Volunteer</span>
+            <span class="rdoc-date">2022–2025</span>
+          </div>
+          <div class="rdoc-sub">Ranch and camp site dedicated to fighting for the fatherless</div>
+        </div>
+      </section>
+
+    </div><!-- end resume-doc -->
   </main><!-- end page-content -->
 
   <footer class="footer">
@@ -363,7 +370,7 @@
     setupCustomContextMenu();
 
     // ── Scroll reveal for resume blocks ──────────────────────────────────────
-    const revealEls = document.querySelectorAll('.resume-block, .page-hero > *');
+    const revealEls = document.querySelectorAll('.rdoc-section, .page-hero > *');
     const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     revealEls.forEach((el, i) => {
       if (noMotion) { el.style.opacity = '1'; return; }
