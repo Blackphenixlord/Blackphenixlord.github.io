@@ -548,7 +548,7 @@
         closeTimer = window.setTimeout(function () { menu.classList.remove('open', 'closing'); }, 140);
       }
       document.addEventListener('contextmenu', function (e) {
-        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        if (e.target?.closest?.('input, textarea, [contenteditable="true"]')) return;
         e.preventDefault();
         window.clearTimeout(closeTimer);
         menu.classList.remove('closing');
@@ -558,7 +558,7 @@
         menu.classList.add('opening', 'open');
         window.setTimeout(function () { menu.classList.remove('opening'); }, 170);
       });
-      document.addEventListener('click',  function (e) { if (!e.target.closest('#custom-context-menu')) closeMenu(); });
+      document.addEventListener('click',  function (e) { if (!e.target?.closest?.('#custom-context-menu')) closeMenu(); });
       document.addEventListener('scroll', closeMenu, true);
       window.addEventListener('resize',   closeMenu);
       document.addEventListener('keydown',function (e) { if (e.key === 'Escape') closeMenu(); });

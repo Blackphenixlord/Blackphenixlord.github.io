@@ -471,7 +471,7 @@
       };
 
       document.addEventListener('contextmenu', (e) => {
-        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        if (e.target?.closest?.('input, textarea, [contenteditable="true"]')) return;
 
         e.preventDefault();
         window.clearTimeout(closeTimer);
@@ -490,7 +490,7 @@
       });
 
       document.addEventListener('click', (e) => {
-        if (!e.target.closest('#custom-context-menu')) closeMenu();
+        if (!e.target?.closest?.('#custom-context-menu')) closeMenu();
       });
       document.addEventListener('scroll', closeMenu, true);
       window.addEventListener('resize', closeMenu);
