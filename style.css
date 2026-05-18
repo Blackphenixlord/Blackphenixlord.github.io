@@ -400,6 +400,10 @@ a {
   transition-delay: 0.14s;
 }
 
+.context-menu-list li:nth-child(6) {
+  transition-delay: 0.17s;
+}
+
 .context-menu-list li + li {
   margin-top: 2px;
 }
