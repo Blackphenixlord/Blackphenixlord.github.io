@@ -457,15 +457,6 @@ a {
   opacity: 1;
 }
 
-.context-menu-link[aria-current="page"] {
-  color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.06);
-  border-color: rgba(var(--accent-rgb), 0.16);
-}
-
-.context-menu-link[aria-current="page"] .context-menu-icon {
-  opacity: 1;
-}
 
 /* Hide cursor dot when context menu is open so it doesn't overlap items */
 body:has(.custom-context-menu.open) #cursor-dot,
@@ -2908,13 +2899,15 @@ a.project-card:focus-visible {
 }
 .carousel-track {
   display: flex;
+  align-items: stretch;
   gap: 12px;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 .carousel-img {
   flex: 0 0 calc(33.333% - 8px);
-  aspect-ratio: 4/5;
+  width: calc(33.333% - 8px);
+  height: clamp(170px, 30vh, 260px);
   object-fit: contain;
   object-position: center;
   background: #050810;
@@ -2943,7 +2936,8 @@ a.project-card:focus-visible {
 @media (max-width: 700px) {
   .carousel-img {
     flex: 0 0 100%;
-    aspect-ratio: 3/4;
+    width: 100%;
+    height: clamp(180px, 34vh, 300px);
   }
 }
 .pdf-download-btn {

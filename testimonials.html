@@ -163,7 +163,7 @@
   <section class="page-content">
     <div class="container">
 
-      <p class="section-label" aria-hidden="true">// what others say</p>
+      <p class="section-label" aria-hidden="true">// internship reflections</p>
       <h2 class="section-title" style="margin-bottom: 8px;">Recommendations</h2>
       <p class="section-desc">Feedback from the people I've worked alongside during my internships and academic programs.</p>
 
@@ -220,6 +220,7 @@
     function setupCustomContextMenu() {
       const menu = document.getElementById('custom-context-menu');
       if (!menu) return;
+      return;
       let closeTimer = null;
       const closeMenu = () => {
         if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
@@ -326,6 +327,134 @@
       </div>
     </div>
   </div>
+
+  <!-- TWEAKS PANEL -->
+  <button class="tweaks-fab" id="tweaks-fab" aria-label="Open tweaks panel" aria-expanded="false">
+    <span class="tweaks-fab-icon">&#x2699;</span> TWEAKS
+  </button>
+  <div class="tweaks-panel" id="tweaks-panel" aria-label="Visual tweaks">
+    <div class="tweaks-panel-header">// visual settings</div>
+    <div class="tweaks-row">
+      <div class="tweaks-label">Custom cursor<small>Green dot crosshair</small></div>
+      <label class="tweaks-toggle">
+        <input type="checkbox" id="tweak-cursor" checked />
+        <span class="tweaks-slider"></span>
+      </label>
+    </div>
+    <div class="tweaks-row">
+      <div class="tweaks-label">Scroll bar<small>Progress indicator</small></div>
+      <label class="tweaks-toggle">
+        <input type="checkbox" id="tweak-scrollbar" checked />
+        <span class="tweaks-slider"></span>
+      </label>
+    </div>
+    <div class="tweaks-row">
+      <div class="tweaks-label">Dyslexia mode<small>OpenDyslexic + wider spacing</small></div>
+      <label class="tweaks-toggle">
+        <input type="checkbox" id="tweak-dyslexia" />
+        <span class="tweaks-slider"></span>
+      </label>
+    </div>
+    <div class="tweaks-row">
+      <div class="tweaks-label">Accent color</div>
+      <div class="tweaks-swatches">
+        <div class="tweaks-swatch active" data-color="green"  title="Green"></div>
+        <div class="tweaks-swatch"        data-color="red"    title="Red"></div>
+        <div class="tweaks-swatch"        data-color="yellow" title="Yellow"></div>
+        <div class="tweaks-swatch"        data-color="cyan"   title="Cyan"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // TWEAKS PANEL
+    (function () {
+      var fab   = document.getElementById('tweaks-fab');
+      var panel = document.getElementById('tweaks-panel');
+      if (!fab || !panel) return;
+      var COLORS = {
+        green:  { h: '#28c840', r: '40,200,64'  },
+        red:    { h: '#ff5f57', r: '255,95,87'  },
+        yellow: { h: '#febc2e', r: '254,188,46' },
+        cyan:   { h: '#00d4ff', r: '0,212,255'  }
+      };
+      function applyColor(name) {
+        var c = COLORS[name];
+        if (!c) return;
+        var h = c.h, r = c.r;
+        document.documentElement.style.setProperty('--accent', h);
+        document.documentElement.style.setProperty('--accent-rgb', r);
+        var el = document.getElementById('accent-override');
+        if (!el) { el = document.createElement('style'); el.id = 'accent-override'; document.head.appendChild(el); }
+        el.textContent = [
+          ':root { --accent: '+h+'; --accent-rgb: '+r+'; }',
+          '.nav-brand, .hero-tag, .accent, .avail-badge, .cp-prompt, .nav-shortcut-hint,',
+          '.cp-section, .cp-icon, .tweaks-panel-header, .section-tag, .stat-num,',
+          '.project-tag, .tech-item, .skill-tag, .timeline-dot, .cp-key,',
+          '.terminal-prompt, .context-menu-icon, .tweaks-fab { color: '+h+' !important; }',
+          '.scroll-progress { background: '+h+' !important; }',
+          '.cursor-dot { background: '+h+' !important; box-shadow: 0 0 8px 2px '+h+'88 !important; }',
+          '.cp-panel { border-color: '+h+'55 !important; box-shadow: 0 0 0 1px '+h+'18, 0 32px 80px rgba(0,0,0,.8), 0 0 40px '+h+'10 !important; }',
+          '.cp-item.cp-selected { border-left-color: '+h+' !important; }',
+          '.cp-item:hover, .cp-item.cp-selected { background: '+h+'18 !important; }',
+          '.cp-header { background: '+h+'08 !important; border-bottom-color: '+h+'22 !important; }',
+          '.cp-esc-hint, .cp-key { background: '+h+'12 !important; border-color: '+h+'30 !important; color: '+h+'99 !important; }',
+          '.tweaks-toggle input:checked + .tweaks-slider { background: '+h+'80 !important; }',
+          '.tweaks-fab { border-color: '+h+'55 !important; color: '+h+' !important; }',
+          '.hero-btn-primary { background: '+h+' !important; border-color: '+h+' !important; }',
+          '.hero-btn-outline { border-color: '+h+' !important; color: '+h+' !important; }',
+          '.nav-shortcut-hint { background: '+h+'12 !important; border-color: '+h+'44 !important; color: '+h+' !important; }',
+          '.cp-input { caret-color: '+h+' !important; }',
+          'a:hover { color: '+h+' !important; }'
+        ].join('\n');
+        document.querySelectorAll('.la-stroke').forEach(function(el){ el.setAttribute('stroke', h); });
+        document.querySelectorAll('.la-fill').forEach(function(el){ el.setAttribute('fill', h); });
+        document.querySelectorAll('.la-fill-tint').forEach(function(el){ el.setAttribute('fill', h); });
+        document.querySelectorAll('.la-fill-dim').forEach(function(el){ el.setAttribute('fill', h); });
+        localStorage.setItem('tweak-color', name);
+      }
+      panel.querySelectorAll('.tweaks-swatch').forEach(function(sw) {
+        sw.addEventListener('click', function() {
+          panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); });
+          sw.classList.add('active');
+          applyColor(sw.getAttribute('data-color'));
+        });
+      });
+
+      var cursorCb = document.getElementById('tweak-cursor');
+      if (cursorCb) cursorCb.addEventListener('change', function() {
+        var dot = document.getElementById('cursor-dot'); var ring = document.getElementById('cursor-ring');
+        if (dot) dot.style.display = this.checked ? '' : 'none';
+        if (ring) ring.style.display = 'none';
+        if (this.checked) document.body.classList.add('has-custom-cursor'); else document.body.classList.remove('has-custom-cursor');
+        localStorage.setItem('tweak-cursor', this.checked ? '1' : '0');
+      });
+      var dyslexiaCb = document.getElementById('tweak-dyslexia');
+      if (dyslexiaCb) dyslexiaCb.addEventListener('change', function() {
+        document.body.classList.toggle('dyslexia-mode', this.checked);
+        localStorage.setItem('tweak-dyslexia', this.checked ? '1' : '0');
+      });
+      var scrollCb = document.getElementById('tweak-scrollbar');
+      if (scrollCb) scrollCb.addEventListener('change', function() {
+        var bar = document.getElementById('scroll-progress'); if (bar) bar.style.display = this.checked ? '' : 'none';
+        localStorage.setItem('tweak-scrollbar', this.checked ? '1' : '0');
+      });
+      (function restore() {
+        var validColors = ['green','red','yellow','cyan'];
+        var color = localStorage.getItem('tweak-color') || 'green';
+        if (validColors.indexOf(color) === -1) color = 'green';
+        var sc = panel.querySelector('[data-color="'+color+'"]');
+        if (sc) { panel.querySelectorAll('.tweaks-swatch').forEach(function(s){ s.classList.remove('active'); }); sc.classList.add('active'); if (color !== 'green') applyColor(color); }
+
+        if (localStorage.getItem('tweak-cursor') === '0' && cursorCb) { cursorCb.checked = false; document.body.classList.remove('has-custom-cursor'); }
+        if (localStorage.getItem('tweak-dyslexia') === '1' && dyslexiaCb) { dyslexiaCb.checked = true; document.body.classList.add('dyslexia-mode'); }
+        if (localStorage.getItem('tweak-scrollbar') === '0' && scrollCb) { scrollCb.checked = false; var bar = document.getElementById('scroll-progress'); if (bar) bar.style.display = 'none'; }
+      })();
+      fab.addEventListener('click', function() { var open = panel.classList.toggle('tweaks-open'); fab.setAttribute('aria-expanded', open); });
+      document.addEventListener('click', function(e) { if (!e.target.closest('#tweaks-panel') && !e.target.closest('#tweaks-fab')) { panel.classList.remove('tweaks-open'); fab.setAttribute('aria-expanded','false'); } });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && panel.classList.contains('tweaks-open')) { panel.classList.remove('tweaks-open'); fab.setAttribute('aria-expanded','false'); } });
+    })();
+  </script>
   <script src="cp.js?v=20260509-1"></script>
 
 </body>

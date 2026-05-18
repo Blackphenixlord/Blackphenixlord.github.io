@@ -187,6 +187,7 @@
         function setupCustomContextMenu() {
             const menu = document.getElementById('custom-context-menu');
             if (!menu) return;
+          return;
             let closeTimer = null;
             const closeMenu = () => {
                 if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
