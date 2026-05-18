@@ -127,14 +127,20 @@
         <div class="internship-block reveal">
           <p class="section-label" aria-hidden="true">// photo gallery</p>
           <h2 class="internship-block-title sr-only">Experience in Photos</h2>
-          <div class="photo-grid">
-            <img src="imgs/STUDENTBYSTUDENT.jpg" alt="UTRGV Science Academy" class="photo-grid-img" />
-            <img src="imgs/STUDENTBYSTUDENT2.jpg" alt="UTRGV Science Academy students" class="photo-grid-img" />
-            <img src="imgs/STUDENTBYSTUDENT3.jpg" alt="UTRGV Science Academy students" class="photo-grid-img" />
-            <img src="imgs/lanl.png" alt="UTRGV LANL program" class="photo-grid-img" />
-            <img src="imgs/lanl2.jpg" alt="Los Alamos National Laboratory visit" class="photo-grid-img" />
-            <img src="imgs/lanl3.jpg" alt="Los Alamos National Laboratory visit" class="photo-grid-img" />
-            <img src="imgs/lanl4.jpg" alt="Los Alamos National Laboratory visit" class="photo-grid-img" />
+          <div class="photo-carousel" id="utrgv-carousel">
+            <button class="carousel-btn carousel-prev" aria-label="Previous photos" disabled>&#8592;</button>
+            <div class="carousel-track-wrap">
+              <div class="carousel-track">
+                <img src="imgs/STUDENTBYSTUDENT.jpg" alt="UTRGV Science Academy" class="carousel-img" />
+                <img src="imgs/STUDENTBYSTUDENT2.jpg" alt="UTRGV Science Academy students" class="carousel-img" />
+                <img src="imgs/STUDENTBYSTUDENT3.jpg" alt="UTRGV Science Academy students" class="carousel-img" />
+                <img src="imgs/lanl.png" alt="UTRGV LANL program" class="carousel-img" />
+                <img src="imgs/lanl2.jpg" alt="Los Alamos National Laboratory visit" class="carousel-img" />
+                <img src="imgs/lanl3.jpg" alt="Los Alamos National Laboratory visit" class="carousel-img" />
+                <img src="imgs/lanl4.jpg" alt="Los Alamos National Laboratory visit" class="carousel-img" />
+              </div>
+            </div>
+            <button class="carousel-btn carousel-next" aria-label="Next photos">&#8594;</button>
           </div>
         </div>
 
@@ -158,6 +164,28 @@
     function toggleMenu() { const links = document.querySelector('.nav-links'); const btn = document.querySelector('.hamburger'); const open = links.classList.toggle('open'); btn.setAttribute('aria-expanded', open); btn.setAttribute('aria-expanded', open); }
     function setupCustomContextMenu() { const menu = document.getElementById('custom-context-menu'); if (!menu) return; let closeTimer = null; const closeMenu = () => { if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return; menu.classList.remove('opening'); menu.classList.add('closing'); window.clearTimeout(closeTimer); closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140); }; document.addEventListener('contextmenu', e => { e.preventDefault(); window.clearTimeout(closeTimer); menu.classList.remove('closing'); const mw = menu.offsetWidth || 190; const mh = menu.offsetHeight || 140; menu.style.left = `${Math.max(8, Math.min(e.clientX, window.innerWidth - mw - 8))}px`; menu.style.top = `${Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8))}px`; menu.classList.add('opening', 'open'); window.setTimeout(() => menu.classList.remove('opening'), 170); }); document.addEventListener('click', e => { if (!e.target?.closest?.('#custom-context-menu')) closeMenu(); }); document.addEventListener('scroll', closeMenu, true); window.addEventListener('resize', closeMenu); document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); }); }
     setupCustomContextMenu();
+
+    // Photo carousel
+    document.querySelectorAll('.photo-carousel').forEach(function(car) {
+      var track = car.querySelector('.carousel-track');
+      var imgs = track.querySelectorAll('.carousel-img');
+      var prevBtn = car.querySelector('.carousel-prev');
+      var nextBtn = car.querySelector('.carousel-next');
+      var idx = 0;
+      function pp() { return window.innerWidth <= 700 ? 1 : 3; }
+      function update() {
+        var step = imgs[0].offsetWidth + 12;
+        track.style.transform = 'translateX(-' + (idx * step) + 'px)';
+        prevBtn.disabled = idx === 0;
+        nextBtn.disabled = idx + pp() >= imgs.length;
+      }
+      prevBtn.addEventListener('click', function() { if (idx > 0) { idx = Math.max(0, idx - pp()); update(); } });
+      nextBtn.addEventListener('click', function() { if (idx + pp() < imgs.length) { idx = Math.min(imgs.length - pp(), idx + pp()); update(); } });
+      window.addEventListener('resize', update);
+      imgs[0].addEventListener('load', update);
+      update();
+    });
+
     const revealEls = document.querySelectorAll('.reveal');
     revealEls.forEach((el, i) => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = `opacity 0.65s ease ${(i % 6) * 0.1}s, transform 0.65s ease ${(i % 6) * 0.1}s`; });
     const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target); } }); }, { threshold: 0.1 });
