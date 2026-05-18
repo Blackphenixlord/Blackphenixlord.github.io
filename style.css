@@ -2914,8 +2914,10 @@ a.project-card:focus-visible {
 }
 .carousel-img {
   flex: 0 0 calc(33.333% - 8px);
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  aspect-ratio: 4/5;
+  object-fit: contain;
+  object-position: center;
+  background: #050810;
   border-radius: 10px;
   border: 1px solid #1a3a1a;
   transition: opacity 0.3s ease;
@@ -2939,7 +2941,10 @@ a.project-card:focus-visible {
 .carousel-btn:hover:not(:disabled) { background: rgba(0,255,65,0.18); }
 .carousel-btn:disabled { opacity: 0.25; cursor: not-allowed; }
 @media (max-width: 700px) {
-  .carousel-img { flex: 0 0 100%; }
+  .carousel-img {
+    flex: 0 0 100%;
+    aspect-ratio: 3/4;
+  }
 }
 .pdf-download-btn {
   display: inline-flex;
