@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5" />
+  <title>Testimonials | Joshua Collado</title>
+  <meta name="description" content="Recommendations and testimonials for Joshua Collado from mentors, supervisors, and educators." />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%230a0e1a'/%3E%3Crect x='2' y='2' width='96' height='96' rx='9' fill='none' stroke='%2300ff41' stroke-width='3'/%3E%3Crect x='0' y='0' width='100' height='26' rx='10' fill='%2300ff41' fill-opacity='0.1'/%3E%3Ccircle cx='13' cy='13' r='4' fill='%23ff5f57'/%3E%3Ccircle cx='27' cy='13' r='4' fill='%23febc2e'/%3E%3Ccircle cx='41' cy='13' r='4' fill='%2328c840'/%3E%3Ctext x='14' y='67' font-family='monospace' font-size='36' font-weight='bold' fill='%2300ff41'%3EJC%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css?v=20260512-6" />
+  <link rel="stylesheet" href="icons.css?v=20260509-1" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ── OpenDyslexic font ──────────────────────────────────────────────── */
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic-regular.woff2') format('woff2');
+      font-weight: normal; font-style: normal; font-display: swap;
+    }
+    body.dyslexia-mode,
+    body.dyslexia-mode p,
+    body.dyslexia-mode h1, body.dyslexia-mode h2, body.dyslexia-mode h3,
+    body.dyslexia-mode a, body.dyslexia-mode span, body.dyslexia-mode div,
+    body.dyslexia-mode label, body.dyslexia-mode input,
+    body.dyslexia-mode textarea, body.dyslexia-mode button,
+    body.dyslexia-mode li, body.dyslexia-mode td, body.dyslexia-mode th {
+      font-family: 'OpenDyslexic', 'Comic Sans MS', 'Trebuchet MS', sans-serif !important;
+      letter-spacing: 0.06em !important;
+      word-spacing: 0.18em !important;
+      line-height: 2 !important;
+    }
+
+    /* ── Testimonial-specific styles ─────────────────────────────────── */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 40px;
+    }
+    @media (min-width: 800px) {
+      .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1100px) {
+      .testimonial-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .testimonial-card {
+      background: #0d1117;
+      border: 1px solid #1a3a1a;
+      border-radius: 14px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.18;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .testimonial-quote {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: #c8d6c8;
+      font-style: italic;
+      margin-top: 8px;
+    }
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border-top: 1px solid #1a3a1a;
+      padding-top: 18px;
+      margin-top: auto;
+    }
+    .testimonial-author-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    .testimonial-author-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      color: #556655;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <rect width="36" height="36" rx="4" fill="#0a0e1a" />
+        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" class="la-stroke" />
+        <rect x="0" y="0" width="36" height="9" rx="4" fill="#28c840" fill-opacity="0.1" class="la-fill-tint" />
+        <circle cx="5" cy="4.5" r="1.3" fill="#ff5f57" />
+        <circle cx="10" cy="4.5" r="1.3" fill="#febc2e" />
+        <circle cx="15" cy="4.5" r="1.3" fill="#28c840" />
+        <text x="6" y="23" font-family="monospace" font-size="10" fill="#28c840" class="la-fill">JC</text>
+        <text x="6" y="31" font-family="monospace" font-size="7" fill="#28c840" opacity="0.55" class="la-fill">&#x258C;</text>
+      </svg>
+      <span class="nav-brand">Joshua Collado</span>
+    </div>
+    <ul class="nav-links" id="nav-links-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="internships.html">Internships</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="testimonials.html" class="active" aria-current="page">Testimonials</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <kbd class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+S)" onclick="(function(){var o=document.getElementById('cp-overlay');if(o&&!o.classList.contains('cp-visible')){o.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){o.classList.add('cp-visible');var i=document.getElementById('cp-input');if(i){i.value='';i.focus();}document.body.style.overflow='hidden';})});}})()">Ctrl+S</kbd><button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle lofi background music">♫ lofi:
+      off</button>
+    <button type="button" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"
+      aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
+  </nav>
+
+  <nav class="custom-context-menu" id="custom-context-menu" aria-label="Quick navigation">
+    <ul class="context-menu-list">
+      <li><a class="context-menu-link" href="index.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" /></svg><span class="context-menu-label">Home</span></a></li>
+      <li><a class="context-menu-link" href="about.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" /></svg><span class="context-menu-label">About</span></a></li>
+      <li><a class="context-menu-link" href="internships.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /></svg><span class="context-menu-label">Internships</span></a></li>
+      <li><a class="context-menu-link" href="resume.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H7z" /><path d="M15 3v5h4" /><path d="M9.5 12h5M9.5 16h5" /></svg><span class="context-menu-label">Resume</span></a></li>
+      <li><a class="context-menu-link" href="testimonials.html" aria-current="page"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg><span class="context-menu-label">Testimonials</span></a></li>
+      <li><a class="context-menu-link" href="contact.html"><svg class="context-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" /><path d="m4 8 8 6 8-6" /></svg><span class="context-menu-label">Contact</span></a></li>
+    </ul>
+  </nav>
+
+  <section class="page-hero" id="main-content" aria-label="Testimonials">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <p class="section-label" aria-hidden="true">// recommendations</p>
+    <h1 class="page-hero-title">Testimonials</h1>
+    <p class="page-hero-sub">What mentors, supervisors, and educators have to say</p>
+    <div class="page-hero-tags">
+      <span>Mentors</span>
+      <span>Supervisors</span>
+      <span>Educators</span>
+    </div>
+  </section>
+
+  <section class="page-content">
+    <div class="container">
+
+      <p class="section-label" aria-hidden="true">// what others say</p>
+      <h2 class="section-title" style="margin-bottom: 8px;">Recommendations</h2>
+      <p class="section-desc">Feedback from the people I've worked alongside during my internships and academic programs.</p>
+
+      <div class="testimonial-grid">
+
+        <article class="testimonial-card reveal" aria-label="Testimonial from NASA HUNCH mentor">
+          <blockquote>
+            <p class="testimonial-quote">Joshua showed up to every session ready to work. He didn't wait to be told what to do — he identified problems, proposed solutions, and executed. His RFID integration work was technically solid, and the way he communicated his design decisions to the team was well above what I'd expect from a high school student. He's going to do great things in engineering.</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-author-name">NASA HUNCH Mentor</span>
+            <span class="testimonial-author-title">Program Advisor · NASA HUNCH 2025–2026</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card reveal" aria-label="Testimonial from Nerdvana supervisor">
+          <blockquote>
+            <p class="testimonial-quote">What sets Joshua apart is his patience and genuine enthusiasm for helping others learn. He connected with our students immediately — making complex topics feel approachable and fun. He took initiative in designing activities, adapted on the fly when something wasn't landing, and always kept the kids' experience at the center of his decisions. A natural educator with a strong technical foundation.</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-author-name">Program Director</span>
+            <span class="testimonial-author-title">STEM Instructor Supervisor · Nerdvana</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card reveal" aria-label="Testimonial from Science Academy teacher">
+          <blockquote>
+            <p class="testimonial-quote">Joshua is one of the most motivated students I've taught. He balances college coursework, competitive programs, and internships simultaneously — and excels in all of them. His curiosity goes beyond assignments; he asks the questions that push the class deeper. I'm confident he will thrive in any university engineering program he chooses. He has already proven he can perform at that level.</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-author-name">Science Academy Instructor</span>
+            <span class="testimonial-author-title">Engineering &amp; Computer Science · UTRGV Dual Enrollment</span>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="footer-year">2026</span> Joshua Collado &nbsp;·&nbsp; Built with <span
+        style="color:var(--accent)">&lt;/&gt;</span> &nbsp;·&nbsp; UTRGV</p>
+  </footer>
+
+  <script src="music.js?v=20260509-1"></script>
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const btn = document.querySelector('.hamburger');
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+    function setupCustomContextMenu() {
+      const menu = document.getElementById('custom-context-menu');
+      if (!menu) return;
+      let closeTimer = null;
+      const closeMenu = () => {
+        if (!menu.classList.contains('open') && !menu.classList.contains('opening')) return;
+        menu.classList.remove('opening'); menu.classList.add('closing');
+        window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(() => menu.classList.remove('open', 'closing'), 140);
+      };
+      document.addEventListener('contextmenu', e => {
+        e.preventDefault(); window.clearTimeout(closeTimer); menu.classList.remove('closing');
+        const mw = menu.offsetWidth || 190; const mh = menu.offsetHeight || 140;
+        menu.style.left = `${Math.max(8, Math.min(e.clientX, window.innerWidth - mw - 8))}px`;
+        menu.style.top  = `${Math.max(8, Math.min(e.clientY, window.innerHeight - mh - 8))}px`;
+        menu.classList.add('opening', 'open');
+        window.setTimeout(() => menu.classList.remove('opening'), 170);
+      });
+      document.addEventListener('click', e => { if (!e.target?.closest?.('#custom-context-menu')) closeMenu(); });
+      document.addEventListener('scroll', closeMenu, true);
+      window.addEventListener('resize', closeMenu);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    }
+    setupCustomContextMenu();
+
+    const revealEls = document.querySelectorAll('.reveal');
+    revealEls.forEach((el, i) => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = `opacity 0.65s ease ${(i % 6) * 0.1}s, transform 0.65s ease ${(i % 6) * 0.1}s`; });
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+    const y = document.getElementById('footer-year'); if (y) y.textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Scroll progress
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+      }, { passive: true });
+    })();
+
+    // Custom cursor (desktop only)
+    (function () {
+      var dot  = document.getElementById('cursor-dot');
+      var ring = document.getElementById('cursor-ring');
+      if (!dot || !ring || window.matchMedia('(pointer: coarse)').matches) return;
+      document.body.classList.add('has-custom-cursor');
+      var rx = 0, ry = 0;
+      document.addEventListener('mousemove', function (e) {
+        dot.style.transform  = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+        rx += (e.clientX - rx) * 0.12;
+        ry += (e.clientY - ry) * 0.12;
+      });
+      function animRing() {
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+      document.querySelectorAll('a,button').forEach(function (el) {
+        el.addEventListener('mouseenter', function () { ring.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function () { ring.classList.remove('cursor-hover'); });
+      });
+    })();
+  </script>
+
+  <!-- COMMAND PALETTE -->
+  <div class="cp-overlay" id="cp-overlay" role="dialog" aria-modal="true" aria-label="Command Palette" hidden>
+    <div class="cp-panel" id="cp-panel">
+      <div class="cp-header">
+        <span class="cp-prompt">$&gt;</span>
+        <input class="cp-input" id="cp-input" type="text" placeholder="type a command or search..." autocomplete="off" spellcheck="false" />
+        <kbd class="cp-esc-hint">ESC</kbd>
+      </div>
+      <ul class="cp-list" id="cp-list" role="listbox" aria-label="Commands">
+        <li class="cp-section">&#x2500;&#x2500; navigate &#x2500;&#x2500;</li>
+        <li class="cp-item" role="option" data-action="nav" data-href="index.html" data-key="H" tabindex="-1">
+          <span class="cp-icon">&#x2302;</span><span class="cp-label">Go to Home</span><kbd class="cp-key">H</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="about.html" data-key="A" tabindex="-1">
+          <span class="cp-icon">&#x25CE;</span><span class="cp-label">Go to About</span><kbd class="cp-key">A</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="internships.html" data-key="J" tabindex="-1">
+          <span class="cp-icon">&#x25C8;</span><span class="cp-label">Go to Internships</span><kbd class="cp-key">J</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="resume.html" data-key="R" tabindex="-1">
+          <span class="cp-icon">&#x25A7;</span><span class="cp-label">Go to R&#233;sum&#233;</span><kbd class="cp-key">R</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="testimonials.html" data-key="W" tabindex="-1">
+          <span class="cp-icon">&#x25CE;</span><span class="cp-label">Go to Testimonials</span><kbd class="cp-key">W</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="nav" data-href="contact.html" data-key="C" tabindex="-1">
+          <span class="cp-icon">&#x25CE;</span><span class="cp-label">Go to Contact</span><kbd class="cp-key">C</kbd>
+        </li>
+        <li class="cp-section">&#x2500;&#x2500; actions &#x2500;&#x2500;</li>
+        <li class="cp-item" role="option" data-action="download-resume" data-key="D" tabindex="-1">
+          <span class="cp-icon">&#x2193;</span><span class="cp-label">Download r&#233;sum&#233;.pdf</span><kbd class="cp-key">D</kbd>
+        </li>
+        <li class="cp-item" role="option" data-action="toggle-scan" data-key="T" tabindex="-1">
+          <span class="cp-icon">&#x229F;</span><span class="cp-label">Toggle scan lines</span><kbd class="cp-key">T</kbd>
+        </li>
+      </ul>
+      <div class="cp-footer">
+        <span><kbd>&#x2191;&#x2193;</kbd> navigate</span>
+        <span><kbd>&#x21B5;</kbd> run</span>
+        <span><kbd>ESC</kbd> close</span>
+      </div>
+    </div>
+  </div>
+  <script src="cp.js?v=20260509-1"></script>
+
+</body>
+</html>
