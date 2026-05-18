@@ -482,7 +482,7 @@
 
     <!-- RIGHT: Contact form -->
     <div class="contact-form-col">
-      <form class="contact-form" action="https://formspree.io/f/xdkgpelr" method="POST" id="contact-form"
+      <form class="contact-form" action="mailto:joshuacollado636@gmail.com" method="POST" id="contact-form"
         aria-label="Send Joshua a message">
 
         <div class="form-row">
@@ -619,7 +619,7 @@
       });
     })();
 
-    // ── Form submission (AJAX) ────────────────────────────────────────────
+    // ── Form submission (mailto) ──────────────────────────────────────────
     (function setupForm() {
       var form      = document.getElementById('contact-form');
       var successEl = document.getElementById('form-success');
@@ -628,26 +628,25 @@
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        submitBtn.textContent = 'sending...';
-        submitBtn.disabled = true;
+        var name    = (document.getElementById('contact-name')    || {}).value || '';
+        var email   = (document.getElementById('contact-email')   || {}).value || '';
+        var subject = (document.getElementById('contact-subject') || {}).value || 'Message from Portfolio';
+        var message = (document.getElementById('contact-message') || {}).value || '';
 
-        fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' },
-        }).then(function (res) {
-          if (res.ok) {
-            form.reset();
-            successEl.style.display = 'block';
-            submitBtn.textContent = '✓ sent!';
-          } else {
-            throw new Error('non-ok');
-          }
-        }).catch(function () {
+        var body = 'From: ' + name + ' <' + email + '>\n\n' + message;
+        var mailto = 'mailto:joshuacollado636@gmail.com'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body='    + encodeURIComponent(body);
+
+        window.location.href = mailto;
+
+        // Show success state after brief delay
+        submitBtn.textContent = '✓ sent!';
+        successEl.style.display = 'block';
+        setTimeout(function () {
+          form.reset();
           submitBtn.textContent = 'send_message →';
-          submitBtn.disabled = false;
-          form.submit();
-        });
+        }, 3000);
       });
     })();
 
