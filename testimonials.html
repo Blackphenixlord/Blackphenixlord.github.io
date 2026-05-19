@@ -455,7 +455,96 @@
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && panel.classList.contains('tweaks-open')) { panel.classList.remove('tweaks-open'); fab.setAttribute('aria-expanded','false'); } });
     })();
   </script>
-  <script src="cp.js?v=20260509-1"></script>
+  <script>
+    // COMMAND PALETTE
+    (function () {
+      var overlay = document.getElementById('cp-overlay');
+      var input   = document.getElementById('cp-input');
+      var list    = document.getElementById('cp-list');
+      if (!overlay || !input || !list) return;
+
+      var allItems = [], filtered = [], idx = 0;
+
+      function buildItems() { allItems = Array.from(list.querySelectorAll('.cp-item[data-action]')); }
+
+      function open() {
+        overlay.removeAttribute('hidden');
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          overlay.classList.add('cp-visible');
+          input.value = ''; filter(''); input.focus();
+        }); });
+        document.body.style.overflow = 'hidden';
+        var f = document.getElementById('tweaks-fab'); if (f) f.style.opacity = '0';
+      }
+
+      function close() {
+        overlay.classList.remove('cp-visible');
+        setTimeout(function(){ overlay.setAttribute('hidden', ''); }, 220);
+        document.body.style.overflow = '';
+        var f = document.getElementById('tweaks-fab'); if (f) f.style.opacity = '';
+      }
+
+      function select(i) {
+        allItems.forEach(function(el){ el.classList.remove('cp-selected'); });
+        idx = Math.max(0, Math.min(i, filtered.length - 1));
+        if (filtered[idx]) { filtered[idx].classList.add('cp-selected'); filtered[idx].scrollIntoView({ block: 'nearest' }); }
+      }
+
+      function filter(q) {
+        q = q.trim().toLowerCase();
+        allItems.forEach(function(el) {
+          var lbl = el.querySelector('.cp-label');
+          el.style.display = (!q || (lbl && lbl.textContent.toLowerCase().includes(q))) ? '' : 'none';
+        });
+        filtered = allItems.filter(function(el){ return el.style.display !== 'none'; });
+        if (filtered.length) select(0);
+      }
+
+      function run(el) {
+        if (!el) return;
+        var a = el.getAttribute('data-action');
+        close();
+        if      (a === 'nav')             setTimeout(function(){ window.location.href = el.getAttribute('data-href'); }, 180);
+        else if (a === 'download-resume') setTimeout(function(){ window.open('resume.html', '_blank'); }, 180);
+        else if (a === 'toggle-scan')     setTimeout(function(){ document.body.classList.toggle('no-scanlines'); }, 180);
+        else if (a === 'rick')            setTimeout(function(){ window.location.href = 'rick.html'; }, 180);
+      }
+
+      input.addEventListener('input', function(){ filter(this.value); });
+
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          var v = input.value.trim().toLowerCase();
+          if (v === 'rick' || v === 'rick roll' || v === 'rickroll') {
+            e.preventDefault(); close();
+            setTimeout(function(){ window.location.href = 'rick.html'; }, 180);
+            return;
+          }
+        }
+      });
+
+      list.addEventListener('click', function(e) {
+        var it = e.target.closest('.cp-item[data-action]');
+        if (it) run(it);
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          overlay.classList.contains('cp-visible') ? close() : open();
+          return;
+        }
+        if (!overlay.classList.contains('cp-visible')) return;
+        if (e.key === 'Escape')    { e.preventDefault(); close(); }
+        if (e.key === 'ArrowDown') { e.preventDefault(); select(idx + 1); }
+        if (e.key === 'ArrowUp')   { e.preventDefault(); select(idx - 1); }
+        if (e.key === 'Enter')     { e.preventDefault(); run(filtered[idx]); }
+      });
+
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
+      buildItems();
+    })();
+  </script>
 
 </body>
 </html>
