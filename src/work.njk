@@ -51,13 +51,6 @@ excludeFromSitemap: false
         {% include "partials/project-visual.njk" %}
       </div>
 
-{%- if project.metrics.length %}
-      <ul class="cs-metrics reveal">
-{%- for m in project.metrics %}
-        <li><span class="cs-metric-value">{{ m.value }}</span><span class="cs-metric-label">{{ m.label }}</span></li>
-{%- endfor %}
-      </ul>
-{%- endif %}
 
       <div class="cs-prose reveal">
 {%- if project.problem %}
@@ -84,6 +77,10 @@ excludeFromSitemap: false
         </section>
 {%- endif %}
 
+{%- if project.cover %}
+        {#- The placeholder plate already lists the stack, so this section would
+            repeat it. Once a real screenshot replaces the plate, this becomes
+            the only place the stack appears. -#}
         <section class="cs-section">
           <h2>Stack</h2>
           <ul class="cs-stack">
@@ -92,6 +89,7 @@ excludeFromSitemap: false
 {%- endfor %}
           </ul>
         </section>
+{%- endif %}
       </div>
 
 {%- if project.gallery.length %}

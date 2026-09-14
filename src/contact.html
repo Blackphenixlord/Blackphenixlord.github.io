@@ -118,9 +118,16 @@ pageScript: page-contact.js
     <!-- RIGHT: Contact form -->
     <div class="contact-form-col">
       <h2 class="sr-only">Send a message</h2>
+      {#- No mailto: in `action`. Browsers treat a mailto form target as an
+          insecure submission and switch autofill off for the whole form, which
+          is worse than the fallback is worth. With no endpoint configured the
+          action is simply absent and page-contact.js does the mailto handoff;
+          the email card above this form is the no-JS path. -#}
       <form class="contact-form" id="contact-form" novalidate
         method="POST"
-        action="{% if site.contactEndpoint %}{{ site.contactEndpoint }}{% else %}mailto:{{ site.email }}{% endif %}"
+{%- if site.contactEndpoint %}
+        action="{{ site.contactEndpoint }}"
+{%- endif %}
         data-endpoint="{{ site.contactEndpoint }}"
         aria-label="Send Joshua a message">
 

@@ -19,6 +19,12 @@
    ── Adding case-study depth ──────────────────────────────────────────────
    `problem`, `approach` and `result` are optional. Empty ones simply do not
    render, so a half-written case study still reads as finished.
+
+   There is deliberately no `metrics` field. An earlier version had one and it
+   filled up with things that are not measurements -- "Live", "Lead",
+   "Finals" -- set in huge display type as though they were. If a project ever
+   has a real figure worth that treatment, put it in `outcome` where it reads
+   as a sentence, or add the field back and use it only for actual numbers.
    ────────────────────────────────────────────────────────────────────────── */
 export default [
   {
@@ -36,10 +42,6 @@ export default [
       'information, public services, and official records.',
     outcome:
       'Brought a small South Texas city into the digital era — modern, secure, and publicly accessible.',
-    metrics: [
-      { value: 'Live', label: 'In production' },
-      { value: 'Lead', label: 'Code ownership' },
-    ],
     cover: null,
     gallery: [],
     problem: '',
@@ -62,10 +64,6 @@ export default [
       'Operations division. Covers UI, real-time data flow, and multi-team collaboration.',
     outcome:
       'Advanced to the Houston finals and presented directly to NASA representatives.',
-    metrics: [
-      { value: '2', label: 'Trips to Houston' },
-      { value: 'Finals', label: 'Competition stage' },
-    ],
     cover: null,
     gallery: [],
     problem: '',
@@ -88,9 +86,6 @@ export default [
       "in a research environment, built with scientists at one of the US government's top national labs.",
     outcome:
       'Earned an in-person visit to Los Alamos National Laboratory as the only student selected.',
-    metrics: [
-      { value: '1', label: 'Student selected' },
-    ],
     cover: null,
     gallery: [],
     problem: '',
@@ -113,9 +108,6 @@ export default [
       'layer — controlling apps, routines, and devices from one unified interface.',
     outcome:
       'Establishing the foundation for a fully AI-powered home control and productivity system.',
-    metrics: [
-      { value: '2', label: 'Platforms bridged' },
-    ],
     cover: null,
     gallery: [],
     problem: '',

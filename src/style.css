@@ -4585,8 +4585,16 @@ body.dyslexia-mode .form-input,
 /* The dot leads, the ring trails, and both sit above everything else. These
    come after the base cursor rule on purpose -- source order is what settles
    it, which is exactly how the earlier version of this block silently demoted
-   the cursor below the tweaks panel. */
-.cursor-dot  { z-index: calc(var(--z-cursor) + 1); }
+   the cursor below the tweaks panel.
+
+   The base rule centres these with translate(-50%, -50%), but the pointer
+   tracking overwrites `transform` outright, so that centring never survives.
+   The ring compensated with a negative margin; the dot never did, and had been
+   drawing down and right of the actual pointer. Both are pinned by margin. */
+.cursor-dot  {
+  z-index: calc(var(--z-cursor) + 1);
+  margin: -3.5px 0 0 -3.5px;
+}
 .cursor-ring { z-index: var(--z-cursor); }
 
 /* ══════════════════════════════════════════════════════════════════════════
