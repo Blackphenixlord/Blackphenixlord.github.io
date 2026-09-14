@@ -168,8 +168,31 @@ pageScript: page-contact.js
 
         <button class="form-submit" type="submit">send_message &#x2192;</button>
 
-        <div class="form-success" id="form-success" role="alert" aria-live="polite">
-          <span style="color:#00ff41">✓</span>&nbsp; Message sent! I'll get back to you soon.
+        <div class="form-success" id="form-success" role="status" aria-live="polite"></div>
+
+        {#- Shown once the message is composed. A static site has no server to
+            post to, so rather than bounce the visitor straight into a mail
+            client, the message is assembled here and handed over on their
+            terms: send it, or copy it and paste it wherever they like. -#}
+        <div class="form-ready" id="form-ready" hidden>
+          <p class="form-ready-head">
+            <span class="form-ready-prompt" aria-hidden="true">&rsaquo;</span>
+            Your message is ready
+          </p>
+
+          <pre class="form-ready-preview" id="form-ready-preview" tabindex="0" aria-label="Composed message"></pre>
+
+          <div class="form-ready-actions">
+            <a class="form-ready-send" id="form-open-mail" href="#">Send it <span aria-hidden="true">&rarr;</span></a>
+            <button type="button" class="form-ready-copy" id="form-copy">Copy message</button>
+          </div>
+
+          <p class="form-ready-note">
+            Either opens your mail app addressed to
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a> &mdash; or copy the
+            message and send it however you like.
+            <button type="button" class="form-ready-edit" id="form-edit">Edit instead</button>
+          </p>
         </div>
 
       </form>

@@ -52,18 +52,27 @@
 })();
 
 // ── Form submission ────────────────────────────────────────────────────
-// With site.contactEndpoint set, this posts for real and reports what actually
-// happened. Without one it falls back to a prefilled mailto: and says so —
-// the previous version announced "sent!" unconditionally, even when the mail
-// client never opened.
+// This site is static: there is no server behind it to accept a POST, and a
+// browser cannot send mail on its own. So the form does the part it honestly
+// can -- validate the input and compose the message -- then hands it over on
+// the visitor's terms rather than silently redirecting them into a mail app.
+//
+// Setting site.contactEndpoint (Formspree, Web3Forms, anything that accepts a
+// POST) switches this to a real background send with no hand-off at all.
 (function setupForm() {
   var form = document.getElementById('contact-form');
   if (!form) return;
 
   var endpoint  = form.getAttribute('data-endpoint') || '';
-  var successEl = document.getElementById('form-success');
+  var statusEl  = document.getElementById('form-success');
+  var readyEl   = document.getElementById('form-ready');
+  var previewEl = document.getElementById('form-ready-preview');
+  var mailLink  = document.getElementById('form-open-mail');
+  var copyBtn   = document.getElementById('form-copy');
+  var editBtn   = document.getElementById('form-edit');
   var submitBtn = form.querySelector('.form-submit');
   var btnLabel  = submitBtn ? submitBtn.textContent : '';
+  var ADDRESS   = 'joshuacollado636@gmail.com';
 
   var FIELDS = [
     { id: 'contact-name',    err: 'err-name',    label: 'Your name' },
@@ -71,6 +80,8 @@
     { id: 'contact-subject', err: 'err-subject', label: 'A subject' },
     { id: 'contact-message', err: 'err-message', label: 'A message' }
   ];
+
+  var val = function (id) { return (document.getElementById(id) || {}).value || ''; };
 
   function problem(field) {
     var el = document.getElementById(field.id);
@@ -97,7 +108,6 @@
     return !msg;
   }
 
-  /* Validate on blur, and clear the error as soon as they start fixing it. */
   FIELDS.forEach(function (field) {
     var el = document.getElementById(field.id);
     if (!el) return;
@@ -108,11 +118,69 @@
   });
 
   function setStatus(kind, text) {
-    if (!successEl) return;
-    successEl.className = 'form-success is-' + kind;
-    successEl.textContent = text;
-    successEl.style.display = 'block';
+    if (!statusEl) return;
+    statusEl.className = 'form-success is-' + kind;
+    statusEl.textContent = text;
+    statusEl.style.display = text ? 'block' : 'none';
   }
+
+  function compose() {
+    return 'From: ' + val('contact-name').trim() +
+           ' <' + val('contact-email').trim() + '>\n' +
+           'Subject: ' + val('contact-subject').trim() + '\n\n' +
+           val('contact-message').trim();
+  }
+
+  function openComposer() {
+    var body = compose();
+    previewEl.textContent = body;
+    mailLink.setAttribute('href',
+      'mailto:' + ADDRESS +
+      '?subject=' + encodeURIComponent(val('contact-subject').trim()) +
+      '&body=' + encodeURIComponent(body));
+
+    form.classList.add('is-composed');
+    readyEl.hidden = false;
+    setStatus('', '');
+    readyEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    mailLink.focus();
+  }
+
+  function closeComposer() {
+    readyEl.hidden = true;
+    form.classList.remove('is-composed');
+    copyBtn.textContent = 'Copy message';
+    var first = document.getElementById('contact-message');
+    if (first) first.focus();
+  }
+
+  if (editBtn) editBtn.addEventListener('click', closeComposer);
+
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    var text = previewEl.textContent;
+    function done() {
+      copyBtn.textContent = 'Copied';
+      copyBtn.classList.add('is-done');
+      setTimeout(function () {
+        copyBtn.textContent = 'Copy message';
+        copyBtn.classList.remove('is-done');
+      }, 2200);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, selectFallback);
+    } else {
+      selectFallback();
+    }
+    /* Clipboard access can be refused; selecting the text still lets them copy. */
+    function selectFallback() {
+      var r = document.createRange();
+      r.selectNodeContents(previewEl);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      copyBtn.textContent = 'Press Ctrl+C';
+    }
+  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -130,27 +198,19 @@
       return;
     }
 
-    /* Honeypot: a real person never fills this. */
     var trap = form.querySelector('[name="_gotcha"]');
     if (trap && trap.value) return;
 
-    var data = new FormData(form);
-
+    /* No endpoint: compose here and let them choose how it goes out. */
     if (!endpoint) {
-      /* No backend configured — hand off to the mail client and be honest
-         that we cannot confirm delivery from here. */
-      var body = 'From: ' + data.get('name') + ' <' + data.get('email') + '>\n\n' + data.get('message');
-      window.location.href = 'mailto:joshuacollado636@gmail.com'
-        + '?subject=' + encodeURIComponent(data.get('subject'))
-        + '&body=' + encodeURIComponent(body);
-      setStatus('info', 'Opening your email app with the message ready to send.');
+      openComposer();
       return;
     }
 
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'sending...'; }
     setStatus('info', 'Sending...');
 
-    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         form.reset();
@@ -159,7 +219,7 @@
       })
       .catch(function () {
         setStatus('error',
-          'That did not go through. Email joshuacollado636@gmail.com directly and it will reach me.');
+          'That did not go through. Email ' + ADDRESS + ' directly and it will reach me.');
       })
       .then(function () {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = btnLabel; }
