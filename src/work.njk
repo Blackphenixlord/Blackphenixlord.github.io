@@ -65,17 +65,10 @@ excludeFromSitemap: false
           <p>{{ project.approach }}</p>
         </section>
 {%- endif %}
-{%- if project.result %}
-        <section class="cs-section">
-          <h2>What happened</h2>
-          <p>{{ project.result }}</p>
+        <section class="cs-section cs-outcome">
+          <h2>{{ "What happened" if project.result else "Outcome" }}</h2>
+          <p class="cs-outcome-text">{{ project.result or project.outcome }}</p>
         </section>
-{%- else %}
-        <section class="cs-section">
-          <h2>Outcome</h2>
-          <p>{{ project.outcome }}</p>
-        </section>
-{%- endif %}
 
 {%- if project.cover %}
         {#- The placeholder plate already lists the stack, so this section would

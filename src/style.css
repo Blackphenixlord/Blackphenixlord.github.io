@@ -5244,3 +5244,109 @@ picture:not(.carousel-img):not(.photo-grid-img) > img {
     max-height: 62vh;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CASE STUDY — REFINEMENT
+   The plate was reserving 340px for ~150px of content, so every case study
+   opened with a terminal window that was two-thirds empty, and the outcome —
+   the single most important sentence on the page — was an 88px label and
+   paragraph floating underneath it.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── The plate hugs its content ───────────────────────────────────────── */
+.cs-visual .pv-plate { min-height: 0; }
+.cs-visual .pv-window { margin: var(--space-5); }
+.cs-visual .pv-screen {
+  padding: var(--space-5) var(--space-5) var(--space-4);
+}
+.cs-visual .pv-line { line-height: 1.9; }
+
+/* Give the plate a little presence without padding it out with nothing. */
+.cs-visual {
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(var(--accent-rgb), 0.05), transparent 70%),
+    var(--surface-void);
+}
+
+/* ── Prose rhythm ─────────────────────────────────────────────────────── */
+.cs-prose {
+  max-width: none;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.cs-section { margin-bottom: 0; }
+
+/* Section labels read as terminal output, matching the rest of the site. */
+.cs-section > h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+}
+.cs-section > h2::before {
+  content: "//";
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.cs-section > p {
+  max-width: var(--measure);
+  color: var(--ink);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+/* ── The outcome carries the page ─────────────────────────────────────────
+   It is the answer to "so what happened", so it gets the weight that the
+   invented metric tiles were previously borrowing.                        */
+.cs-outcome {
+  position: relative;
+  padding: var(--space-6) var(--space-6) var(--space-6) var(--space-7);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  background:
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.07), transparent 55%),
+    var(--surface-raised);
+}
+
+/* A prompt mark, so the statement reads as the terminal answering. */
+.cs-outcome::before {
+  content: "›";
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  line-height: 1.15;
+  color: var(--accent);
+}
+
+.cs-outcome > h2 { color: var(--accent); }
+.cs-outcome > h2::before { content: ""; }
+
+.cs-outcome-text {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--ink-bright);
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+
+/* ── Stack chips, when a real cover image means they still render ─────── */
+.cs-stack li { background: var(--surface-raised); }
+
+/* ── Onward links ─────────────────────────────────────────────────────── */
+.cs-next { margin-top: var(--space-7); }
+
+@media (max-width: 700px) {
+  .cs-outcome {
+    padding: var(--space-5) var(--space-4) var(--space-5) var(--space-6);
+  }
+  .cs-outcome::before { left: var(--space-3); top: var(--space-5); }
+  .cs-outcome-text { font-size: var(--text-base); }
+  .cs-visual .pv-window { margin: var(--space-3); }
+  .cs-visual .pv-screen { padding: var(--space-4); }
+}
