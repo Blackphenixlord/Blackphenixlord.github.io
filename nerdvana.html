@@ -135,7 +135,11 @@
           <p class="section-label" aria-hidden="true">// photo gallery</p>
           <h2 class="internship-block-title sr-only">Experience in Photos</h2>
           <div class="photo-grid">
-            <img src="imgs/nerdvana.jpg" alt="Nerdvana STEM program" class="photo-grid-img" />
+            <picture class="photo-grid-img">
+              <source type="image/avif" srcset="imgs/nerdvana-400.avif 400w, imgs/nerdvana-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+              <source type="image/webp" srcset="imgs/nerdvana-400.webp 400w, imgs/nerdvana-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+              <img src="imgs/nerdvana-800.jpg" width="800" height="451" alt="Nerdvana STEM program" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
 
@@ -144,7 +148,11 @@
           <h2 class="internship-block-title">Certificate of Completion</h2>
           <div style="margin-top:24px; display:flex; justify-content:center;">
             <div style="border:1px solid rgba(0,255,65,0.25); border-radius:8px; overflow:hidden; box-shadow:0 0 30px rgba(0,255,65,0.08); max-width:680px; width:100%;">
-              <img src="imgs/nerdvana-certificate.jpg" alt="Nerdvana Internship Certificate of Completion — Joshua Collado 2025–2026" style="width:100%; display:block;" />
+              <picture>
+                <source type="image/avif" srcset="imgs/nerdvana-certificate-400.avif 400w, imgs/nerdvana-certificate-800.avif 800w" sizes="(max-width: 700px) 92vw, 640px" />
+                <source type="image/webp" srcset="imgs/nerdvana-certificate-400.webp 400w, imgs/nerdvana-certificate-800.webp 800w" sizes="(max-width: 700px) 92vw, 640px" />
+                <img src="imgs/nerdvana-certificate-800.jpg" width="800" height="600" alt="Nerdvana Internship Certificate of Completion — Joshua Collado 2025–2026" loading="lazy" decoding="async" style="width:100%; display:block;" />
+              </picture>
             </div>
           </div>
           <p style="font-family:'Share Tech Mono',monospace; color:rgba(0,255,65,0.55); font-size:0.8rem; margin-top:14px; text-align:center; letter-spacing:1px;">Nerdvana Internship &nbsp;·&nbsp; 2025–2026</p>

@@ -139,13 +139,41 @@
             <button class="carousel-btn carousel-prev" aria-label="Previous photos" disabled>&#8592;</button>
             <div class="carousel-track-wrap">
               <div class="carousel-track">
-                <img src="imgs/STUDENTBYSTUDENT.jpg" alt="UTRGV Science Academy" class="carousel-img" />
-                <img src="imgs/STUDENTBYSTUDENT2.jpg" alt="UTRGV Science Academy students" class="carousel-img" />
-                <img src="imgs/STUDENTBYSTUDENT3.jpg" alt="UTRGV Science Academy students" class="carousel-img" />
-                <img src="imgs/lanl.png" alt="UTRGV LANL program" class="carousel-img" />
-                <img src="imgs/lanl2.jpg" alt="Los Alamos National Laboratory visit" class="carousel-img" />
-                <img src="imgs/lanl3.jpg" alt="Los Alamos National Laboratory visit" class="carousel-img" />
-                <img src="imgs/lanl4.jpg" alt="Los Alamos National Laboratory visit" class="carousel-img" />
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/STUDENTBYSTUDENT-400.avif 400w, imgs/STUDENTBYSTUDENT-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/STUDENTBYSTUDENT-400.webp 400w, imgs/STUDENTBYSTUDENT-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/STUDENTBYSTUDENT-800.jpg" width="800" height="1422" alt="UTRGV Science Academy" loading="lazy" decoding="async" />
+                </picture>
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/STUDENTBYSTUDENT2-400.avif 400w, imgs/STUDENTBYSTUDENT2-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/STUDENTBYSTUDENT2-400.webp 400w, imgs/STUDENTBYSTUDENT2-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/STUDENTBYSTUDENT2-800.jpg" width="800" height="1422" alt="UTRGV Science Academy students" loading="lazy" decoding="async" />
+                </picture>
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/STUDENTBYSTUDENT3-400.avif 400w, imgs/STUDENTBYSTUDENT3-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/STUDENTBYSTUDENT3-400.webp 400w, imgs/STUDENTBYSTUDENT3-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/STUDENTBYSTUDENT3-800.jpg" width="800" height="1422" alt="UTRGV Science Academy students" loading="lazy" decoding="async" />
+                </picture>
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/lanl-400.avif 400w, imgs/lanl-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/lanl-400.webp 400w, imgs/lanl-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/lanl-800.jpg" width="800" height="375" alt="UTRGV LANL program" loading="lazy" decoding="async" />
+                </picture>
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/lanl2-400.avif 400w, imgs/lanl2-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/lanl2-400.webp 400w, imgs/lanl2-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/lanl2-800.jpg" width="800" height="600" alt="Los Alamos National Laboratory visit" loading="lazy" decoding="async" />
+                </picture>
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/lanl3-400.avif 400w, imgs/lanl3-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/lanl3-400.webp 400w, imgs/lanl3-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/lanl3-800.jpg" width="800" height="1067" alt="Los Alamos National Laboratory visit" loading="lazy" decoding="async" />
+                </picture>
+                <picture class="carousel-img">
+                  <source type="image/avif" srcset="imgs/lanl4-400.avif 400w, imgs/lanl4-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <source type="image/webp" srcset="imgs/lanl4-400.webp 400w, imgs/lanl4-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
+                  <img src="imgs/lanl4-800.jpg" width="800" height="600" alt="Los Alamos National Laboratory visit" loading="lazy" decoding="async" />
+                </picture>
               </div>
             </div>
             <button class="carousel-btn carousel-next" aria-label="Next photos">&#8594;</button>
@@ -190,7 +218,8 @@
       prevBtn.addEventListener('click', function() { if (idx > 0) { idx = Math.max(0, idx - pp()); update(); } });
       nextBtn.addEventListener('click', function() { if (idx + pp() < imgs.length) { idx = Math.min(imgs.length - pp(), idx + pp()); update(); } });
       window.addEventListener('resize', update);
-      imgs[0].addEventListener('load', update);
+      var firstImg = imgs[0] && imgs[0].tagName === 'PICTURE' ? imgs[0].querySelector('img') : imgs[0];
+      if (firstImg) firstImg.addEventListener('load', update);
       update();
     });
 
