@@ -4901,22 +4901,55 @@ picture:not(.carousel-img):not(.photo-grid-img) > img {
   max-width: var(--measure);
 }
 
-.work-outcome {
+/* ── Outcome ──────────────────────────────────────────────────────────────
+   The card and the case-study page show the same thing and had drifted into
+   two different looks: a hairline rule here, an accent card there. They share
+   one treatment now, scaled to context, so changing it changes both. */
+.work-outcome,
+.cs-outcome {
+  position: relative;
   margin: 0;
-  padding-left: var(--space-3);
-  border-left: 2px solid var(--border-strong);
-  color: var(--ink);
-  font-size: var(--text-sm);
-  line-height: var(--leading-snug);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background:
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.08), transparent 60%),
+    var(--surface-panel);
 }
-.work-outcome-label {
+
+/* The prompt mark, so the statement reads as the terminal answering. */
+.work-outcome::before,
+.cs-outcome::before {
+  content: "›";
+  position: absolute;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.work-outcome-label,
+.cs-outcome > h2 {
   display: block;
   font-family: var(--font-mono);
-  font-size: var(--text-2xs);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 2px;
+}
+
+/* Card scale. */
+.work-outcome {
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-5);
+  color: var(--ink-bright);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+.work-outcome::before {
+  left: var(--space-3);
+  top: var(--space-3);
+  font-size: var(--text-base);
+}
+.work-outcome-label {
+  font-size: var(--text-2xs);
+  margin-bottom: 3px;
 }
 
 .work-stack {
@@ -5300,30 +5333,19 @@ picture:not(.carousel-img):not(.photo-grid-img) > img {
 /* ── The outcome carries the page ─────────────────────────────────────────
    It is the answer to "so what happened", so it gets the weight that the
    invented metric tiles were previously borrowing.                        */
+/* Page scale. Shares the rail, mark and wash defined with .work-outcome. */
 .cs-outcome {
-  position: relative;
   padding: var(--space-6) var(--space-6) var(--space-6) var(--space-7);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--accent);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  background:
-    linear-gradient(90deg, rgba(var(--accent-rgb), 0.07), transparent 55%),
-    var(--surface-raised);
 }
-
-/* A prompt mark, so the statement reads as the terminal answering. */
 .cs-outcome::before {
-  content: "›";
-  position: absolute;
   left: var(--space-4);
   top: var(--space-6);
-  font-family: var(--font-mono);
   font-size: var(--text-xl);
-  line-height: 1.15;
-  color: var(--accent);
 }
-
-.cs-outcome > h2 { color: var(--accent); }
 .cs-outcome > h2::before { content: ""; }
 
 .cs-outcome-text {
