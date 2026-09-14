@@ -7,8 +7,14 @@ export default {
   ogImage: '/imgs/og-cover.jpg',
   ogImageAlt: 'Joshua Collado — Building software that ships, systems that matter.',
   themeColor: '#0a0e1a',
-  assetVersion: '20260913-2',
+  assetVersion: '20260913-3',
   buildYear: new Date().getFullYear(),
+
+  /* Contact form endpoint. Paste a Formspree ("https://formspree.io/f/xxxxxxxx")
+     or Web3Forms URL here and the form posts for real, with an inline success
+     state and no mail client involved. Left empty, the form degrades to a
+     prefilled mailto: and says so honestly rather than claiming it sent. */
+  contactEndpoint: '',
 
   /* Primary navigation. `key` matches a page's `navKey` front matter to mark it current. */
   nav: [

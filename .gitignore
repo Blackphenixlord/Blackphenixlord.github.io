@@ -11,3 +11,8 @@ Thumbs.db
 # Temp
 __preview_*.html
 *.tmp
+
+# Audit tooling (local only)
+chrome/
+lh*.json
+gzsrv.py

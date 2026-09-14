@@ -1,3 +1,47 @@
+/* Self-hosted from Google Fonts, latin subset only. Removes a third-party
+   connection and the render-blocking round trip to fonts.googleapis.com.
+   Inter ships as one variable file rather than six static instances. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url(fonts/Inter-300-600.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Orbitron-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Orbitron-700.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(fonts/Orbitron-900.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/ShareTechMono-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ══════════════════════════════════════════════════════════════════════════
    DESIGN TOKENS
    Every colour, step of type, unit of space, radius, shadow and easing in
@@ -40,8 +84,8 @@
   --ink:            #c9d1d9;
   --ink-muted:      #a0aab4;
   --ink-dim:        #7b8a92;
-  --ink-faint:      #4a5568;
-  --ink-accent:     rgba(var(--accent-rgb), 0.62);
+  --ink-faint:      #73829a;   /* was #4a5568 -- 2.56:1, below WCAG AA */
+  --ink-accent:     rgba(var(--accent-rgb), 0.75);   /* was 0.62 -- 3.9:1, below AA */
 
   /* ── Status / fixed hues (never follow the accent) ──────────────────── */
   --tl-red:         #ff5f57;
@@ -388,7 +432,7 @@ a {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.06em;
-  color: var(--accent-muted);
+  color: var(--ink-accent);
   background: none;
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -2450,7 +2494,7 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.06em;
-  color: var(--accent-muted);
+  color: var(--ink-accent);
   background: rgba(10, 14, 26, 0.88);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -2884,7 +2928,7 @@ a.project-card:focus-visible {
 .internship-hub-year {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.75rem;
-  color: var(--accent-muted);
+  color: var(--ink-accent);
 }
 .internship-hub-arrow {
   width: 18px;
@@ -3100,7 +3144,7 @@ picture.photo-grid-img > img {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--accent-muted);
+  color: var(--ink-accent);
   font-family: "Share Tech Mono", monospace;
   font-size: 0.72rem;
   text-align: center;
@@ -3194,7 +3238,7 @@ picture.photo-grid-img > img {
 .stat-caption {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.68rem;
-  color: var(--accent-muted);
+  color: var(--ink-accent);
   letter-spacing: 0.04em;
   text-align: center;
   margin-top: 3px;
@@ -3258,7 +3302,7 @@ picture.photo-grid-img > img {
 .testimonial-role {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.72rem;
-  color: var(--accent-muted);
+  color: var(--ink-accent);
 }
 @media (max-width: 900px) {
   .testimonials-grid {
@@ -3977,13 +4021,15 @@ picture.photo-grid-img > img {
   font-family: "Orbitron", monospace;
   font-size: 3.2rem;
   font-weight: 900;
-  color: rgba(var(--accent-rgb), 0.12);
+  /* 0.12 measured 1.18:1 against the page -- invisible, and axe counts a
+     decorative numeral as text. 0.55 keeps it a background element at 3.3:1. */
+  color: rgba(var(--accent-rgb), 0.55);
   line-height: 1;
   user-select: none;
   transition: color 0.3s;
   padding-top: 6px;
 }
-.proj-row:hover .proj-number { color: rgba(var(--accent-rgb), 0.3); }
+.proj-row:hover .proj-number { color: rgba(var(--accent-rgb), 0.55); }
 
 .proj-body { min-width: 0; }
 
@@ -4447,7 +4493,7 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab {
   animation: none;
 }
 @keyframes hintPulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.2), inset 0 0 5px rgba(var(--accent-rgb), 0.08); border-color: rgba(var(--accent-rgb), 0.55); opacity: 0.85; }
+  0%, 100% { box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.2), inset 0 0 5px rgba(var(--accent-rgb), 0.08); border-color: rgba(var(--accent-rgb), 0.3); opacity: 0.85; }
   50%       { box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.5), inset 0 0 10px rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.9); opacity: 1; }
 }
 @media (max-width: 600px) { .nav-shortcut-hint { display: none; } }
@@ -4624,7 +4670,7 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab { opacity: 0; pointer-events: none;
 .rdoc-date {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.78rem;
-  color: rgba(var(--accent-rgb),0.65);
+  color: var(--ink-accent);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -4802,7 +4848,7 @@ html.js .reveal.is-visible {
     .testimonial-author-title {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.78rem;
-      color: #556655;
+      color: var(--ink-accent);
     }
 
 /* ===== from contact.html ===== */
@@ -4877,7 +4923,7 @@ body.dyslexia-mode .form-input,
     .ct-bar-title {
       font-family:'Share Tech Mono',monospace;
       font-size:0.72rem;
-      color:rgba(0,255,65,0.35);
+      color:var(--ink-accent);
       margin-left:6px;
       letter-spacing:0.04em;
     }
@@ -4894,7 +4940,7 @@ body.dyslexia-mode .form-input,
       flex-wrap: wrap;
     }
     .ct-user  { color: var(--accent,#00ff41); }
-    .ct-sep   { color: #4a5568; }
+    .ct-sep   { color: var(--ink-muted); }
     .ct-path  { color: var(--accent,#00ff41); }
     .ct-cmd   { color: #e6edf3; }
     .ct-output { color: #a0aab4; display:none; }
@@ -4966,7 +5012,7 @@ body.dyslexia-mode .form-input,
       font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       font-weight: 600;
-      color: #4a5568;
+      color: var(--ink-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -4996,14 +5042,14 @@ body.dyslexia-mode .form-input,
     .contact-status-dot-grn { width:10px;height:10px;border-radius:50%;background:var(--accent,#00ff41); }
     .contact-status-title {
       font-family:'Share Tech Mono',monospace;
-      font-size:0.7rem; color:#4a5568; margin-left:4px;
+      font-size:0.7rem; color:var(--ink-muted); margin-left:4px;
     }
     .contact-status-body {
       padding:14px 16px;
       font-family:'Share Tech Mono',monospace;
       font-size:0.82rem; line-height:2;
     }
-    .contact-status-cmd { color:#4a5568; margin-bottom: 4px; }
+    .contact-status-cmd { color:var(--ink-muted); margin-bottom: 4px; }
     .contact-status-cmd span { color:#a0aab4; }
     .contact-status-result {
       color:var(--accent,#00ff41);
@@ -5019,7 +5065,7 @@ body.dyslexia-mode .form-input,
       0%,100%{opacity:1;box-shadow:0 0 6px var(--accent,#00ff41)}
       50%{opacity:0.6;box-shadow:0 0 12px var(--accent,#00ff41)}
     }
-    .status-gt { color: #4a5568; margin-right: 4px; }
+    .status-gt { color: var(--ink-muted); margin-right: 4px; }
 
     /* ── Form ────────────────────────────────────────────────────────────── */
     .contact-form-col { display:flex; flex-direction:column; }
@@ -5059,7 +5105,7 @@ body.dyslexia-mode .form-input,
       transition: border-color 0.2s, box-shadow 0.2s;
       caret-color: var(--accent,#00ff41);
     }
-    .form-input::placeholder, .form-textarea::placeholder { color:#1e2e1e; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--border); }
     .form-input:focus, .form-textarea:focus {
       border-color: var(--accent,#00ff41);
       box-shadow: 0 0 0 3px rgba(var(--accent-rgb,0,255,65),0.1),
@@ -5370,4 +5416,192 @@ body.dyslexia-mode .form-input,
   .testimonial-card:hover { transform: none; }
 
   .nav-links a::after { transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CONTACT FORM STATES
+   ══════════════════════════════════════════════════════════════════════════ */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-error {
+  margin: var(--space-1) 0 0;
+  min-height: 1em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: #ff8a80;
+}
+
+.form-input.is-invalid,
+.form-textarea.is-invalid {
+  border-color: #ff8a80;
+  background: rgba(255, 138, 128, 0.06);
+}
+
+.form-success {
+  display: none;
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+.form-success.is-ok {
+  color: var(--accent);
+  border-color: var(--border-strong);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+.form-success.is-info {
+  color: var(--ink-muted);
+  background: var(--surface-panel);
+}
+.form-success.is-error {
+  color: #ff8a80;
+  border-color: rgba(255, 138, 128, 0.45);
+  background: rgba(255, 138, 128, 0.07);
+}
+
+.form-submit[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   404
+   GitHub Pages serves its own 404 otherwise, which breaks the illusion at the
+   one moment a visitor is already unsure whether the site is working.
+   ══════════════════════════════════════════════════════════════════════════ */
+.notfound-terminal {
+  max-width: 680px;
+  margin: 0 auto var(--space-7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.notfound-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-high);
+  border-bottom: 1px solid var(--border-soft);
+}
+.notfound-bar-text {
+  margin-left: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--ink-dim);
+}
+.notfound-body {
+  padding: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.9;
+}
+.notfound-line { margin: 0; }
+.notfound-user  { color: var(--accent); }
+.notfound-host  { color: var(--tl-yellow); }
+.notfound-at,
+.notfound-punct { color: var(--ink-faint); }
+.notfound-path  { color: var(--info); }
+.notfound-cmd   { color: var(--ink); }
+.notfound-err   { color: var(--tl-red); }
+.notfound-dim   { color: var(--ink-muted); }
+
+.notfound-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  max-width: 680px;
+  margin: 0 auto var(--space-6);
+}
+.notfound-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  text-decoration: none;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+.notfound-link:hover,
+.notfound-link:focus-visible {
+  transform: translate3d(0, -2px, 0);
+  border-color: var(--border-strong);
+  background: var(--surface-tint);
+}
+.notfound-link-name {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+}
+.notfound-link-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--ink-muted);
+}
+
+.notfound-hint {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+.notfound-hint kbd {
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-panel);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notfound-link:hover,
+  .notfound-link:focus-visible { transform: none; }
+}
+
+/* An intrinsic height attribute reserves space and keeps CLS at zero, but it
+   must never win over the layout's own width. Images the layout stretches get
+   their height back from the aspect ratio. */
+picture:not(.carousel-img):not(.photo-grid-img) > img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ULTRAWIDE (> 1600px)
+   The site capped its content containers but left the full-bleed bars
+   unconstrained, so on a 2560px display the wordmark and the nav controls
+   ended up ~2,500px apart. Padding the bars inward keeps their background
+   edge to edge while their contents stay on the same measure as everything
+   else -- no extra wrapper element needed.
+   ══════════════════════════════════════════════════════════════════════════ */
+.navbar,
+.stats-strip,
+.footer {
+  padding-inline: max(var(--space-7), calc((100% - 1600px) / 2));
+}
+
+@media (min-width: 1900px) {
+  :root {
+    /* Slightly larger base so a big display reads as generous, not sparse. */
+    --text-base: 1.06rem;
+  }
+  .hero-content { max-width: 1000px; }
+  .intro-card { max-width: 1200px; }
 }

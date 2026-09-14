@@ -2,7 +2,10 @@
     <div class="cp-panel" id="cp-panel">
       <div class="cp-header">
         <span class="cp-prompt">$&gt;</span>
-        <input class="cp-input" id="cp-input" type="text" placeholder="type a command or search..." autocomplete="off" spellcheck="false" />
+        <label class="sr-only" for="cp-input">Search commands</label>
+        <input class="cp-input" id="cp-input" type="text" placeholder="type a command or search..."
+               autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true"
+               aria-controls="cp-list" aria-autocomplete="list" />
         <kbd class="cp-esc-hint">ESC</kbd>
       </div>
       <ul class="cp-list" id="cp-list" role="listbox" aria-label="Commands">

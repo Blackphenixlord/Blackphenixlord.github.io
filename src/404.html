@@ -1,0 +1,71 @@
+---
+layout: base.njk
+title: "404 — Page Not Found | Joshua Collado"
+description: "That page doesn't exist. Here's the way back."
+navKey: none
+noindex: true
+excludeFromSitemap: true
+eleventyExcludeFromCollections: true
+permalink: /404.html
+---
+
+  <section class="page-hero" aria-label="Page not found">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <p class="section-label" aria-hidden="true">// error</p>
+    <h1 class="page-hero-title">404</h1>
+    <p class="page-hero-sub">that page isn&rsquo;t on this machine</p>
+  </section>
+
+  <div class="page-content">
+    <div class="container">
+
+      <div class="notfound-terminal" role="group" aria-label="Error detail">
+        <div class="notfound-bar" aria-hidden="true">
+          <span class="boot-dot red"></span>
+          <span class="boot-dot yellow"></span>
+          <span class="boot-dot green"></span>
+          <span class="notfound-bar-text">joshua@collado &mdash; bash</span>
+        </div>
+        <div class="notfound-body">
+          <p class="notfound-line">
+            <span class="notfound-user">joshua</span><span class="notfound-at">@</span><span class="notfound-host">collado</span><span class="notfound-punct">:</span><span class="notfound-path">~</span><span class="notfound-punct">$</span>
+            <span class="notfound-cmd">cat <span id="notfound-path">the-page-you-wanted</span></span>
+          </p>
+          <p class="notfound-line notfound-err">cat: no such file or directory</p>
+          <p class="notfound-line notfound-dim">&nbsp;</p>
+          <p class="notfound-line notfound-dim">Either the link is wrong, or I moved something and forgot to</p>
+          <p class="notfound-line notfound-dim">leave a forwarding address. Both are on me.</p>
+          <p class="notfound-line notfound-dim">&nbsp;</p>
+          <p class="notfound-line">
+            <span class="notfound-user">joshua</span><span class="notfound-at">@</span><span class="notfound-host">collado</span><span class="notfound-punct">:</span><span class="notfound-path">~</span><span class="notfound-punct">$</span>
+            <span class="notfound-cmd">ls</span>
+          </p>
+        </div>
+      </div>
+
+      <nav class="notfound-links" aria-label="Where to go instead">
+{%- for item in site.nav %}
+        <a class="notfound-link" href="{{ item.href }}">
+          <span class="notfound-link-name">{{ item.href }}</span>
+          <span class="notfound-link-label">{{ item.label }}</span>
+        </a>
+{%- endfor %}
+      </nav>
+
+      <p class="notfound-hint">
+        Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to search everything from here.
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    /* Show what was actually requested. textContent, never innerHTML -- the
+       path comes from the URL bar and must never be treated as markup. */
+    (function () {
+      var el = document.getElementById('notfound-path');
+      if (!el) return;
+      var path = location.pathname.replace(/^\/+/, '');
+      if (path && path !== '404.html') el.textContent = path;
+    })();
+  </script>

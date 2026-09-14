@@ -96,7 +96,7 @@
   /* -- Sequence -- */
   function run() {
     gap();
-    println('JC/OS 2026.05 LTS  .  joshua-collado.local', '#4a5568');
+    println('JC/OS 2026.05 LTS  .  joshua-collado.local', '#73829a');
     gap();
 
     setTimeout(function () {
@@ -115,7 +115,7 @@
                     setTimeout(function () {
                       if (skipped) return;
                       gap();
-                      println('Authenticating...', '#4a5568');
+                      println('Authenticating...', '#73829a');
                       setTimeout(function () {
                         if (skipped) return;
                         var auth = println('[ LOGIN OK ]', '#28c840');
@@ -123,13 +123,13 @@
                         setTimeout(function () {
                           if (skipped) return;
                           gap();
-                          println('Last login: ' + new Date().toDateString() + '  from 127.0.0.1', '#4a5568');
+                          println('Last login: ' + new Date().toDateString() + '  from 127.0.0.1', '#73829a');
                           gap();
                           setTimeout(function () {
                             if (skipped) return;
-                            println('+------------------------------------------------------------------+', '#1a2a1a');
+                            println('+------------------------------------------------------------------+', '#3f5a3f');
                             println('|  Welcome, Joshua Collado.  NASA . Los Alamos . Nerdvana . RECON  |', '#00cc33');
-                            println('+------------------------------------------------------------------+', '#1a2a1a');
+                            println('+------------------------------------------------------------------+', '#3f5a3f');
                             gap();
                             setTimeout(function () {
                               if (skipped) return;
@@ -137,9 +137,9 @@
                               p.className = 'boot-line';
                               p.innerHTML =
                                 '<span style="color:#28c840">joshua</span>' +
-                                '<span style="color:#4a5568">@</span>' +
+                                '<span style="color:#73829a">@</span>' +
                                 '<span style="color:#febc2e">collado</span>' +
-                                '<span style="color:#4a5568">:</span>' +
+                                '<span style="color:#73829a">:</span>' +
                                 '<span style="color:#00aaff">~</span>' +
                                 '<span style="color:#c9d1d9">$ </span>' +
                                 '<span class="boot-cursor">|</span>';

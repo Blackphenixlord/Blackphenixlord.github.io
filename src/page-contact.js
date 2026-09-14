@@ -51,33 +51,118 @@
   });
 })();
 
-// ── Form submission (mailto) ──────────────────────────────────────────
+// ── Form submission ────────────────────────────────────────────────────
+// With site.contactEndpoint set, this posts for real and reports what actually
+// happened. Without one it falls back to a prefilled mailto: and says so —
+// the previous version announced "sent!" unconditionally, even when the mail
+// client never opened.
 (function setupForm() {
-  var form      = document.getElementById('contact-form');
-  var successEl = document.getElementById('form-success');
+  var form = document.getElementById('contact-form');
   if (!form) return;
+
+  var endpoint  = form.getAttribute('data-endpoint') || '';
+  var successEl = document.getElementById('form-success');
   var submitBtn = form.querySelector('.form-submit');
+  var btnLabel  = submitBtn ? submitBtn.textContent : '';
+
+  var FIELDS = [
+    { id: 'contact-name',    err: 'err-name',    label: 'Your name' },
+    { id: 'contact-email',   err: 'err-email',   label: 'Your email' },
+    { id: 'contact-subject', err: 'err-subject', label: 'A subject' },
+    { id: 'contact-message', err: 'err-message', label: 'A message' }
+  ];
+
+  function problem(field) {
+    var el = document.getElementById(field.id);
+    if (!el) return '';
+    var v = el.value.trim();
+    if (!v) return field.label + ' is required.';
+    if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+      return 'That email address does not look right.';
+    }
+    if (field.id === 'contact-message' && v.length < 10) {
+      return 'A little more detail would help — at least 10 characters.';
+    }
+    return '';
+  }
+
+  function show(field, msg) {
+    var el = document.getElementById(field.id);
+    var errEl = document.getElementById(field.err);
+    if (errEl) errEl.textContent = msg;
+    if (el) {
+      el.classList.toggle('is-invalid', !!msg);
+      el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    }
+    return !msg;
+  }
+
+  /* Validate on blur, and clear the error as soon as they start fixing it. */
+  FIELDS.forEach(function (field) {
+    var el = document.getElementById(field.id);
+    if (!el) return;
+    el.addEventListener('blur', function () { show(field, problem(field)); });
+    el.addEventListener('input', function () {
+      if (el.classList.contains('is-invalid')) show(field, problem(field));
+    });
+  });
+
+  function setStatus(kind, text) {
+    if (!successEl) return;
+    successEl.className = 'form-success is-' + kind;
+    successEl.textContent = text;
+    successEl.style.display = 'block';
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var name    = (document.getElementById('contact-name')    || {}).value || '';
-    var email   = (document.getElementById('contact-email')   || {}).value || '';
-    var subject = (document.getElementById('contact-subject') || {}).value || 'Message from Portfolio';
-    var message = (document.getElementById('contact-message') || {}).value || '';
 
-    var body = 'From: ' + name + ' <' + email + '>\n\n' + message;
-    var mailto = 'mailto:joshuacollado636@gmail.com'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body='    + encodeURIComponent(body);
+    var firstBad = null;
+    FIELDS.forEach(function (field) {
+      var msg = problem(field);
+      show(field, msg);
+      if (msg && !firstBad) firstBad = field;
+    });
+    if (firstBad) {
+      var el = document.getElementById(firstBad.id);
+      if (el) el.focus();
+      setStatus('error', 'Please fix the highlighted fields.');
+      return;
+    }
 
-    window.location.href = mailto;
+    /* Honeypot: a real person never fills this. */
+    var trap = form.querySelector('[name="_gotcha"]');
+    if (trap && trap.value) return;
 
-    // Show success state after brief delay
-    submitBtn.textContent = '✓ sent!';
-    successEl.style.display = 'block';
-    setTimeout(function () {
-      form.reset();
-      submitBtn.textContent = 'send_message →';
-    }, 3000);
+    var data = new FormData(form);
+
+    if (!endpoint) {
+      /* No backend configured — hand off to the mail client and be honest
+         that we cannot confirm delivery from here. */
+      var body = 'From: ' + data.get('name') + ' <' + data.get('email') + '>\n\n' + data.get('message');
+      window.location.href = 'mailto:joshuacollado636@gmail.com'
+        + '?subject=' + encodeURIComponent(data.get('subject'))
+        + '&body=' + encodeURIComponent(body);
+      setStatus('info', 'Opening your email app with the message ready to send.');
+      return;
+    }
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'sending...'; }
+    setStatus('info', 'Sending...');
+
+    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        form.reset();
+        FIELDS.forEach(function (f) { show(f, ''); });
+        setStatus('ok', 'Message sent. I usually reply within 24-48 hours.');
+      })
+      .catch(function () {
+        setStatus('error',
+          'That did not go through. Email joshuacollado636@gmail.com directly and it will reach me.');
+      })
+      .then(function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = btnLabel; }
+      });
   });
 })();

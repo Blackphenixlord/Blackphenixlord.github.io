@@ -4,7 +4,7 @@
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
   <nav class="navbar" aria-label="Main navigation">
-    <a class="nav-logo" href="index.html" aria-label="{{ site.name }} — home">
+    <a class="nav-logo" href="index.html">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="36" height="36" rx="4" fill="#0a0e1a" />
         <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="3.5" stroke="#28c840" stroke-width="1.5" class="la-stroke" />
@@ -22,7 +22,7 @@
       <li><a href="{{ item.href }}"{% if item.key == navKey %} class="active" aria-current="page"{% endif %}>{{ item.label }}</a></li>
 {%- endfor %}
     </ul>
-    <button type="button" class="nav-shortcut-hint" id="nav-cp-hint" aria-label="Open command palette">Ctrl+K</button>
-    <button type="button" class="music-toggle" id="music-toggle" aria-label="Toggle background music" aria-pressed="false">&#9835; lofi: off</button>
+    <button type="button" class="nav-shortcut-hint" id="nav-cp-hint" title="Open command palette (Ctrl+K)">Ctrl+K</button>
+    <button type="button" class="music-toggle" id="music-toggle" title="Toggle background music" aria-pressed="false">&#9835; lofi: off</button>
     <button type="button" class="hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links-list">&#9776;</button>
   </nav>
