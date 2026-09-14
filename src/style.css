@@ -154,14 +154,21 @@
   --ease-in:    cubic-bezier(0.7, 0, 0.84, 0);
   --ease-both:  cubic-bezier(0.4, 0, 0.2, 1);
 
-  --z-base: 1;
-  --z-nav: 100;
-  --z-footer: 200;
-  --z-fab: 300;
-  --z-panel: 400;
+  /* Stacking order, lowest to highest. Every z-index in this file resolves
+     through one of these -- the previous values (9999, 99998, 999999 ...) were
+     picked ad hoc and no longer described the real order. The cursor is last
+     because it replaces the system cursor: anything drawn over it leaves the
+     visitor with no pointer at all. */
+  --z-base:    1;
+  --z-nav:     100;
+  --z-footer:  200;
+  --z-fab:     300;
+  --z-panel:   400;
   --z-palette: 500;
-  --z-cursor: 900;
-  --z-boot: 1000;
+  --z-boot:     600;
+  --z-skip:     700;
+  --z-progress: 800;
+  --z-cursor:   900;
 }
 
 /* ===== RESET & BASE ===== */
@@ -209,7 +216,7 @@ body.boot-done .hero {
 #boot-screen {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: var(--z-boot);
   background: var(--surface-raised);
   display: flex;
   flex-direction: column;
@@ -1574,7 +1581,7 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   font-weight: 700;
   padding: 8px 16px;
   border-radius: 6px;
-  z-index: 9999;
+  z-index: var(--z-skip);
   transition: top 0.15s;
 }
 .skip-link:focus {
@@ -3308,7 +3315,7 @@ picture.photo-grid-img > img {
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: 0 50%;
-  z-index: var(--z-cursor);
+  z-index: var(--z-progress);
   pointer-events: none;
   will-change: transform;
 }
@@ -3321,7 +3328,7 @@ picture.photo-grid-img > img {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 999999;
+  z-index: var(--z-cursor);
   transform: translate(-50%, -50%);
   will-change: transform;
 }
@@ -3421,7 +3428,7 @@ picture.photo-grid-img > img {
 .cp-overlay {
   position: fixed;
   inset: 0;
-  z-index: 999998;
+  z-index: var(--z-palette);
   background: rgba(0,0,0,0.72);
   backdrop-filter: blur(6px);
   display: flex;
@@ -3566,7 +3573,7 @@ picture.photo-grid-img > img {
   position: fixed;
   bottom: 22px;
   right: 22px;
-  z-index: 99998;
+  z-index: var(--z-fab);
   background: rgba(13,17,23,0.92);
   border: 1px solid rgba(var(--accent-rgb), 0.35);
   color: var(--accent);
@@ -3595,7 +3602,7 @@ picture.photo-grid-img > img {
   position: fixed;
   bottom: 62px;
   right: 22px;
-  z-index: 99997;
+  z-index: var(--z-panel);
   width: 240px;
   background: var(--surface-raised);
   border: 1px solid rgba(var(--accent-rgb), 0.3);
@@ -3761,7 +3768,7 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 99998;
+  z-index: var(--z-fab);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -3790,7 +3797,7 @@ body:has(.cp-overlay.cp-visible) .tweaks-fab { opacity: 0; pointer-events: none;
   position: fixed;
   bottom: 68px;
   right: 24px;
-  z-index: 99999;
+  z-index: var(--z-panel);
   width: 260px;
   background: var(--surface-raised);
   border: 1px solid rgba(var(--accent-rgb), 0.25);
@@ -4575,8 +4582,11 @@ body.dyslexia-mode .form-input,
   opacity: 0.55;
 }
 
-/* The dot leads, the ring trails — so the dot must sit above it. */
-.cursor-dot { z-index: calc(var(--z-cursor) + 1); }
+/* The dot leads, the ring trails, and both sit above everything else. These
+   come after the base cursor rule on purpose -- source order is what settles
+   it, which is exactly how the earlier version of this block silently demoted
+   the cursor below the tweaks panel. */
+.cursor-dot  { z-index: calc(var(--z-cursor) + 1); }
 .cursor-ring { z-index: var(--z-cursor); }
 
 /* ══════════════════════════════════════════════════════════════════════════
