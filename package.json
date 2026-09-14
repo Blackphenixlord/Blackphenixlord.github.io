@@ -1,0 +1,17 @@
+{
+  "name": "jc-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio for Joshua Collado - jc-portfolio.codes",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve --port=5173",
+    "clean": "node -e \"fs.rmSync('_site',{recursive:true,force:true})\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

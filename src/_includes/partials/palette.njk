@@ -1,0 +1,33 @@
+  <div class="cp-overlay" id="cp-overlay" role="dialog" aria-modal="true" aria-label="Command Palette" hidden>
+    <div class="cp-panel" id="cp-panel">
+      <div class="cp-header">
+        <span class="cp-prompt">$&gt;</span>
+        <input class="cp-input" id="cp-input" type="text" placeholder="type a command or search..." autocomplete="off" spellcheck="false" />
+        <kbd class="cp-esc-hint">ESC</kbd>
+      </div>
+      <ul class="cp-list" id="cp-list" role="listbox" aria-label="Commands">
+        <li class="cp-section" role="presentation">&#x2500;&#x2500; navigate &#x2500;&#x2500;</li>
+{%- for item in site.nav %}
+        <li class="cp-item" role="option" aria-selected="false" data-action="nav" data-href="{{ item.href }}" data-key="{{ item.label | first | upper }}" tabindex="-1">
+          <span class="cp-icon" aria-hidden="true">&#x25CE;</span><span class="cp-label">Go to {{ item.label }}</span><kbd class="cp-key">{{ item.label | first | upper }}</kbd>
+        </li>
+{%- endfor %}
+        <li class="cp-section" role="presentation">&#x2500;&#x2500; actions &#x2500;&#x2500;</li>
+        <li class="cp-item" role="option" aria-selected="false" data-action="nav" data-href="resume.html" data-key="D" tabindex="-1">
+          <span class="cp-icon" aria-hidden="true">&#x2193;</span><span class="cp-label">Open r&#233;sum&#233;</span><kbd class="cp-key">D</kbd>
+        </li>
+        <li class="cp-item" role="option" aria-selected="false" data-action="toggle-scan" data-key="T" tabindex="-1">
+          <span class="cp-icon" aria-hidden="true">&#x229F;</span><span class="cp-label">Toggle scan lines</span><kbd class="cp-key">T</kbd>
+        </li>
+        <li class="cp-item" role="option" aria-selected="false" data-action="toggle-music" data-key="M" tabindex="-1">
+          <span class="cp-icon" aria-hidden="true">&#9835;</span><span class="cp-label">Toggle background music</span><kbd class="cp-key">M</kbd>
+        </li>
+      </ul>
+      <div class="cp-footer">
+        <span><kbd>&#x2191;&#x2193;</kbd> navigate</span>
+        <span><kbd>&#x21B5;</kbd> run</span>
+        <span><kbd>ESC</kbd> close</span>
+        <span class="cp-footer-shortcut">Ctrl+K</span>
+      </div>
+    </div>
+  </div>

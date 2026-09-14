@@ -1,0 +1,14 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.pages %}
+  <url>
+    <loc>{{ item.data.canonicalUrl }}</loc>
+    <lastmod>{{ item.date | isoDate }}</lastmod>
+    <priority>{% if item.fileSlug == "index" %}1.0{% elif item.data.order <= 7 %}0.8{% else %}0.6{% endif %}</priority>
+  </url>
+{%- endfor %}
+</urlset>

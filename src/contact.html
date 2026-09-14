@@ -1,0 +1,160 @@
+---
+layout: base.njk
+title: "Contact | Joshua Collado"
+description: "Get in touch with Joshua Collado — South Texas engineer and developer."
+ogTitle: "Contact Joshua Collado"
+ogType: website
+navKey: contact
+order: 7
+pageScript: page-contact.js
+---
+
+  <!-- PAGE HEADER -->
+  <header class="contact-page-header" id="main-content">
+    <span class="contact-page-tag">// get in touch</span>
+    <h1 class="contact-page-title">Contact<span class="blink-cursor">_</span></h1>
+    <p class="contact-page-subtitle">let's build something together</p>
+  </header>
+
+  <!-- TERMINAL INTRO -->
+  <div class="contact-terminal" aria-hidden="true">
+    <div class="contact-terminal-box">
+      <div class="contact-terminal-bar">
+        <span class="ct-dot-red"></span>
+        <span class="ct-dot-yel"></span>
+        <span class="ct-dot-grn"></span>
+        <span class="ct-bar-title">joshua@portfolio — bash — 80×24</span>
+      </div>
+      <div class="contact-terminal-body">
+        <div class="ct-prompt">
+          <span class="ct-user">joshua</span><span class="ct-sep">@</span><span class="ct-path">portfolio</span><span class="ct-sep">:~$</span>
+          <span class="ct-cmd" id="ct-cmd-text"></span><span class="ct-cursor" id="ct-cursor">|</span>
+        </div>
+        <div class="ct-output" id="ct-output">Launching contact interface... <span style="color:var(--accent,#00ff41)">[ OK ]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN LAYOUT -->
+  <main class="contact-layout" id="contact-layout" aria-label="Contact information and form">
+
+    <!-- LEFT: cards + status -->
+    <div class="contact-info-col">
+
+      <!-- Email card -->
+      <a href="mailto:joshuacollado636@gmail.com" class="contact-card" aria-label="Email Joshua Collado">
+        <div class="contact-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="2" />
+            <path d="m4 8 8 6 8-6" />
+          </svg>
+        </div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">Email</span>
+          <span class="contact-card-value">joshuacollado636@gmail.com</span>
+        </div>
+      </a>
+
+      <!-- GitHub card -->
+      <a href="https://github.com/Blackphenixlord" target="_blank" rel="noopener noreferrer" class="contact-card"
+        aria-label="GitHub profile">
+        <div class="contact-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+          </svg>
+        </div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">GitHub</span>
+          <span class="contact-card-value">github.com/Blackphenixlord</span>
+        </div>
+      </a>
+
+      <!-- LinkedIn card -->
+      <a href="https://linkedin.com/in/joshua-collado" target="_blank" rel="noopener noreferrer" class="contact-card"
+        aria-label="LinkedIn profile">
+        <div class="contact-card-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">LinkedIn</span>
+          <span class="contact-card-value">linkedin.com/in/joshua-collado</span>
+        </div>
+      </a>
+
+      <!-- Terminal status block -->
+      <div class="contact-status-box" aria-label="Availability status">
+        <div class="contact-status-bar" aria-hidden="true">
+          <span class="contact-status-dot-red"></span>
+          <span class="contact-status-dot-yel"></span>
+          <span class="contact-status-dot-grn"></span>
+          <span class="contact-status-title">joshua@portfolio:~</span>
+        </div>
+        <div class="contact-status-body">
+          <div class="contact-status-cmd">
+            <span style="color:#2a6a3a">joshua@portfolio</span><span style="color:#4a5568">:~$</span>
+            <span style="color:#a0aab4"> status</span>
+          </div>
+          <div class="contact-status-result">
+            <span class="status-indicator" aria-hidden="true"></span>
+            <span><span class="status-gt">&gt;</span> available for opportunities</span>
+          </div>
+          <div class="contact-status-result dimmed">
+            <span style="width:8px;flex-shrink:0"></span>
+            <span><span class="status-gt">&gt;</span> open to internships</span>
+          </div>
+          <div class="contact-status-result dimmed">
+            <span style="width:8px;flex-shrink:0"></span>
+            <span><span class="status-gt">&gt;</span> response time: 24-48hrs</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /contact-info-col -->
+
+    <!-- RIGHT: Contact form -->
+    <div class="contact-form-col">
+      <form class="contact-form" action="mailto:joshuacollado636@gmail.com" method="POST" id="contact-form"
+        aria-label="Send Joshua a message">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">&gt; your_name</label>
+            <input class="form-input" type="text" id="contact-name" name="name" required
+              autocomplete="name" data-placeholder="Joshua Collado" placeholder="" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">&gt; your_email</label>
+            <input class="form-input" type="email" id="contact-email" name="email" required
+              autocomplete="email" data-placeholder="you@example.com" placeholder="" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-subject">&gt; subject</label>
+          <input class="form-input" type="text" id="contact-subject" name="subject" required
+            data-placeholder="let's work together" placeholder="" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-message">&gt; message</label>
+          <textarea class="form-textarea" id="contact-message" name="message" rows="6" required
+            data-placeholder="hey Joshua, I wanted to reach out about..." placeholder=""></textarea>
+        </div>
+
+        <button class="form-submit" type="submit">send_message &#x2192;</button>
+
+        <div class="form-success" id="form-success" role="alert" aria-live="polite">
+          <span style="color:#00ff41">✓</span>&nbsp; Message sent! I'll get back to you soon.
+        </div>
+
+      </form>
+    </div><!-- /contact-form-col -->
+
+  </main>
+
+  

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% include "partials/head.njk" %}
+{%- if headExtra %}
+{{ headExtra | safe }}
+{%- endif %}
+</head>
+
+<body class="{{ bodyClass }}{% if boot %} booting{% endif %}">
+{%- if boot %}
+  <div id="boot-screen" aria-hidden="true">
+    <div class="boot-titlebar">
+      <span class="boot-dot red"></span>
+      <span class="boot-dot yellow"></span>
+      <span class="boot-dot green"></span>
+      <span class="boot-titlebar-text">joshua@collado — bash — 80×24</span>
+    </div>
+    <div id="boot-output"></div>
+    <div id="boot-skip">click or press any key to skip</div>
+  </div>
+  <script src="boot.js?v={{ site.assetVersion }}"></script>
+{%- endif %}
+
+{% include "partials/nav.njk" %}
+
+{{ content | safe }}
+
+{% include "partials/footer.njk" %}
+{% include "partials/palette.njk" %}
+{% include "partials/tweaks.njk" %}
+
+  <script src="app.js?v={{ site.assetVersion }}" defer></script>
+  <script src="music.js?v={{ site.assetVersion }}" defer></script>
+{%- if pageScript %}
+  <script src="{{ pageScript }}?v={{ site.assetVersion }}" defer></script>
+{%- endif %}
+</body>
+
+</html>
