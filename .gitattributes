@@ -1,0 +1,14 @@
+# Normalise line endings in the repository to LF.
+# The tree was a mix of CRLF and LF, which made every cross-machine diff look
+# like a full-file rewrite. Checkouts still get native endings on Windows.
+* text=auto eol=lf
+
+# Binary — never touch these.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary
+*.pdf  binary
