@@ -1,0 +1,38 @@
+{#- Renders a project's cover.
+
+    With `cover` set, this is the real screenshot with the same responsive
+    treatment as every other image on the site. Without one it is a generated
+    plate: a terminal window carrying the project's own stack. Deliberately a
+    graphic and not a mock UI, so nothing here implies a product shot that
+    does not exist.
+
+    Params: project, sizes, eager -#}
+<div class="pv {{ 'pv-real' if project.cover else 'pv-plate' }}">
+{%- if project.cover %}
+  <picture class="pv-media">
+    <source type="image/avif" srcset="/imgs/{{ project.cover }}-400.avif 400w, /imgs/{{ project.cover }}-800.avif 800w" sizes="{{ sizes or '(max-width: 700px) 92vw, 50vw' }}" />
+    <source type="image/webp" srcset="/imgs/{{ project.cover }}-400.webp 400w, /imgs/{{ project.cover }}-800.webp 800w" sizes="{{ sizes or '(max-width: 700px) 92vw, 50vw' }}" />
+    <img src="/imgs/{{ project.cover }}-800.jpg" alt="{{ project.title }} — {{ project.org }}"
+         {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async" />
+  </picture>
+{%- else %}
+  <div class="pv-window" aria-hidden="true">
+    <div class="pv-bar">
+      <span class="boot-dot red"></span>
+      <span class="boot-dot yellow"></span>
+      <span class="boot-dot green"></span>
+      <span class="pv-bar-text">{{ project.slug }}</span>
+    </div>
+    <div class="pv-screen">
+      <p class="pv-line"><span class="pv-prompt">$</span> stack --list</p>
+{%- for item in project.stack %}
+      <p class="pv-line pv-item">{{ item }}</p>
+{%- endfor %}
+      <p class="pv-line"><span class="pv-prompt">$</span> status</p>
+      <p class="pv-line pv-status">{{ project.status }}</p>
+      <p class="pv-line"><span class="pv-prompt">$</span> <span class="pv-caret"></span></p>
+    </div>
+    <div class="pv-grid"></div>
+  </div>
+{%- endif %}
+</div>

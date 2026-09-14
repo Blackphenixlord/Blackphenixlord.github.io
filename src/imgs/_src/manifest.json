@@ -1,73 +1,4 @@
 {
- "STUDENTBYSTUDENT": {
-  "orig": [
-   1148,
-   2040
-  ],
-  "steps": [
-   [
-    400,
-    400,
-    711
-   ],
-   [
-    800,
-    800,
-    1422
-   ]
-  ],
-  "fallback": [
-   800,
-   "jpg"
-  ],
-  "alpha": false
- },
- "STUDENTBYSTUDENT2": {
-  "orig": [
-   2188,
-   3888
-  ],
-  "steps": [
-   [
-    400,
-    400,
-    711
-   ],
-   [
-    800,
-    800,
-    1422
-   ]
-  ],
-  "fallback": [
-   800,
-   "jpg"
-  ],
-  "alpha": false
- },
- "STUDENTBYSTUDENT3": {
-  "orig": [
-   2188,
-   3888
-  ],
-  "steps": [
-   [
-    400,
-    400,
-    711
-   ],
-   [
-    800,
-    800,
-    1422
-   ]
-  ],
-  "fallback": [
-   800,
-   "jpg"
-  ],
-  "alpha": false
- },
  "lanl": {
   "orig": [
    1723,
@@ -88,8 +19,7 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "lanl2": {
   "orig": [
@@ -111,31 +41,29 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "lanl3": {
   "orig": [
-   2448,
-   3264
+   3264,
+   2448
   ],
   "steps": [
    [
     400,
     400,
-    533
+    300
    ],
    [
     800,
     800,
-    1067
+    600
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "lanl4": {
   "orig": [
@@ -157,31 +85,29 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa10": {
   "orig": [
@@ -203,8 +129,7 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa11": {
   "orig": [
@@ -221,8 +146,7 @@
   "fallback": [
    400,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa12": {
   "orig": [
@@ -244,8 +168,7 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa13": {
   "orig": [
@@ -267,8 +190,7 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa2": {
   "orig": [
@@ -290,8 +212,7 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa3": {
   "orig": [
@@ -313,146 +234,139 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa4": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa5": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa6": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa7": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa8": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nasa9": {
   "orig": [
-   2296,
-   4080
+   4080,
+   2296
   ],
   "steps": [
    [
     400,
     400,
-    711
+    225
    ],
    [
     800,
     800,
-    1422
+    450
    ]
   ],
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nerdvana-certificate": {
   "orig": [
@@ -474,8 +388,7 @@
   "fallback": [
    800,
    "jpg"
-  ],
-  "alpha": false
+  ]
  },
  "nerdvana": {
   "orig": [
@@ -497,7 +410,72 @@
   "fallback": [
    800,
    "jpg"
+  ]
+ },
+ "STUDENTBYSTUDENT": {
+  "orig": [
+   1148,
+   2040
   ],
-  "alpha": false
+  "steps": [
+   [
+    400,
+    400,
+    711
+   ],
+   [
+    800,
+    800,
+    1422
+   ]
+  ],
+  "fallback": [
+   800,
+   "jpg"
+  ]
+ },
+ "STUDENTBYSTUDENT2": {
+  "orig": [
+   2188,
+   3888
+  ],
+  "steps": [
+   [
+    400,
+    400,
+    711
+   ],
+   [
+    800,
+    800,
+    1422
+   ]
+  ],
+  "fallback": [
+   800,
+   "jpg"
+  ]
+ },
+ "STUDENTBYSTUDENT3": {
+  "orig": [
+   2188,
+   3888
+  ],
+  "steps": [
+   [
+    400,
+    400,
+    711
+   ],
+   [
+    800,
+    800,
+    1422
+   ]
+  ],
+  "fallback": [
+   800,
+   "jpg"
+  ]
  }
 }

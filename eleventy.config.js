@@ -5,9 +5,10 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as esbuild from 'esbuild';
 
-/* Minified in place after the build, so the URLs stay exactly what the
-   templates reference. style.css alone was 137 KB of render-blocking CSS,
-   which was the single thing holding the mobile Lighthouse score down. */
+/* Minified from src/ straight into _site/, rather than passing through and
+   then rewriting in place -- the latter made Eleventy's incremental copy race
+   its own output during `--serve`. style.css alone was 137 KB of
+   render-blocking CSS, the single biggest drag on the mobile score. */
 const MINIFY_CSS = ['style.css', 'icons.css'];
 const MINIFY_JS = [
   'app.js', 'motion.js', 'boot.js', 'music.js', 'sounds.js',
@@ -15,8 +16,8 @@ const MINIFY_JS = [
 ];
 
 async function minify(outDir, file, loader) {
+  const src = await readFile(join('src', file), 'utf8');
   const path = join(outDir, file);
-  const src = await readFile(path, 'utf8');
   const out = await esbuild.transform(src, {
     loader,
     minify: true,
@@ -30,12 +31,10 @@ async function minify(outDir, file, loader) {
 }
 
 export default function (eleventyConfig) {
-  ['imgs', 'fonts', 'style.css', 'icons.css', 'app.js', 'boot.js', 'music.js',
-   'sounds.js', 'motion.js', 'vendor-lenis.js', 'CNAME', 'robots.txt'
+  /* Everything here is copied verbatim. The CSS and JS listed in MINIFY_*
+     are deliberately absent: they are written by the minify step instead. */
+  ['imgs', 'fonts', 'vendor-lenis.js', 'CNAME', 'robots.txt'
   ].forEach((p) => eleventyConfig.addPassthroughCopy(`src/${p}`));
-
-  // Per-page behaviour modules, referenced by a page's `pageScript` front matter.
-  eleventyConfig.addPassthroughCopy('src/page-*.js');
 
   // Pages in the order they should appear in the sitemap and command palette.
   eleventyConfig.addCollection('pages', (api) =>

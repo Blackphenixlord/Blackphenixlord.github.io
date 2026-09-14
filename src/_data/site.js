@@ -16,14 +16,28 @@ export default {
      prefilled mailto: and says so honestly rather than claiming it sent. */
   contactEndpoint: '',
 
+  /* Display names for project categories. Capitalising the slug gave
+     "Nasa", "Vr" and "Ai", which is worse than not labelling them. */
+  categoryLabels: {
+    web: 'Web',
+    security: 'Security',
+    fullstack: 'Full-Stack',
+    nasa: 'NASA',
+    hardware: 'Hardware',
+    vr: 'VR / XR',
+    research: 'Research',
+    ai: 'AI',
+    automation: 'Automation',
+  },
+
   /* Primary navigation. `key` matches a page's `navKey` front matter to mark it current. */
   nav: [
-    { key: 'home',         label: 'Home',         href: 'index.html' },
-    { key: 'about',        label: 'About',        href: 'about.html' },
-    { key: 'internships',  label: 'Internships',  href: 'internships.html' },
-    { key: 'projects',     label: 'Projects',     href: 'projects.html' },
-    { key: 'resume',       label: 'Résumé',       href: 'resume.html' },
-    { key: 'testimonials', label: 'Testimonials', href: 'testimonials.html' },
-    { key: 'contact',      label: 'Contact',      href: 'contact.html' },
+    { key: 'home',         label: 'Home',         href: '/index.html' },
+    { key: 'about',        label: 'About',        href: '/about.html' },
+    { key: 'internships',  label: 'Internships',  href: '/internships.html' },
+    { key: 'projects',     label: 'Projects',     href: '/projects.html' },
+    { key: 'resume',       label: 'Résumé',       href: '/resume.html' },
+    { key: 'testimonials', label: 'Testimonials', href: '/testimonials.html' },
+    { key: 'contact',      label: 'Contact',      href: '/contact.html' },
   ],
 };

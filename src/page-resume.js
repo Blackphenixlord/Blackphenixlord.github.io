@@ -6,7 +6,7 @@
     education: 'UTRGV – Dual Enrollment · 2025–2027<br>Science Academy · 2023–2027<br>Rising Scholars Academy · 2021–2023',
     internships: 'NASA HUNCH – Inventory Chain System · Presented Rounds 1 &amp; 2 · Visited NASA in Houston twice<br>Los Alamos Lab – VR Training Experience · Only student selected<br>RECON Technologies – City of Progresso Website<br>Nerdvana – STEM Sandbox for Elementary Schools',
     skills: '<span style="color:#a0aab4">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span style="color:#a0aab4">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span style="color:#a0aab4">Focus:</span> AI · Automation · Security',
-    contact: 'Email: <a href="mailto:joshuacollado656@gmail.com" style="color:var(--accent);text-decoration:underline">joshuacollado656@gmail.com</a>',
+    contact: 'Email: <a href="mailto:joshuacollado636@gmail.com" style="color:var(--accent);text-decoration:underline">joshuacollado636@gmail.com</a>',
     help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:var(--accent)">education</span> · <span style="color:var(--accent)">internships</span> · <span style="color:var(--accent)">skills</span> · <span style="color:var(--accent)">contact</span> · <span style="color:var(--accent)">clear</span> · <span style="color:var(--accent)">reset</span>',
     clear: '__CLEAR__',
     reset: '__RESET__',

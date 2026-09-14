@@ -133,9 +133,13 @@
   const COMMANDS = {
     whoami: '<span style="color:var(--accent)">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.',
     skills: '<span style="color:#a0aab4">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span style="color:#a0aab4">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span style="color:#a0aab4">Focus:</span> AI · Automation · Security',
-    contact: 'Email: <a href="mailto:joshuacollado656@gmail.com" style="color:var(--accent);text-decoration:underline">joshuacollado656@gmail.com</a><br>Or head to the <a href="contact.html" style="color:var(--accent);text-decoration:underline">Contact</a> page.',
+    contact: 'Email: <a href="mailto:joshuacollado636@gmail.com" style="color:var(--accent);text-decoration:underline">joshuacollado636@gmail.com</a><br>Or head to the <a href="/contact.html" style="color:var(--accent);text-decoration:underline">Contact</a> page.',
     projects: 'RECON Technologies · City of Progresso Civic Platform<br>NASA HUNCH · Inventory Chain System (Houston finals)<br>Los Alamos Lab · VR Training Experience<br>Project Evie · AI Home Automation (in progress)',
-    help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:var(--accent)">whoami</span> · <span style="color:var(--accent)">skills</span> · <span style="color:var(--accent)">contact</span> · <span style="color:var(--accent)">projects</span> · <span style="color:var(--accent)">clear</span> · <span style="color:var(--accent)">reset</span> · <span style="color:var(--accent)">help</span>',
+    help: '<span style="color:#a0aab4">Available commands:</span><br><span style="color:var(--accent)">whoami</span> · <span style="color:var(--accent)">skills</span> · <span style="color:var(--accent)">projects</span> · <span style="color:var(--accent)">contact</span> · <span style="color:var(--accent)">ls</span> · <span style="color:var(--accent)">cat &lt;page&gt;</span> · <span style="color:var(--accent)">clear</span> · <span style="color:var(--accent)">help</span><br><span style="color:#a0aab4">Tab completes · &uarr; recalls history</span>',
+    ls: '<span style="color:#a0aab4">drwxr-xr-x</span>  ' + [
+          'about.html', 'internships.html', 'projects.html',
+          'resume.html', 'testimonials.html', 'contact.html'
+        ].join('<br><span style="color:#a0aab4">drwxr-xr-x</span>  '),
     clear: '__CLEAR__',
     reset: '__RESET__',
     hello: '<span style="color:var(--accent)">Hey! 👋</span> Thanks for stopping by.',
@@ -214,6 +218,22 @@
     echo.innerHTML = '<span style="color:#a0aab4">joshua@collado:~$</span> ' + cmd;
     output.appendChild(echo);
     // Respond
+    /* `cat <page>` opens that page, so the terminal can actually reach the
+       rest of the site instead of only describing it. */
+    if (cmd.startsWith('cat ') || cmd.startsWith('open ')) {
+      const arg = cmd.slice(cmd.indexOf(' ') + 1).trim().replace(/^\.?\//, '');
+      const page = arg.endsWith('.html') ? arg : arg + '.html';
+      const known = ['index.html', 'about.html', 'internships.html', 'projects.html',
+                     'resume.html', 'testimonials.html', 'contact.html'];
+      if (known.indexOf(page) !== -1) {
+        appendResponse('opening <span style="color:var(--accent)">' + page + '</span>...');
+        setTimeout(function () { window.location.href = '/' + page; }, 420);
+      } else {
+        appendResponse('cat: ' + page + ': No such file. Try <span style="color:var(--accent)">ls</span>.');
+      }
+      return;
+    }
+
     const resp = COMMANDS[cmd];
     if (resp === '__CLEAR__') {
       output.innerHTML = '';

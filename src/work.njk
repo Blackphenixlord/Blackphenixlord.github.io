@@ -1,0 +1,124 @@
+---
+layout: base.njk
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "work/{{ project.slug }}.html"
+navKey: projects
+eleventyComputed:
+  title: "{{ project.title }} | Joshua Collado"
+  description: "{{ project.summary }}"
+  ogTitle: "{{ project.title }} — {{ project.org }}"
+  canonicalUrl: "{{ site.url }}/work/{{ project.slug }}.html"
+ogType: article
+excludeFromSitemap: false
+---
+
+  <article class="cs">
+
+    <header class="cs-hero">
+      <div class="page-hero-bg" aria-hidden="true"></div>
+      <div class="container">
+        <a class="cs-back" href="/projects.html"><span aria-hidden="true">&larr;</span> All work</a>
+
+        <p class="cs-org">{{ project.org }}</p>
+        <h1 class="cs-title">{{ project.title }}</h1>
+        <p class="cs-summary">{{ project.summary }}</p>
+
+        <dl class="cs-facts">
+          <div class="cs-fact">
+            <dt>Role</dt>
+            <dd>{{ project.role }}</dd>
+          </div>
+          <div class="cs-fact">
+            <dt>Timeline</dt>
+            <dd>{{ project.years }}</dd>
+          </div>
+          <div class="cs-fact">
+            <dt>Status</dt>
+            <dd>{{ project.status }}</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="container cs-body">
+
+      <div class="cs-visual reveal">
+        {% set sizes = "(max-width: 700px) 92vw, 1000px" %}
+        {% set eager = true %}
+        {% include "partials/project-visual.njk" %}
+      </div>
+
+{%- if project.metrics.length %}
+      <ul class="cs-metrics reveal">
+{%- for m in project.metrics %}
+        <li><span class="cs-metric-value">{{ m.value }}</span><span class="cs-metric-label">{{ m.label }}</span></li>
+{%- endfor %}
+      </ul>
+{%- endif %}
+
+      <div class="cs-prose reveal">
+{%- if project.problem %}
+        <section class="cs-section">
+          <h2>The problem</h2>
+          <p>{{ project.problem }}</p>
+        </section>
+{%- endif %}
+{%- if project.approach %}
+        <section class="cs-section">
+          <h2>What I built</h2>
+          <p>{{ project.approach }}</p>
+        </section>
+{%- endif %}
+{%- if project.result %}
+        <section class="cs-section">
+          <h2>What happened</h2>
+          <p>{{ project.result }}</p>
+        </section>
+{%- else %}
+        <section class="cs-section">
+          <h2>Outcome</h2>
+          <p>{{ project.outcome }}</p>
+        </section>
+{%- endif %}
+
+        <section class="cs-section">
+          <h2>Stack</h2>
+          <ul class="cs-stack">
+{%- for item in project.stack %}
+            <li>{{ item }}</li>
+{%- endfor %}
+          </ul>
+        </section>
+      </div>
+
+{%- if project.gallery.length %}
+      <section class="cs-gallery reveal" aria-label="Project images">
+        <h2 class="sr-only">Images</h2>
+{%- for shot in project.gallery %}
+        <picture class="cs-shot">
+          <source type="image/avif" srcset="/imgs/{{ shot.file }}-400.avif 400w, /imgs/{{ shot.file }}-800.avif 800w" sizes="(max-width: 700px) 92vw, 480px" />
+          <source type="image/webp" srcset="/imgs/{{ shot.file }}-400.webp 400w, /imgs/{{ shot.file }}-800.webp 800w" sizes="(max-width: 700px) 92vw, 480px" />
+          <img src="/imgs/{{ shot.file }}-800.jpg" alt="{{ shot.alt }}" loading="lazy" decoding="async" />
+        </picture>
+{%- endfor %}
+      </section>
+{%- endif %}
+
+      <nav class="cs-next" aria-label="Keep reading">
+{%- if project.related %}
+        <a class="cs-next-link" href="/{{ project.related }}">
+          <span class="cs-next-label">The internship behind it</span>
+          <span class="cs-next-title">{{ project.org }} <span aria-hidden="true">&rarr;</span></span>
+        </a>
+{%- endif %}
+        <a class="cs-next-link" href="/contact.html">
+          <span class="cs-next-label">Want the detail?</span>
+          <span class="cs-next-title">Get in touch <span aria-hidden="true">&rarr;</span></span>
+        </a>
+      </nav>
+
+    </div>
+  </article>

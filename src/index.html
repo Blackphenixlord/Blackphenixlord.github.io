@@ -168,85 +168,44 @@ jsonld: true
     <div class="container">
       <p class="section-label" aria-hidden="true">03 &middot; Selected Work</p>
       <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
-        <a class="project-card" href="recon.html">
-          <div class="project-card-top">
-            <span class="project-year">Web Development</span>
-            <span class="project-org">RECON Technologies</span>
-          </div>
-          <p class="project-role">Role: Code Lead, Security Developer &amp; Design Assistant</p>
-          <h3 class="project-title">City of Progresso — Civic Platform</h3>
-          <p class="project-built">Built: A secure digital platform giving Progresso residents centralized access to city information, public services, and official records.</p>
-          <p class="project-impact">Impact: Brought a small South Texas city into the digital era — modern, secure, and publicly accessible.</p>
-          <div class="project-stack" aria-label="Project stack">
-            <span class="project-stack-label">Stack</span>
-            <div class="project-tags">
-              <span>Web Dev</span><span>Security</span><span>Civic Tech</span>
+      <p class="section-desc">Four things I have built, in the order they mattered.</p>
+
+      <div class="work-grid">
+{%- for project in projects %}
+        <article class="work-card work-{{ project.tier }} reveal">
+          <a class="work-link" href="/work/{{ project.slug }}.html" aria-labelledby="wt-{{ project.slug }}">
+
+            {% include "partials/project-visual.njk" %}
+
+            <div class="work-body">
+              <div class="work-meta">
+                <span class="work-org">{{ project.org }}</span>
+                <span class="work-sep" aria-hidden="true">/</span>
+                <span class="work-years">{{ project.years }}</span>
+                <span class="work-status work-status-{{ project.status | lower | replace(" ", "-") }}">{{ project.status }}</span>
+              </div>
+
+              <h3 class="work-title" id="wt-{{ project.slug }}">{{ project.title }}</h3>
+              <p class="work-role">{{ project.role }}</p>
+              <p class="work-summary">{{ project.summary }}</p>
+
+              <p class="work-outcome"><span class="work-outcome-label">Outcome</span> {{ project.outcome }}</p>
+
+              <ul class="work-stack">
+{%- for item in project.stack %}
+                <li>{{ item }}</li>
+{%- endfor %}
+              </ul>
+
+              <span class="work-cta">Read the case study <span aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
-        </a>
-
-
-        <a class="project-card" href="nasa-hunch.html">
-          <div class="project-card-top">
-            <span class="project-year">2025–2026</span>
-            <span class="project-org">NASA HUNCH</span>
-          </div>
-          <p class="project-role">Role: Full-stack builder and systems teammate</p>
-          <h3 class="project-title">Inventory Chain System</h3>
-          <p class="project-built">Built: An inventory tracking workflow with UI, data flow, and team collaboration.</p>
-          <p class="project-impact">Impact: Advanced to Houston finals and presented directly to NASA representatives.
-          </p>
-          <div class="project-stack" aria-label="Project stack">
-            <span class="project-stack-label">Stack</span>
-            <div class="project-tags">
-              <span>Full-Stack</span><span>Hardware</span><span>NASA</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project-card" href="utrgv.html">
-          <div class="project-card-top">
-            <span class="project-year">2025–2026</span>
-            <span class="project-org">Los Alamos Lab</span>
-          </div>
-          <p class="project-role">Role: XR developer and simulation collaborator</p>
-          <h3 class="project-title">VR Training Experience</h3>
-          <p class="project-built">Built: A virtual reality training simulation focused on immersive instruction.</p>
-          <p class="project-impact">Impact: Earned a visit to Los Alamos National Laboratory as the only selected
-            student.</p>
-          <div class="project-stack" aria-label="Project stack">
-            <span class="project-stack-label">Stack</span>
-            <div class="project-tags">
-              <span>VR</span><span>Hardware</span><span>Research</span>
-            </div>
-          </div>
-        </a>
-
-        <div class="project-card">
-          <div class="project-card-top">
-            <span class="project-year">2026–2027</span>
-            <span class="project-org">Capstone</span>
-          </div>
-          <p class="project-role">Role: Product designer and AI systems developer</p>
-          <h3 class="project-title">Project Evie</h3>
-          <p class="project-built">Built: A personal assistant that links Android and Windows into one automation layer.
-          </p>
-          <p class="project-impact">Impact: Establishing the foundation for a unified AI-powered home control system.
-          </p>
-          <div class="project-stack" aria-label="Project stack">
-            <span class="project-stack-label">Stack</span>
-            <div class="project-tags">
-              <span>AI</span><span>Android</span><span>Automation</span>
-            </div>
-          </div>
-        </div>
-
+          </a>
+        </article>
+{%- endfor %}
       </div>
-      <div style="text-align:center;margin-top:2.5rem;">
-        <a href="projects.html" class="hero-btn-outline" style="display:inline-flex;align-items:center;gap:0.5rem;">
-          View Full Projects Page &nbsp;&#x2192;
-        </a>
+
+      <div class="work-footer">
+        <a href="/projects.html" class="hero-btn-outline">All work &nbsp;&rarr;</a>
       </div>
     </div>
   </section>

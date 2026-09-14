@@ -20,7 +20,7 @@
     <div id="boot-output"></div>
     <div id="boot-skip">click or press any key to skip</div>
   </div>
-  <script src="boot.js?v={{ site.assetVersion }}"></script>
+  <script src="/boot.js?v={{ site.assetVersion }}"></script>
 {%- endif %}
 
 {% include "partials/nav.njk" %}
@@ -33,12 +33,12 @@
 {% include "partials/palette.njk" %}
 {% include "partials/tweaks.njk" %}
 
-  <script src="vendor-lenis.js?v={{ site.assetVersion }}" defer></script>
-  <script src="app.js?v={{ site.assetVersion }}" defer></script>
-  <script src="motion.js?v={{ site.assetVersion }}" defer></script>
-  <script src="music.js?v={{ site.assetVersion }}" defer></script>
+  <script src="/vendor-lenis.js?v={{ site.assetVersion }}" defer></script>
+  <script src="/app.js?v={{ site.assetVersion }}" defer></script>
+  <script src="/motion.js?v={{ site.assetVersion }}" defer></script>
+  <script src="/music.js?v={{ site.assetVersion }}" defer></script>
 {%- if pageScript %}
-  <script src="{{ pageScript }}?v={{ site.assetVersion }}" defer></script>
+  <script src="/{{ pageScript }}?v={{ site.assetVersion }}" defer></script>
 {%- endif %}
 </body>
 

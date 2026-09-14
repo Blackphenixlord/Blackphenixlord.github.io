@@ -5605,3 +5605,495 @@ picture:not(.carousel-img):not(.photo-grid-img) > img {
   .hero-content { max-width: 1000px; }
   .intro-card { max-width: 1200px; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   WORK GRID
+   The old project cards were eight identical vertical text stacks, so nothing
+   signalled that a shipped civic platform outranks a side project. The grid
+   is asymmetric on purpose: flagship work takes a full row with its visual
+   beside the copy, everything else sits in a two-up below it.
+   ══════════════════════════════════════════════════════════════════════════ */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.work-card {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  background: var(--surface-raised);
+  overflow: hidden;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+.work-card:hover,
+.work-card:focus-within {
+  transform: translate3d(0, -4px, 0);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* Flagship: full width, visual and copy side by side. */
+.work-flagship { grid-column: 1 / -1; }
+.work-flagship .work-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+.work-flagship .work-title { font-size: var(--text-2xl); }
+.work-flagship .work-body { padding: var(--space-6); }
+
+/* Standard: stacked, two per row. */
+.work-standard .work-link { display: flex; flex-direction: column; }
+
+.work-link {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+}
+
+.work-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.work-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.work-org { color: var(--accent); }
+.work-sep { color: var(--ink-faint); }
+
+.work-status {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+/* Status is state, so it reads at a glance rather than only as a word. */
+.work-status-shipped,
+.work-status-delivered {
+  color: var(--accent);
+  border-color: var(--border-strong);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+.work-status-houston-finals {
+  color: var(--tl-yellow);
+  border-color: rgba(254, 188, 46, 0.4);
+  background: rgba(254, 188, 46, 0.08);
+}
+.work-status-in-progress {
+  color: var(--info);
+  border-color: rgba(0, 212, 255, 0.35);
+  background: rgba(0, 212, 255, 0.07);
+}
+
+.work-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  color: var(--ink-bright);
+  margin: 0;
+  text-wrap: balance;
+}
+.work-card:hover .work-title { color: var(--accent); }
+
+.work-role {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-accent);
+  margin: 0;
+}
+.work-summary {
+  margin: 0;
+  color: var(--ink-muted);
+  line-height: var(--leading-body);
+  max-width: var(--measure);
+}
+
+.work-outcome {
+  margin: 0;
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--border-strong);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+.work-outcome-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.work-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.work-stack li {
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--ink-accent);
+}
+
+.work-cta {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+}
+.work-card:hover .work-cta span { transform: translateX(4px); display: inline-block; }
+.work-cta span { transition: transform var(--dur-base) var(--ease-out); }
+
+.work-footer { margin-top: var(--space-7); text-align: center; }
+.work-empty {
+  margin-top: var(--space-6);
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+}
+
+/* The projects page lists everything at one weight — it is an index, not a pitch. */
+.work-grid-list .work-flagship { grid-column: 1 / -1; }
+
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .work-flagship .work-link { grid-template-columns: 1fr; }
+  .work-flagship .work-body { padding: var(--space-5); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PROJECT VISUAL
+   ══════════════════════════════════════════════════════════════════════════ */
+.pv {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-void);
+  border-bottom: 1px solid var(--border-soft);
+}
+.work-flagship .pv {
+  border-bottom: 0;
+  border-right: 1px solid var(--border-soft);
+}
+.pv-media { display: block; height: 100%; }
+.pv-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pv-plate { min-height: 230px; display: flex; }
+.work-flagship .pv-plate { min-height: 300px; }
+
+.pv-window {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  overflow: hidden;
+}
+.pv-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-high);
+  border-bottom: 1px solid var(--border-soft);
+}
+.pv-bar-text {
+  margin-left: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--ink-dim);
+}
+.pv-screen {
+  flex: 1;
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  line-height: 1.85;
+}
+.pv-line { margin: 0; color: var(--ink-muted); }
+.pv-prompt { color: var(--accent); }
+.pv-item { color: var(--ink-accent); padding-left: var(--space-3); }
+.pv-item::before { content: "- "; color: var(--ink-faint); }
+.pv-status { color: var(--accent); padding-left: var(--space-3); }
+.pv-caret {
+  display: inline-block;
+  width: 7px;
+  height: 1em;
+  vertical-align: -2px;
+  background: var(--accent);
+  animation: cursorBlink 1.1s steps(2, start) infinite;
+}
+/* Faint field behind the plate so it reads as a screen, not an empty box. */
+.pv-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(var(--accent-rgb), 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CASE STUDY
+   ══════════════════════════════════════════════════════════════════════════ */
+.cs-hero {
+  position: relative;
+  padding: var(--space-9) 0 var(--space-7);
+  border-bottom: 1px solid var(--border-soft);
+  overflow: hidden;
+}
+.cs-back {
+  display: inline-block;
+  margin-bottom: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+.cs-back:hover { color: var(--accent); }
+
+.cs-org {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-3);
+}
+.cs-title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 900;
+  line-height: var(--leading-tight);
+  color: var(--ink-bright);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+  max-width: 18ch;
+}
+.cs-summary {
+  font-size: var(--text-lg);
+  color: var(--ink-muted);
+  line-height: var(--leading-body);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+}
+
+.cs-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin: 0;
+}
+.cs-fact dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: var(--space-1);
+}
+.cs-fact dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+.cs-body { padding: var(--space-7) 0 var(--space-9); }
+
+.cs-visual {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+}
+.cs-visual .pv-plate { min-height: 340px; }
+
+.cs-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0 0 var(--space-7);
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+.cs-metrics li { display: flex; flex-direction: column; gap: var(--space-1); }
+.cs-metric-value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.cs-metric-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.cs-prose { max-width: var(--measure); }
+.cs-section { margin-bottom: var(--space-6); }
+.cs-section h2 {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-3);
+}
+.cs-section p {
+  margin: 0;
+  color: var(--ink);
+  line-height: var(--leading-body);
+}
+.cs-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cs-stack li {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-accent);
+}
+
+.cs-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-7) 0;
+}
+.cs-shot {
+  display: block;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.cs-shot img { display: block; width: 100%; height: auto; }
+
+.cs-next {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-soft);
+}
+.cs-next-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  text-decoration: none;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+.cs-next-link:hover {
+  transform: translate3d(0, -2px, 0);
+  border-color: var(--border-strong);
+}
+.cs-next-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.cs-next-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card:hover,
+  .work-card:focus-within,
+  .cs-next-link:hover { transform: none; }
+  .work-card:hover .work-cta span { transform: none; }
+  .pv-caret { animation: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TERMINAL SIZING
+   The intro body was pinned to a fixed 460px, so the bio was cut off
+   mid-sentence ("...a STEM sandbox for elementary schools with Nerd—") behind
+   a scrollbar. It now grows with what it holds and only scrolls once the
+   conversation gets long, which is exactly when scrolling is expected.
+   ══════════════════════════════════════════════════════════════════════════ */
+.intro-body {
+  height: auto;
+  min-height: 320px;
+  max-height: min(72vh, 760px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--accent-rgb), 0.35) transparent;
+  overscroll-behavior: contain;
+}
+.intro-body::-webkit-scrollbar { width: 10px; }
+.intro-body::-webkit-scrollbar-track { background: transparent; }
+.intro-body::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-rgb), 0.3);
+  border-radius: var(--radius-pill);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.intro-body::-webkit-scrollbar-thumb:hover { background: rgba(var(--accent-rgb), 0.5); background-clip: content-box; }
+
+@media (max-width: 700px) {
+  .intro-body {
+    height: auto;
+    min-height: 240px;
+    max-height: 62vh;
+  }
+}
