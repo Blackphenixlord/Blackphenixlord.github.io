@@ -905,32 +905,49 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   position: absolute;
   left: 8%;
   right: 8%;
-  height: 2px;
-  background: linear-gradient(
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(
     90deg,
     transparent 0%,
-    var(--accent)66 30%,
-    var(--accent)cc 50%,
-    var(--accent)66 70%,
+    rgba(var(--accent-rgb), 0.4) 30%,
+    rgba(var(--accent-rgb), 0.8) 50%,
+    rgba(var(--accent-rgb), 0.4) 70%,
     transparent 100%
   );
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-position: top left;
   pointer-events: none;
-  border-radius: 2px;
   z-index: 3;
   animation: scanSweep 3.5s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 /* The SVG logo itself */
 .hero-logo {
   display: block;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: logoPulse 3.5s ease-in-out infinite;
+  transition: transform var(--dur-slow) cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Glow sits on .logo-block, which has no overflow clipping (.logo-inner does). */
+.logo-block::after {
+  content: "";
+  position: absolute;
+  inset: 6%;
+  border-radius: 16%;
+  box-shadow: 0 0 28px 6px rgba(var(--accent-rgb), 0.34);
+  animation: logoGlow 3.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  will-change: opacity, transform;
 }
 
 /* Hover: subtle scale — not too buttonlike */
-.logo-block:hover .hero-logo {
-  animation: logoPulseHover 2s ease-in-out infinite;
-  transform: scale(1.03);
+.logo-block:hover .hero-logo { transform: scale(1.03); }
+.logo-block:hover::after {
+  animation-name: logoGlowHover;
+  animation-duration: 2s;
 }
 
 /* Click/tap: barely perceptible — not button-like */
@@ -956,43 +973,28 @@ body:has(.custom-context-menu.opening) #cursor-dot {
 }
 
 /* Idle glow breathe — very subtle */
-@keyframes logoPulse {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 6px var(--accent)33) drop-shadow(0 0 12px var(--accent)0d);
-  }
-  50% {
-    filter: drop-shadow(0 0 14px var(--accent)55) drop-shadow(0 0 26px var(--accent)22);
-  }
+/* Animating filter re-rasterises the drop-shadow every frame. The glow is now
+   a separate layer behind the mark, so only opacity and transform move. */
+@keyframes logoGlow {
+  0%, 100% { opacity: 0.4; transform: scale(0.97); }
+  50%      { opacity: 0.9; transform: scale(1.03); }
 }
 
 /* Hover glow — gentle, decorative only */
-@keyframes logoPulseHover {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 10px var(--accent)55) drop-shadow(0 0 20px var(--accent)22);
-  }
-  50% {
-    filter: drop-shadow(0 0 16px var(--accent)77) drop-shadow(0 0 32px var(--accent)33);
-  }
+@keyframes logoGlowHover {
+  0%, 100% { opacity: 0.85; transform: scale(1.02); }
+  50%      { opacity: 1;    transform: scale(1.08); }
 }
 
 /* Scanline sweeps from top to bottom */
+/* The element now spans the full container height with the line painted at its
+   top edge, so translateY percentages resolve against the same box the old
+   `top` did -- identical motion, moved onto the compositor. */
 @keyframes scanSweep {
-  0% {
-    top: 6%;
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  88% {
-    opacity: 1;
-  }
-  100% {
-    top: 91%;
-    opacity: 0;
-  }
+  0%   { transform: translateY(6%);  opacity: 0; }
+  8%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateY(91%); opacity: 0; }
 }
 .hero-tag {
   font-family: "Share Tech Mono", monospace;
@@ -1321,22 +1323,17 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   animation: termScan 4s linear infinite;
   z-index: 2;
   top: 0;
+  height: 100%;
+  background-size: 100% 3px;
+  background-repeat: no-repeat;
+  background-position: top left;
+  will-change: transform, opacity;
 }
 @keyframes termScan {
-  0% {
-    top: 0%;
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    top: 100%;
-    opacity: 0;
-  }
+  0%   { transform: translateY(0);    opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
 }
 
 /* Status indicator in title bar */
@@ -1351,6 +1348,7 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   opacity: 0.7;
 }
 .terminal-status-dot {
+  position: relative;
   display: inline-block;
   width: 7px;
   height: 7px;
@@ -1358,16 +1356,26 @@ body:has(.custom-context-menu.opening) #cursor-dot {
   background: var(--accent);
   animation: statusPulse 2s ease-in-out infinite;
 }
+.terminal-status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb), 0.35);
+  animation: statusRing 2s ease-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
 @keyframes statusPulse {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.4);
-  }
-  50% {
-    opacity: 0.6;
-    box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0);
-  }
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+/* The expanding ring is a scaled pseudo-element rather than an animated
+   box-shadow spread, which repaints every frame. */
+@keyframes statusRing {
+  0%   { transform: scale(1);   opacity: 0.45; }
+  100% { transform: scale(2.6); opacity: 0; }
 }
 
 /* Interactive prompt row */
@@ -3162,17 +3170,24 @@ picture.photo-grid-img > img {
   border-radius: 100px;
   margin-bottom: 14px;
   letter-spacing: 0.06em;
-  animation: badgePulse 3s ease-in-out infinite;
+  position: relative;
 }
+.avail-badge::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(var(--accent-rgb), 0.55);
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.12);
+  animation: badgePulse 3s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity;
+}
+/* Brightening ring is a static overlay whose opacity animates, instead of
+   animating border-color and box-shadow directly. */
 @keyframes badgePulse {
-  0%,
-  100% {
-    border-color: rgba(var(--accent-rgb), 0.22);
-  }
-  50% {
-    border-color: rgba(var(--accent-rgb), 0.55);
-    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.1);
-  }
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
 }
 
 /* Stat caption */
@@ -3838,8 +3853,6 @@ picture.photo-grid-img > img {
 }
 .has-custom-cursor * { cursor: none !important; }
 .has-custom-cursor .cursor-dot { display: block; }
-/* ring stays hidden */
-.cursor-ring { display: none !important; }
 
 .cursor-dot {
   width: 7px;
@@ -5153,4 +5166,208 @@ body.dyslexia-mode .form-input,
 
 @media (min-width: 900px) and (max-width: 1180px) {
   .nav-brand { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PAGE TRANSITIONS
+   Browsers with cross-document view transitions (Chrome, Safari 18+) get the
+   native version, which costs nothing. Everything else falls back to the
+   curtain in motion.js -- the effect that shipped in transitions.js and was
+   never referenced by a single page.
+   ══════════════════════════════════════════════════════════════════════════ */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root) {
+  animation: vtOut 220ms cubic-bezier(0.7, 0, 0.84, 0) both;
+}
+::view-transition-new(root) {
+  animation: vtIn 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes vtOut {
+  to { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes vtIn {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  background: var(--surface-base);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+/* A thin accent edge so the curtain reads as a deliberate wipe, not a flash. */
+.page-curtain::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--accent-rgb), 0.9),
+    transparent
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CURSOR
+   The ring was previously disabled outright (`display:none !important`) --
+   understandably, because its easing only advanced on mousemove, so it
+   stuttered to a stop whenever the pointer paused. That is fixed in app.js,
+   and the ring now carries context about what it is over.
+   ══════════════════════════════════════════════════════════════════════════ */
+.has-custom-cursor .cursor-ring {
+  display: block !important;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  border-radius: 50%;
+  background: transparent;
+  transition:
+    width var(--dur-base) var(--ease-out),
+    height var(--dur-base) var(--ease-out),
+    margin var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    opacity var(--dur-fast) linear;
+}
+
+/* Over a link or control: tighten and brighten. */
+.has-custom-cursor .cursor-ring.is-link {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-color: rgba(var(--accent-rgb), 0.85);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+
+/* Over text input: become a caret-ish bar. */
+.has-custom-cursor .cursor-ring.is-text {
+  width: 2px;
+  height: 26px;
+  margin: -13px 0 0 -1px;
+  border-radius: 1px;
+  border-color: transparent;
+  background: rgba(var(--accent-rgb), 0.8);
+}
+
+/* Over a card: widen into a soft field. */
+.has-custom-cursor .cursor-ring.is-card {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-color: rgba(var(--accent-rgb), 0.28);
+  background: rgba(var(--accent-rgb), 0.05);
+}
+
+.has-custom-cursor .cursor-ring.is-down {
+  opacity: 0.55;
+}
+
+/* The dot leads, the ring trails — so the dot must sit above it. */
+.cursor-dot { z-index: calc(var(--z-cursor) + 1); }
+.cursor-ring { z-index: var(--z-cursor); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MICRO-INTERACTIONS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Nav: the underline grows from the centre instead of appearing all at once. */
+.nav-links a {
+  position: relative;
+  border-bottom-color: transparent !important;
+  transition: color var(--dur-fast) var(--ease-both);
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after { transform: scaleX(1); }
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-links a:hover { color: var(--accent); }
+
+/* Cards lift on hover. Transform and shadow only — no layout properties, so
+   the whole thing stays on the compositor. */
+.project-card,
+.internship-card,
+.testimonial-card {
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+.project-card:hover,
+.internship-card:hover,
+.testimonial-card:hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* Stat figures should not reflow while they count up. */
+.stat-num {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 1.6ch;
+}
+
+/* Buttons acknowledge the press. */
+.hero-btn-primary,
+.hero-btn-outline {
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-base) var(--ease-both),
+    border-color var(--dur-base) var(--ease-both),
+    box-shadow var(--dur-base) var(--ease-both);
+}
+.hero-btn-primary,
+.hero-btn-outline,
+.tweaks-fab,
+[data-magnetic] {
+  transform: translate3d(var(--mx, 0), var(--my, 0), 0);
+}
+.hero-btn-primary:active,
+.hero-btn-outline:active {
+  transform: translate3d(var(--mx, 0), var(--my, 0), 0) scale(0.975);
+}
+
+/* Keyboard users get the same affordances the pointer gets. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION — Phase 2 additions
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+
+  .page-curtain { display: none !important; }
+
+  .project-card:hover,
+  .internship-card:hover,
+  .testimonial-card:hover { transform: none; }
+
+  .nav-links a::after { transition: none; }
 }

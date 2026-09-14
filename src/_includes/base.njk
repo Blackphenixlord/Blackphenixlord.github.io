@@ -31,7 +31,9 @@
 {% include "partials/palette.njk" %}
 {% include "partials/tweaks.njk" %}
 
+  <script src="vendor-lenis.js?v={{ site.assetVersion }}" defer></script>
   <script src="app.js?v={{ site.assetVersion }}" defer></script>
+  <script src="motion.js?v={{ site.assetVersion }}" defer></script>
   <script src="music.js?v={{ site.assetVersion }}" defer></script>
 {%- if pageScript %}
   <script src="{{ pageScript }}?v={{ site.assetVersion }}" defer></script>

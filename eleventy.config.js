@@ -3,7 +3,7 @@
    src/_includes. Static assets pass through untouched so their URLs never move. */
 export default function (eleventyConfig) {
   ['imgs', 'fonts', 'style.css', 'icons.css', 'app.js', 'boot.js', 'music.js',
-   'sounds.js', 'transitions.js', 'CNAME', 'robots.txt'
+   'sounds.js', 'motion.js', 'vendor-lenis.js', 'CNAME', 'robots.txt'
   ].forEach((p) => eleventyConfig.addPassthroughCopy(`src/${p}`));
 
   // Per-page behaviour modules, referenced by a page's `pageScript` front matter.
