@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Easter egg, not content
+Disallow: /rick.html
+
+# Source images: originals kept for regeneration, never served to visitors
+Disallow: /imgs/_src/
+
+Sitemap: https://jc-portfolio.codes/sitemap.xml
