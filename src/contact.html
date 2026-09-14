@@ -118,23 +118,33 @@ pageScript: page-contact.js
     <!-- RIGHT: Contact form -->
     <div class="contact-form-col">
       <h2 class="sr-only">Send a message</h2>
-      {#- No mailto: in `action`. Browsers treat a mailto form target as an
-          insecure submission and switch autofill off for the whole form, which
-          is worse than the fallback is worth. With no endpoint configured the
-          action is simply absent and page-contact.js does the mailto handoff;
-          the email card above this form is the no-JS path. -#}
+      {#- An access key implies Web3Forms, so the endpoint fills itself in.
+          Anything else (Formspree, a Worker of your own) just sets the URL.
+          No mailto: ever goes in `action` -- browsers treat that as an
+          insecure submission target and switch autofill off for the whole
+          form. With neither configured there is no action at all and the
+          message is composed on the page instead. -#}
+      {%- set postUrl = site.contactEndpoint or ("https://api.web3forms.com/submit" if site.contactAccessKey else "") %}
       <form class="contact-form" id="contact-form" novalidate
         method="POST"
-{%- if site.contactEndpoint %}
-        action="{{ site.contactEndpoint }}"
+{%- if postUrl %}
+        action="{{ postUrl }}"
 {%- endif %}
-        data-endpoint="{{ site.contactEndpoint }}"
+        data-endpoint="{{ postUrl }}"
         aria-label="Send Joshua a message">
 
-        {#- Bots fill hidden fields; people never see this one. -#}
+{%- if site.contactAccessKey %}
+        <input type="hidden" name="access_key" value="{{ site.contactAccessKey }}" />
+        <input type="hidden" name="from_name" value="{{ site.name }} — portfolio contact form" />
+        <input type="hidden" name="replyto" value="email" />
+{%- endif %}
+
+        {#- Bots fill hidden fields; people never see these. `botcheck` is the
+            name Web3Forms looks for, `_gotcha` the one most others use. -#}
         <div class="form-honeypot" aria-hidden="true">
           <label for="contact-company">Company</label>
           <input type="text" id="contact-company" name="_gotcha" tabindex="-1" autocomplete="off" />
+          <input type="checkbox" name="botcheck" tabindex="-1" />
         </div>
 
         <div class="form-row">

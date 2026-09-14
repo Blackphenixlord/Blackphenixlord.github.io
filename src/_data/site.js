@@ -10,10 +10,23 @@ export default {
   assetVersion: '20260913-3',
   buildYear: new Date().getFullYear(),
 
-  /* Contact form endpoint. Paste a Formspree ("https://formspree.io/f/xxxxxxxx")
-     or Web3Forms URL here and the form posts for real, with an inline success
-     state and no mail client involved. Left empty, the form degrades to a
-     prefilled mailto: and says so honestly rather than claiming it sent. */
+  /* ── Contact form ────────────────────────────────────────────────────────
+     Fill in ONE of these and the form starts sending for real: the visitor
+     types, hits send, and sees a confirmation without ever leaving the page.
+
+     Easiest — Web3Forms, no account needed:
+       1. https://web3forms.com  ->  enter this email  ->  they send you a key
+       2. paste it below as contactAccessKey
+       That is the whole setup. The endpoint defaults itself.
+
+     Or any service that accepts a plain form POST (Formspree, Getform, your
+     own Cloudflare Worker): put its URL in contactEndpoint and leave the key
+     blank.
+
+     With both empty the form composes the message on the page instead and
+     lets the visitor send or copy it -- no third party involved, which is
+     the only thing a static site can do entirely on its own. */
+  contactAccessKey: '',
   contactEndpoint: '',
 
   /* Display names for project categories. Capitalising the slug gave

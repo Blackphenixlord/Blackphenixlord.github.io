@@ -71,9 +71,26 @@ Empty ones do not render, so a page with only a summary still reads as finished.
 
 ### Turn the contact form on
 
-Set `contactEndpoint` in `src/_data/site.js` to a Formspree or Web3Forms URL.
-The form then posts for real, with inline validation and a success state shown
-only on a 2xx. Left empty, it falls back to a prefilled `mailto:` and says so.
+Fill in **one** value in `src/_data/site.js`:
+
+```js
+contactAccessKey: 'your-key-here',   // Web3Forms — no account needed
+// or
+contactEndpoint: 'https://...',      // Formspree, Getform, your own Worker
+```
+
+For Web3Forms: go to web3forms.com, enter the address you want messages sent
+to, and they email you a key. Paste it and you are done — the endpoint fills
+itself in.
+
+With both empty the form composes the message on the page instead and lets
+the visitor send or copy it. That is deliberate: a static site has no server
+to receive a POST, so sending for real always means something external. The
+composer is the only version that involves nobody else.
+
+Either way the form validates the same, and a send only reports success if the
+response body actually confirms it — a 200 carrying `success:false` (wrong key,
+quota spent) falls back to the composer rather than lying about it.
 
 ### Change the accent colour
 

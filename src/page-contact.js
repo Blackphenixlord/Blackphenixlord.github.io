@@ -141,7 +141,6 @@
 
     form.classList.add('is-composed');
     readyEl.hidden = false;
-    setStatus('', '');
     readyEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     mailLink.focus();
   }
@@ -203,6 +202,7 @@
 
     /* No endpoint: compose here and let them choose how it goes out. */
     if (!endpoint) {
+      setStatus('', '');
       openComposer();
       return;
     }
@@ -210,16 +210,40 @@
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'sending...'; }
     setStatus('info', 'Sending...');
 
-    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+    fetch(endpoint, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    })
       .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        /* A 200 is not proof on its own: Web3Forms answers 200 with
+           {success:false} when the key is wrong or the quota is spent, and
+           Formspree returns an `errors` array. Read the body before claiming
+           anything was sent. */
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          var failed =
+            !res.ok ||
+            data.success === false ||
+            (data.errors && data.errors.length);
+          if (failed) {
+            throw new Error(data.message || (data.errors && data.errors[0] && data.errors[0].message) || ('HTTP ' + res.status));
+          }
+          return data;
+        });
+      })
+      .then(function () {
         form.reset();
         FIELDS.forEach(function (f) { show(f, ''); });
         setStatus('ok', 'Message sent. I usually reply within 24-48 hours.');
       })
-      .catch(function () {
+      .catch(function (err) {
+        /* Never lose the message: fall back to the composer so they still
+           have it, rather than stranding them with an error. */
         setStatus('error',
-          'That did not go through. Email ' + ADDRESS + ' directly and it will reach me.');
+          'That did not go through' +
+          (err && err.message ? ' (' + err.message + ')' : '') +
+          '. Send it yourself below, or email ' + ADDRESS + ' directly.');
+        openComposer();
       })
       .then(function () {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = btnLabel; }
