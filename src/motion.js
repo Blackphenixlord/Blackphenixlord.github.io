@@ -178,7 +178,7 @@
     var MODES = [
       ['a, button, [role="option"], .tweaks-swatch, summary', 'is-link'],
       ['input, textarea, [contenteditable="true"]', 'is-text'],
-      ['.project-card, .internship-card, .testimonial-card, .proj-row', 'is-card'],
+      ['.work-card, .about-card, .word-card, .testimonial-card, .internship-hub-card', 'is-card'],
     ];
 
     function clear() {

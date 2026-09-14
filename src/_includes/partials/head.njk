@@ -65,3 +65,20 @@
   }
   </script>
 {%- endif %}
+
+{%- if project %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": {{ project.title | dump | safe }},
+    "url": "{{ site.url }}/work/{{ project.slug }}.html",
+    "description": {{ project.summary | dump | safe }},
+    "creator": { "@type": "Person", "name": "{{ site.name }}", "url": "{{ site.url }}/" },
+    "author":  { "@type": "Person", "name": "{{ site.name }}", "url": "{{ site.url }}/" },
+    "sourceOrganization": { "@type": "Organization", "name": {{ project.org | dump | safe }} },
+    "keywords": {{ project.stack | join(", ") | dump | safe }},
+    "creativeWorkStatus": {{ project.status | dump | safe }}
+  }
+  </script>
+{%- endif %}

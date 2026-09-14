@@ -1,4 +1,9 @@
-/* ── Portfolio Sound Engine — Web Audio API, zero external files ── */
+/* ── Portfolio Sound Engine — Web Audio API, zero external files ──────────
+   Every sound is synthesised, so this ships no audio assets. It is loaded on
+   demand by the tweaks panel the first time someone switches sound on, and it
+   never plays unprompted: the enable click is the gesture the Web Audio API
+   needs anyway.
+   ──────────────────────────────────────────────────────────────────────── */
 (function () {
   let _ctx = null, _on = localStorage.getItem('sfx') === '1';
 
@@ -70,21 +75,19 @@
     ctaHov: () => { tone(659, 0.05, 0.07, 'sine'); tone(880, 0.035, 0.04, 'sine', 0.028); },
   };
 
-  /* ── Toggle button ─────────────────────────────────────────────── */
+  /* ── Wired to the tweaks panel ─────────────────────────────────── */
   function render() {
-    const btn = document.getElementById('sound-toggle');
-    if (!btn) return;
-    btn.textContent = _on ? '[ SFX: ON ]' : '[ SFX: OFF ]';
-    btn.style.color = _on ? '#00ff41' : '#3a5a3a';
-    btn.style.borderColor = _on ? 'rgba(0,255,65,0.45)' : '#1a3a1a';
+    const cb = document.getElementById('tweak-sound');
+    if (cb) cb.checked = _on;
   }
 
-  document.getElementById('sound-toggle')?.addEventListener('click', () => {
-    _on = !_on;
-    localStorage.setItem('sfx', _on ? '1' : '0');
+  /* Exposed so the panel can flip it without this file owning the markup. */
+  window.sfx.setEnabled = (on) => {
+    _on = !!on;
+    try { localStorage.setItem('sfx', _on ? '1' : '0'); } catch (e) { /* private mode */ }
     if (_on) { ctx(); sfx.boot(); }
     render();
-  });
+  };
 
   /* ── Shared per-page hooks (run after DOM ready) ───────────────── */
   function init() {
@@ -110,7 +113,7 @@
 
     /* Word / project / resume cards */
     let _ch = 0;
-    document.querySelectorAll('.word-card, .project-card, .resume-block').forEach(c =>
+    document.querySelectorAll('.word-card, .work-card, .resume-block').forEach(c =>
       c.addEventListener('mouseenter', () => {
         const n = Date.now(); if (n - _ch < 115) return; _ch = n;
         sfx.hover();

@@ -36,10 +36,12 @@ export default function (eleventyConfig) {
   ['imgs', 'fonts', 'vendor-lenis.js', 'CNAME', 'robots.txt'
   ].forEach((p) => eleventyConfig.addPassthroughCopy(`src/${p}`));
 
-  // Pages in the order they should appear in the sitemap and command palette.
+  /* Everything that should appear in the sitemap. The glob has to include
+     work.njk as well: it paginates into four real, indexable case studies
+     that src/*.html alone would silently leave out. */
   eleventyConfig.addCollection('pages', (api) =>
-    api.getFilteredByGlob('src/*.html')
-       .filter((p) => !p.data.excludeFromSitemap)
+    api.getFilteredByGlob(['src/*.html', 'src/work.njk'])
+       .filter((p) => !p.data.excludeFromSitemap && !p.data.noindex)
        .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
   );
 

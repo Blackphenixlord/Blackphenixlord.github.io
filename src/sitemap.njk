@@ -3,12 +3,24 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
+{#- Case studies are emitted from `projects` rather than the collection:
+    getFilteredByGlob returns a paginated template only once, so globbing
+    work.njk silently listed the first project and dropped the other three. -#}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for item in collections.pages %}
+{%- if "work.njk" not in item.inputPath %}
   <url>
     <loc>{{ item.data.canonicalUrl }}</loc>
     <lastmod>{{ item.date | isoDate }}</lastmod>
     <priority>{% if item.fileSlug == "index" %}1.0{% elif item.data.order <= 7 %}0.8{% else %}0.6{% endif %}</priority>
+  </url>
+{%- endif %}
+{%- endfor %}
+{%- for project in projects %}
+  <url>
+    <loc>{{ site.url }}/work/{{ project.slug }}.html</loc>
+    <lastmod>{{ page.date | isoDate }}</lastmod>
+    <priority>{% if project.tier == "flagship" %}0.9{% else %}0.7{% endif %}</priority>
   </url>
 {%- endfor %}
 </urlset>

@@ -11,6 +11,9 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var coarse = window.matchMedia('(pointer: coarse)').matches;
   var $ = function (id) { return document.getElementById(id); };
+  /* Reuse whatever cache-bust token this page loaded app.js with, so an
+     on-demand fetch of sounds.js is never served a stale copy. */
+  var SFX_VERSION = (((document.querySelector('script[src*="app.js"]') || {}).src || '').split('v=')[1] || '');
 
   /* ── Navigation ───────────────────────────────────────────────────────── */
   (function () {
@@ -196,6 +199,35 @@
       store('tweak-dyslexia', this.checked ? '1' : '0');
     });
 
+    /* Sound effects: 5 KB of Web Audio that most visitors will never want, so
+       the file is fetched the first time it is switched on and never before.
+       Same deal as the music toggle. */
+    var soundCb = $('tweak-sound');
+    var soundLoading = false;
+
+    function loadSounds(then) {
+      if (window.sfx) return then && then();
+      if (soundLoading) return;
+      soundLoading = true;
+      var tag = document.createElement('script');
+      tag.src = '/sounds.js?v=' + SFX_VERSION;
+      tag.async = true;
+      tag.onload = function () { then && then(); };
+      document.head.appendChild(tag);
+    }
+
+    if (soundCb) soundCb.addEventListener('change', function () {
+      var on = this.checked;
+      store('tweak-sound', on ? '1' : '0');
+      if (!on) {
+        if (window.sfx && window.sfx.setEnabled) window.sfx.setEnabled(false);
+        return;
+      }
+      loadSounds(function () {
+        if (window.sfx && window.sfx.setEnabled) window.sfx.setEnabled(true);
+      });
+    });
+
     var scrollCb = $('tweak-scrollbar');
     if (scrollCb) scrollCb.addEventListener('change', function () {
       var bar = $('scroll-progress');
@@ -221,6 +253,11 @@
     if (read('tweak-dyslexia') === '1' && dyslexiaCb) {
       dyslexiaCb.checked = true;
       document.body.classList.add('dyslexia-mode');
+    }
+    if (read('tweak-sound') === '1' && soundCb) {
+      /* Reflect the saved choice, but do not fetch or play anything until the
+         visitor interacts — autoplay policy requires a gesture regardless. */
+      soundCb.checked = true;
     }
     if (read('tweak-scrollbar') === '0' && scrollCb) {
       scrollCb.checked = false;
