@@ -72,6 +72,36 @@ export default [
     related: 'nasa-hunch.html',
   },
   {
+    slug: 'vitals',
+    title: 'VITALS — Medical Diagnostic System',
+    org: 'NASA HUNCH',
+    years: '2026 – 2027',
+    role: 'Team lead and diagnostic engine developer',
+    tier: 'flagship',
+    status: 'In progress',
+    categories: ['ai', 'nasa', 'hardware'],
+    stack: ['AI / ML', 'Local LLM', 'Knowledge Base', 'NVIDIA Jetson'],
+    summary:
+      'An offline medical diagnostic assistant for crews far from Earth. A local language ' +
+      'model does the reasoning, and a curated medical knowledge base grounds every answer it gives.',
+    outcome:
+      'Leading Team TETHER through the 2026–27 NASA HUNCH Software & Technology challenge, ' +
+      'with the engine, the public site, and the review boards built.',
+    cover: null,
+    gallery: [],
+    problem:
+      'A crew on the Moon cannot wait on a round trip to Houston every time someone feels wrong. ' +
+      'They need a diagnostic aid that runs on board, with no connection to the ground.',
+    approach:
+      'A local LLM (served through Ollama) is the reasoner, and a medical knowledge base keeps it ' +
+      'honest: the model answers, the knowledge base backs the answer. It is built to run on an ' +
+      'NVIDIA Jetson. Sensor and camera inputs are left as open slots rather than filled with ' +
+      'plausible fake readings, so nothing in a demo pretends to be data it is not.',
+    result: '',
+    related: 'nasa-hunch.html',
+    link: { label: 'The project site', title: 'VITALS · Team TETHER', href: '/vitals/' },
+  },
+  {
     slug: 'vr-training-experience',
     title: 'VR Training Experience',
     org: 'Los Alamos National Laboratory',
@@ -108,6 +138,51 @@ export default [
       'layer — controlling apps, routines, and devices from one unified interface.',
     outcome:
       'Establishing the foundation for a fully AI-powered home control and productivity system.',
+    cover: null,
+    gallery: [],
+    problem: '',
+    approach: '',
+    result: '',
+    related: '',
+  },
+  {
+    slug: 'vla-3d-printing',
+    title: 'VLA-Enabled 3D Printing',
+    org: 'UTRGV Externship',
+    years: '2026 – 2027',
+    role: 'Software lead — vision and control',
+    tier: 'standard',
+    status: 'In progress',
+    categories: ['ai', 'hardware', 'research'],
+    stack: ['Machine Vision', 'Vision-Language-Action', 'Voron 2.4', 'G-code'],
+    summary:
+      'A large-format, Voron-based 3D printer with a camera and an ML supervisor that watches ' +
+      'each layer, catches defects as they happen, and steps in to correct them.',
+    outcome:
+      'Scoped the full software plan — control loop, defect responses, training data, and a ' +
+      'phased build that proves itself on a small printer before moving to the Voron.',
+    cover: null,
+    gallery: [],
+    problem: '',
+    approach: '',
+    result: '',
+    related: 'utrgv.html',
+  },
+  {
+    slug: 'screen-deck',
+    title: 'Screen Deck',
+    org: 'Personal',
+    years: '2026',
+    role: 'Designer and developer',
+    tier: 'standard',
+    status: 'In progress',
+    categories: ['automation'],
+    stack: ['PowerShell', 'WPF', 'Windows', 'Touch UI'],
+    summary:
+      'A Stream Deck–style touch launcher for a spare touchscreen: tabbed button grids, ' +
+      'per-app volume sliders, a soundboard, calendar, notes, and live home-lab stats.',
+    outcome:
+      'Runs every day on my desk as the control surface for my PC, games, and home lab.',
     cover: null,
     gallery: [],
     problem: '',

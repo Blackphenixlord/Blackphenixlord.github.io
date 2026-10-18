@@ -37,7 +37,7 @@ export default function (eleventyConfig) {
   ].forEach((p) => eleventyConfig.addPassthroughCopy(`src/${p}`));
 
   /* Everything that should appear in the sitemap. The glob has to include
-     work.njk as well: it paginates into four real, indexable case studies
+     work.njk as well: it paginates into real, indexable case studies
      that src/*.html alone would silently leave out. */
   eleventyConfig.addCollection('pages', (api) =>
     api.getFilteredByGlob(['src/*.html', 'src/work.njk'])

@@ -99,6 +99,12 @@ excludeFromSitemap: false
 {%- endif %}
 
       <nav class="cs-next" aria-label="Keep reading">
+{%- if project.link %}
+        <a class="cs-next-link" href="{{ project.link.href }}">
+          <span class="cs-next-label">{{ project.link.label }}</span>
+          <span class="cs-next-title">{{ project.link.title }} <span aria-hidden="true">&rarr;</span></span>
+        </a>
+{%- endif %}
 {%- if project.related %}
         <a class="cs-next-link" href="/{{ project.related }}">
           <span class="cs-next-label">The internship behind it</span>
