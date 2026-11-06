@@ -253,7 +253,7 @@ html.no-scan .crt { display: none; }
 }
 .mission-lanl::before { animation-delay: -3s; }
 @property --beam { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-.mission-body { display: grid; gap: var(--s-6); padding: var(--s-5); }
+.mission-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-6); padding: var(--s-5); }
 .m-id { display: flex; gap: var(--s-4); font: var(--fs-meta) var(--f-mono); letter-spacing: .18em; color: var(--green); margin-bottom: var(--s-3); }
 .m-id span + span { color: var(--fg-3); }
 .m-title { font-size: clamp(2.1rem, 7.4vw, 4.6rem); text-transform: uppercase; line-height: 1; text-shadow: 0 0 30px rgb(var(--g-a) / .3); }
@@ -299,7 +299,7 @@ html.no-scan .crt { display: none; }
 @media (min-width: 900px) { .orbit-wrap { grid-template-columns: 1fr; } }
 
 /* ── Traits ─────────────────────────────────────────────────────────── */
-.traits { display: grid; gap: var(--s-4); }
+.traits { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
 .trait { padding: var(--s-5); position: relative; overflow: hidden; }
 .trait-pid { font: .75rem var(--f-mono); color: var(--green); letter-spacing: .14em; margin-bottom: var(--s-4); }
 .trait h3 { font-size: 1.6rem; margin-bottom: var(--s-3); }
@@ -328,7 +328,7 @@ html.no-scan .crt { display: none; }
 .rain { height: 160px; overflow: hidden; color: var(--green); font-size: .8rem; line-height: 1; white-space: pre; text-shadow: 0 0 6px var(--green); }
 
 /* ── Programs (project cards) ───────────────────────────────────────── */
-.progs { display: grid; gap: var(--s-5); }
+.progs { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
 @media (min-width: 760px) { .progs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1100px) { .progs { grid-template-columns: repeat(6, minmax(0, 1fr)); } .prog { grid-column: span 2; } .prog-flagship { grid-column: span 3; } .prog-flagship:nth-child(3) { grid-column: span 6; } }
 .prog { position: relative; perspective: 900px; }
@@ -381,9 +381,9 @@ html.no-scan .crt { display: none; }
 .app .tags { margin-top: var(--s-5); }
 @media (min-width: 760px) { .app-body { padding: var(--s-7); } }
 
-.grid-2 { display: grid; gap: var(--s-5); }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
 @media (min-width: 860px) { .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.grid-3 { display: grid; gap: var(--s-4); }
+.grid-3 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
 @media (min-width: 760px) { .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1100px) { .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
@@ -543,7 +543,7 @@ html.booting .boot {
   background: radial-gradient(ellipse at center, #0d1424 0%, #05070d 80%); font-family: var(--f-mono);
 }
 .boot-win { width: min(720px, 100%); border: 1px solid var(--line-2); border-radius: var(--r-win); background: rgb(13 17 23 / .9); box-shadow: var(--glow); overflow: hidden; transition: opacity var(--t-med), transform var(--t-med) var(--ease); }
-.boot-log { margin: 0; padding: var(--s-4) var(--s-5); min-height: 16.5em; font: clamp(.72rem, 2.3vw, .9rem)/1.65 var(--f-mono); color: var(--fg-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.boot-log { margin: 0; padding: var(--s-4) var(--s-5); height: 21em; overflow: hidden; font: clamp(.72rem, 2.3vw, .9rem)/1.65 var(--f-mono); color: var(--fg-2); white-space: pre-wrap; overflow-wrap: anywhere; }
 .boot-log .ok { color: var(--green); }
 .boot-log .hi { color: var(--fg); }
 .boot-meter { height: 3px; background: var(--line); }
@@ -569,9 +569,12 @@ html.booting .boot {
 @keyframes glitch { 0%, 100% { transform: none; } 20% { transform: translate(-3px, 1px) skewX(-8deg); } 40% { transform: translate(3px, -1px); } 60% { transform: translate(-2px, 0) skewX(6deg); } 80% { transform: translate(1px, 1px); } }
 @keyframes degauss { 0% { transform: none; filter: none; } 20% { transform: scale(1.02) skewX(3deg); filter: hue-rotate(0) blur(1px); } 50% { transform: scale(.99) skewX(-2deg); filter: blur(.5px); } 100% { transform: none; filter: none; } }
 
-/* Reveal: sections build themselves as they enter. Only hidden when JS runs. */
+/* Reveal: sections build themselves as they enter. Only hidden when JS runs.
+   Anything already on screen at first paint is marked .now by an inline
+   script in the layout and never hidden, so it cannot hold back LCP. */
 html.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
 html.js .reveal.in { opacity: 1; transform: none; }
+html.js .reveal.now { transition: none; }
 html.js .trait { --bar: 0; }
 html.js .trait.in { --bar: 1; }
 html.js .m-log li { opacity: 0; transform: translateX(-10px); transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease); }

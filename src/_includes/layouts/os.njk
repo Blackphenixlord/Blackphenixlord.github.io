@@ -12,6 +12,10 @@
 {{ content | safe }}
 </main>
 {% include "os/footer.njk" %}
+<script>
+/* Before first paint: whatever is already on screen is shown as-is, not faded in. */
+(function () { var h = innerHeight; document.querySelectorAll('.reveal').forEach(function (e) { if (e.getBoundingClientRect().top < h) e.classList.add('in', 'now'); }); })();
+</script>
 {% include "os/launcher.njk" %}
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 <div class="crt" aria-hidden="true"></div>

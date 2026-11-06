@@ -65,9 +65,9 @@ crumbs: [{ name: "Home", href: "/" }, { name: "Contact", href: "/contact.html" }
         <div><button class="btn btn-shine" type="submit" data-submit><span>send_message <span aria-hidden="true">&#x2192;</span></span></button></div>
       </form>
 
-      <div class="compose" data-compose hidden tabindex="-1" aria-labelledby="compose-t">
+      <div class="compose" data-compose hidden tabindex="-1" role="region" aria-labelledby="compose-t">
         <h3 id="compose-t" class="prog-title">Your message is ready</h3>
-        <pre data-compose-text aria-label="Composed message"></pre>
+        <pre data-compose-text title="Composed message"></pre>
         <div class="compose-act">
           <a class="btn btn-shine" data-mailto href="mailto:{{ site.email }}"><span>Send it &rarr;</span></a>
           <button class="btn btn-ghost" type="button" data-copy>Copy message</button>

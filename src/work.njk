@@ -20,9 +20,9 @@ eleventyComputed:
 {%- set prev = projects[i - 1] if i > 0 else projects[projects.length - 1] -%}
 {%- set next = projects[i + 1] if i < projects.length - 1 else projects[0] -%}
 <div class="page wrap">
-  <p class="reveal"><a class="lnk" href="/projects.html"><span aria-hidden="true">&larr;</span> All work</a></p>
+  <p><a class="lnk" href="/projects.html"><span aria-hidden="true">&larr;</span> All work</a></p>
   <article class="prog-page" aria-labelledby="pt">
-    <header class="app reveal">
+    <header class="app">
       {{ ui.titlebar("~/work/" + project.slug, "running" if project.status == "In progress" else "exit 0") }}
       <div class="app-body">
         {{ ui.prompt("./" + project.slug + " --info") }}

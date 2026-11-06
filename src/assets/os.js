@@ -255,8 +255,10 @@
   const ready = () => {
     d.dispatchEvent(new CustomEvent('jc:ready'));
     reveal();
-    const h = $('.hero-title [data-decrypt]');
-    if (h) setTimeout(() => decrypt(h, 1100), 80);
+    /* The first screen is never hidden for a reveal (it would hold back
+       LCP); it gets its decrypt and typing straight away instead. */
+    $$('.hero-title [data-decrypt], .app-title [data-decrypt], .ro-n [data-decrypt]').forEach((h) => setTimeout(() => decrypt(h, 1100), 80));
+    $$('.app [data-type]').forEach((t) => type(t, 22));
     $$('[data-typed]').forEach((t) => setTimeout(() => type(t, 26), 500));
   };
   const boot = $('[data-boot]');

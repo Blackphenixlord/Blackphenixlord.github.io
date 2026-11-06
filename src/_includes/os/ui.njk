@@ -76,7 +76,7 @@
 
 {#- An inner page's header: an app window with the command that opened it. -#}
 {% macro appHead(path, cmd, eyebrow, title, sub="", tags=[]) -%}
-<header class="app reveal">
+<header class="app">
   {{ titlebar(path, "active") }}
   <div class="app-body">
     {{ prompt(cmd) }}
