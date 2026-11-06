@@ -162,7 +162,7 @@ html.no-scan .crt { display: none; }
 }
 
 /* ── Type pieces ────────────────────────────────────────────────────── */
-.ps { font: var(--fs-mono)/1.5 var(--f-mono); color: var(--fg-3); margin-bottom: var(--s-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps { font: var(--fs-mono)/1.5 var(--f-mono); color: var(--fg-3); margin-bottom: var(--s-3); white-space: nowrap; overflow: hidden; }
 .ps-u { color: var(--green); }
 .ps-c { color: var(--fg-3); }
 .ps-p { color: var(--fg-2); }
