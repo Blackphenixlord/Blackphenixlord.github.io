@@ -49,14 +49,11 @@
   "url": site.url + "/",
   "email": "mailto:" + site.email,
   "image": ogImg,
-  "description": site.tagline,
-  "jobTitle": "Engineer, developer, and builder",
+  "jobTitle": "Engineering & Computer Science Student",
+  "description": "Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, RECON Technologies, and Nerdvana.",
   "address": { "@type": "PostalAddress", "addressRegion": "TX", "addressCountry": "US" },
-  "alumniOf": [
-    { "@type": "CollegeOrUniversity", "name": "University of Texas Rio Grande Valley" },
-    { "@type": "HighSchool", "name": "Science Academy — STISD" }
-  ],
-  "knowsAbout": ["Full-stack development", "Web security", "Virtual reality", "Artificial intelligence", "Home automation"],
+  "alumniOf": { "@type": "EducationalOrganization", "name": "University of Texas Rio Grande Valley", "department": "Science Academy — Dual Enrollment" },
+  "knowsAbout": ["Software Engineering", "Web Development", "Virtual Reality", "Cybersecurity", "STEM Education"],
   "sameAs": [site.github, site.linkedin]
 } %}
 <script type="application/ld+json">{{ person | jsonld | safe }}</script>

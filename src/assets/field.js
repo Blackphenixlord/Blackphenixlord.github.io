@@ -17,7 +17,7 @@
   const coarse = matchMedia('(pointer: coarse)').matches;
   const small = innerWidth < 760;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const CELL = small ? 3 : 3;
+  const CELL = 3;
   const PITCH = small ? 17 : 13;
   const FPS = coarse || small ? 30 : 60;
   const RADIUS = small ? 130 : 200;

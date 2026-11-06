@@ -590,6 +590,18 @@ html.overdrive .desk-grid { background-size: 24px 24px; }
 .paused, .paused * { animation-play-state: paused !important; }
 
 @media (hover: none) { .btn-shine::after { animation-duration: 5s; } }
+/* Phones: the travelling beam repaints its gradient every frame, so it
+   becomes a still glint on the frame instead. */
+@media (pointer: coarse), (max-width: 760px) { .mission::before { animation: none; --beam: 210deg; } }
+
+@media print {
+  .desk, .crt, .bar, .boot, .ln, .toast, .hero-field, .retro, .term-in, .term-hint, .eggs, .skip { display: none !important; }
+  html, body { background: #fff; color: #000; }
+  .reveal, .m-log li { opacity: 1 !important; transform: none !important; }
+  .card, .app, .term, .mission-in, .prog-in, .tl-item, .quote, .trait { background: none; box-shadow: none; border-color: #999; }
+  .page { padding-top: 0; }
+  a { color: inherit; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }

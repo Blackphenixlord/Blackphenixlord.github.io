@@ -95,7 +95,7 @@
   };
   if (io) {
     const po = new IntersectionObserver((ents) => ents.forEach((en) => en.target.classList.toggle('paused', !en.isIntersecting)));
-    $$('.missions, .hero, .bar-read').forEach((s) => po.observe(s));
+    $$('.missions, .hero, .bar-read, .mission, .btn-shine, .term, .ps, .chip-live, .orbit').forEach((s) => po.observe(s));
   }
   d.addEventListener('visibilitychange', () => html.classList.toggle('paused', d.hidden));
 

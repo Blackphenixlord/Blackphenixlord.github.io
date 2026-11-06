@@ -105,7 +105,6 @@
         const m = document.createElement('span');
         m.style.cssText = 'visibility:hidden;white-space:pre';
         m.textContent = input.value;
-        ghost.style.left = '';
         ghost.textContent = '';
         ghost.append(m, hit.slice(v.length));
         ghost.style.left = input.offsetLeft + 'px';
