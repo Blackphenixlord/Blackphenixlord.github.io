@@ -1,0 +1,16 @@
+{%- import "os/ui.njk" as ui -%}
+<header class="bar">
+  <a class="bar-logo" href="/index.html" data-logo aria-label="{{ site.name }} — Home">{{ ui.logo() }}<span class="bar-name" aria-hidden="true">JC/OS</span></a>
+  <nav class="bar-nav" aria-label="Main navigation">
+    <ul>
+      {%- for n in site.nav %}
+      <li><a href="{{ n.href }}"{% if navKey == n.key %} aria-current="page"{% endif %}>{{ n.label }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  <div class="bar-r">
+    <span class="bar-read" aria-hidden="true"><span class="led"></span><span data-scroll>000%</span><span data-clock>--:--</span></span>
+    <button class="bar-cmd" type="button" data-launch aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K"><span class="bar-cmd-t">Search commands</span><kbd>Ctrl K</kbd></button>
+    <button class="bar-menu" type="button" data-launch aria-haspopup="dialog"><span class="bar-menu-i" aria-hidden="true"></span>Menu</button>
+  </div>
+</header>

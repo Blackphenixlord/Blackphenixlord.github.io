@@ -1,121 +1,106 @@
 ---
-layout: base.njk
 pagination:
   data: projects
   size: 1
   alias: project
-permalink: "work/{{ project.slug }}.html"
+permalink: "/work/{{ project.slug }}.html"
 navKey: projects
+ogType: article
 eleventyComputed:
   title: "{{ project.title }} | Joshua Collado"
   description: "{{ project.summary }}"
-  ogTitle: "{{ project.title }} — {{ project.org }}"
   canonicalUrl: "{{ site.url }}/work/{{ project.slug }}.html"
-ogType: article
-excludeFromSitemap: false
+  crumbs:
+    - { name: "Home", href: "/" }
+    - { name: "Projects", href: "/projects.html" }
+    - { name: "{{ project.title }}", href: "/work/{{ project.slug }}.html" }
 ---
-
-  <article class="cs">
-
-    <header class="cs-hero">
-      <div class="page-hero-bg" aria-hidden="true"></div>
-      <div class="container">
-        <a class="cs-back" href="/projects.html"><span aria-hidden="true">&larr;</span> All work</a>
-
-        <p class="cs-org">{{ project.org }}</p>
-        <h1 class="cs-title">{{ project.title }}</h1>
-        <p class="cs-summary">{{ project.summary }}</p>
-
-        <dl class="cs-facts">
-          <div class="cs-fact">
-            <dt>Role</dt>
-            <dd>{{ project.role }}</dd>
-          </div>
-          <div class="cs-fact">
-            <dt>Timeline</dt>
-            <dd>{{ project.years }}</dd>
-          </div>
-          <div class="cs-fact">
-            <dt>Status</dt>
-            <dd>{{ project.status }}</dd>
-          </div>
-        </dl>
+{%- import "os/ui.njk" as ui -%}
+{%- set i = pagination.pageNumber -%}
+{%- set prev = projects[i - 1] if i > 0 else projects[projects.length - 1] -%}
+{%- set next = projects[i + 1] if i < projects.length - 1 else projects[0] -%}
+<div class="page wrap">
+  <p class="reveal"><a class="lnk" href="/projects.html"><span aria-hidden="true">&larr;</span> All work</a></p>
+  <article class="prog-page" aria-labelledby="pt">
+    <header class="app reveal">
+      {{ ui.titlebar("~/work/" + project.slug, "running" if project.status == "In progress" else "exit 0") }}
+      <div class="app-body">
+        {{ ui.prompt("./" + project.slug + " --info") }}
+        <p class="eyebrow">{{ project.org }}</p>
+        <h1 class="app-title" id="pt">{{ ui.decrypt(project.title) }}</h1>
+        <p class="app-sub" style="font-family: var(--f-prose); max-width: 62ch">{{ project.summary }}</p>
       </div>
     </header>
 
-    <div class="container cs-body">
+    <dl class="facts reveal" style="margin-top: var(--s-5)">
+      <div><dt>Role</dt><dd>{{ project.role }}</dd></div>
+      <div><dt>Timeline</dt><dd>{{ project.years }}</dd></div>
+      <div><dt>Status</dt><dd>{{ ui.status(project.status) }}</dd></div>
+    </dl>
 
-      <div class="cs-visual reveal">
-        {% set sizes = "(max-width: 700px) 92vw, 1000px" %}
-        {% set eager = true %}
-        {% include "partials/project-visual.njk" %}
+    <section class="term reveal" style="margin-top: var(--s-5)" aria-label="Stack">
+      <div class="term-body">
+        <p class="tl"><span class="ps-u">{{ project.slug }}</span><span class="ps-c"> $</span> stack --list</p>
+        <ul class="tags tags-lg" style="margin-block: var(--s-3)">{% for s in project.stack %}<li>{{ s }}</li>{% endfor %}</ul>
+        <p class="tl"><span class="ps-u">{{ project.slug }}</span><span class="ps-c"> $</span> status</p>
+        <p class="tl" style="margin-top: var(--s-2)">{{ ui.status(project.status) }}</p>
       </div>
+    </section>
 
-
-      <div class="cs-prose reveal">
-{%- if project.problem %}
-        <section class="cs-section">
-          <h2>The problem</h2>
-          <p>{{ project.problem }}</p>
-        </section>
-{%- endif %}
-{%- if project.approach %}
-        <section class="cs-section">
-          <h2>What I built</h2>
-          <p>{{ project.approach }}</p>
-        </section>
-{%- endif %}
-        <section class="cs-section cs-outcome">
-          <h2>{{ "What happened" if project.result else "Outcome" }}</h2>
-          <p class="cs-outcome-text">{{ project.result or project.outcome }}</p>
-        </section>
-
-{%- if project.cover %}
-        {#- The placeholder plate already lists the stack, so this section would
-            repeat it. Once a real screenshot replaces the plate, this becomes
-            the only place the stack appears. -#}
-        <section class="cs-section">
-          <h2>Stack</h2>
-          <ul class="cs-stack">
-{%- for item in project.stack %}
-            <li>{{ item }}</li>
-{%- endfor %}
-          </ul>
-        </section>
-{%- endif %}
-      </div>
-
-{%- if project.gallery.length %}
-      <section class="cs-gallery reveal" aria-label="Project images">
-        <h2 class="sr-only">Images</h2>
-{%- for shot in project.gallery %}
-        <picture class="cs-shot">
-          <source type="image/avif" srcset="/imgs/{{ shot.file }}-400.avif 400w, /imgs/{{ shot.file }}-800.avif 800w" sizes="(max-width: 700px) 92vw, 480px" />
-          <source type="image/webp" srcset="/imgs/{{ shot.file }}-400.webp 400w, /imgs/{{ shot.file }}-800.webp 800w" sizes="(max-width: 700px) 92vw, 480px" />
-          <img src="/imgs/{{ shot.file }}-800.jpg" alt="{{ shot.alt }}" loading="lazy" decoding="async" />
-        </picture>
-{%- endfor %}
+    {%- if project.problem or project.approach %}
+    <div class="grid-2 sect">
+      {%- if project.problem %}
+      <section class="card block reveal" aria-labelledby="problem">
+        {{ ui.prompt("cat problem.md") }}
+        <h2 id="problem">The problem</h2>
+        <p class="prose">{{ project.problem }}</p>
       </section>
-{%- endif %}
+      {%- endif %}
+      {%- if project.approach %}
+      <section class="card block reveal" style="--i:1" aria-labelledby="approach">
+        {{ ui.prompt("cat approach.md") }}
+        <h2 id="approach">What I built</h2>
+        <p class="prose">{{ project.approach }}</p>
+      </section>
+      {%- endif %}
+    </div>
+    {%- endif %}
 
-      <nav class="cs-next" aria-label="Keep reading">
-{%- if project.link %}
-        <a class="cs-next-link" href="{{ project.link.href }}">
-          <span class="cs-next-label">{{ project.link.label }}</span>
-          <span class="cs-next-title">{{ project.link.title }} <span aria-hidden="true">&rarr;</span></span>
-        </a>
-{%- endif %}
-{%- if project.related %}
-        <a class="cs-next-link" href="/{{ project.related }}">
-          <span class="cs-next-label">The internship behind it</span>
-          <span class="cs-next-title">{{ project.org }} <span aria-hidden="true">&rarr;</span></span>
-        </a>
-{%- endif %}
-        <a class="cs-next-link" href="/contact.html">
-          <span class="cs-next-label">Want the detail?</span>
-          <span class="cs-next-title">Get in touch <span aria-hidden="true">&rarr;</span></span>
-        </a>
-      </nav>
+    <section class="sect" aria-labelledby="outcome">
+      <div class="mission reveal">
+        <div class="mission-in block">
+          {{ ui.prompt("tail -1 outcome.log") }}
+          <h2 id="outcome">Outcome</h2>
+          <p style="font-size: clamp(1.15rem, 2.4vw, 1.5rem); line-height: 1.5; max-width: 50ch">{{ project.outcome }}</p>
+          {%- if project.result %}<p class="prose" style="margin-top: var(--s-4)">{{ project.result }}</p>{% endif %}
+        </div>
+      </div>
+    </section>
 
+    {%- if project.photos.length %}
+    <section aria-labelledby="ph">
+      {{ ui.head("Experience in Photos", "ls ./photos", "// photo gallery", "ph") }}
+      <div class="gal reveal">
+        {%- for p in project.photos %}
+        {{ ui.photo(p, "(min-width: 760px) 33vw, 50vw") }}
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endif %}
+
+    <div class="grid-3 sect">
+      {%- if project.link %}
+      <div class="card reveal"><p class="k">{{ project.link.label }}</p><a class="lnk" href="{{ project.link.href }}">{{ project.link.title }} <span aria-hidden="true">&rarr;</span></a></div>
+      {%- endif %}
+      {%- if project.internship %}
+      <div class="card reveal"><p class="k">The internship behind it</p><a class="lnk" href="{{ project.internship.href }}">{{ project.internship.label }} <span aria-hidden="true">&rarr;</span></a></div>
+      {%- endif %}
+      <div class="card reveal"><p class="k">Want the detail?</p><a class="lnk" href="/contact.html">Get in touch <span aria-hidden="true">&rarr;</span></a></div>
     </div>
   </article>
+
+  <nav class="pager" aria-label="Keep reading">
+    <a href="/work/{{ prev.slug }}.html" rel="prev"><span aria-hidden="true">&larr;</span> {{ prev.title }}</a>
+    <a href="/work/{{ next.slug }}.html" rel="next">{{ next.title }} <span aria-hidden="true">&rarr;</span></a>
+  </nav>
+</div>

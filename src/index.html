@@ -1,286 +1,176 @@
 ---
-layout: base.njk
-title: "Joshua Collado | Portfolio"
-description: "Joshua Collado — Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, and RECON Technologies."
-ogTitle: "Joshua Collado — Engineer & Developer"
-ogType: website
+title: Joshua Collado | Portfolio
+description: Joshua Collado — Engineer, developer, and builder. UTRGV dual enrollment student with internships at NASA, Los Alamos, and RECON Technologies.
 navKey: home
 order: 1
-pageScript: page-home.js
 boot: true
-jsonld: true
+scripts: [field.js, term.js]
 ---
+{%- import "os/ui.njk" as ui -%}
+{%- set nasa = projects[1] -%}
+{%- set vitals = projects[2] -%}
+{%- set lanl = projects[3] -%}
 
-  <section class="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-distortion-overlay" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
-    <div class="hero-content">
-      <a href="about.html" class="logo-block" title="Learn more about Joshua Collado" aria-label="Go to About page">
-        <div class="logo-inner">
-          <svg class="hero-logo" width="160" height="160" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <!-- Body -->
-            <rect width="100" height="100" rx="12" fill="#0d1117" />
-            <rect x="1" y="1" width="98" height="98" rx="11" fill="none" stroke="#28c840" stroke-width="2" class="la-stroke" />
-            <!-- Title bar -->
-            <rect x="0" y="0" width="100" height="23" rx="12" fill="#28c840" fill-opacity="0.10" class="la-fill-tint" />
-            <rect x="0" y="11" width="100" height="12" fill="#28c840" fill-opacity="0.10" class="la-fill-tint" />
-            <line x1="0" y1="23" x2="100" y2="23" stroke="#28c840" stroke-width="0.6" stroke-opacity="0.25" class="la-stroke" />
-            <!-- Traffic lights -->
-            <circle cx="13" cy="11.5" r="3.6" fill="#ff5f57" />
-            <circle cx="25" cy="11.5" r="3.6" fill="#febc2e" />
-            <circle cx="37" cy="11.5" r="3.6" fill="#28c840" />
-            <!-- JC -->
-            <text x="11" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#28c840" class="la-fill">JC</text>
-            <!-- Separator -->
-            <line x1="11" y1="78" x2="89" y2="78" stroke="#28c840" stroke-width="1.4" stroke-opacity="0.55" class="la-stroke" />
-            <!-- ./engineer -->
-            <text x="11" y="92" font-family="monospace" font-size="10" fill="#1fa830" class="la-fill-dim">./engineer</text>
-          </svg>
-          <div class="logo-scanline"></div>
-        </div>
-      </a>
-      <div class="hero-text">
-        <span class="avail-badge">&#9679; Open to Work &middot; 2026</span>
-        <p class="hero-tag">&lt; Hello, World! /&gt;</p>
-        <h1 class="hero-name">Joshua<br /><span class="accent">Collado</span></h1>
-        <p class="hero-sub">Building software that ships, systems that matter.</p>
-        <p class="hero-meta">UTRGV Dual Enrollment · Science Academy · Engineering + Computer Science</p>
-        <div class="hero-ctas">
-          <a href="#projects" class="hero-btn-primary">View Projects</a>
-          <a href="contact.html" class="hero-btn-outline">Get In Touch</a>
-        </div>
-      </div>
+<section class="hero" aria-labelledby="hero-title">
+  <canvas class="hero-field" data-field aria-hidden="true"></canvas>
+  <div class="hero-scan" aria-hidden="true"></div>
+  <div class="hero-in wrap">
+    <div class="hero-top">
+      <span class="hero-mark">{{ ui.logo() }}<span>./engineer</span></span>
+      <span class="chip chip-live"><i class="led" aria-hidden="true"></i>Open to Work &middot; 2026</span>
     </div>
-  </section>
-
-  <!-- STATS STRIP -->
-  <div class="stats-strip">
-    <div class="stat-item">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Internships</span>
-      <span class="stat-caption">Including NASA &amp; Los Alamos</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">2</span>
-      <span class="stat-label">NASA Trips</span>
-      <span class="stat-caption">2 visits to Houston</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">5+</span>
-      <span class="stat-label">Languages</span>
-      <span class="stat-caption">Coding languages</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Active Projects</span>
-      <span class="stat-caption">Running in parallel</span>
+    <p class="hero-hello">&lt; Hello, World! /&gt;<span class="cur" aria-hidden="true"></span></p>
+    <h1 class="hero-title" id="hero-title" data-glitch="{{ site.name }}">{{ ui.decrypt(site.name) }}</h1>
+    <p class="hero-tag"><span class="sr-only">{{ site.tagline }}</span><span aria-hidden="true" data-typed="{{ site.tagline }}">{{ site.tagline }}</span></p>
+    <p class="hero-sub">UTRGV Dual Enrollment · Science Academy · Engineering + Computer Science</p>
+    <div class="hero-cta">
+      <a class="btn btn-shine" href="/projects.html"><span>View Projects</span></a>
+      <a class="btn btn-ghost" href="/contact.html">Get In Touch</a>
     </div>
   </div>
+  <div class="wrap">
+    <dl class="ro-strip">
+      <div class="ro"><dt>Internships</dt><dd><span class="ro-n">{{ ui.decrypt("4") }}</span><span class="ro-l">Including NASA &amp; Los Alamos</span></dd></div>
+      <div class="ro"><dt>NASA Trips</dt><dd><span class="ro-n">{{ ui.decrypt("2") }}</span><span class="ro-l">2 visits to Houston</span></dd></div>
+      <div class="ro"><dt>Languages</dt><dd><span class="ro-n">{{ ui.decrypt("5+") }}</span><span class="ro-l">Coding languages</span></dd></div>
+      <div class="ro"><dt>Active Projects</dt><dd><span class="ro-n">{{ ui.decrypt("4") }}</span><span class="ro-l">Running in parallel</span></dd></div>
+    </dl>
+  </div>
+</section>
 
-  <!-- THREE WORDS -->
-  <section class="words-section" aria-label="Who I am">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">01 &middot; Who I Am</p>
-      <h2 class="sr-only">Who I Am</h2>
-      <div class="words-grid">
+<section class="missions" aria-labelledby="missions-title">
+  <div class="retro" aria-hidden="true"><div class="retro-floor"></div></div>
+  <div class="wrap">
+    {{ ui.head("NASA HUNCH × Los Alamos", "./missions --priority=critical", "// priority missions", "missions-title") }}
 
-        <div class="word-card">
-          <!-- Rocket / Innovative -->
-          <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C12 2 17 4 17 10C17 13 15.5 15.5 13 17L11 22L9 17C6.5 15.5 5 13 5 10C5 4 10 2 10 2" />
-            <circle cx="12" cy="10" r="2" />
-            <path d="M5 10C3.5 11 2 13 2 15L5 14" />
-            <path d="M19 10C20.5 11 22 13 22 15L19 14" />
-          </svg>
-          <h3>Innovative</h3>
-          <p>From NASA HUNCH to Los Alamos Lab — I build things that haven't existed before and solve real problems.</p>
+    <article class="mission mission-nasa reveal" aria-labelledby="m-nasa">
+      <div class="mission-in">
+        {{ ui.titlebar("~/missions/nasa-hunch", "Houston finals") }}
+        <div class="mission-body">
+          <div class="mission-copy">
+            <p class="m-id"><span>MISSION 01</span><span>2025–2027</span></p>
+            <h3 class="m-title" id="m-nasa">{{ ui.decrypt("NASA HUNCH") }}</h3>
+            <p class="m-sub">Helping Engineers Utilize NASA Competition Hardware</p>
+            <ol class="m-log">
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span><strong>{{ nasa.title }}</strong> — Advanced to the Houston finals and presented directly to NASA representatives.</span></li>
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span>Presented to NASA Representatives in Rounds 1 &amp; 2; team selected for finals</span></li>
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span>Visited NASA Houston HQ twice for competition finals</span></li>
+              <li><span class="m-ok m-run" aria-hidden="true">[ .. ]</span><span><strong>Team Lead — VITALS</strong> · Now leading Team TETHER on VITALS, an offline AI medical diagnostic system.</span></li>
+            </ol>
+            <dl class="m-ro">
+              <div><dt>NASA Visits</dt><dd>2×</dd></div>
+              <div><dt>{{ nasa.title }}</dt><dd>{{ ui.status(nasa.status) }}</dd></div>
+              <div><dt>VITALS</dt><dd>{{ ui.status(vitals.status) }}</dd></div>
+            </dl>
+            <ul class="m-links">
+              <li><a class="btn btn-shine" href="/nasa-hunch.html"><span>NASA HUNCH</span></a></li>
+              <li><a class="lnk" href="/work/{{ nasa.slug }}.html">{{ nasa.title }} <span aria-hidden="true">&rarr;</span></a></li>
+              <li><a class="lnk" href="/work/{{ vitals.slug }}.html">{{ vitals.title }} <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+          </div>
+          <div class="mission-media fan" aria-label="NASA HUNCH photos" role="group">
+            {{ ui.photo({ src: "nasa2", alt: "NASA HUNCH Houston finals", w: 800, h: 1422 }, "(min-width: 900px) 240px, 40vw") }}
+            {{ ui.photo({ src: "nasa", alt: "NASA HUNCH project", w: 800, h: 1422 }, "(min-width: 900px) 240px, 40vw") }}
+            {{ ui.photo({ src: "nasa3", alt: "NASA HUNCH team", w: 800, h: 1422 }, "(min-width: 900px) 240px, 40vw") }}
+          </div>
         </div>
-
-        <div class="word-card">
-          <!-- Lightning bolt / Driven -->
-          <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-          </svg>
-          <h3>Driven</h3>
-          <p>I've presented to NASA, led teams across multiple internships, and I'm just getting started.</p>
-        </div>
-
-        <div class="word-card">
-          <!-- Target / Purposeful -->
-          <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="12" r="6" />
-            <circle cx="12" cy="12" r="2" />
-            <line x1="22" y1="12" x2="18" y2="12" />
-            <line x1="6" y1="12" x2="2" y2="12" />
-            <line x1="12" y1="6" x2="12" y2="2" />
-            <line x1="12" y1="22" x2="12" y2="18" />
-          </svg>
-          <h3>Purposeful</h3>
-          <p>Every project I touch has a mission behind it — national security, education, or community impact.</p>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </article>
 
-  <!-- INTRO -->
-  <section class="intro-section" aria-label="Interactive terminal — About me">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">02 &middot; About Me</p>
-      <h2 class="sr-only">About Me</h2>
-      <div class="intro-card" id="terminal-card">
-
-        <!-- title bar -->
-        <div class="terminal-bar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="terminal-title">joshua@collado:~$ cat about.txt</span>
-          <span class="terminal-status" aria-hidden="true"><span class="terminal-status-dot"></span>live</span>
-        </div>
-
-        <!-- typed output -->
-        <div class="intro-body" id="terminal-output" aria-live="polite"></div>
-
-        <!-- interactive prompt -->
-        <div class="terminal-prompt-row" id="terminal-prompt" style="display:none;">
-          <span class="terminal-prompt-prefix">joshua@collado:~$&nbsp;</span>
-          <span class="terminal-input-display" id="terminal-typed"></span><span class="terminal-ghost"
-            id="terminal-ghost"></span><span class="cursor">█</span>
-          <input class="terminal-hidden-input" id="terminal-input" type="text" autocomplete="off" autocapitalize="none"
-            autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send" aria-label="Terminal input"
-            maxlength="100" />
-        </div>
-
-      </div>
-      <p class="terminal-hint" id="terminal-hint" style="opacity:0">
-        &gt; try typing: <code>whoami</code> &nbsp;·&nbsp; <code>skills</code> &nbsp;·&nbsp; <code>contact</code>
-        &nbsp;·&nbsp; <code>reset</code> &nbsp;·&nbsp; <code>help</code>
-      </p>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="projects-section" id="projects">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">03 &middot; Selected Work</p>
-      <h2 class="section-title">Projects</h2>
-      <p class="section-desc">What I have built, and what I am building right now.</p>
-
-      <div class="work-grid">
-{%- for project in projects %}
-        <article class="work-card work-{{ project.tier }} reveal">
-          <a class="work-link" href="/work/{{ project.slug }}.html" aria-labelledby="wt-{{ project.slug }}">
-
-            {% include "partials/project-visual.njk" %}
-
-            <div class="work-body">
-              <div class="work-meta">
-                <span class="work-org">{{ project.org }}</span>
-                <span class="work-sep" aria-hidden="true">/</span>
-                <span class="work-years">{{ project.years }}</span>
-                <span class="work-status work-status-{{ project.status | lower | replace(" ", "-") }}">{{ project.status }}</span>
-              </div>
-
-              <h3 class="work-title" id="wt-{{ project.slug }}">{{ project.title }}</h3>
-              <p class="work-role">{{ project.role }}</p>
-              <p class="work-summary">{{ project.summary }}</p>
-
-              <p class="work-outcome"><span class="work-outcome-label">Outcome</span> {{ project.outcome }}</p>
-
-              <ul class="work-stack">
-{%- for item in project.stack %}
-                <li>{{ item }}</li>
-{%- endfor %}
-              </ul>
-
-              <span class="work-cta">Read the case study <span aria-hidden="true">&rarr;</span></span>
+    <article class="mission mission-lanl reveal" aria-labelledby="m-lanl">
+      <div class="mission-in">
+        {{ ui.titlebar("~/missions/los-alamos", lanl.status) }}
+        <div class="mission-body">
+          <div class="mission-copy">
+            <p class="m-id"><span>MISSION 02</span><span>2025–2026</span></p>
+            <h3 class="m-title" id="m-lanl">{{ ui.decrypt("Los Alamos National Laboratory") }}</h3>
+            <p class="m-sub">{{ lanl.title }} · {{ lanl.role }}</p>
+            <ol class="m-log">
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span>Built a Virtual Reality training experience with a partner</span></li>
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span><strong>Only student selected to visit the lab in New Mexico</strong></span></li>
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span>UTRGV Research Progress Presentation for Los Alamos National Laboratory</span></li>
+            </ol>
+            <dl class="m-ro">
+              <div><dt>{{ lanl.title }}</dt><dd>{{ ui.status(lanl.status) }}</dd></div>
+              <div><dt>Timeline</dt><dd>{{ lanl.years }}</dd></div>
+            </dl>
+            <ul class="m-links">
+              <li><a class="btn btn-shine" href="/work/{{ lanl.slug }}.html"><span>{{ lanl.title }}</span></a></li>
+              <li><a class="lnk" href="/utrgv.html">UTRGV <span aria-hidden="true">&rarr;</span></a></li>
+              <li><a class="lnk" href="/testimonials.html">Reflections <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+          </div>
+          <div class="mission-media orbit-wrap">
+            <div class="orbit" aria-hidden="true">
+              <span class="orbit-core">LANL</span>
+              <span class="orbit-ring r1"></span><span class="orbit-ring r2"></span>
+              {%- for s in lanl.stack %}
+              <span class="orbit-dot" style="--a:{{ loop.index0 * 90 }}deg;--r:{{ 'var(--o1)' if loop.index0 % 2 == 0 else 'var(--o2)' }}"><span>{{ s }}</span></span>
+              {%- endfor %}
             </div>
-          </a>
-        </article>
-{%- endfor %}
+            {{ ui.photo({ src: "lanl2", alt: "Los Alamos National Laboratory visit", w: 800, h: 600 }, "(min-width: 900px) 420px, 90vw", false, "orbit-photo") }}
+          </div>
+        </div>
       </div>
+    </article>
+  </div>
+</section>
 
-      <div class="work-footer">
-        <a href="/projects.html" class="hero-btn-outline">All work &nbsp;&rarr;</a>
+<section class="wrap sect" aria-labelledby="who-title">
+  {{ ui.head("Who I Am", "ps aux | grep joshua", "01 &middot; Who I Am", "who-title") }}
+  <ol class="traits">
+    <li class="trait reveal" style="--i:0"><p class="trait-pid" aria-hidden="true">PID 0001</p><h3>Innovative</h3><p>From NASA HUNCH to Los Alamos Lab — I build things that haven't existed before and solve real problems.</p></li>
+    <li class="trait reveal" style="--i:1"><p class="trait-pid" aria-hidden="true">PID 0002</p><h3>Driven</h3><p>I've presented to NASA, led teams across multiple internships, and I'm just getting started.</p></li>
+    <li class="trait reveal" style="--i:2"><p class="trait-pid" aria-hidden="true">PID 0003</p><h3>Purposeful</h3><p>Every project I touch has a mission behind it — national security, education, or community impact.</p></li>
+  </ol>
+</section>
+
+<section class="wrap sect" aria-labelledby="about-title">
+  {{ ui.head("About Me", "cat about.txt", "02 &middot; About Me", "about-title") }}
+  <div class="term reveal" data-term data-label="Interactive terminal — About me">
+    {{ ui.titlebar("joshua@collado — bash — 80×24", "live") }}
+    <div class="term-body">
+      <div class="term-out">
+        <div class="term-intro" data-term-intro>
+        <p class="tl"><span class="ps-u">joshua@collado</span><span class="ps-c">:~$</span> cat about.txt</p>
+        <p class="tl tl-dim">// who am i</p>
+        <p class="tl">My name is <strong>Joshua Collado</strong>, and I'm a dual enrollment student at <strong>UTRGV</strong> through the Science Academy — studying engineering, computer science, and the future. I'm from South Texas, and I'm on a mission to use technology to make life better, smarter, and more collaborative.</p>
+        <p class="tl">I've had the privilege of working with <strong>NASA</strong> on an Inventory Chain System that granted me 2 visits to the Houston HQ, building a <strong>Virtual Reality training experience</strong> with Los Alamos National Laboratory, developing a city website with <strong>RECON Technologies</strong>, and co-creating a STEM sandbox for elementary schools with <strong>Nerdvana</strong>.</p>
+        <p class="tl">Right now I'm designing <strong>Evie</strong> — a personal AI assistant that connects Android and Windows into a unified home automation network. My goal is to become a <strong>software engineer and AI developer</strong> who builds systems that actually change how people live and work.</p>
+        </div>
+        <div class="term-log" data-term-log role="log" aria-live="polite" aria-label="Terminal output"></div>
       </div>
+      <form class="term-in" data-term-form autocomplete="off">
+        <label class="term-ps" for="term-home"><span class="ps-u">joshua@collado</span><span class="ps-c">:~$</span><span class="sr-only">Terminal input</span></label>
+        <input class="term-q" id="term-home" type="text" enterkeyhint="go" autocapitalize="off" spellcheck="false" aria-describedby="term-home-hint">
+        <span class="term-ghost" data-term-ghost aria-hidden="true"></span>
+      </form>
+      <p class="term-hint" id="term-home-hint">&gt; try typing: whoami · skills · contact · reset · help</p>
     </div>
-  </section>
+    <template data-cmd="whoami"><p><span class="g">Joshua Collado</span> — engineer, developer, builder.<br>UTRGV Dual Enrollment · Science Academy · South Texas.</p></template>
+    <template data-cmd="skills"><p><span class="d">Languages:</span> Python · Java · JavaScript · HTML/CSS · SQL · C<br><span class="d">Tools:</span> Git · Android · VR/Unity · Full-Stack Dev<br><span class="d">Focus:</span> AI · Automation · Security</p></template>
+    <template data-cmd="projects"><p>RECON Technologies · City of Progresso Civic Platform<br>NASA HUNCH · Inventory Chain System (Houston finals)<br>Los Alamos Lab · VR Training Experience<br>Project Evie · AI Home Automation (in progress)</p></template>
+    <template data-cmd="contact"><p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a><br>Or head to the <a href="/contact.html">Contact</a> page.</p></template>
+    <template data-cmd="help"><p><span class="d">Available commands:</span><br><span class="g">whoami</span> · <span class="g">skills</span> · <span class="g">projects</span> · <span class="g">contact</span> · <span class="g">ls</span> · <span class="g">cat &lt;page&gt;</span> · <span class="g">clear</span> · <span class="g">reset</span> · <span class="g">help</span><br><span class="d">Tab completes · ↑ recalls history</span></p></template>
+    <template data-cmd="hello"><p><span class="g">Hey! 👋</span> Thanks for stopping by.</p></template>
+  </div>
+</section>
 
-  <!-- HIGHLIGHTS -->
-  <section class="skills-section" aria-label="Highlights and skills">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">04 &middot; Highlights</p>
-      <h2 class="sr-only">Highlights</h2>
-      <div class="skills-grid">
+<section class="wrap sect" aria-labelledby="work-title">
+  {{ ui.head("Projects", "ls ~/work --running", "03 &middot; Selected Work", "work-title", "What I have built, and what I am building right now.") }}
+  <div class="progs">
+    {%- for p in projects %}
+    {{ ui.program(p) }}
+    {%- endfor %}
+  </div>
+  <p class="more reveal"><a class="btn btn-ghost" href="/projects.html">All work <span aria-hidden="true">&rarr;</span></a></p>
+</section>
 
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2C12 2 17 4 17 10C17 13 15.5 15.5 13 17L11 22L9 17C6.5 15.5 5 13 5 10C5 4 10 2 10 2" />
-            <circle cx="12" cy="10" r="2" />
-          </svg>
-          NASA HUNCH
-        </span>
-
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-          Los Alamos Lab
-        </span>
-
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <line x1="8" y1="21" x2="16" y2="21" />
-            <line x1="12" y1="17" x2="12" y2="21" />
-          </svg>
-          Web Dev · RECON
-        </span>
-
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <polyline points="16 18 22 12 16 6" />
-            <polyline points="8 6 2 12 8 18" />
-          </svg>
-          Java · JS · Python · C
-        </span>
-
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <ellipse cx="12" cy="5" rx="9" ry="3" />
-            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-          </svg>
-          HTML · CSS · SQL
-        </span>
-
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-          VR Development
-        </span>
-
-        <span class="skill-tag">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="2" y="7" width="20" height="14" rx="2" />
-            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-            <line x1="12" y1="12" x2="12" y2="16" />
-            <line x1="10" y1="14" x2="14" y2="14" />
-          </svg>
-          AI Assistant (Evie)
-        </span>
-
-      </div>
-    </div>
-  </section>
-
-
-
-  
+<section class="wrap sect" aria-labelledby="hl-title">
+  {{ ui.head("Highlights", "uname -a", "04 &middot; Highlights", "hl-title") }}
+  <ul class="hl reveal">
+    {%- for h in ["NASA HUNCH", "Los Alamos Lab", "Web Dev · RECON", "Java · JS · Python · C", "HTML · CSS · SQL", "VR Development", "AI Assistant (Evie)"] %}
+    <li style="--i:{{ loop.index0 }}">{{ h }}</li>
+    {%- endfor %}
+  </ul>
+</section>

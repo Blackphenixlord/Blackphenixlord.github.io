@@ -1,0 +1,12 @@
+{%- import "os/ui.njk" as ui -%}
+{#- The boot film. Shown once per session on the home page (the head script
+    adds .booting); aria-hidden throughout, the page under it is already live. -#}
+<div class="boot" data-boot aria-hidden="true">
+  <div class="boot-win">
+    {{ ui.titlebar("joshua@collado — bash — 80×24") }}
+    <pre class="boot-log" data-boot-log></pre>
+    <div class="boot-meter"><i data-boot-meter></i></div>
+  </div>
+  <div class="boot-mark" data-boot-mark>{{ ui.logo("logo-xl") }}<p class="boot-grant">ACCESS GRANTED</p></div>
+  <p class="boot-skip">click or press any key to skip</p>
+</div>

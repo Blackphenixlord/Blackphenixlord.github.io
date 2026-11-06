@@ -1,97 +1,49 @@
 ---
-layout: base.njk
-title: "Internships | Joshua Collado"
-description: "Joshua Collado's internship experience — NASA HUNCH, Nerdvana, and UTRGV."
-ogTitle: "Internships — NASA, Los Alamos, RECON, Nerdvana"
-ogType: website
+title: Internships | Joshua Collado
+description: Joshua Collado's internship experience — NASA HUNCH, Nerdvana, and UTRGV.
 navKey: internships
 order: 3
+crumbs: [{ name: "Home", href: "/" }, { name: "Internships", href: "/internships.html" }]
 ---
+{%- import "os/ui.njk" as ui -%}
+<div class="page wrap">
+  {{ ui.appHead("~/internships", "ls ~/internships", "// experience", "Internships", "Real-world engineering, research, and development across four programs.", ["NASA HUNCH", "Nerdvana", "UTRGV", "RECON Technologies"]) }}
 
-    <section class="page-hero" aria-label="Page header">
-        <div class="page-hero-bg" aria-hidden="true"></div>
-        <p class="section-label" aria-hidden="true">// experience</p>
-        <h1 class="page-hero-title">Internships</h1>
-        <p class="page-hero-sub">Real-world engineering, research, and development across four programs.</p>
-        <div class="page-hero-tags">
-            <span>NASA HUNCH</span>
-            <span>Nerdvana</span>
-            <span>UTRGV</span>
-            <span>RECON Technologies</span>
-        </div>
-    </section>
-
-    <section class="page-content">
-        <div class="container">
-            <p class="section-label" aria-hidden="true">// programs</p>
-            <div class="internship-grid">
-
-                <a class="internship-hub-card reveal" href="recon.html">
-                    <div class="internship-hub-top">
-                        <span class="internship-hub-year">2026 &#x2013; 2027</span>
-                        <svg class="internship-hub-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                    <h2 class="internship-hub-name">RECON Technologies</h2>
-                    <p class="internship-hub-role">Web Developer &mdash; Code Lead &amp; Security Dev</p>
-                    <p class="internship-hub-desc">Built a secure digital platform for the City of Progresso, providing
-                        public access to city information, services, and records.</p>
-                    <div class="internship-hub-tags">
-                        <span>Web Dev</span><span>Security</span><span>Civic Tech</span>
-                    </div>
-                </a>
-
-                <a class="internship-hub-card reveal" href="nasa-hunch.html">
-                    <div class="internship-hub-top">
-                        <span class="internship-hub-year">2025 – 2027</span>
-                        <svg class="internship-hub-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                    <h2 class="internship-hub-name">NASA HUNCH</h2>
-                    <p class="internship-hub-role">Team Lead &mdash; VITALS &middot; Full-Stack Builder</p>
-                    <p class="internship-hub-desc">Built an inventory tracking system that advanced to NASA's Houston
-                        finals. Now leading Team TETHER on VITALS, an offline AI medical diagnostic system.</p>
-                    <div class="internship-hub-tags">
-                        <span>Full-Stack</span><span>AI / ML</span><span>NASA</span>
-                    </div>
-                </a>
-
-                <a class="internship-hub-card reveal" href="nerdvana.html">
-                    <div class="internship-hub-top">
-                        <span class="internship-hub-year">2025 – 2026</span>
-                        <svg class="internship-hub-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                    <h2 class="internship-hub-name">Nerdvana</h2>
-                    <p class="internship-hub-role">STEM Educator &amp; Tech Developer</p>
-                    <p class="internship-hub-desc">Co-created an interactive STEM sandbox for elementary students,
-                        bringing hands-on coding and engineering concepts to the classroom.</p>
-                    <div class="internship-hub-tags">
-                        <span>Education</span><span>STEM</span><span>Community</span>
-                    </div>
-                </a>
-
-                <a class="internship-hub-card reveal" href="utrgv.html">
-                    <div class="internship-hub-top">
-                        <span class="internship-hub-year">2025 – Present</span>
-                        <svg class="internship-hub-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                    <h2 class="internship-hub-name">UTRGV</h2>
-                    <p class="internship-hub-role">Dual Enrollment Student &amp; Externship Software Lead</p>
-                    <p class="internship-hub-desc">Dual enrollment in Engineering and Computer Science through the
-                        Science Academy, plus an externship building the software for an AI-supervised 3D printer.</p>
-                    <div class="internship-hub-tags">
-                        <span>Engineering</span><span>CS</span><span>Research</span>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    
+  <section class="sect" aria-labelledby="programs">
+    {{ ui.head("Programs", "ls -l ~/internships", "// programs", "programs") }}
+    <ul class="tl-list">
+      <li class="tl-item reveal" style="--i:0">
+        <p class="tl-when">2025 – 2027</p>
+        <h3><a class="cover" href="/nasa-hunch.html">NASA HUNCH</a></h3>
+        <p class="tl-role">Team Lead — VITALS · Full-Stack Builder</p>
+        <p>Built an inventory tracking system that advanced to NASA's Houston finals. Now leading Team TETHER on VITALS, an offline AI medical diagnostic system.</p>
+        <ul class="tags"><li>Full-Stack</li><li>AI / ML</li><li>NASA</li></ul>
+        <p class="tl-go" aria-hidden="true">cd nasa-hunch &rarr;</p>
+      </li>
+      <li class="tl-item reveal" style="--i:1">
+        <p class="tl-when">2025 – Present</p>
+        <h3><a class="cover" href="/utrgv.html">UTRGV</a></h3>
+        <p class="tl-role">Dual Enrollment Student &amp; Externship Software Lead</p>
+        <p>Dual enrollment in Engineering and Computer Science through the Science Academy, plus an externship building the software for an AI-supervised 3D printer.</p>
+        <ul class="tags"><li>Engineering</li><li>CS</li><li>Research</li></ul>
+        <p class="tl-go" aria-hidden="true">cd utrgv &rarr;</p>
+      </li>
+      <li class="tl-item reveal" style="--i:2">
+        <p class="tl-when">2026 – 2027</p>
+        <h3><a class="cover" href="/recon.html">RECON Technologies</a></h3>
+        <p class="tl-role">Web Developer — Code Lead &amp; Security Dev</p>
+        <p>Built a secure digital platform for the City of Progresso, providing public access to city information, services, and records.</p>
+        <ul class="tags"><li>Web Dev</li><li>Security</li><li>Civic Tech</li></ul>
+        <p class="tl-go" aria-hidden="true">cd recon &rarr;</p>
+      </li>
+      <li class="tl-item reveal" style="--i:3">
+        <p class="tl-when">2025 – 2026</p>
+        <h3><a class="cover" href="/nerdvana.html">Nerdvana</a></h3>
+        <p class="tl-role">STEM Educator &amp; Tech Developer</p>
+        <p>Co-created an interactive STEM sandbox for elementary students, bringing hands-on coding and engineering concepts to the classroom.</p>
+        <ul class="tags"><li>Education</li><li>STEM</li><li>Community</li></ul>
+        <p class="tl-go" aria-hidden="true">cd nerdvana &rarr;</p>
+      </li>
+    </ul>
+  </section>
+</div>

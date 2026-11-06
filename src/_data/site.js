@@ -1,36 +1,27 @@
-/* Single source of truth for anything that used to be retyped on every page. */
+/* JC/OS — everything the pages share. Text here is the site's own copy;
+   change it here and every page, the launcher and the meta tags follow. */
 export default {
   url: 'https://jc-portfolio.codes',
   name: 'Joshua Collado',
   email: 'joshuacollado636@gmail.com',
+  phone: '956-574-2556',
+  github: 'https://github.com/Blackphenixlord',
+  linkedin: 'https://linkedin.com/in/joshua-collado',
   tagline: 'Building software that ships, systems that matter.',
   ogImage: '/imgs/og-cover.jpg',
   ogImageAlt: 'Joshua Collado — Building software that ships, systems that matter.',
   themeColor: '#0a0e1a',
-  assetVersion: '20260913-3',
   buildYear: new Date().getFullYear(),
 
-  /* ── Contact form ────────────────────────────────────────────────────────
-     Fill in ONE of these and the form starts sending for real: the visitor
-     types, hits send, and sees a confirmation without ever leaving the page.
-
-     Easiest — Web3Forms, no account needed:
-       1. https://web3forms.com  ->  enter this email  ->  they send you a key
-       2. paste it below as contactAccessKey
-       That is the whole setup. The endpoint defaults itself.
-
-     Or any service that accepts a plain form POST (Formspree, Getform, your
-     own Cloudflare Worker): put its URL in contactEndpoint and leave the key
-     blank.
-
-     With both empty the form composes the message on the page instead and
-     lets the visitor send or copy it -- no third party involved, which is
-     the only thing a static site can do entirely on its own. */
+  /* Contact form. Fill ONE in and the form sends for real:
+     - contactAccessKey: a Web3Forms access key (https://web3forms.com, no account).
+     - contactEndpoint: any service that accepts a form POST and answers JSON
+       (Formspree, Getform, your own Worker).
+     Both empty: the form composes the message on the page and lets the
+     visitor send it from their own mail app or copy it. */
   contactAccessKey: '',
   contactEndpoint: '',
 
-  /* Display names for project categories. Capitalising the slug gave
-     "Nasa", "Vr" and "Ai", which is worse than not labelling them. */
   categoryLabels: {
     web: 'Web',
     security: 'Security',
@@ -43,14 +34,31 @@ export default {
     automation: 'Automation',
   },
 
-  /* Primary navigation. `key` matches a page's `navKey` front matter to mark it current. */
+  /* `key` matches a page's navKey; `path` is how the menubar prints it. */
   nav: [
-    { key: 'home',         label: 'Home',         href: '/index.html' },
-    { key: 'about',        label: 'About',        href: '/about.html' },
-    { key: 'internships',  label: 'Internships',  href: '/internships.html' },
-    { key: 'projects',     label: 'Projects',     href: '/projects.html' },
-    { key: 'resume',       label: 'Résumé',       href: '/resume.html' },
-    { key: 'testimonials', label: 'Testimonials', href: '/testimonials.html' },
-    { key: 'contact',      label: 'Contact',      href: '/contact.html' },
+    { key: 'home',         label: 'Home',         href: '/index.html',        path: '~' },
+    { key: 'about',        label: 'About',        href: '/about.html',        path: '~/about' },
+    { key: 'internships',  label: 'Internships',  href: '/internships.html',  path: '~/internships' },
+    { key: 'projects',     label: 'Projects',     href: '/projects.html',     path: '~/projects' },
+    { key: 'resume',       label: 'Résumé',       href: '/resume.html',       path: '~/resume' },
+    { key: 'testimonials', label: 'Testimonials', href: '/testimonials.html', path: '~/testimonials' },
+    { key: 'contact',      label: 'Contact',      href: '/contact.html',      path: '~/contact' },
+  ],
+
+  /* The internship pages, in reading order (each links to the next). */
+  internships: [
+    { href: '/recon.html',      label: 'RECON Technologies' },
+    { href: '/nasa-hunch.html', label: 'NASA HUNCH' },
+    { href: '/nerdvana.html',   label: 'Nerdvana' },
+    { href: '/utrgv.html',      label: 'UTRGV' },
+  ],
+
+  /* Hidden things, listed in the footer under `ls -a`. */
+  eggs: [
+    { how: 'type rick roll in Ctrl+K', what: 'you asked for it' },
+    { how: '↑ ↑ ↓ ↓ ← → ← → B A', what: 'overdrive' },
+    { how: 'click the JC logo five times', what: 'degauss the screen' },
+    { how: 'type sudo in a terminal', what: 'try your luck' },
+    { how: 'type matrix in a terminal', what: 'follow the white rabbit' },
   ],
 };

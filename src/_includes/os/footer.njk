@@ -1,0 +1,19 @@
+{%- import "os/ui.njk" as ui -%}
+<footer class="foot">
+  <div class="foot-in">
+    <p class="foot-sig">{{ ui.logo() }}<span>&copy; {{ site.buildYear }} {{ site.name }} &middot; Built with &lt;/&gt; &middot; UTRGV</span></p>
+    <ul class="foot-links">
+      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+      <li><a href="{{ site.github }}" rel="noopener">GitHub</a></li>
+      <li><a href="{{ site.linkedin }}" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <details class="eggs">
+      <summary><span class="ps-c" aria-hidden="true">$</span> ls -a ~/.easter-eggs</summary>
+      <ul>
+        {%- for e in site.eggs %}
+        <li><span class="egg-how">{{ e.how }}</span><span class="egg-what">{{ e.what }}</span></li>
+        {%- endfor %}
+      </ul>
+    </details>
+  </div>
+</footer>

@@ -16,7 +16,7 @@ const decode = (s) => s
   .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
   .replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&mdash;/g, '—')
   .replace(/&middot;/g, '·').replace(/&amp;/g, '&');
-const norm = (s) => decode(s).replace(/\'/g, "'").replace(/\s+/g, ' ');
+const norm = (s) => decode(s).replace(/\\u([0-9a-f]{4})/gi, (_, h) => String.fromCharCode(parseInt(h, 16))).replace(/\'/g, "'").replace(/\s+/g, ' ');
 
 let corpus = '';
 for (const f of walk('_site')) {

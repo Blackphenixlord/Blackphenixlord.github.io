@@ -1,213 +1,80 @@
 ---
-layout: base.njk
-title: "Contact | Joshua Collado"
-description: "Get in touch with Joshua Collado — South Texas engineer and developer."
-ogTitle: "Contact Joshua Collado"
-ogType: website
+title: Contact | Joshua Collado
+description: Get in touch with Joshua Collado — South Texas engineer and developer.
 navKey: contact
-order: 7
-pageScript: page-contact.js
+order: 11
+scripts: [contact.js]
+crumbs: [{ name: "Home", href: "/" }, { name: "Contact", href: "/contact.html" }]
 ---
+{%- import "os/ui.njk" as ui -%}
+<div class="page wrap">
+  {{ ui.appHead("joshua@portfolio — bash — 80×24", "./contact", "// get in touch", "Contact", "let's build something together") }}
+  <p class="ps reveal" style="margin-top: var(--s-4)" aria-hidden="true"><span class="ps-u">joshua@portfolio</span><span class="ps-c">:~$</span> <span data-type>Launching contact interface... [ OK ]</span></p>
 
-  <!-- PAGE HEADER -->
-  <header class="contact-page-header">
-    <span class="contact-page-tag">// get in touch</span>
-    <h1 class="contact-page-title">Contact<span class="blink-cursor">_</span></h1>
-    <p class="contact-page-subtitle">let's build something together</p>
-  </header>
-
-  <!-- TERMINAL INTRO -->
-  <div class="contact-terminal" aria-hidden="true">
-    <div class="contact-terminal-box">
-      <div class="contact-terminal-bar">
-        <span class="ct-dot-red"></span>
-        <span class="ct-dot-yel"></span>
-        <span class="ct-dot-grn"></span>
-        <span class="ct-bar-title">joshua@portfolio — bash — 80×24</span>
+  <div class="grid-2 sect">
+    <section class="stack-gap reveal" aria-labelledby="reach">
+      <div>
+        {{ ui.prompt("ls ~/links") }}
+        <h2 id="reach" style="font-size: var(--fs-2)">Ways to reach me</h2>
       </div>
-      <div class="contact-terminal-body">
-        <div class="ct-prompt">
-          <span class="ct-user">joshua</span><span class="ct-sep">@</span><span class="ct-path">portfolio</span><span class="ct-sep">:~$</span>
-          <span class="ct-cmd" id="ct-cmd-text"></span><span class="ct-cursor" id="ct-cursor">|</span>
-        </div>
-        <div class="ct-output" id="ct-output">Launching contact interface... <span style="color:var(--accent,#00ff41)">[ OK ]</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TWO-COLUMN LAYOUT -->
-  <div class="contact-layout" id="contact-layout">
-
-    <!-- LEFT: cards + status -->
-    <div class="contact-info-col">
-      <h2 class="sr-only">Ways to reach me</h2>
-
-      <!-- Email card -->
-      <a href="mailto:joshuacollado636@gmail.com" class="contact-card">
-        <div class="contact-card-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="6" width="18" height="12" rx="2" />
-            <path d="m4 8 8 6 8-6" />
-          </svg>
-        </div>
-        <div class="contact-card-text">
-          <span class="contact-card-label">Email</span>
-          <span class="contact-card-value">joshuacollado636@gmail.com</span>
-        </div>
-      </a>
-
-      <!-- GitHub card -->
-      <a href="https://github.com/Blackphenixlord" target="_blank" rel="noopener noreferrer" class="contact-card">
-        <div class="contact-card-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-          </svg>
-        </div>
-        <div class="contact-card-text">
-          <span class="contact-card-label">GitHub</span>
-          <span class="contact-card-value">github.com/Blackphenixlord</span>
-        </div>
-      </a>
-
-      <!-- LinkedIn card -->
-      <a href="https://linkedin.com/in/joshua-collado" target="_blank" rel="noopener noreferrer" class="contact-card">
-        <div class="contact-card-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect x="2" y="9" width="4" height="12" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-        </div>
-        <div class="contact-card-text">
-          <span class="contact-card-label">LinkedIn</span>
-          <span class="contact-card-value">linkedin.com/in/joshua-collado</span>
-        </div>
-      </a>
-
-      <!-- Terminal status block -->
-      <div class="contact-status-box" aria-label="Availability status">
-        <div class="contact-status-bar" aria-hidden="true">
-          <span class="contact-status-dot-red"></span>
-          <span class="contact-status-dot-yel"></span>
-          <span class="contact-status-dot-grn"></span>
-          <span class="contact-status-title">joshua@portfolio:~</span>
-        </div>
-        <div class="contact-status-body">
-          <div class="contact-status-cmd">
-            <span style="color:var(--accent-dim)">joshua@portfolio</span><span style="color:var(--ink-faint)">:~$</span>
-            <span style="color:var(--ink-muted)"> status</span>
-          </div>
-          <div class="contact-status-result">
-            <span class="status-indicator" aria-hidden="true"></span>
-            <span><span class="status-gt">&gt;</span> available for opportunities</span>
-          </div>
-          <div class="contact-status-result dimmed">
-            <span style="width:8px;flex-shrink:0"></span>
-            <span><span class="status-gt">&gt;</span> open to internships</span>
-          </div>
-          <div class="contact-status-result dimmed">
-            <span style="width:8px;flex-shrink:0"></span>
-            <span><span class="status-gt">&gt;</span> response time: 24-48hrs</span>
-          </div>
+      <ul class="reach">
+        <li><a href="mailto:{{ site.email }}"><span class="reach-i" aria-hidden="true">@</span><span><span class="reach-k">Email</span><span class="reach-v">{{ site.email }}</span></span></a></li>
+        <li><a href="{{ site.github }}" rel="noopener"><span class="reach-i" aria-hidden="true">GH</span><span><span class="reach-k">GitHub</span><span class="reach-v">github.com/Blackphenixlord</span></span></a></li>
+        <li><a href="{{ site.linkedin }}" rel="noopener"><span class="reach-i" aria-hidden="true">in</span><span><span class="reach-k">LinkedIn</span><span class="reach-v">linkedin.com/in/joshua-collado</span></span></a></li>
+      </ul>
+      <div class="term" role="group" aria-label="Availability status">
+        {{ ui.titlebar("joshua@portfolio:~", "online") }}
+        <div class="term-body">
+          <p class="tl"><span class="ps-u">joshua@portfolio</span><span class="ps-c">:~$</span> status</p>
+          <ul class="status-list">
+            <li>available for opportunities</li>
+            <li>open to internships</li>
+            <li>response time: 24-48hrs</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-    </div><!-- /contact-info-col -->
-
-    <!-- RIGHT: Contact form -->
-    <div class="contact-form-col">
-      <h2 class="sr-only">Send a message</h2>
-      {#- An access key implies Web3Forms, so the endpoint fills itself in.
-          Anything else (Formspree, a Worker of your own) just sets the URL.
-          No mailto: ever goes in `action` -- browsers treat that as an
-          insecure submission target and switch autofill off for the whole
-          form. With neither configured there is no action at all and the
-          message is composed on the page instead. -#}
-      {%- set postUrl = site.contactEndpoint or ("https://api.web3forms.com/submit" if site.contactAccessKey else "") %}
-      <form class="contact-form" id="contact-form" novalidate
-        method="POST"
-{%- if postUrl %}
-        action="{{ postUrl }}"
-{%- endif %}
-        data-endpoint="{{ postUrl }}"
-        aria-label="Send Joshua a message">
-
-{%- if site.contactAccessKey %}
-        <input type="hidden" name="access_key" value="{{ site.contactAccessKey }}" />
-        <input type="hidden" name="from_name" value="{{ site.name }} — portfolio contact form" />
-        <input type="hidden" name="replyto" value="email" />
-{%- endif %}
-
-        {#- Bots fill hidden fields; people never see these. `botcheck` is the
-            name Web3Forms looks for, `_gotcha` the one most others use. -#}
-        <div class="form-honeypot" aria-hidden="true">
-          <label for="contact-company">Company</label>
-          <input type="text" id="contact-company" name="_gotcha" tabindex="-1" autocomplete="off" />
-          <input type="checkbox" name="botcheck" tabindex="-1" />
+    <section class="card block reveal" style="--i:1" aria-labelledby="send">
+      {{ ui.prompt("./send_message") }}
+      <h2 id="send">Send a message</h2>
+      <form class="form" data-contact novalidate aria-label="Send Joshua a message"
+            data-key="{{ site.contactAccessKey }}" data-endpoint="{{ site.contactEndpoint }}" data-to="{{ site.email }}">
+        <div class="field">
+          <label for="c-name">your_name</label>
+          <input id="c-name" name="name" type="text" autocomplete="name" placeholder="Joshua Collado" required aria-describedby="c-name-e">
+          <p class="field-err" id="c-name-e"></p>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="contact-name">&gt; your_name</label>
-            <input class="form-input" type="text" id="contact-name" aria-describedby="err-name" name="name" required
-              autocomplete="name" data-placeholder="Joshua Collado" placeholder="" />
-            <p class="form-error" id="err-name" role="alert"></p>
+        <div class="field">
+          <label for="c-email">your_email</label>
+          <input id="c-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="c-email-e" spellcheck="false">
+          <p class="field-err" id="c-email-e"></p>
         </div>
-          <div class="form-group">
-            <label class="form-label" for="contact-email">&gt; your_email</label>
-            <input class="form-input" type="email" id="contact-email" aria-describedby="err-email" name="email" required
-              autocomplete="email" data-placeholder="you@example.com" placeholder="" />
-            <p class="form-error" id="err-email" role="alert"></p>
+        <div class="field">
+          <label for="c-subject">subject</label>
+          <input id="c-subject" name="subject" type="text" placeholder="let's work together" required aria-describedby="c-subject-e">
+          <p class="field-err" id="c-subject-e"></p>
         </div>
+        <div class="field">
+          <label for="c-message">message</label>
+          <textarea id="c-message" name="message" placeholder="hey Joshua, I wanted to reach out about..." required aria-describedby="c-message-e"></textarea>
+          <p class="field-err" id="c-message-e"></p>
         </div>
-
-        <div class="form-group">
-          <label class="form-label" for="contact-subject">&gt; subject</label>
-          <input class="form-input" type="text" id="contact-subject" aria-describedby="err-subject" name="subject" required
-            data-placeholder="let's work together" placeholder="" />
-          <p class="form-error" id="err-subject" role="alert"></p>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="contact-message">&gt; message</label>
-          <textarea class="form-textarea" id="contact-message" aria-describedby="err-message" name="message" rows="6" required
-            data-placeholder="hey Joshua, I wanted to reach out about..." placeholder=""></textarea>
-          <p class="form-error" id="err-message" role="alert"></p>
-        </div>
-
-        <button class="form-submit" type="submit">send_message &#x2192;</button>
-
-        <div class="form-success" id="form-success" role="status" aria-live="polite"></div>
-
-        {#- Shown once the message is composed. A static site has no server to
-            post to, so rather than bounce the visitor straight into a mail
-            client, the message is assembled here and handed over on their
-            terms: send it, or copy it and paste it wherever they like. -#}
-        <div class="form-ready" id="form-ready" hidden>
-          <p class="form-ready-head">
-            <span class="form-ready-prompt" aria-hidden="true">&rsaquo;</span>
-            Your message is ready
-          </p>
-
-          <pre class="form-ready-preview" id="form-ready-preview" tabindex="0" aria-label="Composed message"></pre>
-
-          <div class="form-ready-actions">
-            <a class="form-ready-send" id="form-open-mail" href="#">Send it <span aria-hidden="true">&rarr;</span></a>
-            <button type="button" class="form-ready-copy" id="form-copy">Copy message</button>
-          </div>
-
-          <p class="form-ready-note">
-            Either opens your mail app addressed to
-            <a href="mailto:{{ site.email }}">{{ site.email }}</a> &mdash; or copy the
-            message and send it however you like.
-            <button type="button" class="form-ready-edit" id="form-edit">Edit instead</button>
-          </p>
-        </div>
-
+        <div class="hp" aria-hidden="true"><label for="c-hp">Leave this empty</label><input id="c-hp" name="botcheck" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="form-msg" data-msg role="status" aria-live="polite"></p>
+        <div><button class="btn btn-shine" type="submit" data-submit><span>send_message <span aria-hidden="true">&#x2192;</span></span></button></div>
       </form>
-    </div><!-- /contact-form-col -->
 
-  </div><!-- /contact-layout -->
-
-  
+      <div class="compose" data-compose hidden tabindex="-1" aria-labelledby="compose-t">
+        <h3 id="compose-t" class="prog-title">Your message is ready</h3>
+        <pre data-compose-text aria-label="Composed message"></pre>
+        <div class="compose-act">
+          <a class="btn btn-shine" data-mailto href="mailto:{{ site.email }}"><span>Send it &rarr;</span></a>
+          <button class="btn btn-ghost" type="button" data-copy>Copy message</button>
+          <button class="btn btn-ghost" type="button" data-edit>Edit instead</button>
+        </div>
+        <small>Either opens your mail app addressed to <strong>{{ site.email }}</strong> &mdash; or copy the message and send it however you like.</small>
+      </div>
+    </section>
+  </div>
+</div>

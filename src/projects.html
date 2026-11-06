@@ -1,71 +1,28 @@
 ---
-layout: base.njk
-title: "Projects — Joshua Collado"
-description: "Work samples and projects by Joshua Collado — NASA HUNCH, VR Training, Project Evie, and more."
-ogTitle: "Projects — Joshua Collado"
-ogType: website
+title: Projects — Joshua Collado
+description: Work samples and projects by Joshua Collado — NASA HUNCH, VR Training, Project Evie, and more.
 navKey: projects
-order: 4
-pageScript: page-projects.js
+order: 8
+crumbs: [{ name: "Home", href: "/" }, { name: "Projects", href: "/projects.html" }]
 ---
+{%- import "os/ui.njk" as ui -%}
+<div class="page wrap">
+  {{ ui.appHead("~/projects", "ls ~/work", "// selected work", "Projects", "What I built, who it was for, and what came of it.") }}
 
-  <section class="page-hero" aria-label="Work Samples">
-    <div class="page-hero-bg" aria-hidden="true"></div>
-    <p class="section-label" aria-hidden="true">// selected work</p>
-    <h1 class="page-hero-title">Projects</h1>
-    <p class="page-hero-sub">What I built, who it was for, and what came of it.</p>
-  </section>
-
-  <div class="page-content">
-    <div class="container">
-
-      <div class="projects-filter-bar" role="group" aria-label="Filter projects by discipline">
-        <button class="filter-btn active" data-filter="all" type="button" aria-pressed="true">All</button>
-{%- set seen = [] %}
-{%- for project in projects %}
-{%- for cat in project.categories %}
-{%- if cat not in seen %}
-{%- set _ = seen.push(cat) %}
-        <button class="filter-btn" data-filter="{{ cat }}" type="button" aria-pressed="false">{{ site.categoryLabels[cat] or (cat | capitalize) }}</button>
-{%- endif %}
-{%- endfor %}
-{%- endfor %}
-      </div>
-
-      <div class="work-grid work-grid-list">
-{%- for project in projects %}
-        <article class="work-card work-{{ project.tier }} reveal" data-categories="{{ project.categories | join(" ") }}">
-          <a class="work-link" href="/work/{{ project.slug }}.html" aria-labelledby="pt-{{ project.slug }}">
-
-            {% include "partials/project-visual.njk" %}
-
-            <div class="work-body">
-              <div class="work-meta">
-                <span class="work-org">{{ project.org }}</span>
-                <span class="work-sep" aria-hidden="true">/</span>
-                <span class="work-years">{{ project.years }}</span>
-                <span class="work-status work-status-{{ project.status | lower | replace(" ", "-") }}">{{ project.status }}</span>
-              </div>
-
-              <h2 class="work-title" id="pt-{{ project.slug }}">{{ project.title }}</h2>
-              <p class="work-role">{{ project.role }}</p>
-              <p class="work-summary">{{ project.summary }}</p>
-              <p class="work-outcome"><span class="work-outcome-label">Outcome</span> {{ project.outcome }}</p>
-
-              <ul class="work-stack">
-{%- for item in project.stack %}
-                <li>{{ item }}</li>
-{%- endfor %}
-              </ul>
-
-              <span class="work-cta">Read the case study <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </a>
-        </article>
-{%- endfor %}
-      </div>
-
-      <p class="work-empty" id="work-empty" hidden>Nothing in that discipline yet.</p>
-
+  <section class="sect" aria-labelledby="work">
+    <h2 class="sr-only" id="work">Work Samples</h2>
+    <div class="filters reveal" data-filters role="group" aria-label="Filter projects by discipline">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      {%- for key, label in site.categoryLabels %}
+      <button type="button" data-f="{{ key }}" aria-pressed="false">{{ label }}</button>
+      {%- endfor %}
     </div>
-  </div>
+    <p class="sr-only" role="status" data-count></p>
+    <div class="progs">
+      {%- for p in projects %}
+      {{ ui.program(p) }}
+      {%- endfor %}
+    </div>
+    <p class="empty" data-empty hidden>Nothing in that discipline yet.</p>
+  </section>
+</div>

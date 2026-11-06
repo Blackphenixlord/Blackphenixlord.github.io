@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{% include "os/head.njk" %}
+</head>
+<body class="page-{{ navKey or 'none' }}{% if bodyClass %} {{ bodyClass }}{% endif %}">
+<a class="skip" href="#main">Skip to main content</a>
+<div class="desk" aria-hidden="true"><div class="desk-grid"></div><div class="desk-glow"></div></div>
+{% if boot %}{% include "os/boot.njk" %}{% endif %}
+{% include "os/menubar.njk" %}
+<main id="main" tabindex="-1">
+{{ content | safe }}
+</main>
+{% include "os/footer.njk" %}
+{% include "os/launcher.njk" %}
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+<div class="crt" aria-hidden="true"></div>
+<script src="/assets/os.js" defer></script>
+{%- for s in scripts %}
+<script src="/assets/{{ s }}" defer></script>
+{%- endfor %}
+</body>
+</html>

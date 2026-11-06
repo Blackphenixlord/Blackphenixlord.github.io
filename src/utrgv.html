@@ -1,129 +1,94 @@
 ---
-layout: base.njk
-title: "UTRGV | Joshua Collado"
-description: "Joshua Collado's UTRGV dual enrollment experience through the Science Academy."
-ogTitle: "UTRGV Science Academy — Dual Enrollment"
-ogType: article
+title: UTRGV | Joshua Collado
+description: Joshua Collado's UTRGV dual enrollment experience through the Science Academy.
 navKey: internships
-order: 11
+order: 7
+bodyClass: is-mission
+crumbs: [{ name: "Home", href: "/" }, { name: "Internships", href: "/internships.html" }, { name: "UTRGV", href: "/utrgv.html" }]
 ---
+{%- import "os/ui.njk" as ui -%}
+{%- set lanl = projects[3] -%}
+{%- set vla = projects[5] -%}
+<div class="page wrap">
+  {{ ui.appHead("~/internships/utrgv", "cd ~/internships/utrgv", "// internship · 2025–present", "UTRGV", "University of Texas Rio Grande Valley — Dual Enrollment", ["Engineering", "Computer Science", "Science Academy", "Dual Enrollment", "Externship"]) }}
 
-  <section class="page-hero" aria-label="Internship detail">
-    <div class="page-hero-bg" aria-hidden="true"></div>
-    <p class="section-label" aria-hidden="true">// internship · 2025–present</p>
-    <h1 class="page-hero-title">UTRGV</h1>
-    <p class="page-hero-sub">University of Texas Rio Grande Valley &mdash; Dual Enrollment</p>
-    <div class="page-hero-tags">
-      <span>Engineering</span>
-      <span>Computer Science</span>
-      <span>Science Academy</span>
-      <span>Dual Enrollment</span>
-      <span>Externship</span>
-    </div>
-  </section>
-
-  <section class="page-content">
-    <div class="container">
-
-      <div class="internship-detail-grid">
-
-        <div class="internship-block reveal">
-          <p class="section-label" aria-hidden="true">// my role</p>
-          <h2 class="internship-block-title">Dual Enrollment Engineering Student</h2>
-          <p class="internship-block-body">Through the Science Academy, I enrolled in university-level Engineering and
-            Computer Science coursework at UTRGV while still in high school. This means I'm earning college credit in
-            real university classes alongside my high school diploma — ahead of the curve before I've even graduated.
-          </p>
-        </div>
-
-        <div class="internship-block reveal">
-          <p class="section-label" aria-hidden="true">// what I studied</p>
-          <h2 class="internship-block-title">Engineering + Computer Science</h2>
-          <p class="internship-block-body">Courses span engineering fundamentals, programming, systems design, and
-            applied computer science. I apply this directly to my internships and personal projects — building systems
-            informed by real academic rigor, not just self-teaching alone.</p>
-        </div>
-
-        <div class="internship-block reveal">
-          <p class="section-label" aria-hidden="true">// impact</p>
-          <h2 class="internship-block-title">A Head Start on a University Degree</h2>
-          <p class="internship-block-body">By combining Science Academy with UTRGV dual enrollment, I'm building a
-            foundation most students don't start until 18 or 19. Every credit I earn now is a semester I buy back later
-            — and every concept I master now makes me a better engineer and developer today.</p>
-        </div>
-
-        <div class="internship-block reveal">
-          <p class="section-label" aria-hidden="true">// externship · 2026–2027</p>
-          <h2 class="internship-block-title">VLA-Enabled 3D Printing</h2>
-          <p class="internship-block-body">Through a UTRGV externship I'm leading the software side of a large-format,
-            Voron-based 3D printer with a camera and an ML supervisor. The system watches every layer, compares it
-            against the G-code, flags defects as they form, and decides how to respond. I wrote the software plan and
-            I'm building it in phases, starting on a small test printer before moving to the Voron.</p>
-          <a href="/work/vla-3d-printing.html" class="internship-back">Read the case study &#8594;</a>
-        </div>
-
-        <div class="internship-block reveal">
-          <p class="section-label" aria-hidden="true">// what I learned</p>
-          <h2 class="internship-block-title">Key Takeaways</h2>
-          <p class="internship-block-body">Dual enrollment at UTRGV pushed me to operate at a college level while still in high school — and I found out I could handle it. Sitting alongside students years older than me taught me to advocate for myself, ask better questions, and take ownership of my learning in a way that no one else could do for me. The visit to Los Alamos National Laboratory was a turning point: it made abstract career paths feel real and close. I came back knowing exactly what kind of engineer I want to become.</p>
-        </div>
-
-        <div class="internship-block reveal">
-          <p class="section-label" aria-hidden="true">// photo gallery</p>
-          <h2 class="internship-block-title sr-only">Experience in Photos</h2>
-          <div class="photo-carousel" id="utrgv-carousel">
-            <button class="carousel-btn carousel-prev" aria-label="Previous photos" disabled>&#8592;</button>
-            <div class="carousel-track-wrap">
-              <div class="carousel-track">
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/STUDENTBYSTUDENT-400.avif 400w, imgs/STUDENTBYSTUDENT-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/STUDENTBYSTUDENT-400.webp 400w, imgs/STUDENTBYSTUDENT-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/STUDENTBYSTUDENT-800.jpg" width="800" height="1422" alt="UTRGV Science Academy" loading="lazy" decoding="async" />
-                </picture>
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/STUDENTBYSTUDENT2-400.avif 400w, imgs/STUDENTBYSTUDENT2-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/STUDENTBYSTUDENT2-400.webp 400w, imgs/STUDENTBYSTUDENT2-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/STUDENTBYSTUDENT2-800.jpg" width="800" height="1422" alt="UTRGV Science Academy students" loading="lazy" decoding="async" />
-                </picture>
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/STUDENTBYSTUDENT3-400.avif 400w, imgs/STUDENTBYSTUDENT3-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/STUDENTBYSTUDENT3-400.webp 400w, imgs/STUDENTBYSTUDENT3-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/STUDENTBYSTUDENT3-800.jpg" width="800" height="1422" alt="UTRGV Science Academy students" loading="lazy" decoding="async" />
-                </picture>
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/lanl-400.avif 400w, imgs/lanl-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/lanl-400.webp 400w, imgs/lanl-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/lanl-800.jpg" width="800" height="375" alt="UTRGV LANL program" loading="lazy" decoding="async" />
-                </picture>
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/lanl2-400.avif 400w, imgs/lanl2-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/lanl2-400.webp 400w, imgs/lanl2-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/lanl2-800.jpg" width="800" height="600" alt="Los Alamos National Laboratory visit" loading="lazy" decoding="async" />
-                </picture>
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/lanl3-400.avif 400w, imgs/lanl3-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/lanl3-400.webp 400w, imgs/lanl3-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/lanl3-800.jpg" width="800" height="1067" alt="Los Alamos National Laboratory visit" loading="lazy" decoding="async" />
-                </picture>
-                <picture class="carousel-img">
-                  <source type="image/avif" srcset="imgs/lanl4-400.avif 400w, imgs/lanl4-800.avif 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <source type="image/webp" srcset="imgs/lanl4-400.webp 400w, imgs/lanl4-800.webp 800w" sizes="(max-width: 700px) 92vw, 33vw" />
-                  <img src="imgs/lanl4-800.jpg" width="800" height="600" alt="Los Alamos National Laboratory visit" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-            </div>
-            <button class="carousel-btn carousel-next" aria-label="Next photos">&#8594;</button>
+  <section class="sect" aria-labelledby="lanl">
+    <div class="mission reveal">
+      <div class="mission-in">
+        {{ ui.titlebar("~/missions/los-alamos", lanl.status) }}
+        <div class="mission-body">
+          <div class="mission-copy">
+            {{ ui.prompt("./mission --open los-alamos") }}
+            <p class="m-id"><span>{{ lanl.org }}</span></p>
+            <h2 class="m-title" id="lanl" style="font-size: clamp(1.6rem, 4.6vw, 2.8rem)">{{ lanl.title }}</h2>
+            <p class="m-sub">{{ lanl.role }} · {{ lanl.years }}</p>
+            <p class="prose" style="margin-top: var(--s-4)">{{ lanl.summary }}</p>
+            <ol class="m-log">
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span>{{ lanl.outcome }}</span></li>
+              <li><span class="m-ok" aria-hidden="true">[ OK ]</span><span>UTRGV Research Progress Presentation for Los Alamos National Laboratory</span></li>
+            </ol>
+            <div class="m-links"><a class="btn btn-shine" href="/work/{{ lanl.slug }}.html"><span>Read the case study</span></a>{{ ui.status(lanl.status) }}</div>
+          </div>
+          <div class="mission-media">
+            {{ ui.photo({ src: "lanl3", alt: "Los Alamos National Laboratory visit", w: 800, h: 1067 }, "(min-width: 900px) 420px, 92vw", false, "orbit-photo") }}
           </div>
         </div>
-
       </div>
-
-      <div class="internship-nav-links">
-        <a href="nerdvana.html" class="internship-back">&#8592; Nerdvana</a>
-        <a href="internships.html" class="internship-next">All Internships &#8594;</a>
-      </div>
-
     </div>
   </section>
 
-  
+  <section class="sect" aria-labelledby="role">
+    {{ ui.head("Dual Enrollment Engineering Student", "whoami --role", "// my role", "role") }}
+    <div class="card block prose reveal"><p>Through the Science Academy, I enrolled in university-level Engineering and Computer Science coursework at UTRGV while still in high school. This means I'm earning college credit in real university classes alongside my high school diploma — ahead of the curve before I've even graduated.</p></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="card block reveal" aria-labelledby="studied">
+      {{ ui.prompt("ls ~/courses") }}
+      <p class="eyebrow">// what I studied</p>
+      <h2 id="studied">Engineering + Computer Science</h2>
+      <p class="prose">Courses span engineering fundamentals, programming, systems design, and applied computer science. I apply this directly to my internships and personal projects — building systems informed by real academic rigor, not just self-teaching alone.</p>
+    </section>
+    <section class="card block reveal" style="--i:1" aria-labelledby="impact">
+      {{ ui.prompt("tail -f impact.log") }}
+      <p class="eyebrow">// impact</p>
+      <h2 id="impact">A Head Start on a University Degree</h2>
+      <p class="prose">By combining Science Academy with UTRGV dual enrollment, I'm building a foundation most students don't start until 18 or 19. Every credit I earn now is a semester I buy back later — and every concept I master now makes me a better engineer and developer today.</p>
+    </section>
+  </div>
+
+  <section class="sect" aria-labelledby="ext">
+    {{ ui.head(vla.title, "./vla --status", "// externship · 2026–2027", "ext") }}
+    <div class="card block reveal">
+      <p class="prose">Through a UTRGV externship I'm leading the software side of a large-format, Voron-based 3D printer with a camera and an ML supervisor. The system watches every layer, compares it against the G-code, flags defects as they form, and decides how to respond. I wrote the software plan and I'm building it in phases, starting on a small test printer before moving to the Voron.</p>
+      <p style="margin-top: var(--s-4)">{{ ui.status(vla.status) }} <a class="lnk" href="/work/{{ vla.slug }}.html">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
+    </div>
+  </section>
+
+  <section class="sect" aria-labelledby="learned">
+    {{ ui.head("Key Takeaways", "git log --oneline lessons", "// what I learned", "learned") }}
+    <div class="card block prose reveal"><p>Dual enrollment at UTRGV pushed me to operate at a college level while still in high school — and I found out I could handle it. Sitting alongside students years older than me taught me to advocate for myself, ask better questions, and take ownership of my learning in a way that no one else could do for me. The visit to Los Alamos National Laboratory was a turning point: it made abstract career paths feel real and close. I came back knowing exactly what kind of engineer I want to become.</p></div>
+  </section>
+
+  <section class="sect" aria-labelledby="photos">
+    {{ ui.head("Experience in Photos", "ls ~/photos/utrgv", "// photo gallery", "photos") }}
+    <div class="gal reveal">
+      {%- set ug = [
+        { src: "STUDENTBYSTUDENT", alt: "UTRGV Science Academy", w: 800, h: 1422 },
+        { src: "STUDENTBYSTUDENT2", alt: "UTRGV Science Academy students", w: 800, h: 1422 },
+        { src: "STUDENTBYSTUDENT3", alt: "UTRGV Science Academy students", w: 800, h: 1422 },
+        { src: "lanl", alt: "UTRGV LANL program", w: 800, h: 375 },
+        { src: "lanl2", alt: "Los Alamos National Laboratory visit", w: 800, h: 600 },
+        { src: "lanl4", alt: "Los Alamos National Laboratory visit", w: 800, h: 600 }
+      ] %}
+      {%- for p in ug %}
+      {{ ui.photo(p, "(min-width: 760px) 33vw, 50vw") }}
+      {%- endfor %}
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="Internships">
+    <a href="/nerdvana.html"><span aria-hidden="true">&larr;</span> Nerdvana</a>
+    <a href="/internships.html">All Internships <span aria-hidden="true">&rarr;</span></a>
+  </nav>
+</div>

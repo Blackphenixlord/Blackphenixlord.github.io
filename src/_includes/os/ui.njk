@@ -1,0 +1,89 @@
+{#- JC/OS building blocks. Import with: {% import "os/ui.njk" as ui %} -#}
+
+{#- The JC mark: a tiny terminal window with a block cursor. -#}
+{% macro logo(cls="") -%}
+<svg class="logo {{ cls }}" viewBox="0 0 40 32" width="40" height="32" aria-hidden="true" focusable="false"><rect x="1" y="1" width="38" height="30" rx="5" fill="#0d1117" stroke="currentColor" stroke-opacity=".55"/><path d="M1 9h38" stroke="currentColor" stroke-opacity=".35"/><circle cx="6" cy="5" r="1.5" fill="#ff5f57"/><circle cx="11" cy="5" r="1.5" fill="#febc2e"/><circle cx="16" cy="5" r="1.5" fill="#28c840"/><path d="M13 13v9.5a3 3 0 0 1-6 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/><path d="M26 14.2a5 5 0 1 0 0 7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/><rect class="logo-cur" x="29" y="20" width="5" height="4" fill="currentColor"/></svg>
+{%- endmacro %}
+
+{#- Window chrome: traffic lights, a path, an optional live LED. -#}
+{% macro titlebar(path, led="", tag="div") -%}
+<{{ tag }} class="tb" aria-hidden="true"><span class="tb-dots"><i></i><i></i><i></i></span><span class="tb-path">{{ path }}</span>{% if led %}<span class="tb-led">{{ led }}</span>{% endif %}</{{ tag }}>
+{%- endmacro %}
+
+{#- Text that decrypts itself. Screen readers get the plain copy; the
+    scrambled one is aria-hidden and starts out as the real text, so
+    without JS (or with reduced motion) nothing is ever scrambled. -#}
+{% macro decrypt(text, cls="") -%}
+<span class="dec {{ cls }}"><span class="sr-only">{{ text }}</span><span class="dec-v" aria-hidden="true" data-decrypt>{{ text }}</span></span>
+{%- endmacro %}
+
+{#- `joshua@collado:~$ cmd` above a heading. Decorative: the heading carries the meaning. -#}
+{% macro prompt(cmd, path="~") -%}
+<p class="ps" aria-hidden="true"><span class="ps-u">joshua@collado</span><span class="ps-c">:</span><span class="ps-p">{{ path }}</span><span class="ps-c">$</span> <span class="ps-cmd" data-type>{{ cmd }}</span><span class="cur"></span></p>
+{%- endmacro %}
+
+{#- Section header: prompt + eyebrow + h2. -#}
+{% macro head(title, cmd, eyebrow="", id="", lede="") -%}
+<header class="sh reveal">
+  {{ prompt(cmd) }}
+  {%- if eyebrow %}<p class="eyebrow">{{ eyebrow | safe }}</p>{% endif %}
+  <h2{% if id %} id="{{ id }}"{% endif %}>{{ title }}</h2>
+  {%- if lede %}<p class="lede">{{ lede }}</p>{% endif %}
+</header>
+{%- endmacro %}
+
+{% macro status(s) -%}
+{%- set k = "live" if s == "In progress" else ("final" if s == "Houston finals" else "done") -%}
+<span class="chip chip-{{ k }}"><i class="led" aria-hidden="true"></i>{{ s }}</span>
+{%- endmacro %}
+
+{#- A real photo, in the AVIF/WebP/JPEG sizes tools/build-images.mjs makes. -#}
+{% macro photo(p, sizes="(min-width: 900px) 33vw, 90vw", eager=false, cls="") -%}
+{%- set small = p.src == "nasa11" -%}
+<picture class="ph {{ cls }}">
+  {%- if small %}
+  <source type="image/avif" srcset="/imgs/{{ p.src }}-400.avif 400w">
+  <source type="image/webp" srcset="/imgs/{{ p.src }}-400.webp 400w">
+  <img src="/imgs/{{ p.src }}-400.jpg" alt="{{ p.alt }}" width="{{ p.w }}" height="{{ p.h }}" {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+  {%- else %}
+  <source type="image/avif" srcset="/imgs/{{ p.src }}-400.avif 400w, /imgs/{{ p.src }}-800.avif 800w" sizes="{{ sizes }}">
+  <source type="image/webp" srcset="/imgs/{{ p.src }}-400.webp 400w, /imgs/{{ p.src }}-800.webp 800w" sizes="{{ sizes }}">
+  <img src="/imgs/{{ p.src }}-800.jpg" alt="{{ p.alt }}" width="{{ p.w }}" height="{{ p.h }}" {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+  {%- endif %}
+</picture>
+{%- endmacro %}
+
+{#- A project as a program you can open. -#}
+{% macro program(p, labels, hx="h3") -%}
+<article class="prog prog-{{ p.tier }} reveal" data-tilt data-cats="{{ p.categories | join(' ') }}" aria-labelledby="prog-{{ p.slug }}">
+  <div class="prog-in">
+    {{ titlebar("~/work/" + p.slug, "running" if p.status == "In progress" else "exit 0") }}
+    <div class="prog-body">
+      <p class="prog-meta"><span>{{ p.org }}</span><span aria-hidden="true">/</span><span>{{ p.years }}</span></p>
+      <{{ hx }} class="prog-title" id="prog-{{ p.slug }}"><a href="/work/{{ p.slug }}.html">{{ p.title }}</a></{{ hx }}>
+      <p class="prog-role">{{ p.role }}</p>
+      <p class="prog-sum">{{ p.summary }}</p>
+      <div class="prog-out"><p class="k">Outcome</p><p>{{ p.outcome }}</p></div>
+      <div class="prog-foot">
+        {{ status(p.status) }}
+        <ul class="tags" aria-label="Stack">{% for s in p.stack %}<li>{{ s }}</li>{% endfor %}</ul>
+      </div>
+      <p class="prog-go" aria-hidden="true">Read the case study <span>&rarr;</span></p>
+    </div>
+  </div>
+</article>
+{%- endmacro %}
+
+{#- An inner page's header: an app window with the command that opened it. -#}
+{% macro appHead(path, cmd, eyebrow, title, sub="", tags=[]) -%}
+<header class="app reveal">
+  {{ titlebar(path, "active") }}
+  <div class="app-body">
+    {{ prompt(cmd) }}
+    <p class="eyebrow">{{ eyebrow | safe }}</p>
+    <h1 class="app-title">{{ decrypt(title) }}</h1>
+    {%- if sub %}<p class="app-sub">{{ sub | safe }}</p>{% endif %}
+    {%- if tags.length %}<ul class="tags tags-lg" aria-label="Tags">{% for t in tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+</header>
+{%- endmacro %}

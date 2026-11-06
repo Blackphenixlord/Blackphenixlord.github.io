@@ -1,15 +1,14 @@
-/* Keep the .html URLs the site has always had. Eleventy's default would emit
-   /about/index.html, silently breaking every existing link, bookmark and
-   inbound URL. Front matter still wins, so rick.html and sitemap.njk keep
-   the permalinks they declare. */
+/* Every page keeps the flat .html URL the site has always used
+   (/about.html, not /about/), so inbound links and bookmarks still land.
+   A page's own `permalink` front matter wins (work/, sitemap). */
 export default {
+  layout: 'os.njk',
   permalink: (data) => `${data.page.filePathStem}.html`,
-
   eleventyComputed: {
-    /* index.html is canonically the bare domain; everything else is its .html */
     canonicalUrl: (data) =>
-      data.page.filePathStem === '/index'
+      data.canonicalUrl ||
+      (data.page.filePathStem === '/index'
         ? `${data.site.url}/`
-        : `${data.site.url}${data.page.filePathStem}.html`,
+        : `${data.site.url}${data.page.filePathStem}.html`),
   },
 };

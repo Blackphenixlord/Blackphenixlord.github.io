@@ -1,31 +1,22 @@
-/* ──────────────────────────────────────────────────────────────────────────
-   The work, in one place.
+/* The work. Home, /projects.html, the launcher, the sitemap and every
+   /work/<slug>.html case study render from this list.
 
-   index.html and projects.html each carried their own hand-written copy of
-   this list, and they had already drifted — the home page showed four
-   projects, the projects page showed three, with different wording for the
-   same work. Both now render from here, as do the case-study pages.
+   problem / approach / result are optional and simply do not render when empty.
+   photos: real photos of the work, from src/imgs (base name, no size suffix).
+   internship: the internship page behind the project, if there is one. */
+const nasaPhotos = [
+  { src: 'nasa2', alt: 'NASA HUNCH Houston finals', w: 800, h: 1422 },
+  { src: 'nasa4', alt: 'NASA HUNCH presentation', w: 800, h: 1422 },
+  { src: 'nasa5', alt: 'NASA HUNCH build', w: 800, h: 1422 },
+  { src: 'nasa6', alt: 'NASA HUNCH demo', w: 800, h: 1422 },
+];
+const lanlPhotos = [
+  { src: 'lanl2', alt: 'Los Alamos National Laboratory visit', w: 800, h: 600 },
+  { src: 'lanl3', alt: 'Los Alamos National Laboratory visit', w: 800, h: 1067 },
+  { src: 'lanl4', alt: 'Los Alamos National Laboratory visit', w: 800, h: 600 },
+  { src: 'lanl', alt: 'UTRGV LANL program', w: 800, h: 375 },
+];
 
-   ── Adding a visual ──────────────────────────────────────────────────────
-   Drop the file in src/imgs/ and set `cover` to its base name (no extension,
-   no size suffix), e.g. cover: 'progresso-home'. Run `npm run images` to
-   generate the AVIF/WebP/JPEG sizes, and the plate below is replaced by the
-   real screenshot everywhere it appears. Same for anything in `gallery`.
-
-   Until then each project shows a generated plate: deliberately a graphic,
-   not a mock screenshot, so nothing on the site implies a product shot that
-   does not exist.
-
-   ── Adding case-study depth ──────────────────────────────────────────────
-   `problem`, `approach` and `result` are optional. Empty ones simply do not
-   render, so a half-written case study still reads as finished.
-
-   There is deliberately no `metrics` field. An earlier version had one and it
-   filled up with things that are not measurements -- "Live", "Lead",
-   "Finals" -- set in huge display type as though they were. If a project ever
-   has a real figure worth that treatment, put it in `outcome` where it reads
-   as a sentence, or add the field back and use it only for actual numbers.
-   ────────────────────────────────────────────────────────────────────────── */
 export default [
   {
     slug: 'progresso-civic-platform',
@@ -42,12 +33,11 @@ export default [
       'information, public services, and official records.',
     outcome:
       'Brought a small South Texas city into the digital era — modern, secure, and publicly accessible.',
-    cover: null,
-    gallery: [],
     problem: '',
     approach: '',
     result: '',
-    related: 'recon.html',
+    photos: [],
+    internship: { href: '/recon.html', label: 'RECON Technologies' },
   },
   {
     slug: 'inventory-chain-system',
@@ -64,12 +54,11 @@ export default [
       'Operations division. Covers UI, real-time data flow, and multi-team collaboration.',
     outcome:
       'Advanced to the Houston finals and presented directly to NASA representatives.',
-    cover: null,
-    gallery: [],
     problem: '',
     approach: '',
     result: '',
-    related: 'nasa-hunch.html',
+    photos: nasaPhotos,
+    internship: { href: '/nasa-hunch.html', label: 'NASA HUNCH' },
   },
   {
     slug: 'vitals',
@@ -87,8 +76,6 @@ export default [
     outcome:
       'Leading Team TETHER through the 2026–27 NASA HUNCH Software & Technology challenge, ' +
       'with the engine, the public site, and the review boards built.',
-    cover: null,
-    gallery: [],
     problem:
       'A crew on the Moon cannot wait on a round trip to Houston every time someone feels wrong. ' +
       'They need a diagnostic aid that runs on board, with no connection to the ground.',
@@ -98,7 +85,8 @@ export default [
       'NVIDIA Jetson. Sensor and camera inputs are left as open slots rather than filled with ' +
       'plausible fake readings, so nothing in a demo pretends to be data it is not.',
     result: '',
-    related: 'nasa-hunch.html',
+    photos: [],
+    internship: { href: '/nasa-hunch.html', label: 'NASA HUNCH' },
     link: { label: 'The project site', title: 'VITALS · Team TETHER', href: '/vitals/' },
   },
   {
@@ -116,12 +104,11 @@ export default [
       "in a research environment, built with scientists at one of the US government's top national labs.",
     outcome:
       'Earned an in-person visit to Los Alamos National Laboratory as the only student selected.',
-    cover: null,
-    gallery: [],
     problem: '',
     approach: '',
     result: '',
-    related: 'utrgv.html',
+    photos: lanlPhotos,
+    internship: { href: '/utrgv.html', label: 'UTRGV' },
   },
   {
     slug: 'project-evie',
@@ -138,12 +125,11 @@ export default [
       'layer — controlling apps, routines, and devices from one unified interface.',
     outcome:
       'Establishing the foundation for a fully AI-powered home control and productivity system.',
-    cover: null,
-    gallery: [],
     problem: '',
     approach: '',
     result: '',
-    related: '',
+    photos: [],
+    internship: null,
   },
   {
     slug: 'vla-3d-printing',
@@ -161,12 +147,11 @@ export default [
     outcome:
       'Scoped the full software plan — control loop, defect responses, training data, and a ' +
       'phased build that proves itself on a small printer before moving to the Voron.',
-    cover: null,
-    gallery: [],
     problem: '',
     approach: '',
     result: '',
-    related: 'utrgv.html',
+    photos: [],
+    internship: { href: '/utrgv.html', label: 'UTRGV' },
   },
   {
     slug: 'screen-deck',
@@ -183,11 +168,10 @@ export default [
       'per-app volume sliders, a soundboard, calendar, notes, and live home-lab stats.',
     outcome:
       'Runs every day on my desk as the control surface for my PC, games, and home lab.',
-    cover: null,
-    gallery: [],
     problem: '',
     approach: '',
     result: '',
-    related: '',
+    photos: [],
+    internship: null,
   },
 ];

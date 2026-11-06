@@ -1,0 +1,32 @@
+{#- Ctrl+K / ⌘K. The list is plain links and buttons so it works as a
+    menu even before os.js wires up filtering and arrow keys. -#}
+<dialog class="ln" data-launcher aria-label="Command Palette">
+  <div class="ln-head">
+    <span class="ln-ps" aria-hidden="true">$&gt;</span>
+    <label class="sr-only" for="ln-q">Search commands</label>
+    <input id="ln-q" class="ln-q" type="text" role="combobox" aria-expanded="true" aria-controls="ln-list" aria-autocomplete="list" placeholder="type a command or search..." autocomplete="off" autocapitalize="off" spellcheck="false">
+    <button class="ln-x" type="button" data-close>ESC<span class="sr-only"> — close</span></button>
+  </div>
+  <ul class="ln-list" id="ln-list" role="listbox" aria-label="Commands">
+    <li class="ln-g" role="presentation" aria-hidden="true">navigate</li>
+    {%- for n in site.nav %}
+    <li role="option" id="ln-n-{{ n.key }}" aria-selected="false" data-href="{{ n.href }}" data-k="{{ n.label }} {{ n.path }}"><span class="ln-i" aria-hidden="true">&#x25CE;</span>Go to {{ n.label }}<kbd aria-hidden="true">{{ n.path }}</kbd></li>
+    {%- endfor %}
+    <li class="ln-g" role="presentation" aria-hidden="true">internships</li>
+    {%- for n in site.internships %}
+    <li role="option" id="ln-i-{{ loop.index }}" aria-selected="false" data-href="{{ n.href }}" data-k="{{ n.label }} internship"><span class="ln-i" aria-hidden="true">&#x25B8;</span>{{ n.label }}<kbd aria-hidden="true">{{ n.href }}</kbd></li>
+    {%- endfor %}
+    <li class="ln-g" role="presentation" aria-hidden="true">programs</li>
+    {%- for p in projects %}
+    <li role="option" id="ln-p-{{ p.slug }}" aria-selected="false" data-href="/work/{{ p.slug }}.html" data-k="{{ p.title }} {{ p.org }} {{ p.stack | join(' ') }}"><span class="ln-i" aria-hidden="true">&#x25A3;</span>{{ p.title }}<kbd aria-hidden="true">{{ p.status }}</kbd></li>
+    {%- endfor %}
+    <li class="ln-g" role="presentation" aria-hidden="true">actions</li>
+    <li role="option" id="ln-a-cv" aria-selected="false" data-href="/resume.html" data-k="resume cv download"><span class="ln-i" aria-hidden="true">&#x2193;</span>Open résumé<kbd aria-hidden="true">cv</kbd></li>
+    <li role="option" id="ln-a-scan" aria-selected="false" data-act="scan" data-k="scan lines crt"><span class="ln-i" aria-hidden="true">&#x229F;</span>Toggle scan lines<kbd aria-hidden="true">crt</kbd></li>
+    <li role="option" id="ln-a-dys" aria-selected="false" data-act="dys" data-k="dyslexia font accessibility"><span class="ln-i" aria-hidden="true">Aa</span>Dyslexia mode<span class="ln-d">OpenDyslexic + wider spacing</span></li>
+    <li role="option" id="ln-a-mail" aria-selected="false" data-href="mailto:{{ site.email }}" data-k="email mail contact"><span class="ln-i" aria-hidden="true">@</span>{{ site.email }}<kbd aria-hidden="true">mail</kbd></li>
+    <li role="option" id="ln-a-rick" aria-selected="false" data-href="/rick.html" data-k="rick roll rickroll" data-secret hidden><span class="ln-i" aria-hidden="true">&#x266A;</span>rick roll<kbd aria-hidden="true">?</kbd></li>
+  </ul>
+  <p class="ln-none" data-none hidden>no match &mdash; try &ldquo;nasa&rdquo;, &ldquo;resume&rdquo; or &ldquo;contact&rdquo;</p>
+  <p class="ln-foot" aria-hidden="true"><span>&#x2191;&#x2193; navigate</span><span>&#x21B5; run</span><span>ESC close</span><span>Ctrl+K</span></p>
+</dialog>

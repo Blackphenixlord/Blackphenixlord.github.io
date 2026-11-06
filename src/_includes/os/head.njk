@@ -1,0 +1,81 @@
+{%- set metaTitle = title -%}
+{%- set metaDesc = description or site.tagline -%}
+{%- set ogImg = site.url + site.ogImage -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDesc }}">
+<link rel="canonical" href="{{ canonicalUrl }}">
+{%- if noindex %}
+<meta name="robots" content="noindex, follow">
+{%- endif %}
+<meta name="theme-color" content="{{ site.themeColor }}">
+<meta name="color-scheme" content="dark">
+<meta name="author" content="{{ site.name }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ metaTitle }}">
+<meta property="og:description" content="{{ metaDesc }}">
+<meta property="og:url" content="{{ canonicalUrl }}">
+<meta property="og:image" content="{{ ogImg }}">
+<meta property="og:image:alt" content="{{ site.ogImageAlt }}">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ metaTitle }}">
+<meta name="twitter:description" content="{{ metaDesc }}">
+<meta name="twitter:image" content="{{ ogImg }}">
+<meta name="twitter:image:alt" content="{{ site.ogImageAlt }}">
+<link rel="preload" href="/fonts/Orbitron-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ShareTechMono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/os.css">
+<script>
+/* Runs before first paint: mark JS as available (so reveal-on-scroll may
+   hide things) and decide whether this visit gets the boot film. */
+(function (d) {
+  var h = d.documentElement, s = null;
+  h.classList.add('js');
+  try { s = sessionStorage.getItem('jc-booted'); if (localStorage.getItem('jc-scan') === 'off') h.classList.add('no-scan'); if (localStorage.getItem('jc-dys') === 'on') h.classList.add('dys'); } catch (e) {}
+  {%- if boot %}
+  if (!s && !matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('booting');
+  {%- endif %}
+})(document);
+</script>
+{%- set person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": site.url + "/#person",
+  "name": site.name,
+  "url": site.url + "/",
+  "email": "mailto:" + site.email,
+  "image": ogImg,
+  "description": site.tagline,
+  "jobTitle": "Engineer, developer, and builder",
+  "address": { "@type": "PostalAddress", "addressRegion": "TX", "addressCountry": "US" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "University of Texas Rio Grande Valley" },
+    { "@type": "HighSchool", "name": "Science Academy — STISD" }
+  ],
+  "knowsAbout": ["Full-stack development", "Web security", "Virtual reality", "Artificial intelligence", "Home automation"],
+  "sameAs": [site.github, site.linkedin]
+} %}
+<script type="application/ld+json">{{ person | jsonld | safe }}</script>
+{%- if project %}
+{%- set work = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": project.title,
+  "description": project.summary,
+  "url": canonicalUrl,
+  "dateCreated": project.years | replace(" ", ""),
+  "creator": { "@id": site.url + "/#person" },
+  "author": { "@type": "Person", "name": site.name, "url": site.url + "/" },
+  "keywords": project.stack | join(", "),
+  "sourceOrganization": { "@type": "Organization", "name": project.org },
+  "creativeWorkStatus": project.status
+} %}
+<script type="application/ld+json">{{ work | jsonld | safe }}</script>
+{%- endif %}
+{%- if crumbs %}
+<script type="application/ld+json">{{ crumbs | crumbsLd(site.url) | jsonld | safe }}</script>
+{%- endif %}
