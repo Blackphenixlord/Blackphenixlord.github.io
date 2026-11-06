@@ -477,7 +477,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Big Red Ranch Ministries — Volunteer" — activity
 - [x] "2022–2025" — activity
 - [x] "Ranch and camp site dedicated to fighting for the fatherless" — activity
-- [~] "joshuacollado656@gmail.com" — résumé header on master; differs from site.email (…636…) everywhere else and in every mailto. Rendered from `site.email` instead. **Flagged for Joshua to confirm.**
+- [~] "joshuacollado656@gmail.com" — résumé header on master; differs from site.email (…636…) everywhere else and in every mailto. Rendered from `site.email` instead. Joshua confirmed 636 is correct (656 was a typo on master).
 
 ## Testimonials (`testimonials.html`)
 - [x] "Testimonials | Joshua Collado" — title
