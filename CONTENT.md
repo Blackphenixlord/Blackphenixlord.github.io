@@ -401,7 +401,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 ## Résumé (`resume.html`, `resume.js`)
 - [x] "Résumé | Joshua Collado" — title
 - [x] "Résumé of Joshua Collado — Engineering internships, computer science courses, and presentations at NASA and UTRGV." — meta description
-- [x] "956-574-2556" — contact line
+- [x] "956-254-7815" — contact line (Joshua changed the number from 956-574-2556 on 2026-11-06)
 - [x] "South Texas" — contact line
 - [x] "UTRGV · 2025–2027" — tag
 - [x] "NASA Visits" — stat (2×)

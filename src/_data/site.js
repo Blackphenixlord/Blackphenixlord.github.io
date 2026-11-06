@@ -4,7 +4,7 @@ export default {
   url: 'https://jc-portfolio.codes',
   name: 'Joshua Collado',
   email: 'joshuacollado636@gmail.com',
-  phone: '956-574-2556',
+  phone: '956-254-7815',
   github: 'https://github.com/Blackphenixlord',
   linkedin: 'https://linkedin.com/in/joshua-collado',
   tagline: 'Building software that ships, systems that matter.',
