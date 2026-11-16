@@ -100,7 +100,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "engineer, developer, builder." — whoami
 - [x] "UTRGV Dual Enrollment · Science Academy · South Texas." — whoami
 - [x] "Python · Java · JavaScript · TypeScript · C · SQL · HTML/CSS · Bash · PowerShell · GLSL" — skills
-- [x] "React · Electron · Vite · Tailwind · Git · Docker · Linux · Android · Unity / VR · Fusion 360 (CAD)" — skills
+- [x] "React · Electron · Vite · Tailwind · Git · Docker · Linux · Android · Unreal Engine VR · Fusion 360 (CAD)" — skills
 - [x] "AI · Automation · Security" — skills
 - [x] "RECON Technologies · City of Progresso Civic Platform" — projects cmd
 - [x] "NASA HUNCH · Inventory Chain System (Houston finals)" — projects cmd

@@ -175,6 +175,28 @@ export default [
     internship: null,
   },
   {
+    slug: 'hallpass',
+    title: 'Hall Pass',
+    org: 'Veterans campus',
+    years: '2026',
+    role: 'Designer and developer',
+    tier: 'standard',
+    status: 'Approved by principal',
+    categories: ['fullstack', 'automation'],
+    stack: ['Electron', 'React', 'TypeScript', 'SQLite'],
+    summary:
+      'A Windows desktop app for classroom hall passes, attendance, and statistics. Students scan ' +
+      'their school ID at a kiosk to sign out and back in; teachers get a PIN-protected dashboard ' +
+      'with attendance, pass logs, reports, and analytics, all running offline.',
+    outcome:
+      'Pitched to the principal at Veterans and approved for use.',
+    problem: '',
+    approach: '',
+    result: '',
+    photos: [],
+    internship: null,
+  },
+  {
     slug: 'cyber-camp-lab',
     title: 'Cybersecurity Camp Lab Infrastructure',
     org: 'UTRGV',
