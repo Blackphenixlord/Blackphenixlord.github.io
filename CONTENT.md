@@ -99,8 +99,8 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "co-creating a STEM sandbox for elementary schools with" — home.js about text
 - [x] "engineer, developer, builder." — whoami
 - [x] "UTRGV Dual Enrollment · Science Academy · South Texas." — whoami
-- [x] "Python · Java · JavaScript · HTML/CSS · SQL · C" — skills
-- [x] "Git · Android · VR/Unity · Full-Stack Dev" — skills
+- [x] "Python · Java · JavaScript · TypeScript · C · SQL · HTML/CSS · Bash · PowerShell · GLSL" — skills
+- [x] "React · Electron · Vite · Tailwind · Git · Docker · Linux · Android · Unity / VR · Fusion 360 (CAD)" — skills
 - [x] "AI · Automation · Security" — skills
 - [x] "RECON Technologies · City of Progresso Civic Platform" — projects cmd
 - [x] "NASA HUNCH · Inventory Chain System (Houston finals)" — projects cmd
@@ -241,20 +241,16 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "College-level coursework while in high school" — education
 - [x] "Expected graduation: 2027" — education
 - [x] "Languages & Tools" — card
-- [x] "Python · Java · JavaScript · C" — tools
+- [x] "Python · Java · JavaScript · TypeScript · C" — tools
 - [x] "HTML · CSS · SQL" — tools
-- [x] "Git · Android Studio · Unreal/VR" — tools
+- [x] "Git · Docker · Linux · Android Studio · Unreal/VR" — tools
 - [x] "Full-stack web development" — tools
 - [x] "AI integration & automation" — tools
 - [x] "Extracurriculars" — card
-- [x] "Cross Country — Team Captain" — extracurricular
-- [x] "BPA — Business Professionals of America" — extracurricular
-- [x] "Competed at Regionals 3×, qualified for State in Personal Finance" — extracurricular
 - [x] "Catalyst Club — Treasurer" — extracurricular
-- [x] "Rotary Club" — extracurricular
-- [x] "SciTech Esports Media — Streaming Manager" — extracurricular
+- [x] "SciTech Esports Media — Streaming Captain" — extracurricular
 - [x] "Volunteer — Big Red Ranch Ministries" — extracurricular
-- [~] TSA, "BPA Club" descriptions, "Community volunteer: graphic design support" — removed Nov 2026: not accurate (per Joshua)
+- [~] TSA, BPA, Cross Country, Rotary Club, "Community volunteer: graphic design support" — removed Nov 2026: not accurate (per Joshua)
 - [x] "Leadership" — card
 - [x] "Team lead on multi-phase school engineering project" — leadership
 - [x] "Organized a student coding workshop on web design basics" — leadership
@@ -454,7 +450,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Personal AI assistant (Evie) that automates life and work tasks" — capstone
 - [x] "Skills" — heading
 - [x] "Tools & Frameworks" — skills
-- [x] "React · TypeScript · Vite · Node.js · Git · Android · Unity / VR" — skills
+- [x] "React · Electron · Vite · Tailwind" — skills
 - [x] "Focus Areas" — skills
 - [x] "Full-Stack Dev · Project Lead · Web Security · Hardware · AI / Automation" — skills
 - [x] "Coursework" — heading
@@ -473,7 +469,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Activities & Volunteerism" — heading
 - [x] "ECC Driver" — activity
 - [x] "2026–Present" — activity
-- [x] "Esports Streaming Manager" — activity
+- [x] "Esports Streaming Captain" — activity
 - [x] "2025–Present" — activity
 - [x] "Minecraft Esports" — activity
 - [x] "2023–2024" — activity
