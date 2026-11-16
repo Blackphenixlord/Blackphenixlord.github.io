@@ -250,11 +250,11 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Cross Country — Team Captain" — extracurricular
 - [x] "BPA — Business Professionals of America" — extracurricular
 - [x] "Competed at Regionals 3×, qualified for State in Personal Finance" — extracurricular
-- [x] "TSA — Technology Student Association" — extracurricular
+- [x] "Catalyst Club — Treasurer" — extracurricular
 - [x] "Rotary Club" — extracurricular
 - [x] "SciTech Esports Media — Streaming Manager" — extracurricular
 - [x] "Volunteer — Big Red Ranch Ministries" — extracurricular
-- [~] "TSA Club" / "BPA Club" descriptions, "Community volunteer: graphic design support" — removed Nov 2026: not accurate (per Joshua)
+- [~] TSA, "BPA Club" descriptions, "Community volunteer: graphic design support" — removed Nov 2026: not accurate (per Joshua)
 - [x] "Leadership" — card
 - [x] "Team lead on multi-phase school engineering project" — leadership
 - [x] "Organized a student coding workshop on web design basics" — leadership
