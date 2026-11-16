@@ -165,7 +165,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Earned an in-person visit to Los Alamos National Laboratory as the only student selected." — outcome
 ### project-evie
 - [x] "Project Evie" — title
-- [x] "Capstone / Personal" — org
+- [x] "Personal" — org
 - [x] "Product designer and AI systems developer" — role
 - [x] "Android" — stack
 - [x] "Cross-Platform" — stack
@@ -443,11 +443,11 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Co-Builder · Hardware Manager · Stack Developer" — Nerdvana role
 - [x] "Co-developed a Level Sandbox Environment with the CEO" — Nerdvana
 - [x] "Designed to promote STEM interest in elementary schools" — Nerdvana
-- [x] "Capstone Project" — heading
-- [x] "Project Evie — Home Automation AI Assistant" — capstone
+- [x] "EDD Capstone Project" — heading
+- [x] "Team HELIOS — Project AtlasPoint" — capstone
 - [x] "2026–2027" — capstone dates
-- [x] "Developing a home network that bridges Android and Windows devices" — capstone
-- [x] "Personal AI assistant (Evie) that automates life and work tasks" — capstone
+- [x] "Leading a four-person Engineering Design &amp; Development team" — capstone
+- [x] "Designing a system that shows where a specific person is inside a school building in real time" — capstone
 - [x] "Skills" — heading
 - [x] "Tools & Frameworks" — skills
 - [x] "React · Electron · Vite · Tailwind" — skills

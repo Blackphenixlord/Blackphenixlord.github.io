@@ -113,7 +113,7 @@ export default [
   {
     slug: 'project-evie',
     title: 'Project Evie',
-    org: 'Capstone / Personal',
+    org: 'Personal',
     years: '2026 – 2027',
     role: 'Product designer and AI systems developer',
     tier: 'standard',
