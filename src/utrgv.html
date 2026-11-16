@@ -9,6 +9,7 @@ crumbs: [{ name: "Home", href: "/" }, { name: "Internships", href: "/internships
 {%- import "os/ui.njk" as ui -%}
 {%- set lanl = projects[3] -%}
 {%- set vla = projects[5] -%}
+{%- set cyber = projects | last -%}
 <div class="page wrap">
   {{ ui.appHead("~/internships/utrgv", "cd ~/internships/utrgv", "// internship · 2025–present", "UTRGV", "University of Texas Rio Grande Valley — Dual Enrollment", ["Engineering", "Computer Science", "Science Academy", "Dual Enrollment", "Externship"]) }}
 
@@ -62,6 +63,14 @@ crumbs: [{ name: "Home", href: "/" }, { name: "Internships", href: "/internships
     <div class="card block reveal">
       <p class="prose">Through a UTRGV externship I'm leading the software side of a large-format, Voron-based 3D printer with a camera and an ML supervisor. The system watches every layer, compares it against the G-code, flags defects as they form, and decides how to respond. I wrote the software plan and I'm building it in phases, starting on a small test printer before moving to the Voron.</p>
       <p style="margin-top: var(--s-4)">{{ ui.status(vla.status) }} <a class="lnk" href="/work/{{ vla.slug }}.html">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
+    </div>
+  </section>
+
+  <section class="sect" aria-labelledby="cyber">
+    {{ ui.head(cyber.title, "./cyberlab --status", "// utrgv · 2026–2027", "cyber") }}
+    <div class="card block reveal">
+      <p class="prose">I'm helping build the infrastructure for a UTRGV cybersecurity camp: virtual machines and Docker containers where campers run real terminal commands in a safe, hands-on lab instead of just reading about security.</p>
+      <p style="margin-top: var(--s-4)">{{ ui.status(cyber.status) }} <a class="lnk" href="/work/{{ cyber.slug }}.html">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </section>
 

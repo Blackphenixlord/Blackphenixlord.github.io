@@ -174,4 +174,25 @@ export default [
     photos: [],
     internship: null,
   },
+  {
+    slug: 'cyber-camp-lab',
+    title: 'Cybersecurity Camp Lab Infrastructure',
+    org: 'UTRGV',
+    years: '2026 – 2027',
+    role: 'Infrastructure builder',
+    tier: 'standard',
+    status: 'In progress',
+    categories: ['security', 'research'],
+    stack: ['Cybersecurity', 'Linux', 'Virtual Machines', 'Docker'],
+    summary:
+      'The lab environment for a UTRGV cybersecurity camp: virtual machines and Docker ' +
+      'containers that let campers run real terminal commands in a safe, hands-on setting.',
+    outcome:
+      'Building the infrastructure campers will use to practice real cybersecurity work instead of just reading about it.',
+    problem: '',
+    approach: '',
+    result: '',
+    photos: [],
+    internship: { href: '/utrgv.html', label: 'UTRGV' },
+  },
 ];

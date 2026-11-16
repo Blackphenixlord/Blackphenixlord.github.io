@@ -303,7 +303,7 @@ page names = `src/<page>.html` on master, `home.js` / `resume.js` /
 - [x] "Community" — tag
 - [x] "2025 – Present" — UTRGV dates
 - [x] "Dual Enrollment Student & Externship Software Lead" — UTRGV role
-- [x] "Dual enrollment in Engineering and Computer Science through the Science Academy, plus an externship building the software for an AI-supervised 3D printer." — UTRGV
+- [x] "Dual enrollment in Engineering and Computer Science through the Science Academy, plus an externship building the software for an AI-supervised 3D printer, and building the VM and Docker lab infrastructure for a UTRGV cybersecurity camp." — UTRGV
 - [x] "Engineering" — tag
 - [x] "CS" — tag
 
