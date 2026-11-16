@@ -177,7 +177,7 @@ export default [
   {
     slug: 'hallpass',
     title: 'Hall Pass',
-    org: 'Veterans campus',
+    org: 'Veterans Memorial',
     years: '2026',
     role: 'Designer and developer',
     tier: 'standard',
@@ -189,7 +189,7 @@ export default [
       'their school ID at a kiosk to sign out and back in; teachers get a PIN-protected dashboard ' +
       'with attendance, pass logs, reports, and analytics, all running offline.',
     outcome:
-      'Pitched to the principal at Veterans and approved for use.',
+      'Pitched to the principal at Veterans Memorial and approved for use.',
     problem: '',
     approach: '',
     result: '',
