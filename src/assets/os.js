@@ -95,7 +95,7 @@
   };
   if (io) {
     const po = new IntersectionObserver((ents) => ents.forEach((en) => en.target.classList.toggle('paused', !en.isIntersecting)));
-    $$('.missions, .hero, .bar-read, .mission, .btn-shine, .term, .ps, .chip-live, .orbit').forEach((s) => po.observe(s));
+    $$('.missions, .hero, .bar-read, .mission, .term, .ps, .chip-live').forEach((s) => po.observe(s));
   }
   d.addEventListener('visibilitychange', () => html.classList.toggle('paused', d.hidden));
 
@@ -286,11 +286,11 @@
       clearTimeout(t);
       try { sessionStorage.setItem('jc-booted', '1'); } catch (e) { /* ignore */ }
       boot.classList.add('is-off');
-      setTimeout(() => { html.classList.remove('booting'); boot.remove(); ready(); }, 480);
+      setTimeout(() => { html.classList.remove('booting'); boot.remove(); ready(); }, 340);
     };
     const grant = () => {
       boot.classList.add('is-grant');
-      t = setTimeout(finish, 950);
+      t = setTimeout(finish, 560);
     };
     const next = () => {
       if (i >= LINES.length) { t = setTimeout(grant, 120); return; }
@@ -300,10 +300,10 @@
       line.textContent = txt + '\n';
       log.append(line);
       meter.style.transform = `scaleX(${i / LINES.length})`;
-      t = setTimeout(next, wait);
+      t = setTimeout(next, wait * 0.3);
     };
     ['keydown', 'pointerdown'].forEach((ev) => addEventListener(ev, finish, { once: true }));
-    t = setTimeout(next, 200);
+    t = setTimeout(next, 120);
   } else {
     if (boot) boot.remove();
     ready();

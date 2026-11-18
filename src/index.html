@@ -33,7 +33,7 @@ scripts: [field.js, term.js]
       <div class="ro"><dt>Internships</dt><dd><span class="ro-n">{{ ui.decrypt("4") }}</span><span class="ro-l">Including NASA &amp; Los Alamos</span></dd></div>
       <div class="ro"><dt>NASA Trips</dt><dd><span class="ro-n">{{ ui.decrypt("2") }}</span><span class="ro-l">2 visits to Houston</span></dd></div>
       <div class="ro"><dt>Languages</dt><dd><span class="ro-n">{{ ui.decrypt("10") }}</span><span class="ro-l">Coding languages</span></dd></div>
-      <div class="ro"><dt>Active Projects</dt><dd><span class="ro-n">{{ ui.decrypt("4") }}</span><span class="ro-l">Running in parallel</span></dd></div>
+      <div class="ro"><dt>Active Projects</dt><dd><span class="ro-n">{{ ui.decrypt(stats.activeProjects) }}</span><span class="ro-l">Running in parallel</span></dd></div>
     </dl>
   </div>
 </section>
@@ -100,15 +100,8 @@ scripts: [field.js, term.js]
               <li><a class="lnk" href="/testimonials.html">Reflections <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
           </div>
-          <div class="mission-media orbit-wrap">
-            <div class="orbit" aria-hidden="true">
-              <span class="orbit-core">LANL</span>
-              <span class="orbit-ring r1"></span><span class="orbit-ring r2"></span>
-              {%- for s in lanl.stack %}
-              <span class="orbit-dot" style="--a:{{ loop.index0 * 90 }}deg;--r:{{ 'var(--o1)' if loop.index0 % 2 == 0 else 'var(--o2)' }}"><span>{{ s }}</span></span>
-              {%- endfor %}
-            </div>
-            {{ ui.photo({ src: "lanl2", alt: "Los Alamos National Laboratory visit", w: 800, h: 600 }, "(min-width: 900px) 420px, 90vw", false, "orbit-photo") }}
+          <div class="mission-media m-photo-wrap">
+            {{ ui.photo({ src: "lanl2", alt: "Los Alamos National Laboratory visit", w: 800, h: 600 }, "(min-width: 900px) 520px, 90vw", false, "m-photo") }}
           </div>
         </div>
       </div>
@@ -117,16 +110,19 @@ scripts: [field.js, term.js]
 </section>
 
 <section class="wrap sect" aria-labelledby="who-title">
-  {{ ui.head("Who I Am", "ps aux | grep joshua", "01 &middot; Who I Am", "who-title") }}
+  {{ ui.head("Who I Am", "ps aux | grep joshua", "", "who-title") }}
+  <div class="ps-table reveal">
+  <p class="ps-head" aria-hidden="true"><span>PID</span><span>NAME</span><span>DESCRIPTION</span></p>
   <ol class="traits">
-    <li class="trait reveal" style="--i:0"><p class="trait-pid" aria-hidden="true">PID 0001</p><h3>Innovative</h3><p>From NASA HUNCH to Los Alamos Lab — I build things that haven't existed before and solve real problems.</p></li>
-    <li class="trait reveal" style="--i:1"><p class="trait-pid" aria-hidden="true">PID 0002</p><h3>Driven</h3><p>I've presented to NASA, led teams across multiple internships, and I'm just getting started.</p></li>
-    <li class="trait reveal" style="--i:2"><p class="trait-pid" aria-hidden="true">PID 0003</p><h3>Purposeful</h3><p>Every project I touch has a mission behind it — national security, education, or community impact.</p></li>
+    <li class="trait"><p class="trait-pid" aria-hidden="true">0001</p><h3>Innovative</h3><p>From NASA HUNCH to Los Alamos Lab — I build things that haven't existed before and solve real problems.</p></li>
+    <li class="trait"><p class="trait-pid" aria-hidden="true">0002</p><h3>Driven</h3><p>I've presented to NASA, led teams across multiple internships, and I'm just getting started.</p></li>
+    <li class="trait"><p class="trait-pid" aria-hidden="true">0003</p><h3>Purposeful</h3><p>Every project I touch has a mission behind it — national security, education, or community impact.</p></li>
   </ol>
+  </div>
 </section>
 
 <section class="wrap sect" aria-labelledby="about-title">
-  {{ ui.head("About Me", "cat about.txt", "02 &middot; About Me", "about-title") }}
+  {{ ui.head("About Me", "cat about.txt", "", "about-title") }}
   <div class="term reveal" data-term data-label="Interactive terminal — About me">
     {{ ui.titlebar("joshua@collado — bash — 80×24", "live") }}
     <div class="term-body">
@@ -157,7 +153,7 @@ scripts: [field.js, term.js]
 </section>
 
 <section class="wrap sect" aria-labelledby="work-title">
-  {{ ui.head("Projects", "ls ~/work --running", "03 &middot; Selected Work", "work-title", "What I have built, and what I am building right now.") }}
+  {{ ui.head("Projects", "ls ~/work --running", "Selected Work", "work-title", "What I have built, and what I am building right now.") }}
   <div class="progs">
     {%- for p in projects %}
     {{ ui.program(p) }}
@@ -167,7 +163,7 @@ scripts: [field.js, term.js]
 </section>
 
 <section class="wrap sect" aria-labelledby="hl-title">
-  {{ ui.head("Highlights", "uname -a", "04 &middot; Highlights", "hl-title") }}
+  {{ ui.head("Highlights", "uname -a", "", "hl-title") }}
   <ul class="hl reveal">
     {%- for h in ["NASA HUNCH", "Los Alamos Lab", "Web Dev · RECON", "Java · JS · Python · C", "HTML · CSS · SQL", "VR Development", "AI Assistant (Evie)"] %}
     <li style="--i:{{ loop.index0 }}">{{ h }}</li>

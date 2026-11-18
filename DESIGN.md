@@ -19,7 +19,7 @@ window; every section header is a command; NASA and Los Alamos are the
 | `--green-ink` | `#04210a` | text on solid green |
 | `--line` | `rgb(40 200 64 / .14)` | grid lines, hairlines |
 | `--line-2` | `rgb(40 200 64 / .32)` | window borders, focus-adjacent |
-| `--glow` | `0 0 24px rgb(40 200 64 / .35)` | neon glow |
+| `--glow` | `0 0 24px rgb(40 200 64 / .35)` | neon glow: live things only (cursor, LEDs, boot, launcher, the "Houston finals" chip) and as hover/focus feedback on the primary button. Never on headings or numbers |
 | `--dot-r/y/g` | `#ff5f57` `#febc2e` `#28c840` | window traffic lights only |
 
 No other hues. Errors use `--dot-r` *plus* an icon and text, never colour alone.
@@ -60,7 +60,8 @@ in hidden tabs. `prefers-reduced-motion: reduce` → no boot, no scramble, no
 tilt, static grid frame, everything visible.
 
 ## Components
-- **Window** — title bar (traffic lights, path, status LED), body. Variants: `app` (page header), `mission` (border beam), `program` (project card: tilt + spotlight).
+- **Window** — title bar (traffic lights, path, status LED), body. Variants: `app` (page header), `mission` (border beam: one sweep when it scrolls in, then rests), `program` (project card: tilt + spotlight).
+- **Process table** — "Who I am" printed like `ps aux`: one window, a row per trait (PID · name · description). No card grid.
 - **Prompt header** — `joshua@collado:~$ <command>` above every h2; the command types itself (aria-hidden copy, real heading stays plain).
 - **Readout** — big Orbitron number + mono label (stats, project facts).
 - **Status chip** — LED + text: Shipped / Delivered / Houston finals / In progress.
@@ -73,3 +74,13 @@ tilt, static grid frame, everything visible.
 - **Home**: boot film → hero (flickering-grid field reacting to pointer/touch, decrypting name, typed tagline, readouts) → **Critical missions** (NASA HUNCH, Los Alamos: full-width mission windows with photos, logs, status) → Who I am → interactive terminal → Programs (7 project cards) → Highlights → footer.
 - **Inner pages**: app window header (`~/path`, `$ cat page`) → sections with prompt headers → next/previous.
 - **Case studies** `/work/<slug>.html`: program window ("running" LED), readouts for role/timeline/status, `$ stack --list`, problem/approach/outcome, photos where the work has them, links, prev/next.
+
+## Restraint rules (Nov 2026 pass)
+The terminal is the concept, so the effects have to stay rare to keep meaning:
+- One orchestrated entrance per page: the boot film on home (about 2 s, once a
+  session, any key skips). Section reveals are a short fade, no slide-up.
+- Nothing loops unless it is live: the cursor blinks, status LEDs pulse. No
+  shimmer on buttons, no scrolling floor, no orbiting chips, no endless beam.
+- Glow follows the `--glow` rule above. Headings stay crisp.
+- Numbers that can be counted come from data (`src/_data/stats.js`), never typed.
+- Section headers are prompt + title. No numbered eyebrows (`01 ·`) repeating the title.
